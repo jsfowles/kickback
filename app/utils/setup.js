@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 'use strict'
 
 import React, { Component } from 'react'
@@ -12,6 +9,7 @@ import {
 
 import { Provider } from 'react-redux'
 import configureStore from '../store/configureStore'
+import App from '../views/App'
 
 function setup(): React.Component {
   StatusBar.setBarStyle('light-content')
@@ -31,7 +29,7 @@ function setup(): React.Component {
 
       return (
         <Provider store={ this.state.store }>
-          <View />
+          <App />
         </Provider>
       )
     }
