@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient'
+import ItemWrapper from './HeaderItemWrapper'
 
 class Header extends React.Component {
   render() {
@@ -21,6 +22,9 @@ class Header extends React.Component {
         <View style={ styles.centerItem }>
           { this.props.children }
         </View>
+        { rightItem && <View style={ styles.rightItem }>
+          <ItemWrapper item={ rightItem } />
+        </View> }
       </LinearGradient>
     )
   }
@@ -29,6 +33,7 @@ class Header extends React.Component {
 const styles = StyleSheet.create({
   header: {
     paddingTop: 20,
+    paddingHorizontal: 10,
     height: 65,
     flexDirection: 'row',
     alignItems: 'center',
@@ -42,13 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  headerBtn: {
-    flex: 1,
-    backgroundColor: 'rgba(11, 87, 119, 0.15)',
-    height: 30,
-    marginHorizontal: 10,
-    borderRadius: 6,
-    justifyContent: 'center',
+  rightItem: {
   },
 })
 

@@ -9,8 +9,10 @@ class Container extends React.Component {
     return (
       <View style={ styles.container }>
         <View>
-          <Header headerBtn={ this.props.headerBtn } >
-            { this.props.header() }
+          <Header
+            rightItem={ this.props.rightItem }
+          >
+            { this.props.header && this.props.header() }
           </Header>
         </View>
         { this.props.children }

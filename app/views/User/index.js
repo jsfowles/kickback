@@ -2,13 +2,23 @@
 
 import React from 'react'
 import { View, Text, } from 'react-native'
+import Container from '../shared/Container'
 
 class User extends React.Component {
   render() {
+    let rightItem = {
+      icon: require('image!settings'),
+      onPress: () => console.log('???'),
+    }
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ color: '#fff' }}>User</Text>
-      </View>
+      <Container
+        rightItem={ rightItem }
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>User</Text>
+        </View>
+      </Container>
     )
   }
 }

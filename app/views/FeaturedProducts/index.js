@@ -9,7 +9,6 @@ class FeaturedProducts extends React.Component {
   render() {
     return (
       <Container
-        headerBtn={ true }
         header={ () => <Header /> }
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
