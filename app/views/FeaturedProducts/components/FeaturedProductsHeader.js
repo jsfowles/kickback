@@ -10,11 +10,11 @@ import {
   View,
 } from 'react-native'
 
-import { activateSearch } from '../../../actions/search'
+import { navigateSearch } from '../../../actions/search'
 
-class Header extends React.Component {
+class FeaturedProductsHeader extends React.Component {
   static propTypes = {
-    activateSearch: React.PropTypes.func.isRequired,
+    navigateSearch: React.PropTypes.func.isRequired,
   };
 
   render() {
@@ -22,7 +22,7 @@ class Header extends React.Component {
       <TouchableHighlight
         style={ styles.button }
         underlayColor={ 'rgba(11, 87, 119, 0.25)' }
-        onPress={ () => this.props.activateSearch() }
+        onPress={ () => this.props.navigateSearch() }
       >
         <View style={ styles.buttonContainer }>
           <Image source={ require('image!search') } />
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({})
 const mapActionsToProps = (dispatch) => ({
-  activateSearch: () => dispatch(activateSearch()),
+  navigateSearch: () => dispatch(navigateSearch()),
 })
 
-export default connect(mapStateToProps, mapActionsToProps)(Header)
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedProductsHeader)

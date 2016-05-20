@@ -3,12 +3,15 @@
 import React from 'react'
 import { View, Text, } from 'react-native'
 import Container from '../shared/Container'
+import { connect } from 'react-redux'
+
+import { navigateSettings } from '../../actions/settings'
 
 class User extends React.Component {
   render() {
     let rightItem = {
       icon: require('image!settings'),
-      onPress: () => console.log('???'),
+      onPress: () => this.props.navigateSettings(),
     }
 
     return (
@@ -23,4 +26,9 @@ class User extends React.Component {
   }
 }
 
-export default User
+const mapStateToProps = (state) => ({})
+const mapActionsToProps = (dispatch) => ({
+  navigateSettings: () => dispatch(navigateSettings()),
+})
+
+export default connect(mapStateToProps, mapActionsToProps)(User)

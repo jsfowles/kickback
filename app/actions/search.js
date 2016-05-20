@@ -1,6 +1,6 @@
 'use strict'
 
-export const activateSearch = () => {
+export const navigateSearch = () => {
   console.log('TODO: SET THIS UP')
-  return { type: 'ACTIVATE_SEARCH' }
+  return { type: 'NAVIGATE_SEARCH' }
 }
