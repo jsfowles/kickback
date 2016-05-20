@@ -1,14 +1,21 @@
-'use strict'
+'used strict'
 
 import React from 'react'
 import { View, Text, } from 'react-native'
+import Container from '../shared/Container'
+import Header from './components/FeaturedProductsHeader'
 
 class FeaturedProducts extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ color: '#fff' }}>FeaturedProducts</Text>
-      </View>
+      <Container
+        headerBtn={ true }
+        header={ () => <Header /> }
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>FeaturedProducts</Text>
+        </View>
+      </Container>
     )
   }
 }
