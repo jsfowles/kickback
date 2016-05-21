@@ -12,6 +12,10 @@ import {
   StyleSheet,
 } from 'react-native'
 
+import {
+  loadProductFeed
+} from '../actions'
+
 import Navigation from './Navigation'
 
 /**
@@ -25,6 +29,8 @@ class App extends Component {
    */
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange)
+
+    this.props.loadProductFeed()
   }
 
   /**
@@ -39,7 +45,9 @@ class App extends Component {
    * @todo: when app is active sync all the things
    */
   handleAppStateChange = () => {
-    if (AppState === 'active') { }
+    if (AppState === 'active') {
+      this.props.loadProductFeed()
+    }
   }
 
   render() {
@@ -55,4 +63,9 @@ const styles = StyleSheet.create({
   container: { flex: 1 }
 })
 
-export default connect()(App)
+const mapStateToProps = (state) => ({})
+const mapActionsToProps = (dispatch) => ({
+  loadProductFeed: () => dispatch(loadProductFeed()),
+})
+
+export default connect(mapStateToProps, mapActionsToProps)(App)
