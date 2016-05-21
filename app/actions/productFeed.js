@@ -9,7 +9,7 @@ export const receiveProductFeed = (feed) => ({
 export const loadProductFeed = () => {
   return (dispatch) => {
     getProductFeed().then(res => {
-      console.log(res)
+      dispatch(receiveProductFeed(res))
     })
   }
 }
