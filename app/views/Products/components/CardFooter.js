@@ -13,6 +13,7 @@ const CardFooter = () => (
     <View style={ styles.kickbackText }>
 			<Text style={ styles.label }>Your Kickback</Text>
 		</View>
+
 		<TouchableHighlight
 			underlayColor='#fff'
 			activeOpacity={ 0.25 }

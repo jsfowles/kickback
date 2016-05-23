@@ -46,8 +46,13 @@ class ProductListView extends React.Component {
     </View>
   )
 
-  renderRow = (data) => <ProductCard product={ data } cardSize={ this.props.cardSize } />
-  renderSeparator = (sectionID, rowID) => <View style={ styles.separator } key={ rowID } />
+  renderRow = (data) => (
+    <ProductCard product={ data } cardSize={ this.props.cardSize } />
+  )
+
+  renderSeparator = (sectionID, rowID) => (
+    <View style={ styles.separator } key={ rowID } />
+  )
 
   render() {
     let { products, title } = this.props

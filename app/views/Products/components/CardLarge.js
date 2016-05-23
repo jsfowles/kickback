@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import CardFooter from './CardFooter'
+import Pricing from './Pricing'
 
 const ProductCardLarge = ({ product }) => (
   <View style={ styles.rowContainer }>
@@ -17,6 +18,11 @@ const ProductCardLarge = ({ product }) => (
 
     <View style={ styles.itemContainer }>
       <Text style={ styles.title }>{ product.title }</Text>
+      <Pricing
+        salePrice={ product.salePrice }
+        price={ product.price }
+        onSale={ product.salePrice < product.price }
+      />
     </View>
 
     <CardFooter />
