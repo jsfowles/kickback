@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Container from '../shared/Container'
-import ProductList from '../shared/ProductListView'
+import Products from '../Products'
 import Header from './components/FeaturedProductsHeader'
 
 class FeaturedProducts extends React.Component {
@@ -15,7 +15,7 @@ class FeaturedProducts extends React.Component {
       <Container
         header={ () => <Header /> }
       >
-        <ProductList
+        <Products
           products={ productFeed.products }
           title='FEATURED PRODUCTS'
           cardSize='large'

@@ -8,8 +8,8 @@ import {
   ListView,
 } from 'react-native'
 
-import ProductCardLarge from './ProductCardLarge'
-import ProductCardSmall from './ProductCardSmall'
+import ProductCardLarge from './components/CardLarge'
+import ProductCardSmall from './components/CardSmall'
 
 class ProductListView extends React.Component {
   static propTypes: {
@@ -83,10 +83,7 @@ const styles = {
     paddingVertical: 6,
   },
 
-  separator: {
-    height: 5,
-    background: 'green',
-  },
+  separator: { height: 5 },
 }
 
 export default ProductListView
