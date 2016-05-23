@@ -8,8 +8,7 @@ import {
   ListView,
 } from 'react-native'
 
-import ProductCardLarge from './components/CardLarge'
-import ProductCardSmall from './components/CardSmall'
+import ProductCard from './components/CardContainer'
 
 class ProductListView extends React.Component {
   static propTypes: {
@@ -31,27 +30,24 @@ class ProductListView extends React.Component {
     this.renderRow = this.renderRow.bind(this)
   }
 
-  renderHeader() {
-    return (
-      <View style={ styles.headerContainer }>
-        <Text style={ styles.headerText }>
-          { this.props.title }
-        </Text>
-      </View>
-    )
-  }
-
-  renderRow(data) {
-    if (this.props.cardSize === 'large') {
-      return <ProductCardLarge product={ data } />
-    } else {
-      return <ProductCardSmall />
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.products.length !== undefined) {
+      this.setState({
+        ds: this.state.ds.cloneWithRows(nextProps.products)
+      });
     }
   }
 
-  renderSeparator = () => {
-    return <View style={ styles.separator } />
-  }
+  renderHeader = () => (
+    <View style={ styles.headerContainer }>
+      <Text style={ styles.headerText }>
+        { this.props.title }
+      </Text>
+    </View>
+  )
+
+  renderRow = (data) => <ProductCard product={ data } cardSize={ this.props.cardSize } />
+  renderSeparator = (sectionID, rowID) => <View style={ styles.separator } key={ rowID } />
 
   render() {
     let { products, title } = this.props

@@ -45,7 +45,7 @@ class App extends Component {
    * @todo: when app is active sync all the things
    */
   handleAppStateChange = () => {
-    if (AppState === 'active') {
+    if (AppState.currentState === 'active') {
       this.props.loadProductFeed()
     }
   }
