@@ -1,6 +1,6 @@
 const initialState = {
   featuredProducts: [],
-  productFeed: [],
+  products: [],
 }
 
 export const productFeed = (state = initialState, action) => {
@@ -8,7 +8,7 @@ export const productFeed = (state = initialState, action) => {
     case 'RECEIVE_PRODUCT_FEED':
       return {
         ...state,
-        productFeed: action.feed,
+        products: action.feed,
       }
     default:
       return state
