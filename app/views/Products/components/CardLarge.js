@@ -25,7 +25,7 @@ const ProductCardLarge = ({ product }) => (
       />
     </View>
 
-    <CardFooter />
+    <CardFooter price={ product.salePrice } merchant={ product.merchant } />
   </View>
 )
 

@@ -8,24 +8,38 @@ import {
   Image,
 } from 'react-native'
 
-const CardFooter = () => (
-	<View style={ styles.container }>
-    <View style={ styles.kickbackText }>
-			<Text style={ styles.label }>Your Kickback</Text>
-		</View>
+import { numberToCurrency } from '../../../utils/number'
+import commissions from '../../../utils/commissions'
 
-		<TouchableHighlight
-			underlayColor='#fff'
-			activeOpacity={ 0.25 }
-			onPress={ () => console.log('TODO: SET THIS UP') }
-		>
-			<View style={ styles.shareBtn }>
-				<Text style={ styles.btnText }>Recommend</Text>
-				<Image source={ require('image!share') } style={ styles.share } />
-			</View>
-		</TouchableHighlight>
-	</View>
-)
+const CardFooter = ({ price, merchant }) => {
+  let kickback = 0
+  kickback = (commissions[merchant] * price).toFixed(2)
+
+  return (
+    <View style={ styles.container }>
+      <View style={ styles.kickbackText }>
+        <Text style={ styles.label }>Your Kickback</Text>
+        <Text style={ styles.labelText }>{ numberToCurrency(kickback) }</Text>
+      </View>
+
+      <TouchableHighlight
+        underlayColor='#fff'
+        activeOpacity={ 0.25 }
+        onPress={ () => console.log('TODO: SET THIS UP') }
+      >
+        <View style={ styles.shareBtn }>
+          <Text style={ styles.btnText }>Recommend</Text>
+          <Image source={ require('image!share') } style={ styles.share } />
+        </View>
+      </TouchableHighlight>
+    </View>
+  )
+}
+
+CardFooter.propTypes = {
+  price: React.PropTypes.number.isRequired,
+  merchant: React.PropTypes.string.isRequired,
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,11 +70,13 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginLeft: 5,
+    marginTop: 5,
   },
 
   btnText: {
     color: '#45baef',
     fontSize: 17,
+    marginTop: 5,
   },
 
   shareBtn: {
