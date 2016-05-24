@@ -16,6 +16,7 @@ const SearchInput = ({ style }) => (
         placeholderTextColor='#fff'
         selectionColor='#fff'
         autoFocus={ true }
+        autoCorrect={ false }
       />
       <Image source={ require('image!search') } />
     </View>
