@@ -1,5 +1,6 @@
 const initialState = {
-  tab: 'FEATURED_TAB'
+  tab: 'FEATURED_TAB',
+  searching: false,
 }
 
 export const navigation = (state = initialState, action) => {
@@ -8,6 +9,11 @@ export const navigation = (state = initialState, action) => {
       return {
         ...state,
         tab: action.tab,
+      }
+    case 'NAVIGATE_SEARCH':
+      return {
+        ...state,
+        searching: !state.searching,
       }
     default:
       return state

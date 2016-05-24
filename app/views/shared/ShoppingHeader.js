@@ -4,13 +4,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   Image,
   View,
 } from 'react-native'
 
-import { navigateSearch } from '../../../actions/search'
+import { navigateSearch } from '../../actions/navigation'
 
 class FeaturedProductsHeader extends React.Component {
   static propTypes = {
@@ -19,16 +19,16 @@ class FeaturedProductsHeader extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         style={ styles.button }
-        underlayColor={ 'rgba(11, 87, 119, 0.25)' }
+        activeOpacity={ 1 }
         onPress={ () => this.props.navigateSearch() }
       >
         <View style={ styles.buttonContainer }>
           <Image source={ require('image!search') } />
           <Text style={ styles.buttonText }>Search</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 }

@@ -6,11 +6,14 @@ import { connect } from 'react-redux'
 import { switchTab } from '../../../actions/navigation'
 import FeaturedProducts from '../../FeaturedProducts'
 import User from '../../User'
+import Search from '../../Search'
+import ShoppingContainer from '../../shared/ShoppingContainer'
 
 const Tabs = ({
   Navigator,
   switchTab,
   tab,
+  searching,
 }) => (
   <TabBarIOS
     tintColor='#3987d5'
@@ -23,7 +26,10 @@ const Tabs = ({
       selected={ tab === 'FEATURED_TAB' }
       onPress={ () => switchTab('FEATURED_TAB') }
     >
-      <FeaturedProducts />
+      <ShoppingContainer>
+        { !searching && <FeaturedProducts /> }
+        { searching && <Search /> }
+      </ShoppingContainer>
     </TabBarIOS.Item>
 
     <TabBarIOS.Item
@@ -41,10 +47,12 @@ Tabs.propTypes = {
   Navigator: React.PropTypes.object,
   switchTab: React.PropTypes.func.isRequired,
   tab: React.PropTypes.string.isRequired,
+  searching: React.PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
+  searching: state.navigation.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({

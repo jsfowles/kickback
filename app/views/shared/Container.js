@@ -6,16 +6,17 @@ import Header from './Header'
 
 class Container extends React.Component {
   render() {
+    let { header, children, rightItem } = this.props
+
     return (
       <View style={ styles.container }>
         <View>
-          <Header
-            rightItem={ this.props.rightItem }
-          >
-            { this.props.header && this.props.header() }
+          <Header rightItem={ rightItem }>
+            { header && header() }
           </Header>
         </View>
-        { this.props.children }
+
+        { children }
       </View>
     )
   }
