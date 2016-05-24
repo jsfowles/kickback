@@ -1,6 +1,7 @@
 const initialState = {
-  featuredProducts: [],
+  featuredSearches: [],
   products: [],
+  selectedIndex: 0,
 }
 
 export const productFeed = (state = initialState, action) => {
@@ -8,7 +9,13 @@ export const productFeed = (state = initialState, action) => {
     case 'RECEIVE_PRODUCT_FEED':
       return {
         ...state,
-        products: action.feed,
+        products: action.feed.products,
+        featuredSearches: action.feed.featuredSearches,
+      }
+    case 'CHANGE_CAROUSEL_POSITION':
+      return {
+        ...state,
+        selectedIndex: action.pos,
       }
     default:
       return state

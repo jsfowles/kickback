@@ -1,6 +1,6 @@
 'use strict'
 
 module.exports = {
-  serverUrl: 'http://kickbackapp.10.0.1.2.xip.io/',
+  serverUrl: 'http://kickbackapp.dev',
   apiVersion: 'v1',
 }

@@ -27,6 +27,7 @@ class ProductListView extends React.Component {
     this.state = { ds: ds.cloneWithRows(props.products) }
 
     this.renderHeader = this.renderHeader.bind(this)
+    this.renderSectionHeader = this.renderSectionHeader.bind(this)
     this.renderRow = this.renderRow.bind(this)
   }
 
@@ -39,6 +40,12 @@ class ProductListView extends React.Component {
   }
 
   renderHeader = () => (
+    <View>
+      { this.props.header }
+    </View>
+  )
+
+  renderSectionHeader = () => (
     <View style={ styles.headerContainer }>
       <Text style={ styles.headerText }>
         { this.props.title }
@@ -55,13 +62,15 @@ class ProductListView extends React.Component {
   )
 
   render() {
-    let { products, title } = this.props
+    let { products, title, Header } = this.props
 
     return (
       <ListView
         dataSource={ this.state.ds }
         automaticallyAdjustContentInsets={ false }
+        showsVerticalScrollIndicator={ false }
         renderHeader={ this.renderHeader }
+        renderSectionHeader={ this.renderSectionHeader }
         renderRow={ this.renderRow }
         renderSeparator={ this.renderSeparator }
         contentInset={{ top: 0, bottom: 50 }}
