@@ -17,6 +17,9 @@ const SearchInput = ({ style }) => (
         selectionColor='#fff'
         autoFocus={ true }
         autoCorrect={ false }
+        returnKeyType='search'
+        enablesReturnKeyAutomatically={ true }
+        clearButtonMode='always'
       />
       <Image source={ require('image!search') } />
     </View>
