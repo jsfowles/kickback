@@ -4,10 +4,8 @@ import { TabBarIOS, View, } from 'react-native'
 import { connect } from 'react-redux'
 
 import { switchTab } from '../../../actions/navigation'
-import FeaturedProducts from '../../FeaturedProducts'
 import User from '../../User'
-import Search from '../../Search'
-import ShoppingContainer from '../../shared/ShoppingContainer'
+import Shopping from '../../Shopping'
 
 const Tabs = ({
   Navigator,
@@ -26,10 +24,7 @@ const Tabs = ({
       selected={ tab === 'FEATURED_TAB' }
       onPress={ () => switchTab('FEATURED_TAB') }
     >
-      <ShoppingContainer>
-        { !searching && <FeaturedProducts /> }
-        { searching && <Search /> }
-      </ShoppingContainer>
+      <Shopping />
     </TabBarIOS.Item>
 
     <TabBarIOS.Item

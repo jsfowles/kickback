@@ -47,7 +47,20 @@ class FeaturedSearchesCarousel extends React.Component {
    * When component mounts start the carousel
    */
   componentDidMount() {
-    this.setupTimer()
+    if (!this.props.searching) {
+      this.setupTimer()
+    }
+  }
+
+  /**
+   * Pausl carousel when search is up
+   */
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searching !== this.props.searching && nextProps.searching) {
+      clearTimeout(this.timer)
+    } else if (nextProps.searching !== this.props.searching && !nextProps.searching) {
+      this.setupTimer()
+    }
   }
 
   /**
@@ -131,6 +144,7 @@ class FeaturedSearchesCarousel extends React.Component {
 const mapStateToProps = (state) => ({
   featuredSearches: state.productFeed.featuredSearches,
   selectedIndex: state.productFeed.selectedIndex,
+  searching: state.navigation.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({

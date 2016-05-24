@@ -10,13 +10,13 @@ class Container extends React.Component {
 
     return (
       <View style={ styles.container }>
-        <View>
+        { children }
+
+        <View style={ styles.header }>
           <Header rightItem={ rightItem }>
             { header && header() }
           </Header>
         </View>
-
-        { children }
       </View>
     )
   }
@@ -26,6 +26,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f7f8f9',
+    position: 'relative',
+    paddingTop: 65,
+  },
+
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
   },
 })
 
