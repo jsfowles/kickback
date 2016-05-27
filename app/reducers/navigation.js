@@ -10,7 +10,7 @@ export const navigation = (state = initialState, action) => {
         ...state,
         tab: action.tab,
       }
-    case 'NAVIGATE_SEARCH':
+    case 'TOGGLE_SEARCH_OVERLAY':
       return {
         ...state,
         searching: !state.searching,

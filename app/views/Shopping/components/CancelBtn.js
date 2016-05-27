@@ -6,11 +6,11 @@ import {
   StyleSheet,
 } from 'react-native'
 
-const CancelBtn = ({ navigateSearch }) => (
+const CancelBtn = ({ toggleSearchOverlay }) => (
   <TouchableOpacity
     style={ styles.cancelBtn }
     activeOpacity={ 1 }
-    onPress={ navigateSearch }
+    onPress={ toggleSearchOverlay }
   >
     <Text style={{ color: '#fff' }}>Cancel</Text>
   </TouchableOpacity>

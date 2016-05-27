@@ -12,7 +12,7 @@ import {
 // 2. Receive Products
 // 3. Push search on the nav stack
 
-const SearchInput = ({ style, requestProducts, navigator, navigateSearch }) => (
+const SearchInput = ({ style, requestProducts, navigator, toggleSearchOverlay }) => (
   <View style={ style } >
     <View style={ styles.inputContainer }>
       <TextInput
@@ -27,7 +27,7 @@ const SearchInput = ({ style, requestProducts, navigator, navigateSearch }) => (
         clearButtonMode='always'
         onEndEditing={ () => {
           navigator.push({ name: 'Search Results', index: 1  })
-          navigateSearch()
+          toggleSearchOverlay()
         }}
       />
       <Image source={ require('image!search') } />

@@ -20,7 +20,7 @@ const {
 } = Dimensions.get('window')
 
 import {
-  navigateSearch,
+  toggleSearchOverlay,
   requestProducts,
 } from '../../../actions'
 
@@ -29,7 +29,7 @@ import CancelBtn from './CancelBtn'
 
 class FeaturedProductsHeader extends React.Component {
   static propTypes = {
-    navigateSearch: React.PropTypes.func.isRequired,
+    toggleSearchOverlay: React.PropTypes.func.isRequired,
     searching: React.PropTypes.bool.isRequired,
   };
 
@@ -109,7 +109,7 @@ class FeaturedProductsHeader extends React.Component {
         { !this.state.showForm && <TouchableOpacity
           style={ styles.button }
           activeOpacity={ 1 }
-          onPress={ this.props.navigateSearch }
+          onPress={ this.props.toggleSearchOverlay }
         >
           <Animated.View
             style={[{ transform: [{ translateX: this.state.transitionText }]}, styles.buttonContainer ]}
@@ -123,11 +123,11 @@ class FeaturedProductsHeader extends React.Component {
           requestProducts={ this.props.requestProducts }
           style={ styles.button }
           navigator={ this.props.navigator }
-          navigateSearch={ this.props.navigateSearch }
+          toggleSearchOverlay={ this.props.toggleSearchOverlay }
         /> }
-        { this.props.navigator && <CancelBtn navigateSearch={ () => {
+        { this.props.navigator && <CancelBtn toggleSearchOverlay={ () => {
             this.props.navigator.pop()
-            this.props.navigateSearch()
+            this.props.toggleSearchOverlay()
           }}
         /> }
       </Animated.View>
@@ -165,7 +165,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = (dispatch) => ({
-  navigateSearch: () => dispatch(navigateSearch()),
+  toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
   requestProducts: (e) => dispatch(requestProducts(e.nativeEvent.text)),
 })
 
