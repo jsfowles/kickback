@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  searching: state.navigation.searching,
+  searching: state.search.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({

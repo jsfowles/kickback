@@ -1,6 +1,5 @@
 const initialState = {
   tab: 'SHOPPING_TAB',
-  searching: false,
 }
 
 export const navigation = (state = initialState, action) => {
@@ -9,11 +8,6 @@ export const navigation = (state = initialState, action) => {
       return {
         ...state,
         tab: action.tab,
-      }
-    case 'TOGGLE_SEARCH_OVERLAY':
-      return {
-        ...state,
-        searching: !state.searching,
       }
     default:
       return state

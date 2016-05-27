@@ -42,12 +42,10 @@ Tabs.propTypes = {
   Navigator: React.PropTypes.object,
   switchTab: React.PropTypes.func.isRequired,
   tab: React.PropTypes.string.isRequired,
-  searching: React.PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
-  searching: state.navigation.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({

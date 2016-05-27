@@ -54,7 +54,7 @@ class Shopping extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  searching: state.navigation.searching,
+  searching: state.search.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({})

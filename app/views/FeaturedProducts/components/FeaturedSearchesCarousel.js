@@ -144,7 +144,7 @@ class FeaturedSearchesCarousel extends React.Component {
 const mapStateToProps = (state) => ({
   featuredSearches: state.productFeed.featuredSearches,
   selectedIndex: state.productFeed.selectedIndex,
-  searching: state.navigation.searching,
+  searching: state.search.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({
