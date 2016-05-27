@@ -10,7 +10,10 @@ import {
 import { connect } from 'react-redux'
 
 import Card from './FeaturedSearchCard'
-import { changeCarouselPosition } from '../../../actions'
+import {
+  changeCarouselPosition,
+  requestProducts,
+} from '../../../actions'
 
 const {
   height: deviceHeight,
@@ -100,13 +103,6 @@ class FeaturedSearchesCarousel extends React.Component {
    */
   beginDrag = () => clearTimeout(this.timer)
 
-  /**
-   * TODO: I need to setup the search reducer
-   */
-  onSlidePress = () => {
-    console.log('TODO: Move this to a reducer')
-  }
-
   render() {
     return (
       <ScrollView
@@ -132,8 +128,9 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ this.onSlidePress }
+            onPress={ this.props.requestProducts }
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
+            searchTerm={ search.searchTerm }
           />
         ))}
       </ScrollView>
@@ -149,6 +146,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
+  requestProducts: (s) => dispatch(requestProducts(s)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel)

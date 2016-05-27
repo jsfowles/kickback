@@ -9,8 +9,9 @@ const FeatureSearchSlide = ({
   dimensions,
   onPress,
   imageUrl,
+  searchTerm,
 }) => (
-  <TouchableWithoutFeedback style={ dimensions } onPress={ onPress }>
+  <TouchableWithoutFeedback style={ dimensions } onPress={ () => onPress(searchTerm) }>
     <Image source={{ uri: imageUrl }} style={ dimensions } />
   </TouchableWithoutFeedback>
 )

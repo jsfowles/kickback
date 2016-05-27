@@ -12,12 +12,18 @@ import {
 // 2. Receive Products
 // 3. Push search on the nav stack
 
-const SearchInput = ({ style, requestProducts, navigator, toggleSearchOverlay }) => (
+const SearchInput = ({
+  style,
+  requestProducts,
+  navigator,
+  toggleSearchOverlay,
+  placeholder
+}) => (
   <View style={ style } >
     <View style={ styles.inputContainer }>
       <TextInput
         style={ styles.input }
-        placeholder='Search'
+        placeholder={ placeholder }
         placeholderTextColor='#fff'
         selectionColor='#fff'
         autoFocus={ true }

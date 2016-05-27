@@ -100,6 +100,9 @@ class FeaturedProductsHeader extends React.Component {
   }
 
   render() {
+    let { navigator, toggleSearchOverlay, searchText, searching } = this.props
+    let placeholder = searchText ? searchText : 'Search'
+
     return (
       <Animated.View
         ref='button'
@@ -109,25 +112,26 @@ class FeaturedProductsHeader extends React.Component {
         { !this.state.showForm && <TouchableOpacity
           style={ styles.button }
           activeOpacity={ 1 }
-          onPress={ this.props.toggleSearchOverlay }
+          onPress={ toggleSearchOverlay }
         >
           <Animated.View
             style={[{ transform: [{ translateX: this.state.transitionText }]}, styles.buttonContainer ]}
           >
             <Image source={ require('image!search') } />
-            <Text style={ styles.buttonText }>Search</Text>
+            <Text style={ styles.buttonText }>{ placeholder }</Text>
           </Animated.View>
         </TouchableOpacity> }
 
         { this.state.showForm && <SearchInput
-          requestProducts={ this.props.requestProducts }
+          requestProducts={ requestProducts }
           style={ styles.button }
-          navigator={ this.props.navigator }
-          toggleSearchOverlay={ this.props.toggleSearchOverlay }
+          navigator={ navigator }
+          toggleSearchOverlay={ toggleSearchOverlay }
+          placeholder={ placeholder }
         /> }
         { this.props.navigator && <CancelBtn toggleSearchOverlay={ () => {
-            this.props.navigator.pop()
-            this.props.toggleSearchOverlay()
+            navigator.pop()
+            toggleSearchOverlay()
           }}
         /> }
       </Animated.View>
@@ -156,12 +160,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     marginLeft: 5,
-    width: 45.5,
   },
 })
 
 const mapStateToProps = (state) => ({
   searching: state.search.searching,
+  searchText: state.search.searchText,
 })
 
 const mapActionsToProps = (dispatch) => ({

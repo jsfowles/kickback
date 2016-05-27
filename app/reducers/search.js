@@ -3,6 +3,7 @@
 const initialState = {
   searchResults: [],
   searching: false,
+  searchText: null,
 }
 
 export const search = (state = initialState, action) => {
@@ -15,6 +16,11 @@ export const search = (state = initialState, action) => {
       return {
         ...state,
         searching: !state.searching,
+      }
+    case 'UPDATE_SEARCH_TEXT':
+      return {
+        ...state,
+        searchText: action.string,
       }
     default:
       return state
