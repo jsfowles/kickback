@@ -10,7 +10,8 @@ export const search = (state = initialState, action) => {
   switch(action.type) {
     case 'RECEIVE_PRODUCTS':
       return {
-        ...state
+        ...state,
+        searchResults: action.products,
       }
     case 'TOGGLE_SEARCH_OVERLAY':
       return {

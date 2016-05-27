@@ -10,6 +10,7 @@ export const cancelSearch = () => ({ type: 'CANCEL_SEARCH' })
 export const requestProducts = (searchTerm) => {
   return (dispatch) => {
     dispatch(updateSearchText(searchTerm))
+    dispatch(toggleSearchOverlay())
 
     getProducts(searchTerm).then(res => {
       dispatch((receiveProducts(res)))

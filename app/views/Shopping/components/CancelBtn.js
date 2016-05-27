@@ -18,7 +18,7 @@ const CancelBtn = ({
     activeOpacity={ 1 }
     onPress={ () => {
       cancelSearch()
-      navigator.pop()
+      navigator.popToTop()
     }}
   >
     <Text style={{ color: '#fff' }}>Cancel</Text>

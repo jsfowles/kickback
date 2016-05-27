@@ -1,17 +1,14 @@
 'used strict'
 
 import React from 'react'
-import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import Container from '../shared/Container'
 import Products from '../Products'
 import FeaturedCarousel from './components/FeaturedSearchesCarousel'
-import SearchOverlay from '../Search/components/SearchOverlay'
 
 class FeaturedProducts extends React.Component {
   render() {
-    let { productFeed, currentTab,  searching } = this.props
+    let { productFeed, currentTab } = this.props
     if (currentTab !== 'SHOPPING_TAB') return null
 
     return (

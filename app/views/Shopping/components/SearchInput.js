@@ -7,11 +7,6 @@ import {
   StyleSheet,
 } from 'react-native'
 
-// When I hit search this is what should happen:
-// 1. Start searching products
-// 2. Receive Products
-// 3. Push search on the nav stack
-
 const SearchInput = ({
   style,
   requestProducts,
@@ -31,9 +26,9 @@ const SearchInput = ({
         returnKeyType='search'
         enablesReturnKeyAutomatically={ true }
         clearButtonMode='always'
-        onSubmitEditing={ () => {
+        onSubmitEditing={ (e) => {
+          requestProducts(e)
           navigator.push({ name: 'Search Results', index: 1  })
-          toggleSearchOverlay()
         }}
       />
       <Image source={ require('image!search') } />

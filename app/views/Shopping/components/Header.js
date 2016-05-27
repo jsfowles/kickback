@@ -100,7 +100,7 @@ class FeaturedProductsHeader extends React.Component {
   }
 
   render() {
-    let { navigator, toggleSearchOverlay, searchText, searching } = this.props
+    let { navigator, toggleSearchOverlay, searchText, searching, requestProducts } = this.props
     let placeholder = searchText ? searchText : 'Search'
 
     return (

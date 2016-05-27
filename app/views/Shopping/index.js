@@ -15,6 +15,7 @@ class Shopping extends React.Component {
 
     this.state = {
       navigator: null,
+      route: null,
     }
   }
 
@@ -26,7 +27,7 @@ class Shopping extends React.Component {
     }
 
     if (this.state.navigator === null) {
-      this.setState({ navigator: navigator })
+      this.setState({ navigator, route })
     }
 
     switch (route.index) {
@@ -47,7 +48,7 @@ class Shopping extends React.Component {
           renderScene={ this.renderScene }
         />
 
-        { searching && <SearchOverlay /> }
+        { searching && <SearchOverlay { ...this.state } /> }
       </Container>
     )
   }
