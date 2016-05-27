@@ -23,7 +23,7 @@ const SearchInput = ({
     <View style={ styles.inputContainer }>
       <TextInput
         style={ styles.input }
-        placeholder={ placeholder }
+        defaultValue={ placeholder }
         placeholderTextColor='#fff'
         selectionColor='#fff'
         autoFocus={ true }
@@ -31,7 +31,7 @@ const SearchInput = ({
         returnKeyType='search'
         enablesReturnKeyAutomatically={ true }
         clearButtonMode='always'
-        onEndEditing={ () => {
+        onSubmitEditing={ () => {
           navigator.push({ name: 'Search Results', index: 1  })
           toggleSearchOverlay()
         }}

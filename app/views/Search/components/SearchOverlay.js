@@ -4,6 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   View,
+  ScrollView,
   Text,
   ListView,
   StyleSheet,
@@ -13,6 +14,8 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native'
+
+import { requestProducts } from '../../../actions'
 
 const {
   height: deviceHeight,
@@ -61,7 +64,7 @@ class Search extends React.Component {
     <TouchableHighlight
       underlayColor='#f7f8f9'
       style={{ paddingLeft: 16 }}
-      onPress={ () => console.log('TODO: SET THIS UP') }
+      onPress={ () => this.props.requestProducts(data.title) }
     >
       <View style={ styles.categoryContainer }>
         <Text style={ styles.categoryText }>{ data.title }</Text>
@@ -80,6 +83,7 @@ class Search extends React.Component {
           showsVerticalScrollIndicator={ false }
           renderRow={ this.renderRow }
           renderSeparator={ this.renderSeparator }
+          keyboardShouldPersistTaps={ true }
         />
       </Animated.View>
     )
@@ -116,6 +120,8 @@ const mapStateToProps = (state) => ({
   categories: state.productFeed.featuredCategories
 })
 
-const mapActionsToProps = (dispatch) => ({})
+const mapActionsToProps = (dispatch) => ({
+  requestProducts: (s) => dispatch(requestProducts(s)),
+})
 
 export default connect(mapStateToProps, mapActionsToProps)(Search)

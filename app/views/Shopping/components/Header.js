@@ -129,11 +129,7 @@ class FeaturedProductsHeader extends React.Component {
           toggleSearchOverlay={ toggleSearchOverlay }
           placeholder={ placeholder }
         /> }
-        { this.props.navigator && <CancelBtn toggleSearchOverlay={ () => {
-            navigator.pop()
-            toggleSearchOverlay()
-          }}
-        /> }
+        { this.props.navigator && <CancelBtn navigator={ navigator } /> }
       </Animated.View>
     )
   }
