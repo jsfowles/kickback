@@ -7,7 +7,12 @@ import {
   StyleSheet,
 } from 'react-native'
 
-const SearchInput = ({ style, requestProducts }) => (
+// When I hit search this is what should happen:
+// 1. Start searching products
+// 2. Receive Products
+// 3. Push search on the nav stack
+
+const SearchInput = ({ style, requestProducts, navigator, navigateSearch }) => (
   <View style={ style } >
     <View style={ styles.inputContainer }>
       <TextInput
@@ -20,7 +25,10 @@ const SearchInput = ({ style, requestProducts }) => (
         returnKeyType='search'
         enablesReturnKeyAutomatically={ true }
         clearButtonMode='always'
-        onEndEditing={ requestProducts }
+        onEndEditing={ () => {
+          navigator.push({ name: 'Search Results', index: 1  })
+          navigateSearch()
+        }}
       />
       <Image source={ require('image!search') } />
     </View>

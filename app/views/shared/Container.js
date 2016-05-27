@@ -25,7 +25,6 @@ class Container extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f7f8f9',
     position: 'relative',
     paddingTop: 65,
   },

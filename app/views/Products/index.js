@@ -93,7 +93,10 @@ const styles = {
     paddingVertical: 6,
   },
 
-  separator: { height: 5 },
+  separator: {
+    height: 5,
+    backgroundColor: '#f7f8f9',
+  },
 }
 
 export default ProductListView

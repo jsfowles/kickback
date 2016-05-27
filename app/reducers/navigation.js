@@ -1,5 +1,5 @@
 const initialState = {
-  tab: 'FEATURED_TAB',
+  tab: 'SHOPPING_TAB',
   searching: false,
 }
 

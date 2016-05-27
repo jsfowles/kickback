@@ -21,10 +21,10 @@ const Tabs = ({
     <TabBarIOS.Item
       icon={ require('image!cart') }
       title=''
-      selected={ tab === 'FEATURED_TAB' }
-      onPress={ () => switchTab('FEATURED_TAB') }
+      selected={ tab === 'SHOPPING_TAB' }
+      onPress={ () => switchTab('SHOPPING_TAB') }
     >
-      <Shopping />
+      { tab === 'SHOPPING_TAB' && <Shopping /> }
     </TabBarIOS.Item>
 
     <TabBarIOS.Item
@@ -33,7 +33,7 @@ const Tabs = ({
       selected={ tab === 'USER_TAB' }
       onPress={ () => switchTab('USER_TAB') }
     >
-      <User />
+      { tab === 'USER_TAB' && <User /> }
     </TabBarIOS.Item>
   </TabBarIOS>
 )

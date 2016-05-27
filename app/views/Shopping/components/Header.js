@@ -122,8 +122,14 @@ class FeaturedProductsHeader extends React.Component {
         { this.state.showForm && <SearchInput
           requestProducts={ this.props.requestProducts }
           style={ styles.button }
+          navigator={ this.props.navigator }
+          navigateSearch={ this.props.navigateSearch }
         /> }
-        <CancelBtn navigateSearch={ this.props.navigateSearch } />
+        { this.props.navigator && <CancelBtn navigateSearch={ () => {
+            this.props.navigator.pop()
+            this.props.navigateSearch()
+          }}
+        /> }
       </Animated.View>
     )
   }

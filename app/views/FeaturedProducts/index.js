@@ -7,12 +7,12 @@ import { connect } from 'react-redux'
 import Container from '../shared/Container'
 import Products from '../Products'
 import FeaturedCarousel from './components/FeaturedSearchesCarousel'
+import SearchOverlay from '../Search/components/SearchOverlay'
 
 class FeaturedProducts extends React.Component {
   render() {
-    let { productFeed, currentTab } = this.props
-
-    if (currentTab !== 'FEATURED_TAB') return null
+    let { productFeed, currentTab,  searching } = this.props
+    if (currentTab !== 'SHOPPING_TAB') return null
 
     return (
       <Products
