@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import Container from '../shared/Container'
 import Header from './components/Header'
-import Search from '../Search'
+import SearchOverlay from '../Search/components/SearchOverlay'
 import FeaturedProducts from '../FeaturedProducts'
 
 class Shopping extends React.Component {
@@ -14,7 +14,7 @@ class Shopping extends React.Component {
     return (
       <Container header={ () => <Header /> }>
         <FeaturedProducts />
-        { searching && <Search /> }
+        { searching && <SearchOverlay /> }
       </Container>
     )
   }

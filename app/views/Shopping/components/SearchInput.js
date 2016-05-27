@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-const SearchInput = ({ style }) => (
+const SearchInput = ({ style, requestProducts }) => (
   <View style={ style } >
     <View style={ styles.inputContainer }>
       <TextInput
@@ -20,6 +20,7 @@ const SearchInput = ({ style }) => (
         returnKeyType='search'
         enablesReturnKeyAutomatically={ true }
         clearButtonMode='always'
+        onEndEditing={ requestProducts }
       />
       <Image source={ require('image!search') } />
     </View>

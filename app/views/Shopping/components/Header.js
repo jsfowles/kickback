@@ -19,7 +19,11 @@ const {
   width: deviceWidth,
 } = Dimensions.get('window')
 
-import { navigateSearch } from '../../../actions/navigation'
+import {
+  navigateSearch,
+  requestProducts,
+} from '../../../actions'
+
 import SearchInput from './SearchInput'
 import CancelBtn from './CancelBtn'
 
@@ -115,7 +119,10 @@ class FeaturedProductsHeader extends React.Component {
           </Animated.View>
         </TouchableOpacity> }
 
-        { this.state.showForm && <SearchInput style={ styles.button } /> }
+        { this.state.showForm && <SearchInput
+          requestProducts={ this.props.requestProducts }
+          style={ styles.button }
+        /> }
         <CancelBtn navigateSearch={ this.props.navigateSearch } />
       </Animated.View>
     )
@@ -153,6 +160,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   navigateSearch: () => dispatch(navigateSearch()),
+  requestProducts: (e) => dispatch(requestProducts(e.nativeEvent.text)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedProductsHeader)
