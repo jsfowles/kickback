@@ -24,7 +24,6 @@ class ProductListView extends React.Component {
     let ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
-    console.log(props.products)
 
     this.state = { ds: ds.cloneWithRows(props.products) }
 

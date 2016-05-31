@@ -26,6 +26,7 @@ class Shopping extends React.Component {
       ...this.props,
     }
 
+    // TODO: Not supposed to set state during a render method
     if (this.state.navigator === null) {
       this.setState({ navigator, route })
     }

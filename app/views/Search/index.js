@@ -8,9 +8,11 @@ import Products from '../Products'
 
 class Search extends React.Component {
   render() {
+    let { searchResults } = this.props
+
     return (
       <Products
-        products={ this.props.searchResults }
+        products={ searchResults }
         title='Search Results'
         cardSize='large'
       />
