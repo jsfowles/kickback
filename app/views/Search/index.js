@@ -8,8 +8,6 @@ import Products from '../Products'
 
 class Search extends React.Component {
   render() {
-    if (this.props.searchResults.length === 0) { return null }
-
     return (
       <Products
         products={ this.props.searchResults }

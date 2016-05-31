@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 
 import ProductCard from './components/CardContainer'
+import { makeStandard } from '../../utils/product'
 
 class ProductListView extends React.Component {
   static propTypes: {
@@ -23,6 +24,7 @@ class ProductListView extends React.Component {
     let ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
+    console.log(props.products)
 
     this.state = { ds: ds.cloneWithRows(props.products) }
 
@@ -32,7 +34,7 @@ class ProductListView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.products.length !== undefined) {
+    if (!!nextProps.products !== undefined) {
       this.setState({
         ds: this.state.ds.cloneWithRows(nextProps.products)
       });
@@ -53,9 +55,16 @@ class ProductListView extends React.Component {
     </View>
   )
 
-  renderRow = (data) => (
-    <ProductCard product={ data } cardSize={ this.props.cardSize } />
-  )
+  renderRow = (data) => {
+    let product = makeStandard(data)
+
+    return (
+      <ProductCard
+        product={ product }
+        cardSize={ this.props.cardSize }
+      />
+    )
+  }
 
   renderSeparator = (sectionID, rowID) => (
     <View style={ styles.separator } key={ rowID } />

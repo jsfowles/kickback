@@ -24,7 +24,11 @@ export const search = (state = initialState, action) => {
         searchText: action.string,
       }
     case 'CANCEL_SEARCH':
-      return { initialState }
+      return {
+        ...state,
+        searchText: null,
+        searching: false,
+      }
     default:
       return state
   }

@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     paddingTop: 65,
+    backgroundColor: '#f7f8f9',
   },
 
   header: {
