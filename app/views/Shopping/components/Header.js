@@ -38,13 +38,13 @@ class FeaturedProductsHeader extends React.Component {
     this.state = {
       buttonWidth: 0,
       buttonHeight: 30,
-      showForm: this.props.searching,
+      showForm: this.props.searchOverlay,
       transitioning: false,
     }
   }
 
   componentWillMount() {
-    if (this.props.searching) {
+    if (this.props.searchOverlay) {
       this.setState({
         transitionText: new Animated.Value(-((this.state.buttonWidth * .5) - (142.5 * 0.5))),
         transitionButton: new Animated.Value(deviceWidth - 75),
@@ -58,17 +58,17 @@ class FeaturedProductsHeader extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searching !== this.props.searching && !this.state.transitioning) {
-      this.animateAllTheThings(nextProps.searching)
+    if (nextProps.searchOverlay !== this.props.searchOverlay && !this.state.transitioning) {
+      this.animateAllTheThings(nextProps.searchOverlay)
     }
   }
 
-  animateAllTheThings = (searching) => {
+  animateAllTheThings = (searchOverlay) => {
     this.setState({ showForm: false })
     let textToValue = 0
     let buttonToValue = deviceWidth - 20
 
-    if (searching) {
+    if (searchOverlay) {
       // TODO: Probably should do this more programatically
       textToValue = -((this.state.buttonWidth * .5) - (142.5 * 0.5))
       buttonToValue = this.state.buttonWidth - 55
@@ -87,7 +87,7 @@ class FeaturedProductsHeader extends React.Component {
         ...animationConfig,
       })
     ]).start(() => {
-      this.setState({ showForm: this.props.searching, transitioning: false })
+      this.setState({ showForm: this.props.searchOverlay, transitioning: false })
     })
   }
 
@@ -100,7 +100,7 @@ class FeaturedProductsHeader extends React.Component {
   }
 
   render() {
-    let { navigator, toggleSearchOverlay, searchText, searching, requestProducts } = this.props
+    let { navigator, toggleSearchOverlay, searchText, searchOverlay, requestProducts } = this.props
     let placeholder = searchText ? searchText : 'Search'
 
     return (
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   searching: state.search.searching,
+  searchOverlay: state.search.searchOverlay,
   searchText: state.search.searchText,
 })
 

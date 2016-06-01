@@ -12,7 +12,7 @@ const SearchInput = ({
   requestProducts,
   navigator,
   toggleSearchOverlay,
-  placeholder
+  placeholder,
 }) => {
   let textInputProps = {
     style: styles.input,
