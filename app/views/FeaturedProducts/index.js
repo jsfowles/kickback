@@ -9,8 +9,9 @@ import FeaturedCarousel from './components/FeaturedSearchesCarousel'
 
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.fetchingProducts && !this.props.fetchingProducts) {
-      this.props.navigator.push({ name: 'Search Results', index: 1, searchText: nextProps.searchText })
+    let { navigator, fetchingProducts } = this.props
+    if (nextProps.fetchingProducts && !fetchingProducts && navigator.state.presentedIndex === 0) {
+      navigator.push({ name: 'Search Results', index: 1, searchText: nextProps.searchText })
     }
   }
 

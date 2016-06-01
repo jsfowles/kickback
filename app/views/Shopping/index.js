@@ -30,8 +30,6 @@ class Shopping extends React.Component {
         <Navigator
           initialRoute={{ name: 'Featured Products', index: 0 }}
           renderScene={ this.renderScene }
-          onWillFocus={ (route) => console.log(route) }
-          onDidFocus={ (route) => console.log(route) }
         />
       </Container>
     )

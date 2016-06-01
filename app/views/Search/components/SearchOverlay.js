@@ -64,13 +64,7 @@ class Search extends React.Component {
     <TouchableHighlight
       underlayColor='#f7f8f9'
       style={{ paddingLeft: 16 }}
-      onPress={ () => {
-        this.props.requestProducts(data.title)
-
-        if (this.props.navigator) {
-          this.props.navigator.push({ name: 'Search Results', index: 1  })
-        }
-      }}
+      onPress={ () => { this.props.requestProducts(data.title) }}
     >
       <View style={ styles.categoryContainer }>
         <Text style={ styles.categoryText }>{ data.title }</Text>
