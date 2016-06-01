@@ -18,7 +18,7 @@ class Search extends React.Component {
       searchResults,
       searchOverlay,
       fetchingProducts,
-      children ,
+      children,
     } = this.props
 
     return (

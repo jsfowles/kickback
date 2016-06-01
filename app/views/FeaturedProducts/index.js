@@ -10,7 +10,7 @@ import FeaturedCarousel from './components/FeaturedSearchesCarousel'
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.fetchingProducts && !this.props.fetchingProducts) {
-      this.props.navigator.push({ name: 'Search Results', index: 1  })
+      this.props.navigator.push({ name: 'Search Results', index: 1, searchText: nextProps.searchText })
     }
   }
 
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => ({
   productFeed: state.productFeed,
   currentTab: state.navigation.tab,
   searchOverlay: state.search.searchOverlay,
+  searchText: state.search.searchText,
   fetchingProducts: state.search.fetchingProducts,
 })
 
