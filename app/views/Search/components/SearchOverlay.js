@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     height: deviceHeight,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    paddingTop: 65,
   },
 
   categoryContainer: {

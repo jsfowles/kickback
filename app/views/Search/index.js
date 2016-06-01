@@ -7,21 +7,32 @@ import { connect } from 'react-redux'
 import Products from '../Products'
 
 class Search extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.searching) {
+      this.props.navigator.popToTop()
+    }
+  }
+
   render() {
-    let { searchResults } = this.props
+    let { searchResults, searchOverlay } = this.props
 
     return (
-      <Products
-        products={ searchResults }
-        title='Search Results'
-        cardSize='large'
-      />
+      <View style={{ flex: 1 }}>
+        <Products
+          products={ searchResults }
+          title='Search Results'
+          cardSize='large'
+        />
+        { searchOverlay && this.props.children }
+      </View>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  searchResults: state.search.searchResults
+  searchResults: state.search.searchResults,
+  searchOverlay: state.search.searchOverlay,
+  searching: state.search.searching,
 })
 
 const mapActionsToProps = (dispatch) => ({})

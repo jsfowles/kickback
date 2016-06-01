@@ -10,16 +10,12 @@ import {
 import { cancelSearch } from '../../../actions'
 
 const CancelBtn = ({
-  navigator,
   cancelSearch,
 }) => (
   <TouchableOpacity
     style={ styles.cancelBtn }
     activeOpacity={ 1 }
-    onPress={ () => {
-      cancelSearch()
-      navigator.popToTop()
-    }}
+    onPress={ cancelSearch }
   >
     <Text style={{ color: '#fff' }}>Cancel</Text>
   </TouchableOpacity>
@@ -30,12 +26,6 @@ CancelBtn.propTypes = {
    * @description: This is to clear all search back to its initial state
    */
   cancelSearch: React.PropTypes.func.isRequired,
-
-  /**
-   * @description: This is so that we can pop back to the featured product
-   *               view when cancelled.
-   */
-  navigator: React.PropTypes.object.isRequired,
 }
 
 const styles= StyleSheet.create({

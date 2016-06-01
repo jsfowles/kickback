@@ -26,10 +26,7 @@ const SearchInput = ({
         returnKeyType='search'
         enablesReturnKeyAutomatically={ true }
         clearButtonMode='always'
-        onSubmitEditing={ (e) => {
-          requestProducts(e)
-          navigator.push({ name: 'Search Results', index: 1  })
-        }}
+        onSubmitEditing={ requestProducts }
       />
       <Image source={ require('image!search') } />
     </View>
