@@ -11,8 +11,18 @@ class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
     let { navigator, fetchingProducts } = this.props
     if (nextProps.fetchingProducts && !fetchingProducts && navigator.state.presentedIndex === 0) {
-      navigator.push({ name: 'Search Results', index: 1, searchText: nextProps.searchText })
+      this.pushNewSearchResults()
     }
+  }
+
+  componentWillMount() {
+    if (this.props.searching) {
+      this.pushNewSearchResults()
+    }
+  }
+
+  pushNewSearchResults() {
+    this.props.navigator.push({ name: 'Search Results', index: 1, searchText: this.props.searchText })
   }
 
   render() {
@@ -37,6 +47,7 @@ const mapStateToProps = (state) => ({
   productFeed: state.productFeed,
   currentTab: state.navigation.tab,
   searchOverlay: state.search.searchOverlay,
+  searching: state.search.searching,
   searchText: state.search.searchText,
   fetchingProducts: state.search.fetchingProducts,
 })

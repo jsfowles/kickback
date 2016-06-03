@@ -27,6 +27,7 @@ export const search = (state = initialState, action) => {
         ...state,
         searchText: action.string,
         fetchingProducts: true,
+        searching: true,
         searchOverlay: false,
         searchResults: [],
       }
