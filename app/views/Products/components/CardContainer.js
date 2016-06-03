@@ -2,9 +2,11 @@
 
 import React from 'react'
 import { View, Text, } from 'react-native'
+import { connect } from 'react-redux'
 
 import LargeCard from './CardLarge'
 import SmallCard from './CardSmall'
+import { recommendProduct } from '../../../actions'
 
 class CardContainer extends React.Component {
   static propTypes: {
@@ -13,14 +15,24 @@ class CardContainer extends React.Component {
   };
 
   render() {
-    let { cardSize, product } = this.props
+    let { cardSize, product, recommendProduct } = this.props
+
+    let props = {
+      recommendProduct: () => recommendProduct(product),
+      product: product,
+    }
 
     if (cardSize === 'large') {
-      return <LargeCard product={ product } />
+      return <LargeCard { ...props } />
     } else {
-      return <SmallCard product={ product } />
+      return <SmallCard { ...props } />
     }
   }
 }
 
-export default CardContainer
+const mapStateToProps = (state) => ({})
+const mapActionsToProps = (dispatch) => ({
+  recommendProduct: (product) => dispatch(recommendProduct(product)),
+})
+
+export default connect(mapStateToProps, mapActionsToProps)(CardContainer)

@@ -6,12 +6,13 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
+  ActionSheetIOS,
 } from 'react-native'
 
 import { numberToCurrency } from '../../../utils/number'
 import commissions from '../../../utils/commissions'
 
-const CardFooter = ({ price, merchant }) => {
+const CardFooter = ({ price, merchant, recommendProduct }) => {
   let kickback = 0
   kickback = (commissions[merchant] * price).toFixed(2)
 
@@ -25,7 +26,7 @@ const CardFooter = ({ price, merchant }) => {
       <TouchableHighlight
         underlayColor='#fff'
         activeOpacity={ 0.25 }
-        onPress={ () => console.log('TODO: SET THIS UP') }
+        onPress={ recommendProduct }
       >
         <View style={ styles.shareBtn }>
           <Text style={ styles.btnText }>Recommend</Text>

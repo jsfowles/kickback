@@ -10,7 +10,7 @@ import {
 import CardFooter from './CardFooter'
 import Pricing from './Pricing'
 
-const ProductCardLarge = ({ product }) => (
+const ProductCardLarge = ({ product, recommendProduct }) => (
   <View style={ styles.rowContainer }>
     <View style={ styles.itemContainer }>
       <Image style={ styles.thumb } source={{ uri: product.largeImageUrl }} />
@@ -25,7 +25,11 @@ const ProductCardLarge = ({ product }) => (
       />
     </View>
 
-    <CardFooter price={ product.salePrice } merchant={ product.merchant } />
+    <CardFooter
+      price={ product.salePrice }
+      merchant={ product.merchant }
+      recommendProduct={ recommendProduct }
+    />
   </View>
 )
 
