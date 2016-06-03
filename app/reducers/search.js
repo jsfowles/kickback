@@ -32,7 +32,13 @@ export const search = (state = initialState, action) => {
         searchResults: [],
       }
     case 'CANCEL_SEARCH':
-      return initialState
+      return {
+        ...state,
+        searching: false,
+        searchOverlay: false,
+        searchText: null,
+        fetchingProducts: false,
+      }
     default:
       return state
   }
