@@ -8,13 +8,20 @@ import {
   Image,
   ActionSheetIOS,
 } from 'react-native'
+import { connect } from 'react-redux'
+
+import Shimmer from 'react-native-shimmer'
 
 import { numberToCurrency } from '../../../utils/number'
+// TODO (Riley) : Move this to the API
 import commissions from '../../../utils/commissions'
 
-const CardFooter = ({ price, merchant, recommendProduct }) => {
+const CardFooter = ({ price, merchant, recommendProduct, creatingRecommendation }) => {
   let kickback = 0
   kickback = (commissions[merchant] * price).toFixed(2)
+
+  let buttonTextStyles = creatingRecommendation ? [ styles.btnText, { color: '#d4d9da' }] : styles.btnText
+  let shareStyles = creatingRecommendation ? [ styles.share, { tintColor: '#d4d9da' }] : styles.share
 
   return (
     <View style={ styles.container }>
@@ -25,12 +32,20 @@ const CardFooter = ({ price, merchant, recommendProduct }) => {
 
       <TouchableHighlight
         underlayColor='#fff'
-        activeOpacity={ 0.25 }
+        activeOpacity={ creatingRecommendation ? 1 : 0.25 }
         onPress={ recommendProduct }
       >
         <View style={ styles.shareBtn }>
-          <Text style={ styles.btnText }>Recommend</Text>
-          <Image source={ require('image!share') } style={ styles.share } />
+          <Shimmer
+            opacity={ 1 }
+            animationgOpacity={ 0.25 }
+            animating={ creatingRecommendation }
+            speed={ 115 }
+          >
+            <Text style={ buttonTextStyles }>Recommend</Text>
+          </Shimmer>
+
+          <Image source={ require('image!share') } style={ shareStyles } />
         </View>
       </TouchableHighlight>
     </View>
@@ -40,6 +55,8 @@ const CardFooter = ({ price, merchant, recommendProduct }) => {
 CardFooter.propTypes = {
   price: React.PropTypes.number.isRequired,
   merchant: React.PropTypes.string.isRequired,
+  recommendProduct: React.PropTypes.func.isRequired,
+  creatingRecommendation: React.PropTypes.bool.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -70,14 +87,15 @@ const styles = StyleSheet.create({
   share: {
     width: 20,
     height: 20,
-    marginLeft: 5,
+    marginLeft: 7.5,
     marginTop: 5,
   },
 
   btnText: {
     color: '#45baef',
     fontSize: 17,
-    marginTop: 5,
+    position: 'relative',
+    lineHeight: 26,
   },
 
   shareBtn: {
@@ -86,4 +104,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default CardFooter
+const mapStateToProps = (state) => ({
+  creatingRecommendation: state.product.creatingRecommendation,
+})
+
+const mapActionsToProps = (dispatch) => ({})
+
+export default connect(mapStateToProps, mapActionsToProps)(CardFooter)
