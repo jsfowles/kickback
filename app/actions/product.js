@@ -3,14 +3,14 @@
 import { createLink } from '../utils/api'
 import { ActionSheetIOS } from 'react-native'
 
-export const toggleCreatingRecommendation = () => ({ type: 'TOGGLE_CREATING_RECOMMENDATION' })
+export const toggleCreatingRecommendation = (bool) => ({ type: 'TOGGLE_CREATING_RECOMMENDATION', bool })
 
 export const recommendProduct = (product) => {
   return (dispatch) => {
-    dispatch(toggleCreatingRecommendation())
+    dispatch(toggleCreatingRecommendation(true))
 
     createLink(product).then((res) => {
-      dispatch(toggleCreatingRecommendation())
+      dispatch(toggleCreatingRecommendation(false))
 
       ActionSheetIOS.showShareActionSheetWithOptions(
         { url: res.url },
@@ -20,6 +20,10 @@ export const recommendProduct = (product) => {
           // TODO (Riley) : Show success
         }
       )
+    // TODO (Riley) : Show some type of error
+    }).catch((res) => {
+      console.log('FAILED!')
+      dispatch(toggleCreatingRecommendation(false))
     })
   }
 }
