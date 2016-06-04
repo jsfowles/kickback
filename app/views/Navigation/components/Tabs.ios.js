@@ -11,11 +11,8 @@ class Tabs extends React.Component {
   switchTab = (tab) => {
     let { switchTab, searching, cancelSearch } = this.props
 
-    if (this.props.tab === 'SHOPPING_TAB' && tab !== 'USER_TAB' && searching) {
-      cancelSearch()
-    } else {
-      switchTab(tab)
-    }
+    if (searching) cancelSearch()
+    switchTab(tab)
   }
 
   render() {

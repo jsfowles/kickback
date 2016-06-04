@@ -60,10 +60,13 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 }
+  container: { flex: 1 },
 })
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  loading: state.product.creatingRecommendation,
+})
+
 const mapActionsToProps = (dispatch) => ({
   loadProductFeed: () => dispatch(loadProductFeed()),
 })
