@@ -55,11 +55,9 @@ class ProductListView extends React.Component {
   )
 
   renderRow = (data) => {
-    let product = makeStandard(data)
-
     return (
       <ProductCard
-        product={ product }
+        product={ data }
         cardSize={ this.props.cardSize }
       />
     )
