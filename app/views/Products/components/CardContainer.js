@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 
 import LargeCard from './CardLarge'
 import SmallCard from './CardSmall'
+import CardFooter from './CardFooter'
+import CardFooterShared from './CardFooterShared'
 import { recommendProduct } from '../../../actions'
 
 class CardContainer extends React.Component {
@@ -14,19 +16,30 @@ class CardContainer extends React.Component {
     cardSize: React.PropTypes.string,
   };
 
-  render() {
-    let { cardSize, product, recommendProduct } = this.props
-
-    let props = {
+  renderFooter = () => {
+    const { product, recommendProduct } = this.props
+    const props = {
+      kickback: product.kickback,
       recommendProduct: () => recommendProduct(product),
-      product: product,
+      link: !!product.link ? product.link : null,
     }
 
-    if (cardSize === 'large') {
-      return <LargeCard { ...props } />
+    if (!!product.link) {
+      return <CardFooterShared { ...props } />
     } else {
-      return <SmallCard { ...props } />
+      return <CardFooter { ...props } />
     }
+  }
+
+  render() {
+    const { cardSize, product } = this.props
+    const content = cardSize === 'large' ? <LargeCard/> : <SmallCard />
+
+    return React.cloneElement(
+      content,
+      { product: product },
+      this.renderFooter()
+    )
   }
 }
 

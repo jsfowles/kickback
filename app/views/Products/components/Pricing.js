@@ -10,14 +10,14 @@ import { numberToCurrency } from '../../../utils/number'
 
 const Pricing = ({ salePrice, price, onSale }) => (
   <View style={ styles.container }>
-    { onSale && <Text style={ styles.price }>{ numberToCurrency(salePrice) }</Text> }
-    <Text style={ onSale ? styles.onSale : styles.price }>{ numberToCurrency(price) }</Text>
+    { onSale && <Text style={ styles.price }>{ salePrice }</Text> }
+    <Text style={ onSale ? styles.onSale : styles.price }>{ price }</Text>
   </View>
 )
 
 Pricing.propTypes = {
-  salePrice: React.PropTypes.number.isRequired,
-  price: React.PropTypes.number.isRequired,
+  salePrice: React.PropTypes.string.isRequired,
+  price: React.PropTypes.string.isRequired,
   onSale: React.PropTypes.bool.isRequired,
 }
 

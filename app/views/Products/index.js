@@ -54,14 +54,12 @@ class ProductListView extends React.Component {
     </View>
   )
 
-  renderRow = (data) => {
-    return (
-      <ProductCard
-        product={ data }
-        cardSize={ this.props.cardSize }
-      />
-    )
-  }
+  renderRow = (data) => (
+    <ProductCard
+      product={ data }
+      cardSize={ this.props.cardSize }
+    />
+  )
 
   renderSeparator = (sectionID, rowID) => (
     <View style={ styles.separator } key={ rowID } />
