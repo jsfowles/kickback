@@ -12,7 +12,6 @@ import Pricing from './Pricing'
 
 const ProductCardLarge = ({
   product,
-  recommendProduct,
   children,
 }) => (
   <View style={ styles.rowContainer }>

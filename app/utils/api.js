@@ -1,21 +1,12 @@
 import {
   serverUrl,
   apiVersion,
-  avantLinkUrl,
 } from '../env'
 
+const URL = `${serverUrl}/api/${apiVersion}`
+
 export const getProductFeed = () => {
-  let url = `${serverUrl}/api/${apiVersion}/product_feed`
-
-  return fetch(url, {
-    method: 'get',
-    headers: { 'Content-Type': 'application/json' },
-  }).then((res) => res.json())
-}
-
-export const getSharedLinks = () => {
-  // TODO (Riley) : Do not hardcode this
-  let url = `${serverUrl}/api/v1/links?user_id=1`;
+  let url = `${URL}/product_feed`
   return fetch(url, {
     method: 'get',
     headers: { 'Content-Type': 'application/json' },
@@ -23,7 +14,7 @@ export const getSharedLinks = () => {
 }
 
 export const createLink = (product) => {
-  let url = `${serverUrl}/api/v1/links`;
+  let url = `${URL}/links`;
   return fetch(url, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
@@ -39,7 +30,7 @@ export const createLink = (product) => {
 
 export const getProducts = (searchTerm) => {
   searchTerm = searchTerm.toLowerCase().trim();
-  let url = `${serverUrl}/api/v1/searches`
+  let url = `${URL}/searches`
   return fetch(url, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
@@ -51,3 +42,11 @@ export const getProducts = (searchTerm) => {
   }).then((res) => res.json());
 }
 
+export const getCurrentUser = () => {
+  // TODO (Riley) : Don't hardcode this
+  let url = `${URL}/users/1`
+  return fetch(url, {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+  }).then((res) => res.json())
+}

@@ -6,6 +6,7 @@ import Container from '../shared/Container'
 import { connect } from 'react-redux'
 
 import { navigateSettings } from '../../actions/settings'
+import Products from '../Products'
 
 class User extends React.Component {
   render() {
@@ -18,15 +19,20 @@ class User extends React.Component {
       <Container
         rightItem={ rightItem }
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>User</Text>
-        </View>
+        <Products
+          products={ this.props.products }
+          title='SHARED PRODUCTS'
+          cardSize='small'
+        />
       </Container>
     )
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  products: state.user.sharedProducts,
+})
+
 const mapActionsToProps = (dispatch) => ({
   navigateSettings: () => dispatch(navigateSettings()),
 })

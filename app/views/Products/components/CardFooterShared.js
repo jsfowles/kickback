@@ -67,8 +67,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-
-  btnContainer: {},
 })
 
 export default CardFooterShared
