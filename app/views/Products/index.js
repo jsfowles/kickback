@@ -12,10 +12,15 @@ import ProductCard from './components/CardContainer'
 import { makeStandard } from '../../utils/product'
 
 class ProductListView extends React.Component {
+  static defaultProps: {
+    headerHeight: 0,
+  }
+
   static propTypes: {
     products: React.PropTypes.array.isRequired,
     title: React.PropTypes.string,
     cardSize: React.PropTypes.string,
+    headerHeight: React.PropTyles.integer,
   };
 
   constructor(props) {
@@ -41,7 +46,7 @@ class ProductListView extends React.Component {
   }
 
   renderHeader = () => {
-    if (!this.props.header) return <View style={{ height: 350 }} />
+    if (!this.props.header) return <View style={{ height: this.props.headerHeight }} />
 
     return (
       <View>

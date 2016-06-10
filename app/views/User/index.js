@@ -25,6 +25,7 @@ class User extends React.Component {
           products={ this.props.products }
           title='SHARED PRODUCTS'
           cardSize='small'
+          headerHeight={ 350 }
         />
       </Container>
     )
