@@ -56,6 +56,8 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"tabbarShadow.png"]];
+  [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
 
   return YES;
 }

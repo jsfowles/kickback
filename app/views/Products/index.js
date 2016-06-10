@@ -77,7 +77,7 @@ class ProductListView extends React.Component {
         renderSectionHeader={ this.renderSectionHeader }
         renderRow={ this.renderRow }
         renderSeparator={ this.renderSeparator }
-        contentInset={{ top: 0, bottom: 50 }}
+        contentInset={{ top: 0, bottom: 45 }}
       />
     )
   }
