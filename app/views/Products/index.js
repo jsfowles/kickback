@@ -40,11 +40,15 @@ class ProductListView extends React.Component {
     }
   }
 
-  renderHeader = () => (
-    <View>
-      { this.props.header }
-    </View>
-  )
+  renderHeader = () => {
+    if (!this.props.header) return <View style={{ height: 350 }} />
+
+    return (
+      <View>
+        { this.props.header }
+      </View>
+    )
+  }
 
   renderSectionHeader = () => (
     <View style={ styles.headerContainer }>
@@ -78,6 +82,7 @@ class ProductListView extends React.Component {
         renderRow={ this.renderRow }
         renderSeparator={ this.renderSeparator }
         contentInset={{ top: 0, bottom: 45 }}
+        {...this.props}
       />
     )
   }

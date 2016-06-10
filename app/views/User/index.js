@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 
 import { navigateSettings } from '../../actions/settings'
 import Products from '../Products'
+import ParallaxContent from './components/ParallaxContent'
 
 class User extends React.Component {
   render() {
@@ -17,7 +18,8 @@ class User extends React.Component {
 
     return (
       <Container
-        rightItem={ rightItem }
+        style={{ paddingTop: 20 }}
+        parallaxContent={ <ParallaxContent /> }
       >
         <Products
           products={ this.props.products }
