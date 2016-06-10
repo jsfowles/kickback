@@ -13,7 +13,8 @@ import {
 } from 'react-native'
 
 import {
-  loadProductFeed
+  loadProductFeed,
+  loadCurrentUser,
 } from '../actions'
 
 import Navigation from './Navigation'
@@ -31,6 +32,7 @@ class App extends Component {
     AppState.addEventListener('change', this.handleAppStateChange)
 
     this.props.loadProductFeed()
+    this.props.loadCurrentUser()
   }
 
   /**
@@ -69,6 +71,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   loadProductFeed: () => dispatch(loadProductFeed()),
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(App)

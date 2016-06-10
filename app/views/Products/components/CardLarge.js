@@ -10,7 +10,10 @@ import {
 import CardFooter from './CardFooter'
 import Pricing from './Pricing'
 
-const ProductCardLarge = ({ product, recommendProduct }) => (
+const ProductCardLarge = ({
+  product,
+  children,
+}) => (
   <View style={ styles.rowContainer }>
     <View style={ styles.itemContainer }>
       <Image style={ styles.thumb } source={{ uri: product.largeImageUrl }} />
@@ -21,15 +24,11 @@ const ProductCardLarge = ({ product, recommendProduct }) => (
       <Pricing
         salePrice={ product.salePrice }
         price={ product.price }
-        onSale={ product.salePrice < product.price }
+        onSale={ product.salePrice !== product.price }
       />
     </View>
 
-    <CardFooter
-      price={ product.salePrice }
-      merchant={ product.merchant }
-      recommendProduct={ recommendProduct }
-    />
+    { children }
   </View>
 )
 
@@ -38,6 +37,7 @@ ProductCardLarge.propTypes = {
     title: React.PropTypes.string.isRequired,
     largeImageUrl: React.PropTypes.string.isRequired,
   }),
+  children: React.PropTypes.object,
 }
 
 const styles = StyleSheet.create({

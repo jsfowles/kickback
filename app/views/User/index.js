@@ -6,6 +6,8 @@ import Container from '../shared/Container'
 import { connect } from 'react-redux'
 
 import { navigateSettings } from '../../actions/settings'
+import Products from '../Products'
+import ParallaxContent from './components/ParallaxContent'
 
 class User extends React.Component {
   render() {
@@ -16,17 +18,24 @@ class User extends React.Component {
 
     return (
       <Container
-        rightItem={ rightItem }
+        style={{ paddingTop: 20 }}
+        parallaxContent={ <ParallaxContent /> }
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>User</Text>
-        </View>
+        <Products
+          products={ this.props.products }
+          title='SHARED PRODUCTS'
+          cardSize='small'
+          headerHeight={ 350 }
+        />
       </Container>
     )
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  products: state.user.sharedProducts,
+})
+
 const mapActionsToProps = (dispatch) => ({
   navigateSettings: () => dispatch(navigateSettings()),
 })

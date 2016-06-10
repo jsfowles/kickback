@@ -10,18 +10,32 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import ItemWrapper from './HeaderItemWrapper'
 
+// TODO (Riley) : write documentation
 class Header extends React.Component {
+  static propTypes = {
+    // TODO (Riley) : Make this shape
+    leftItem: React.PropTypes.shape({}),
+    // TODO (Riley) : Make this shape
+    rightItem: React.PropTypes.shape({}),
+    title: React.PropTypes.string,
+    headerColors: React.PropTypes.array.isRequired,
+  }
+
+  // TODO (Riley) : write documentation
+  static defaultProps = {
+    headerColors: [ 'transparent' ],
+  }
+
   render() {
-    const { leftItem, title, rightItem } = this.props;
+    const { leftItem, title, rightItem, headerColors, children } = this.props;
 
     return (
       <LinearGradient
-        colors={[ '#45baef', '#34Bcd5' ]}
+        colors={ headerColors }
         style={[ styles.header, this.props.style ]}
       >
-        <View style={ styles.centerItem }>
-          { this.props.children }
-        </View>
+        <View style={ styles.centerItem }>{ children }</View>
+
         { rightItem && <View style={ styles.rightItem }>
           <ItemWrapper item={ rightItem } />
         </View> }

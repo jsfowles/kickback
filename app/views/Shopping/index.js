@@ -26,7 +26,11 @@ class Shopping extends React.Component {
 
   render() {
     return (
-      <Container header={ () => <Header /> } >
+      <Container
+        style={{ paddingTop: 65 }}
+        headerColors={[ '#45baef', '#34Bcd5' ]}
+        header={ () => <Header /> }
+      >
         <Navigator
           initialRoute={{ name: 'Featured Products', index: 0 }}
           renderScene={ this.renderScene }

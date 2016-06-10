@@ -12,10 +12,15 @@ import ProductCard from './components/CardContainer'
 import { makeStandard } from '../../utils/product'
 
 class ProductListView extends React.Component {
+  static defaultProps: {
+    headerHeight: 0,
+  }
+
   static propTypes: {
     products: React.PropTypes.array.isRequired,
     title: React.PropTypes.string,
     cardSize: React.PropTypes.string,
+    headerHeight: React.PropTyles.integer,
   };
 
   constructor(props) {
@@ -40,11 +45,15 @@ class ProductListView extends React.Component {
     }
   }
 
-  renderHeader = () => (
-    <View>
-      { this.props.header }
-    </View>
-  )
+  renderHeader = () => {
+    if (!this.props.header) return <View style={{ height: this.props.headerHeight }} />
+
+    return (
+      <View>
+        { this.props.header }
+      </View>
+    )
+  }
 
   renderSectionHeader = () => (
     <View style={ styles.headerContainer }>
@@ -54,16 +63,12 @@ class ProductListView extends React.Component {
     </View>
   )
 
-  renderRow = (data) => {
-    let product = makeStandard(data)
-
-    return (
-      <ProductCard
-        product={ product }
-        cardSize={ this.props.cardSize }
-      />
-    )
-  }
+  renderRow = (data) => (
+    <ProductCard
+      product={ data }
+      cardSize={ this.props.cardSize }
+    />
+  )
 
   renderSeparator = (sectionID, rowID) => (
     <View style={ styles.separator } key={ rowID } />
@@ -81,7 +86,8 @@ class ProductListView extends React.Component {
         renderSectionHeader={ this.renderSectionHeader }
         renderRow={ this.renderRow }
         renderSeparator={ this.renderSeparator }
-        contentInset={{ top: 0, bottom: 50 }}
+        contentInset={{ top: 0, bottom: 45 }}
+        {...this.props}
       />
     )
   }
