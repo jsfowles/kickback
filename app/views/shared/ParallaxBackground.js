@@ -54,7 +54,7 @@ class ParallaxBackground extends React.Component {
     })
 
     const opacity = offset.interpolate({
-      inputRange: [-100, 0, length - 14],
+      inputRange: [-100, 0, length - 105],
       outputRange: [0, 1, 0],
       extrapolate: 'clamp',
     })
