@@ -22,7 +22,7 @@ export const recommendProduct = (product) => {
       )
     // TODO (Riley) : Show some type of error
     }).catch((res) => {
-      console.log('FAILED!')
+      console.log(res)
       dispatch(toggleCreatingRecommendation(false))
     })
   }
