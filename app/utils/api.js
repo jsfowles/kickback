@@ -11,6 +11,7 @@ export const getProductFeed = () => {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   }).then((res) => res.json())
+  .catch(e => console.error(e))
 }
 
 export const createLink = (product) => {
@@ -26,6 +27,7 @@ export const createLink = (product) => {
     })
   })
   .then((res) => res.json())
+  .catch(e => console.error(e))
 }
 
 export const getProducts = (searchTerm) => {
@@ -47,4 +49,5 @@ export const getCurrentUser = () => {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   }).then((res) => res.json())
+  .catch(e => console.error(e))
 }
