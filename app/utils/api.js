@@ -5,8 +5,7 @@ import {
 
 const URL = `${serverUrl}/api/${apiVersion}`
 
-export const getProductFeed = () => {
-  let url = `${URL}/product_feed`
+export const getProductFeed = (url) => {
   return fetch(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
