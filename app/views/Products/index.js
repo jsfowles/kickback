@@ -18,6 +18,7 @@ class ProductListView extends React.Component {
 
   static propTypes: {
     products: React.PropTypes.array.isRequired,
+    loadMoreProducts: React.PropTypes.func.isRequired,
     title: React.PropTypes.string,
     cardSize: React.PropTypes.string,
     headerHeight: React.PropTyles.integer,

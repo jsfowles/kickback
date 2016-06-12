@@ -6,7 +6,7 @@ import { View } from 'react-native'
 
 import Products from '../Products'
 import FeaturedCarousel from './components/FeaturedSearchesCarousel'
-import { loadMoreProducts } from '../../actions'
+import { loadMoreProductFeed } from '../../actions'
 
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = (dispatch) => ({
-  loadMoreProducts: () => dispatch(loadMoreProducts()),
+  loadMoreProducts: () => dispatch(loadMoreProductFeed()),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts)

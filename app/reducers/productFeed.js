@@ -16,7 +16,7 @@ export const productFeed = (state = initialState, action) => {
         featuredCategories: action.feed.featuredCategories,
         nextPageUrl: action.feed.nextPage,
       }
-    case 'RECEIVE_MORE_PRODUCTS':
+    case 'RECEIVE_MORE_PRODUCT_FEED':
       return {
         ...state,
         products: [

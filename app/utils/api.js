@@ -41,9 +41,8 @@ export const getProducts = (searchTerm) => {
   .catch(e => console.error(e))
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (url) => {
   // TODO (Riley) : Don't hardcode this
-  let url = `${URL}/users/1`
   return fetch(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },

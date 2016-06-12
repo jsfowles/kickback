@@ -17,7 +17,7 @@ export const changeCarouselPosition = pos => ({
 })
 
 export const receiveMoreProducts = feed => ({
-  type: 'RECEIVE_MORE_PRODUCTS', feed
+  type: 'RECEIVE_MORE_PRODUCT_FEED', feed
 })
 
 export const loadProductFeed = _ => {
@@ -29,7 +29,7 @@ export const loadProductFeed = _ => {
 }
 
 // TODO (RILEY) : lets combine loadProductFeed and loadMoreProducts
-export const loadMoreProducts = _ => {
+export const loadMoreProductFeed = _ => {
   return (dispatch, getState) => {
     let nextPageUrl = getState().productFeed.nextPageUrl
 
