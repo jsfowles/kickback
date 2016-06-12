@@ -6,6 +6,7 @@ import { View } from 'react-native'
 
 import Products from '../Products'
 import FeaturedCarousel from './components/FeaturedSearchesCarousel'
+import { loadMoreProducts } from '../../actions'
 
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -25,6 +26,11 @@ class FeaturedProducts extends React.Component {
     this.props.navigator.push({ name: 'Search Results', index: 1, searchText: this.props.searchText })
   }
 
+  loadMoreProducts = () => {
+    if (!this.props.productFeed.nextPageUrl) { return }
+    this.props.loadMoreProducts()
+  }
+
   render() {
     let { productFeed, currentTab, searchOverlay } = this.props
     if (currentTab !== 'SHOPPING_TAB') return null
@@ -35,6 +41,7 @@ class FeaturedProducts extends React.Component {
           products={ productFeed.products }
           title='FEATURED PRODUCTS'
           cardSize='large'
+          loadMoreProducts={ this.loadMoreProducts }
           header={ <FeaturedCarousel /> }
         />
         { searchOverlay && this.props.children }
@@ -52,6 +59,8 @@ const mapStateToProps = (state) => ({
   fetchingProducts: state.search.fetchingProducts,
 })
 
-const mapActionsToProps = (dispatch) => ({})
+const mapActionsToProps = (dispatch) => ({
+  loadMoreProducts: () => dispatch(loadMoreProducts()),
+})
 
-export default connect(mapStateToProps)(FeaturedProducts)
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts)
