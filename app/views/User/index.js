@@ -12,7 +12,6 @@ import { loadMoreCurrentUser } from '../../actions'
 
 class User extends React.Component {
   loadMoreProducts = () => {
-    console.log(this.props.nextPageUrl)
     if (!this.props.nextPageUrl) { return }
     this.props.loadMoreCurrentUser()
   }
