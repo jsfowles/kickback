@@ -18,6 +18,7 @@ class ProductListView extends React.Component {
 
   static propTypes: {
     products: React.PropTypes.array.isRequired,
+    loadMoreProducts: React.PropTypes.func.isRequired,
     title: React.PropTypes.string,
     cardSize: React.PropTypes.string,
     headerHeight: React.PropTyles.integer,
@@ -75,7 +76,7 @@ class ProductListView extends React.Component {
   )
 
   render() {
-    let { products, title, Header } = this.props
+    let { products, title, loadMoreProducts } = this.props
 
     return (
       <ListView
@@ -87,6 +88,7 @@ class ProductListView extends React.Component {
         renderRow={ this.renderRow }
         renderSeparator={ this.renderSeparator }
         contentInset={{ top: 0, bottom: 45 }}
+        onEndReached={ loadMoreProducts }
         {...this.props}
       />
     )

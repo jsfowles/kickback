@@ -2,6 +2,7 @@
 
 const initialState = {
   sharedProducts: [],
+  nextPageUrl: null,
 }
 
 export const user = (state = initialState, action) => {
@@ -11,6 +12,15 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         sharedProducts: action.userData.products,
+      }
+    case 'RECEIVE_MORE_CURRENT_USER':
+      return {
+        ...state,
+        sharedProducts: [
+          ...state.sharedProducts,
+          ...action.userData.products
+        ],
+        nextPageUrl: action.userData.nextPage,
       }
     default:
       return state

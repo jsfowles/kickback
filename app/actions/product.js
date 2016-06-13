@@ -13,16 +13,14 @@ export const recommendProduct = (product) => {
       dispatch(toggleCreatingRecommendation(false))
 
       ActionSheetIOS.showShareActionSheetWithOptions(
-        { url: res.url },
-        // TODO (Riley) : Show error?
-        (error) => console.log('TODO: error'),
+        { url: `http://www.${res.url}` },
+        (e) => console.error(e),
         (success,method) => {
           // TODO (Riley) : Show success
         }
       )
     // TODO (Riley) : Show some type of error
     }).catch((res) => {
-      console.log(res)
       dispatch(toggleCreatingRecommendation(false))
     })
   }

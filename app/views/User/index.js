@@ -8,8 +8,14 @@ import { connect } from 'react-redux'
 import { navigateSettings } from '../../actions/settings'
 import Products from '../Products'
 import ParallaxContent from './components/ParallaxContent'
+import { loadMoreCurrentUser } from '../../actions'
 
 class User extends React.Component {
+  loadMoreProducts = () => {
+    if (!this.props.nextPageUrl) { return }
+    this.props.loadMoreCurrentUser()
+  }
+
   render() {
     let rightItem = {
       icon: require('image!settings'),
@@ -26,6 +32,7 @@ class User extends React.Component {
           title='SHARED PRODUCTS'
           cardSize='small'
           headerHeight={ 350 }
+          loadMoreProducts={ this.loadMoreProducts }
         />
       </Container>
     )
@@ -34,10 +41,12 @@ class User extends React.Component {
 
 const mapStateToProps = (state) => ({
   products: state.user.sharedProducts,
+  nextPageUrl: state.user.nextPageUrl,
 })
 
 const mapActionsToProps = (dispatch) => ({
   navigateSettings: () => dispatch(navigateSettings()),
+  loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(User)

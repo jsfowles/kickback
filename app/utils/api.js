@@ -5,12 +5,12 @@ import {
 
 const URL = `${serverUrl}/api/${apiVersion}`
 
-export const getProductFeed = () => {
-  let url = `${URL}/product_feed`
+export const getProductFeed = (url) => {
   return fetch(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   }).then((res) => res.json())
+  .catch(e => console.error(e))
 }
 
 export const createLink = (product) => {
@@ -26,6 +26,7 @@ export const createLink = (product) => {
     })
   })
   .then((res) => res.json())
+  .catch(e => console.error(e))
 }
 
 export const getProducts = (searchTerm) => {
@@ -40,11 +41,11 @@ export const getProducts = (searchTerm) => {
   .catch(e => console.error(e))
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (url) => {
   // TODO (Riley) : Don't hardcode this
-  let url = `${URL}/users/1`
   return fetch(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   }).then((res) => res.json())
+  .catch(e => console.error(e))
 }

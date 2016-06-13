@@ -692,7 +692,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.underbelly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
 			};
 			name = Debug;
@@ -716,7 +716,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.underbelly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
 			};
 			name = Release;
@@ -881,7 +881,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.underbelly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
 			};
 			name = Beta;
@@ -968,7 +968,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.underbelly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
 			};
 			name = Alpha;
