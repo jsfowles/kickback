@@ -5,8 +5,18 @@ import { View, Text, } from 'react-native'
 import { connect } from 'react-redux'
 
 import Products from '../Products'
+import Container from '../shared/Container'
+import {
+  setHasScrolled,
+  scrollToTop,
+  setCurrentRoute,
+} from '../../actions'
 
 class Search extends React.Component {
+  componentWillMount() {
+    this.props.setCurrentRoute()
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!nextProps.searching) {
       this.props.navigator.popToTop()
@@ -25,11 +35,18 @@ class Search extends React.Component {
       <View style={{ flex: 1 }}>
         { fetchingProducts && <View style={{ flex: 1, backgroundColor: '#f7f8f9', }} /> }
 
-        { !fetchingProducts && <Products
-          products={ searchResults }
-          title='Search Results'
-          cardSize='large'
-        /> }
+        { !fetchingProducts && <Container
+          hasScrolled={ this.props.hasScrolled }
+          setHasScrolled={ this.props.setHasScrolled }
+        >
+          <Products
+            products={ searchResults }
+            title='Search Results'
+            cardSize='large'
+            hasScrolled={ this.props.hasScrolled }
+            scrollToTop={ this.props.scrollToTop }
+          />
+        </Container> }
 
         { searchOverlay && this.props.children }
       </View>
@@ -42,8 +59,13 @@ const mapStateToProps = (state) => ({
   searchOverlay: state.search.searchOverlay,
   searching: state.search.searching,
   fetchingProducts: state.search.fetchingProducts,
+  hasScrolled: state.search.hasScrolled,
 })
 
-const mapActionsToProps = (dispatch) => ({})
+const mapActionsToProps = (dispatch) => ({
+  setHasScrolled: () => dispatch(setHasScrolled('search')),
+  scrollToTop: () => dispatch(scrollToTop()),
+  setCurrentRoute: () => dispatch(setCurrentRoute('search')),
+})
 
 export default connect(mapStateToProps, mapActionsToProps)(Search)

@@ -6,6 +6,7 @@ const initialState = {
   searchOverlay: false,
   searchText: null,
   fetchingProducts: false,
+  hasScrolled: false,
 }
 
 export const search = (state = initialState, action) => {
@@ -30,6 +31,11 @@ export const search = (state = initialState, action) => {
         searching: true,
         searchOverlay: false,
         searchResults: [],
+      }
+    case 'SET_SEARCH_HAS_SCROLLED':
+      return {
+        ...state,
+        hasScrolled: !state.hasScrolled,
       }
     case 'CANCEL_SEARCH':
       return {

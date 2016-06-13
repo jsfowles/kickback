@@ -10,7 +10,6 @@ import {
   loadMoreProductFeed,
   setHasScrolled,
   scrollToTop,
-  setCurrentRoute,
 } from '../../actions'
 import Container from '../shared/Container'
 
@@ -79,7 +78,6 @@ const mapActionsToProps = (dispatch) => ({
   loadMoreProducts: () => dispatch(loadMoreProductFeed()),
   setHasScrolled: () => dispatch(setHasScrolled('productFeed')),
   scrollToTop: () => dispatch(scrollToTop()),
-  setCurrentRoute: () => dispatch(setCurrentRoute('productFeed')),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts)
