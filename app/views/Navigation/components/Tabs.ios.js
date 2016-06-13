@@ -3,13 +3,22 @@ import React from 'react'
 import { TabBarIOS, View, } from 'react-native'
 import { connect } from 'react-redux'
 
-import { switchTab, cancelSearch } from '../../../actions'
+import {
+  switchTab,
+  cancelSearch,
+  scrollToTop,
+} from '../../../actions'
+
 import User from '../../User'
 import Shopping from '../../Shopping'
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
     let { switchTab, searching, cancelSearch } = this.props
+
+    if (this.props.tab === tab) {
+      return this.props.scrollToTop()
+    }
 
     if (searching) cancelSearch()
     switchTab(tab)
@@ -60,6 +69,7 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   switchTab: (tab) => dispatch(switchTab(tab)),
   cancelSearch: () => dispatch(cancelSearch()),
+  scrollToTop: () => dispatch(scrollToTop('user')),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(Tabs)

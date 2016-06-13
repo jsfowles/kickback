@@ -1,12 +1,11 @@
 const initialState = {
   tab: 'SHOPPING_TAB',
   route: null,
-  navigator: null,
 }
 
 export const navigation = (state = initialState, action) => {
   switch(action.type) {
-    case 'SET_NAVIGATOR':
+    case 'SET_ROUTE':
       return {
         ...state,
         navigator: action.navigator,

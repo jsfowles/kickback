@@ -1,9 +1,22 @@
 'use strict'
 
+import { setUserHasScrolled } from './user'
+
 export const switchTab = (tab) => ({ type: 'SWITCH_TAB', tab })
 
-export const setNavigator = (navigator, route) => {
+export const setCurrentRoute = (route) => {
   return {
-    type: 'SET_NAVIGATOR', route, navigator
+    type: 'SET_ROUTE', route
+  }
+}
+
+export const scrollToTop = route => {
+  return (dispatch, getState) => {
+    let route = getState().navigation.route
+    let hasScrolled = getState()[route].hasScrolled
+
+    if (hasScrolled) {
+      dispatch(setUserHasScrolled(false))
+    }
   }
 }
