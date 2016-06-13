@@ -25,8 +25,10 @@ export const loadCurrentUser = _ => {
 }
 
 export const loadMoreCurrentUser = _ => {
-  return (dispatch) => {
-    getCurrentUser(URL)
+  return (dispatch, getState) => {
+    let nextPageUrl = getState().user.nextPageUrl
+
+    getCurrentUser(nextPageUrl)
     .then(res => dispatch(receiveMoreProducts(res)))
     .catch(e => console.error(e))
   }

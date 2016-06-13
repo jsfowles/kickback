@@ -3,6 +3,7 @@
 const initialState = {
   sharedProducts: [],
   nextPageUrl: null,
+  hasScrolled: false,
 }
 
 export const user = (state = initialState, action) => {
@@ -12,6 +13,7 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         sharedProducts: action.userData.products,
+        nextPageUrl: action.userData.nextPage,
       }
     case 'RECEIVE_MORE_CURRENT_USER':
       return {
@@ -21,6 +23,11 @@ export const user = (state = initialState, action) => {
           ...action.userData.products
         ],
         nextPageUrl: action.userData.nextPage,
+      }
+    case 'SET_USER_HAS_SCROLLED':
+      return {
+        ...state,
+        hasScrolled: !state.hasScrolled,
       }
     default:
       return state

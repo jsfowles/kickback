@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   ListView,
+  TouchableWithoutFeedback,
 } from 'react-native'
 
 import ProductCard from './components/CardContainer'
@@ -44,6 +45,10 @@ class ProductListView extends React.Component {
         ds: this.state.ds.cloneWithRows(nextProps.products)
       });
     }
+
+    if (!nextProps.hasScrolled && this.props.hasScrolled) {
+      this.refs.products.scrollTo({ y: 0 })
+    }
   }
 
   renderHeader = () => {
@@ -57,11 +62,15 @@ class ProductListView extends React.Component {
   }
 
   renderSectionHeader = () => (
-    <View style={ styles.headerContainer }>
-      <Text style={ styles.headerText }>
-        { this.props.title }
-      </Text>
-    </View>
+    <TouchableWithoutFeedback
+      onPress={ () => this.props.scrollToTop() }
+    >
+      <View style={ styles.headerContainer }>
+        <Text style={ styles.headerText }>
+          { this.props.title }
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
   )
 
   renderRow = (data) => (
@@ -80,6 +89,7 @@ class ProductListView extends React.Component {
 
     return (
       <ListView
+        ref='products'
         dataSource={ this.state.ds }
         automaticallyAdjustContentInsets={ false }
         showsVerticalScrollIndicator={ false }

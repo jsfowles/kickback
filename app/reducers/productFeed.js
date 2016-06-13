@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   selectedIndex: 0,
   nextPageUrl: null,
+  hasScrolled: false,
 }
 
 export const productFeed = (state = initialState, action) => {
@@ -29,6 +30,11 @@ export const productFeed = (state = initialState, action) => {
       return {
         ...state,
         selectedIndex: action.pos,
+      }
+    case 'SET_PRODUCTFEED_HAS_SCROLLED':
+      return {
+        ...state,
+        hasScrolled: !state.hasScrolled,
       }
     default:
       return state

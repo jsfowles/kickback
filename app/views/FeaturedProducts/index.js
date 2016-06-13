@@ -6,7 +6,12 @@ import { View } from 'react-native'
 
 import Products from '../Products'
 import FeaturedCarousel from './components/FeaturedSearchesCarousel'
-import { loadMoreProductFeed } from '../../actions'
+import {
+  loadMoreProductFeed,
+  setHasScrolled,
+  scrollToTop,
+} from '../../actions'
+import Container from '../shared/Container'
 
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -37,13 +42,22 @@ class FeaturedProducts extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Products
-          products={ productFeed.products }
-          title='FEATURED PRODUCTS'
-          cardSize='large'
-          loadMoreProducts={ this.loadMoreProducts }
-          header={ <FeaturedCarousel /> }
-        />
+        <Container
+          headerColors={[ '#45baef', '#34Bcd5' ]}
+          hasScrolled={ this.props.hasScrolled }
+          setHasScrolled={ this.props.setHasScrolled }
+        >
+          <Products
+            products={ productFeed.products }
+            title='FEATURED PRODUCTS'
+            cardSize='large'
+            loadMoreProducts={ this.loadMoreProducts }
+            hasScrolled={ this.props.hasScrolled }
+            scrollToTop={ this.props.scrollToTop }
+            header={ <FeaturedCarousel /> }
+          />
+        </Container>
+
         { searchOverlay && this.props.children }
       </View>
     )
@@ -57,10 +71,13 @@ const mapStateToProps = (state) => ({
   searching: state.search.searching,
   searchText: state.search.searchText,
   fetchingProducts: state.search.fetchingProducts,
+  hasScrolled: state.productFeed.hasScrolled,
 })
 
 const mapActionsToProps = (dispatch) => ({
   loadMoreProducts: () => dispatch(loadMoreProductFeed()),
+  setHasScrolled: () => dispatch(setHasScrolled('productFeed')),
+  scrollToTop: () => dispatch(scrollToTop()),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts)
