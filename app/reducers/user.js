@@ -20,6 +20,7 @@ export const user = (state = initialState, action) => {
           ...state.sharedProducts,
           ...action.userData.products
         ],
+        nextPageUrl: action.userData.nextPage,
       }
     default:
       return state
