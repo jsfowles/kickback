@@ -1,6 +1,6 @@
 const initialState = {
   tab: 'SHOPPING_TAB',
-  route: null,
+  route: 'SHOPPING',
 }
 
 export const navigation = (state = initialState, action) => {

@@ -16,10 +16,6 @@ export const receiveMoreProducts = userData => ({
   type: 'RECEIVE_MORE_CURRENT_USER', userData
 })
 
-export const setUserHasScrolled = bool => ({
-  type: 'SET_USER_HAS_SCROLLED', bool
-})
-
 export const loadCurrentUser = _ => {
   return (dispatch) => {
     getCurrentUser(URL)

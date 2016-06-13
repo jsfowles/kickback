@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Navigator } from 'react-native'
+import { Navigator, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import Container from '../shared/Container'
@@ -9,6 +9,7 @@ import FeaturedProducts from '../FeaturedProducts'
 import Search from '../Search'
 import SearchOverlay from '../Search/components/SearchOverlay'
 import { setNavigator } from '../../actions'
+import LinearGradient from 'react-native-linear-gradient'
 
 class Shopping extends React.Component {
   renderScene = (route, navigator) => {
@@ -26,19 +27,35 @@ class Shopping extends React.Component {
 
   render() {
     return (
-      <Container
-        style={{ paddingTop: 65 }}
-        headerColors={[ '#45baef', '#34Bcd5' ]}
-        header={ () => <Header /> }
-      >
+      <View style={{ flex: 1 }}>
+        <LinearGradient
+          style={ styles.headerWrapper }
+          colors={[ '#45baef', '#34Bcd5' ]}
+        >
+          <Header />
+        </LinearGradient>
+
         <Navigator
           initialRoute={{ name: 'Featured Products', index: 0 }}
           renderScene={ this.renderScene }
         />
-      </Container>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  headerWrapper: {
+    height: 65,
+    paddingHorizontal: 10,
+    paddingTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+  },
+})
 
 const mapStateToProps = (state) => ({})
 const mapActionsToProps = (dispatch) => ({})

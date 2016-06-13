@@ -49,13 +49,6 @@ class Container extends React.Component {
             minHeight={ 14 }
             maxHeight={ 14 + 415 }
           /> }
-
-          <Header
-            rightItem={ rightItem }
-            headerColors={ headerColors }
-          >
-            { header && header() }
-          </Header>
         </View>
 
         { content }

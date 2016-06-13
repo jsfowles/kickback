@@ -10,16 +10,12 @@ import Products from '../Products'
 import ParallaxContent from './components/ParallaxContent'
 import {
   loadMoreCurrentUser,
-  setUserHasScrolled,
+  setHasScrolled,
   scrollToTop,
   setCurrentRoute,
 } from '../../actions'
 
 class User extends React.Component {
-  componentDidMount() {
-    this.props.setCurrentRoute()
-  }
-
   loadMoreProducts = () => {
     if (!this.props.nextPageUrl) { return }
     this.props.loadMoreProducts()
@@ -34,9 +30,8 @@ class User extends React.Component {
     return (
       <Container
         style={{ paddingTop: 20 }}
-        reducer='user'
         hasScrolled={ this.props.hasScrolled }
-        setHasScrolled={ this.props.setUserHasScrolled }
+        setHasScrolled={ this.props.setHasScrolled }
         parallaxContent={ <ParallaxContent /> }
       >
         <Products
@@ -44,8 +39,8 @@ class User extends React.Component {
           title='SHARED PRODUCTS'
           cardSize='small'
           headerHeight={ 350 }
-          hasScrolled={ this.props.hasScrolled }
           loadMoreProducts={ this.loadMoreProducts }
+          hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
         />
       </Container>
@@ -57,12 +52,13 @@ const mapStateToProps = (state) => ({
   products: state.user.sharedProducts,
   nextPageUrl: state.user.nextPageUrl,
   hasScrolled: state.user.hasScrolled,
+  tab: state.navigation.tab,
 })
 
 const mapActionsToProps = (dispatch) => ({
   navigateSettings: () => dispatch(navigateSettings()),
   loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
-  setUserHasScrolled: () => dispatch(setUserHasScrolled(true)),
+  setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
 })

@@ -7,6 +7,7 @@ import {
   switchTab,
   cancelSearch,
   scrollToTop,
+  setCurrentRoute,
 } from '../../../actions'
 
 import User from '../../User'
@@ -14,14 +15,16 @@ import Shopping from '../../Shopping'
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    let { switchTab, searching, cancelSearch } = this.props
+    if (this.props.searching) this.props.cancelSearch()
+    if (this.props.tab === tab) return this.props.scrollToTop()
 
-    if (this.props.tab === tab) {
-      return this.props.scrollToTop()
+    this.props.switchTab(tab)
+
+    if (tab === 'SHOPPING_TAB') {
+      this.props.setCurrentRoute('productFeed')
+    } else {
+      this.props.setCurrentRoute('user')
     }
-
-    if (searching) cancelSearch()
-    switchTab(tab)
   }
 
   render() {
@@ -70,6 +73,7 @@ const mapActionsToProps = (dispatch) => ({
   switchTab: (tab) => dispatch(switchTab(tab)),
   cancelSearch: () => dispatch(cancelSearch()),
   scrollToTop: () => dispatch(scrollToTop('user')),
+  setCurrentRoute: (route) => dispatch(setCurrentRoute(route)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(Tabs)
