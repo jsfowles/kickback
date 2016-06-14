@@ -16,20 +16,40 @@ export const receiveMoreProducts = userData => ({
   type: 'RECEIVE_MORE_CURRENT_USER', userData
 })
 
+export const toggleFetching = bool => ({
+  type: 'TOGGLE_USER_FETCHING', bool
+})
+
 export const loadCurrentUser = _ => {
-  return (dispatch) => {
-    getCurrentUser(URL)
-    .then(res => dispatch(receiveCurrentUser(res)))
-    .catch(e => console.error(e))
+  return (dispatch, getState) => {
+    let isFetching = getState().user.isFetching
+    dispatch(toggleFetching(true))
+
+    if (!isFetching) {
+      getCurrentUser(URL)
+      .then(res => {
+        dispatch(receiveCurrentUser(res))
+        dispatch(toggleFetching(false))
+      })
+      .catch(e => console.error(e))
+    }
   }
 }
 
 export const loadMoreCurrentUser = _ => {
   return (dispatch, getState) => {
     let nextPageUrl = getState().user.nextPageUrl
+    let isFetching = getState().user.isFetching
 
-    getCurrentUser(nextPageUrl)
-    .then(res => dispatch(receiveMoreProducts(res)))
-    .catch(e => console.error(e))
+    if (!isFetching) {
+      dispatch(toggleFetching(true))
+
+      getCurrentUser(nextPageUrl)
+      .then(res => {
+        dispatch(receiveMoreProducts(res))
+        dispatch(toggleFetching(false))
+      })
+      .catch(e => console.error(e))
+    }
   }
 }

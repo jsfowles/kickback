@@ -20,11 +20,23 @@ export const receiveMoreProducts = feed => ({
   type: 'RECEIVE_MORE_PRODUCT_FEED', feed
 })
 
+export const toggleFetching = bool => ({
+  type: 'TOGGLE_PRODUCTFEED_FETCHING', bool
+})
+
 export const loadProductFeed = _ => {
   return (dispatch, getState) => {
-    getProductFeed(URL)
-    .then(res => dispatch(receiveProductFeed(res)))
-    .catch(e => console.error(e))
+    let isFetching = getState().user.isFetching
+
+    if (!isFetching) {
+      dispatch(toggleFetching(true))
+      getProductFeed(URL)
+      .then(res => {
+        dispatch(receiveProductFeed(res))
+        dispatch(toggleFetching(false))
+      })
+      .catch(e => console.error(e))
+    }
   }
 }
 

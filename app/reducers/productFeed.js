@@ -5,6 +5,7 @@ const initialState = {
   selectedIndex: 0,
   nextPageUrl: null,
   hasScrolled: false,
+  isFetching: false,
 }
 
 export const productFeed = (state = initialState, action) => {
@@ -35,6 +36,11 @@ export const productFeed = (state = initialState, action) => {
       return {
         ...state,
         hasScrolled: !state.hasScrolled,
+      }
+    case 'TOGGLE_PRODUCTFEED_FETCHING':
+      return {
+        ...state,
+        isFetching: action.bool,
       }
     default:
       return state

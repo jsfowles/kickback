@@ -4,6 +4,7 @@ const initialState = {
   sharedProducts: [],
   nextPageUrl: null,
   hasScrolled: false,
+  isFetching: false,
 }
 
 export const user = (state = initialState, action) => {
@@ -23,6 +24,11 @@ export const user = (state = initialState, action) => {
           ...action.userData.products
         ],
         nextPageUrl: action.userData.nextPage,
+      }
+    case 'TOGGLE_USER_FETCHING':
+      return {
+        ...state,
+        isFetching: action.bool,
       }
     case 'SET_USER_HAS_SCROLLED':
       return {
