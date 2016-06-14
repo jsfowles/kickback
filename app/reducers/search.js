@@ -20,7 +20,7 @@ export const search = (state = initialState, action) => {
     case 'TOGGLE_SEARCH_OVERLAY':
       return {
         ...state,
-        searchOverlay: true,
+        searchOverlay: !state.searchOverlay,
         searching: true,
       }
     case 'FETCHING_PRODUCTS':

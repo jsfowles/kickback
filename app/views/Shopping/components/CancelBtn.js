@@ -7,15 +7,15 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import { cancelSearch } from '../../../actions'
+import { toggleSearchOverlay } from '../../../actions'
 
 const CancelBtn = ({
-  cancelSearch,
+  toggleSearchOverlay,
 }) => (
   <TouchableOpacity
     style={ styles.cancelBtn }
     activeOpacity={ 1 }
-    onPress={ cancelSearch }
+    onPress={ toggleSearchOverlay }
   >
     <Text style={{ color: '#fff' }}>Cancel</Text>
   </TouchableOpacity>
@@ -23,9 +23,9 @@ const CancelBtn = ({
 
 CancelBtn.propTypes = {
   /**
-   * @description: This is to clear all search back to its initial state
+   * @description: This is to hide the search overlay
    */
-  cancelSearch: React.PropTypes.func.isRequired,
+  toggleSearchOverlay: React.PropTypes.func.isRequired,
 }
 
 const styles= StyleSheet.create({
@@ -45,7 +45,7 @@ const styles= StyleSheet.create({
 const mapStateToProps = (state) => ({})
 
 const mapActionsToProps = (dispatch) => ({
-  cancelSearch: () => dispatch(cancelSearch()),
+  toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(CancelBtn)
