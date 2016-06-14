@@ -5,6 +5,7 @@ const initialState = {
   selectedIndex: 0,
   nextPageUrl: null,
   hasScrolled: false,
+  isFetching: false,
 }
 
 export const productFeed = (state = initialState, action) => {
@@ -16,6 +17,7 @@ export const productFeed = (state = initialState, action) => {
         featuredSearches: action.feed.featuredSearches,
         featuredCategories: action.feed.featuredCategories,
         nextPageUrl: action.feed.nextPage,
+        isFetching: false,
       }
     case 'RECEIVE_MORE_PRODUCT_FEED':
       return {
@@ -25,6 +27,7 @@ export const productFeed = (state = initialState, action) => {
           ...action.feed.products,
         ],
         nextPageUrl: action.feed.nextPage,
+        isFetching: false,
       }
     case 'CHANGE_CAROUSEL_POSITION':
       return {
@@ -35,6 +38,11 @@ export const productFeed = (state = initialState, action) => {
       return {
         ...state,
         hasScrolled: !state.hasScrolled,
+      }
+    case 'TOGGLE_PRODUCTFEED_FETCHING':
+      return {
+        ...state,
+        isFetching: action.bool,
       }
     default:
       return state

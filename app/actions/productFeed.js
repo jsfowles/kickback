@@ -20,11 +20,20 @@ export const receiveMoreProducts = feed => ({
   type: 'RECEIVE_MORE_PRODUCT_FEED', feed
 })
 
+export const toggleFetching = bool => ({
+  type: 'TOGGLE_PRODUCTFEED_FETCHING', bool
+})
+
 export const loadProductFeed = _ => {
   return (dispatch, getState) => {
-    getProductFeed(URL)
-    .then(res => dispatch(receiveProductFeed(res)))
-    .catch(e => console.error(e))
+    let isFetching = getState().productFeed.isFetching
+
+    if (!isFetching) {
+      dispatch(toggleFetching(true))
+      getProductFeed(URL)
+      .then(res => dispatch(receiveProductFeed(res)))
+      .catch(e => console.error(e))
+    }
   }
 }
 
@@ -32,9 +41,12 @@ export const loadProductFeed = _ => {
 export const loadMoreProductFeed = _ => {
   return (dispatch, getState) => {
     let nextPageUrl = getState().productFeed.nextPageUrl
+    let isFetching = getState().productFeed.isFetching
 
-    getProductFeed(nextPageUrl)
-    .then(res => dispatch(receiveMoreProducts(res)))
-    .catch(e => console.error(e))
+    if (!isFetching) {
+      getProductFeed(nextPageUrl)
+      .then(res => dispatch(receiveMoreProducts(res)))
+      .catch(e => console.error(e))
+    }
   }
 }
