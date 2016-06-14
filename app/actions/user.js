@@ -23,14 +23,11 @@ export const toggleFetching = bool => ({
 export const loadCurrentUser = _ => {
   return (dispatch, getState) => {
     let isFetching = getState().user.isFetching
-    dispatch(toggleFetching(true))
 
     if (!isFetching) {
+      dispatch(toggleFetching(true))
       getCurrentUser(URL)
-      .then(res => {
-        dispatch(receiveCurrentUser(res))
-        dispatch(toggleFetching(false))
-      })
+      .then(res => dispatch(receiveCurrentUser(res)))
       .catch(e => console.error(e))
     }
   }
@@ -45,10 +42,7 @@ export const loadMoreCurrentUser = _ => {
       dispatch(toggleFetching(true))
 
       getCurrentUser(nextPageUrl)
-      .then(res => {
-        dispatch(receiveMoreProducts(res))
-        dispatch(toggleFetching(false))
-      })
+      .then(res => dispatch(receiveMoreProducts(res)))
       .catch(e => console.error(e))
     }
   }

@@ -15,6 +15,7 @@ export const user = (state = initialState, action) => {
         ...state,
         sharedProducts: action.userData.products,
         nextPageUrl: action.userData.nextPage,
+        isFetching: false,
       }
     case 'RECEIVE_MORE_CURRENT_USER':
       return {
@@ -24,6 +25,7 @@ export const user = (state = initialState, action) => {
           ...action.userData.products
         ],
         nextPageUrl: action.userData.nextPage,
+        isFetching: false,
       }
     case 'TOGGLE_USER_FETCHING':
       return {

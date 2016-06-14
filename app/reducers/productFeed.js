@@ -17,6 +17,7 @@ export const productFeed = (state = initialState, action) => {
         featuredSearches: action.feed.featuredSearches,
         featuredCategories: action.feed.featuredCategories,
         nextPageUrl: action.feed.nextPage,
+        isFetching: false,
       }
     case 'RECEIVE_MORE_PRODUCT_FEED':
       return {
@@ -26,6 +27,7 @@ export const productFeed = (state = initialState, action) => {
           ...action.feed.products,
         ],
         nextPageUrl: action.feed.nextPage,
+        isFetching: false,
       }
     case 'CHANGE_CAROUSEL_POSITION':
       return {

@@ -26,15 +26,12 @@ export const toggleFetching = bool => ({
 
 export const loadProductFeed = _ => {
   return (dispatch, getState) => {
-    let isFetching = getState().user.isFetching
+    let isFetching = getState().productFeed.isFetching
 
     if (!isFetching) {
       dispatch(toggleFetching(true))
       getProductFeed(URL)
-      .then(res => {
-        dispatch(receiveProductFeed(res))
-        dispatch(toggleFetching(false))
-      })
+      .then(res => dispatch(receiveProductFeed(res)))
       .catch(e => console.error(e))
     }
   }
@@ -44,9 +41,12 @@ export const loadProductFeed = _ => {
 export const loadMoreProductFeed = _ => {
   return (dispatch, getState) => {
     let nextPageUrl = getState().productFeed.nextPageUrl
+    let isFetching = getState().productFeed.isFetching
 
-    getProductFeed(nextPageUrl)
-    .then(res => dispatch(receiveMoreProducts(res)))
-    .catch(e => console.error(e))
+    if (!isFetching) {
+      getProductFeed(nextPageUrl)
+      .then(res => dispatch(receiveMoreProducts(res)))
+      .catch(e => console.error(e))
+    }
   }
 }
