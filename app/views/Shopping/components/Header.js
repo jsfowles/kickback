@@ -71,7 +71,6 @@ class Header extends React.Component {
   animateBack = (route) => {
     let toValue = route === 'search' ? 1 : 0;
     let animationConfig = { duration: 250 };
-    console.log(toValue)
 
     Animated.timing(this.state.animBackButton, {
       toValue: toValue,
@@ -99,6 +98,7 @@ class Header extends React.Component {
           placeholder={ placeholder }
           route={ this.props.route }
           searchOverlay={ searchOverlay }
+          anim={ this.state.animCancel }
         /> }
 
         { this.state.showForm && <SearchInput

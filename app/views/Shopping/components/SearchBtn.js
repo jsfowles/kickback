@@ -42,8 +42,16 @@ class SearchBtn extends React.Component {
   render() {
     let halfContainer = deviceWidth * 0.5;
     let halfText = this.state.textWidth * 0.5;
-    let leftOffset = this.props.route === 'search' ? 31 : 10
-    let textPosition = { left: halfContainer - leftOffset, transform: [{ translateX: (-halfText) }]};
+
+    let translatePosition = this.props.anim.interpolate({
+      inputRange: [0,1],
+      outputRange: [halfText, 0],
+    });
+
+    let textPosition = {
+      right: (halfContainer - 10),
+      transform: [{ translateX: translatePosition }]
+    };
 
     return (
       <TouchableOpacity
