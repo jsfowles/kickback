@@ -1,102 +1,81 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
   View,
+  StyleSheet,
   Animated,
-  Dimensions,
-  TextInput,
-  Easing,
-} from 'react-native'
+} from 'react-native';
 
-const {
-  height: deviceHeight,
-  width: deviceWidth,
-} = Dimensions.get('window')
 
 import {
   toggleSearchOverlay,
   requestProducts,
-} from '../../../actions'
+  cancelSearch,
+} from '../../../actions';
 
-import SearchInput from './SearchInput'
-import CancelBtn from './CancelBtn'
+import SearchInput from './SearchInput';
+import SearchBtn from './SearchBtn';
+import CancelBtn from './CancelBtn';
+import BackBtn from './BackBtn';
 
-class FeaturedProductsHeader extends React.Component {
+class Header extends React.Component {
   static propTypes = {
     toggleSearchOverlay: React.PropTypes.func.isRequired,
     searching: React.PropTypes.bool.isRequired,
   };
 
   constructor(props) {
-    super(props)
-    this.state = {
-      buttonWidth: 0,
-      buttonHeight: 30,
-      showForm: this.props.searchOverlay,
-      transitioning: false,
-    }
+    super(props);
+    this.state = { showForm: this.props.searchOverlay };
   }
 
   componentWillMount() {
     if (this.props.searchOverlay) {
-      this.setState({
-        transitionText: new Animated.Value(-((this.state.buttonWidth * .5) - (142.5 * 0.5))),
-        transitionButton: new Animated.Value(deviceWidth - 75),
-      })
+      this.setState({ animCancel: new Animated.Value(1) });
     } else {
-      this.setState({
-        transitionText: new Animated.Value(0),
-        transitionButton: new Animated.Value(deviceWidth - 20),
-      })
-    }
+      this.setState({ animCancel: new Animated.Value(0) });
+    };
+
+    if (this.props.route === 'search') {
+      this.setState({ animBackButton: new Animated.Value(1) });
+    } else {
+      this.setState({ animBackButton: new Animated.Value(0) });
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searchOverlay !== this.props.searchOverlay && !this.state.transitioning) {
-      this.animateAllTheThings(nextProps.searchOverlay)
-    }
+    if (nextProps.searchOverlay !== this.props.searchOverlay) {
+      this.animateSearching(nextProps.searchOverlay);
+    };
+
+    if (nextProps.route !== this.props.route) {
+      this.animateBack(nextProps.route);
+    };
   }
 
-  animateAllTheThings = (searchOverlay) => {
-    this.setState({ showForm: false })
-    let textToValue = 0
-    let buttonToValue = deviceWidth - 20
+  animateSearching = (searchOverlay) => {
+    let toValue = searchOverlay ? 1 : 0;
+    let animationConfig = { duration: 250 };
 
-    if (searchOverlay) {
-      // TODO: Probably should do this more programatically
-      textToValue = -((this.state.buttonWidth * .5) - (142.5 * 0.5))
-      buttonToValue = this.state.buttonWidth - 55
-    }
-
-    let animationConfig = { duration: 150 }
-
-    Animated.parallel([
-      Animated.timing( this.state.transitionText, {
-        toValue: textToValue,
-        ...animationConfig,
-      }),
-
-      Animated.timing( this.state.transitionButton, {
-        toValue: buttonToValue,
-        ...animationConfig,
-      })
-    ]).start(() => {
-      this.setState({ showForm: this.props.searchOverlay, transitioning: false })
+    Animated.timing(this.state.animCancel, {
+      toValue: toValue,
+      ...animationConfig,
     })
+    .start(() => {
+      this.setState({ showForm: this.props.searchOverlay });
+    });
   }
 
-  buttonOnLayout = (e) => {
-    let { x, y, width, height } = e.nativeEvent.layout;
-    this.setState({
-      buttonWidth: width,
-      buttonHeight: height,
-    })
+  animateBack = (route) => {
+    let toValue = route === 'search' ? 1 : 0;
+    let animationConfig = { duration: 250 };
+
+    Animated.timing(this.state.animBackButton, {
+      toValue: toValue,
+      ...animationConfig,
+    }).start();
   }
 
   render() {
@@ -104,23 +83,23 @@ class FeaturedProductsHeader extends React.Component {
     let placeholder = searchText ? searchText : 'Search'
 
     return (
-      <Animated.View
-        ref='button'
-        onLayout={ this.buttonOnLayout }
-        style={{ width: this.state.transitionButton }}
-      >
-        { !this.state.showForm && <TouchableOpacity
+      <Animated.View style={ styles.headerContainer } >
+        <BackBtn
+          cancelSearch={ this.props.cancelSearch }
+          width={ this.state.animBackButton.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 21],
+          })}
+        />
+
+        { !this.state.showForm && <SearchBtn
+          toggleSearchOverlay={ toggleSearchOverlay }
           style={ styles.button }
-          activeOpacity={ 1 }
-          onPress={ toggleSearchOverlay }
-        >
-          <Animated.View
-            style={[{ transform: [{ translateX: this.state.transitionText }]}, styles.buttonContainer ]}
-          >
-            <Image source={ require('image!search') } />
-            <Text style={ styles.buttonText }>{ placeholder }</Text>
-          </Animated.View>
-        </TouchableOpacity> }
+          placeholder={ placeholder }
+          route={ this.props.route }
+          searchOverlay={ searchOverlay }
+          anim={ this.state.animCancel }
+        /> }
 
         { this.state.showForm && <SearchInput
           requestProducts={ requestProducts }
@@ -129,13 +108,25 @@ class FeaturedProductsHeader extends React.Component {
           toggleSearchOverlay={ toggleSearchOverlay }
           placeholder={ placeholder }
         /> }
-        <CancelBtn />
+
+        <CancelBtn
+          width={ this.state.animCancel.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 54.5],
+          })}
+        />
       </Animated.View>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
   button: {
     backgroundColor: 'rgba(11, 87, 119, 0.15)',
     height: 30,
@@ -143,31 +134,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#2dadcd',
     overflow: 'hidden',
-  },
-
-  buttonContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
   },
-
-  buttonText: {
-    color: '#fff',
-    marginLeft: 5,
-  },
-})
+});
 
 const mapStateToProps = (state) => ({
   searching: state.search.searching,
   searchOverlay: state.search.searchOverlay,
   searchText: state.search.searchText,
-})
+  route: state.navigation.route,
+});
 
 const mapActionsToProps = (dispatch) => ({
   toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
   requestProducts: (e) => dispatch(requestProducts(e.nativeEvent.text)),
-})
+  cancelSearch: () => dispatch(cancelSearch())
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(FeaturedProductsHeader)
+export default connect(mapStateToProps, mapActionsToProps)(Header);

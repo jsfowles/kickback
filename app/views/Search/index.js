@@ -14,11 +14,12 @@ import {
 
 class Search extends React.Component {
   componentWillMount() {
-    this.props.setCurrentRoute()
+    this.props.setCurrentRoute('search')
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.searching) {
+      this.props.setCurrentRoute('productFeed')
       this.props.navigator.popToTop()
     }
   }
@@ -65,7 +66,7 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   setHasScrolled: () => dispatch(setHasScrolled('search')),
   scrollToTop: () => dispatch(scrollToTop()),
-  setCurrentRoute: () => dispatch(setCurrentRoute('search')),
+  setCurrentRoute: (str) => dispatch(setCurrentRoute(str)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(Search)
