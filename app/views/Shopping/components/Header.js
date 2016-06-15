@@ -3,21 +3,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
   View,
+  StyleSheet,
   Animated,
-  Dimensions,
-  TextInput,
-  Easing,
 } from 'react-native';
 
-const {
-  height: deviceHeight,
-  width: deviceWidth,
-} = Dimensions.get('window');
 
 import {
   toggleSearchOverlay,
@@ -79,7 +69,6 @@ class Header extends React.Component {
   }
 
   animateBack = (route) => {
-    console.log(route)
     let toValue = route === 'search' ? 1 : 0;
     let animationConfig = { duration: 250 };
     console.log(toValue)
