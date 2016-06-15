@@ -5,21 +5,30 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  View,
+  Animated,
 } from 'react-native'
 
 import { toggleSearchOverlay } from '../../../actions'
 
-const CancelBtn = ({
-  toggleSearchOverlay,
-}) => (
-  <TouchableOpacity
-    style={ styles.cancelBtn }
-    activeOpacity={ 1 }
-    onPress={ toggleSearchOverlay }
-  >
-    <Text style={{ color: '#fff' }}>Cancel</Text>
-  </TouchableOpacity>
-)
+class CancelBtn extends React.Component {
+  render() {
+    let { toggleSearchOverlay } = this.props
+
+    return (
+      <Animated.View
+        style={{ overflow: 'hidden', width: this.props.width }}
+      >
+        <TouchableOpacity
+          activeOpacity={ 1 }
+          onPress={ toggleSearchOverlay }
+        >
+          <Text style={ styles.cancelTxt }>Cancel</Text>
+        </TouchableOpacity>
+      </Animated.View>
+    )
+  }
+}
 
 CancelBtn.propTypes = {
   /**
@@ -29,16 +38,10 @@ CancelBtn.propTypes = {
 }
 
 const styles= StyleSheet.create({
-  cancelBtn: {
-    position: 'absolute',
-    right: 0,
-    transform: [{
-      translateX: 55,
-    }],
-    top: 0,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+  cancelTxt: {
+    color: '#fff',
+    marginLeft: 10,
+    width: 44.5,
   },
 })
 
