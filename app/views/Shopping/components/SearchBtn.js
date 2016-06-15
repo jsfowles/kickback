@@ -21,9 +21,9 @@ const {
  * |             ⚲ SEARCH                 |
  * ________________________________________
  *
- * Description: This is the search button component. When Clicked the text and icon should
- *              move to the left. Depending on the state of the button the offset of center
- *              is different.
+ * Description: This is the search button component. When Clicked the text
+ *              and icon should move to the left. Depending on the state
+ *              of the button the offset of center is different.
  */
 class SearchBtn extends React.Component {
   constructor(props) {
