@@ -16,6 +16,10 @@ class CardContainer extends React.Component {
     cardSize: React.PropTypes.string,
   };
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   renderFooter = () => {
     const { product, recommendProduct } = this.props
     const props = {

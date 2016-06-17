@@ -37,7 +37,7 @@ class FeaturedProducts extends React.Component {
   }
 
   render() {
-    let { productFeed, currentTab, searchOverlay } = this.props
+    let { productFeed, currentTab, searchOverlay, route } = this.props
     if (currentTab !== 'SHOPPING_TAB') return null
 
     return (
@@ -58,7 +58,7 @@ class FeaturedProducts extends React.Component {
           />
         </Container>
 
-        { searchOverlay && this.props.children }
+        { searchOverlay && route === 'productFeed' && this.props.children }
       </View>
     )
   }
@@ -67,6 +67,7 @@ class FeaturedProducts extends React.Component {
 const mapStateToProps = (state) => ({
   productFeed: state.productFeed,
   currentTab: state.navigation.tab,
+  route: state.navigation.route,
   searchOverlay: state.search.searchOverlay,
   searching: state.search.searching,
   searchText: state.search.searchText,

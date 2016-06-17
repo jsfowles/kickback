@@ -11,7 +11,7 @@ import {
 class ProductImage extends React.Component {
   static propTypes = {
     imageUrl: React.PropTypes.string.isRequired,
-    style: React.PropTypes.object.isRequired,
+    style: React.PropTypes.number.isRequired,
   };
 
   constructor(props) {
