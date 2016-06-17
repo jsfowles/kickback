@@ -30,6 +30,7 @@ class Search extends React.Component {
       searchOverlay,
       fetchingProducts,
       children,
+      route,
     } = this.props
 
     return (
@@ -50,7 +51,7 @@ class Search extends React.Component {
           />
         </Container> }
 
-        { searchOverlay && this.props.children }
+        { searchOverlay && route === 'search' && this.props.children }
       </View>
     )
   }
@@ -59,6 +60,7 @@ class Search extends React.Component {
 const mapStateToProps = (state) => ({
   searchResults: state.search.searchResults,
   searchOverlay: state.search.searchOverlay,
+  route: state.navigation.route,
   searching: state.search.searching,
   fetchingProducts: state.search.fetchingProducts,
   hasScrolled: state.search.hasScrolled,
