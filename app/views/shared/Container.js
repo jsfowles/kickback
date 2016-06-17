@@ -47,7 +47,7 @@ class Container extends React.Component {
             parallaxContent={ parallaxContent }
             offset={ this.state.anim }
             minHeight={ 14 }
-            maxHeight={ 14 + 415 }
+            maxHeight={ 14 + this.props.headerHeight }
           /> }
         </View>
 

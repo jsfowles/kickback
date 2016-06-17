@@ -85,7 +85,15 @@ class ProductListView extends React.Component {
   )
 
   render() {
-    let { products, title, loadMoreProducts } = this.props
+    let { products, title, loadMoreProducts } = this.props;
+
+    if (products.length === 0) {
+      return (
+        <View style={[{ marginTop: this.props.headerHeight }, styles.placeholderContainer ]}>
+          <Text style={ styles.placeholderText }>{ this.props.emptyListText }</Text>
+        </View>
+      )
+    };
 
     return (
       <ListView
@@ -101,9 +109,9 @@ class ProductListView extends React.Component {
         onEndReached={ loadMoreProducts }
         {...this.props}
       />
-    )
+    );
   }
-}
+};
 
 const styles = {
   headerContainer: {
@@ -123,6 +131,19 @@ const styles = {
     height: 5,
     backgroundColor: '#f7f8f9',
   },
-}
+
+  placeholderContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 49,
+  },
+
+  placeholderText: {
+    color: '#adadad',
+    fontSize: 17,
+    textAlign: 'center',
+  },
+};
 
 export default ProductListView

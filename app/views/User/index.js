@@ -27,21 +27,25 @@ class User extends React.Component {
       onPress: () => this.props.navigateSettings(),
     }
 
+    let headerHeight = 350;
+
     return (
       <Container
         style={{ paddingTop: 20 }}
         hasScrolled={ this.props.hasScrolled }
         setHasScrolled={ this.props.setHasScrolled }
+        headerHeight={ headerHeight }
         parallaxContent={ <ParallaxContent /> }
       >
         <Products
           products={ this.props.products }
           title='SHARED PRODUCTS'
           cardSize='small'
-          headerHeight={ 350 }
+          headerHeight={ headerHeight }
           loadMoreProducts={ this.loadMoreProducts }
           hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
+          emptyListText="You haven't shared any products yet."
         />
       </Container>
     )
