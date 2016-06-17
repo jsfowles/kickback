@@ -46,6 +46,7 @@ class Search extends React.Component {
             cardSize='large'
             hasScrolled={ this.props.hasScrolled }
             scrollToTop={ this.props.scrollToTop }
+            emptyListText="Shoot! No results..."
           />
         </Container> }
 
