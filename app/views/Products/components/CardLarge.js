@@ -9,6 +9,7 @@ import {
 
 import CardFooter from './CardFooter'
 import Pricing from './Pricing'
+import ProductImage from './ProductImage'
 
 const ProductCardLarge = ({
   product,
@@ -16,7 +17,7 @@ const ProductCardLarge = ({
 }) => (
   <View style={ styles.rowContainer }>
     <View style={ styles.itemContainer }>
-      <Image style={ styles.thumb } source={{ uri: product.largeImageUrl }} />
+      <ProductImage style={ styles.thumb } imageUrl={ product.largeImageUrl } />
     </View>
 
     <View style={ styles.itemContainer }>

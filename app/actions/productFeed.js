@@ -26,14 +26,10 @@ export const toggleFetching = bool => ({
 
 export const loadProductFeed = _ => {
   return (dispatch, getState) => {
-    let isFetching = getState().productFeed.isFetching
-
-    if (!isFetching) {
-      dispatch(toggleFetching(true))
-      getProductFeed(URL)
-      .then(res => dispatch(receiveProductFeed(res)))
-      .catch(e => console.error(e))
-    }
+    dispatch(toggleFetching(true))
+    getProductFeed(URL)
+    .then(res => dispatch(receiveProductFeed(res)))
+    .catch(e => console.error(e))
   }
 }
 

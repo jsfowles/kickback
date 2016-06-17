@@ -22,14 +22,10 @@ export const toggleFetching = bool => ({
 
 export const loadCurrentUser = _ => {
   return (dispatch, getState) => {
-    let isFetching = getState().user.isFetching
-
-    if (!isFetching) {
-      dispatch(toggleFetching(true))
-      getCurrentUser(URL)
-      .then(res => dispatch(receiveCurrentUser(res)))
-      .catch(e => console.error(e))
-    }
+    dispatch(toggleFetching(true))
+    getCurrentUser(URL)
+    .then(res => dispatch(receiveCurrentUser(res)))
+    .catch(e => console.error(e))
   }
 }
 
