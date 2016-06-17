@@ -30,7 +30,7 @@ class ProductImage extends React.Component {
   }
 
   render() {
-    let imageStyles = [ this.props.style, { opacity: this.state.visibility }]
+    let imageStyles = [ this.props.style, { opacity: this.state.visibility }];
 
     return (
       <Animated.Image
@@ -43,4 +43,4 @@ class ProductImage extends React.Component {
 };
 
 
-export default ProductImage
+export default ProductImage;
