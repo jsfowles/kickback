@@ -6,7 +6,9 @@ import {
   StyleSheet,
   Image,
 } from 'react-native'
+
 import Pricing from './Pricing'
+import ProductImage from './ProductImage'
 
 const ProductCardSmall = ({
   children,
@@ -15,7 +17,7 @@ const ProductCardSmall = ({
   <View style={ styles.rowContainer }>
     <View style={ styles.productContainer }>
       <View style={ styles.imageContainer }>
-        <Image style={ styles.thumb } source={{ uri: product.mediumImageUrl }} />
+        <ProductImage style={ styles.thumb } imageUrl={ product.largeImageUrl } />
       </View>
       <Text style={ styles.title }>{ product.title }</Text>
     </View>
