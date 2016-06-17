@@ -40,7 +40,7 @@ class Search extends React.Component {
 
   componentWillMount() {
     this.keyboardWillShow = DeviceEventEmitter.addListener('keyboardWillShow', e => {
-      this.setState({ keyboardHeight: e.endCoordinates.height })
+      this.setState({ keyboardHeight: e.endCoordinates.height + 64 })
     })
 
     this.keyboardWillHide = DeviceEventEmitter.addListener('keyboardWillHide', e => {
