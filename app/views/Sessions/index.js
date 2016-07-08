@@ -4,15 +4,21 @@ import React from 'react';
 import {
   View,
   Modal,
-  TextInput,
   Dimensions,
   StyleSheet,
   DeviceEventEmitter,
+  StatusBar,
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { createSession } from '../../actions';
+
+import {
+  createSession,
+  toggleSessionModal,
+} from '../../actions';
+
 import LoginForm from './components/LoginForm';
+import Header from './components/Header';
 
 const {
   height: deviceHeight,
@@ -43,6 +49,8 @@ class Sessions extends React.Component {
   }
 
   render() {
+    StatusBar.setHidden(this.props.modalVisible, true);
+
     return (
       <Modal
         visible={ this.props.modalVisible }
@@ -50,8 +58,7 @@ class Sessions extends React.Component {
         transparent={ false }
       >
         <View style={ styles.container }>
-          <View style={ styles.header }>
-          </View>
+          <Header closeModal={ this.props.toggleSessionModal } />
 
           <LoginForm
             keyboardHeight={ this.state.keyboardHeight }
@@ -71,17 +78,13 @@ let styles = StyleSheet.create({
     height: deviceHeight,
     width: deviceWidth,
   },
-
-  header: {
-    backgroundColor: '#ececec',
-    flex: 1,
-  },
 });
 
-const mapStateToProps = (state) => ({  })
+const mapStateToProps = (state) => ({});
 
 const mapActionsToProps = (dispatch) => ({
   createSession: (credentials) => dispatch(createSession(credentials)),
-})
+  toggleSessionModal: () => dispatch(toggleSessionModal(false)),
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Sessions)
+export default connect(mapStateToProps, mapActionsToProps)(Sessions);
