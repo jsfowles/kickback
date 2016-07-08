@@ -2,6 +2,7 @@
 
 const initialState = {
   sharedProducts: [],
+  currentUser: null,
   nextPageUrl: null,
   hasScrolled: false,
   isFetching: false,
@@ -10,11 +11,11 @@ const initialState = {
 export const user = (state = initialState, action) => {
   switch(action.type) {
     case 'RECEIVE_CURRENT_USER':
-      // TODO (Riley) : I need to receive the user profile as well
       return {
         ...state,
         sharedProducts: action.userData.products,
         nextPageUrl: action.userData.nextPage,
+        currentUser: action.userData.currentUser,
         isFetching: false,
       }
     case 'RECEIVE_MORE_CURRENT_USER':

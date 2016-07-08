@@ -16,7 +16,7 @@ import Shopping from '../../Shopping'
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    if (true) { return this.props.toggleSessionModal(); }
+    if (!this.props.currentUser) { return this.props.toggleSessionModal(); }
 
     if (this.props.searching) this.props.cancelSearch();
     if (this.props.tab === tab) return this.props.scrollToTop();
@@ -70,6 +70,7 @@ Tabs.propTypes = {
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
   searching: state.search.searching,
+  currentUser: state.user.currentUser,
 })
 
 const mapActionsToProps = (dispatch) => ({

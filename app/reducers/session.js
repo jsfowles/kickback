@@ -1,6 +1,5 @@
 const initialState = {
   modalVisible: false,
-  currentSession: false,
   session: {
     'client': null,
     'token-type': null,

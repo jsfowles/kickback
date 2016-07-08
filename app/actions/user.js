@@ -4,7 +4,7 @@ import {
   apiVersion,
 } from '../env'
 
-const URL = `${serverUrl}/api/${apiVersion}/users/1`
+const URL = `${serverUrl}/api/${apiVersion}/users`;
 
 import { getCurrentUser } from '../utils/api'
 
@@ -12,6 +12,7 @@ export const receiveCurrentUser = userData => ({
   type: 'RECEIVE_CURRENT_USER', userData
 })
 
+// TODO (Riley): Lets change this to something like appendProducts
 export const receiveMoreProducts = userData => ({
   type: 'RECEIVE_MORE_CURRENT_USER', userData
 })
@@ -20,11 +21,11 @@ export const toggleFetching = bool => ({
   type: 'TOGGLE_USER_FETCHING', bool
 })
 
-export const loadCurrentUser = _ => {
+export const loadCurrentUser = currentUser => {
   return (dispatch, getState) => {
     dispatch(toggleFetching(true))
-    getCurrentUser(URL)
-    .then(res => dispatch(receiveCurrentUser(res)))
+    getCurrentUser(`${URL}/${currentUser.id}`)
+    .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })))
     .catch(e => console.error(e))
   }
 }

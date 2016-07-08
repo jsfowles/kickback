@@ -42,7 +42,6 @@ export const getProducts = (searchTerm) => {
 }
 
 export const getCurrentUser = (url) => {
-  // TODO (Riley) : Don't hardcode this
   return fetch(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
