@@ -5,9 +5,9 @@ import { loginUser } from '../utils/api';
 export const toggleSessionModal = (bool) => ({ type: 'TOGGLE_SESSION_MODAL', bool, });
 export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool, });
 
-export const createSession = () => {
+export const createSession = (credentials) => {
   return (dispatch, getState) => {
-    loginUser()
+    loginUser(credentials)
     .then(res => {
       if (res.status === 200) {
         const session = {

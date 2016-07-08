@@ -16,9 +16,7 @@ import Shopping from '../../Shopping'
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    if (true) {
-      return this.props.toggleSessionModal();
-    }
+    if (true) { return this.props.toggleSessionModal(); }
 
     if (this.props.searching) this.props.cancelSearch();
     if (this.props.tab === tab) return this.props.scrollToTop();

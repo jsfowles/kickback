@@ -4,13 +4,15 @@ import React from 'react';
 import {
   View,
   Modal,
-  TouchableHighlight,
-  Text,
+  TextInput,
   Dimensions,
+  StyleSheet,
+  DeviceEventEmitter,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import { createSession } from '../../actions';
+import LoginForm from './components/LoginForm';
 
 const {
   height: deviceHeight,
@@ -22,6 +24,24 @@ class Sessions extends React.Component {
     modalVisible: React.PropTypes.bool.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      keyboardHeight: 226,
+    };
+  }
+
+  componentWillMount() {
+    this.keyboardWillShow = DeviceEventEmitter.addListener('keyboardWillShow', e => {
+      this.setState({ keyboardHeight: e.endCoordinates.height });
+    });
+  }
+
+  componentWillUnmount() {
+    this.keyboardWillShow.remove()
+  }
+
   render() {
     return (
       <Modal
@@ -29,31 +49,39 @@ class Sessions extends React.Component {
         animationType='slide'
         transparent={ false }
       >
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: deviceHeight,
-            width: deviceWidth,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <TouchableHighlight
-            onPress={ this.props.createSession }
-          >
-            <Text>Log In</Text>
-          </TouchableHighlight>
+        <View style={ styles.container }>
+          <View style={ styles.header }>
+          </View>
+
+          <LoginForm
+            keyboardHeight={ this.state.keyboardHeight }
+            login={ this.props.createSession }
+          />
         </View>
       </Modal>
     );
   }
 };
 
+let styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: deviceHeight,
+    width: deviceWidth,
+  },
+
+  header: {
+    backgroundColor: '#ececec',
+    flex: 1,
+  },
+});
+
 const mapStateToProps = (state) => ({  })
+
 const mapActionsToProps = (dispatch) => ({
-  createSession: () => dispatch(createSession()),
+  createSession: (credentials) => dispatch(createSession(credentials)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(Sessions)
