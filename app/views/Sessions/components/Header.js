@@ -10,6 +10,8 @@ import {
 
 const Header = ({ closeModal }) => (
   <View style={ styles.container }>
+    <Image source={ require('image!loginBg') } style={ styles.bgImage } />
+
     <View style={ styles.logoContainer }>
       <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ 'contain' } />
       <Text style={ styles.logoText }>Get paid for referring products</Text>
@@ -56,6 +58,12 @@ let styles = StyleSheet.create({
     position: 'absolute',
     top: 16,
     right: 16,
+  },
+
+  bgImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
 });
 

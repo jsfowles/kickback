@@ -34,7 +34,7 @@ class Sessions extends React.Component {
     super(props);
 
     this.state = {
-      keyboardHeight: 226,
+      keyboardHeight: 216,
     };
   }
 
