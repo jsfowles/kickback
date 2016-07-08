@@ -18,6 +18,7 @@ import {
 } from '../actions'
 
 import Navigation from './Navigation'
+import UserModal from './Sessions'
 
 /**
  * App Component
@@ -56,6 +57,7 @@ class App extends Component {
     return (
       <View style={ styles.container }>
         <Navigation />
+        <UserModal />
       </View>
     )
   }
