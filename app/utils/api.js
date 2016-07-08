@@ -49,3 +49,15 @@ export const getCurrentUser = (url) => {
   }).then((res) => res.json())
   .catch(e => console.error(e))
 }
+
+export const loginUser = () => {
+  let url = `${URL}/auth/sign_in`
+
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: 'hello@underbelly.is', password: 'password' }),
+  })
+  .then(res => res)
+  .catch(e => console.error(e))
+}

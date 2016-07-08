@@ -95,7 +95,11 @@ class FeaturedSearchesCarousel extends React.Component {
    * After scrolling we need to change the position in the store
    */
   handleMomentumScroll = (e) => {
-    this.props.changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+    let { carouselPaused, changeCarousepPosition } = this.props;
+
+    if (!carouselPaused) {
+      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+    }
   }
 
   /**
@@ -142,6 +146,7 @@ const mapStateToProps = (state) => ({
   featuredSearches: state.productFeed.featuredSearches,
   selectedIndex: state.productFeed.selectedIndex,
   searching: state.search.searching,
+  carouselPaused: state.productFeed.carouselPaused,
 })
 
 const mapActionsToProps = (dispatch) => ({

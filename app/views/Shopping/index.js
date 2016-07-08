@@ -10,6 +10,7 @@ import Search from '../Search'
 import SearchOverlay from '../Search/components/SearchOverlay'
 import { setNavigator } from '../../actions'
 import LinearGradient from 'react-native-linear-gradient'
+import SessionModal from '../Sessions'
 
 class Shopping extends React.Component {
   renderScene = (route, navigator) => {
@@ -39,6 +40,8 @@ class Shopping extends React.Component {
           initialRoute={{ name: 'Featured Products', index: 0 }}
           renderScene={ this.renderScene }
         />
+
+        <SessionModal modalVisible={ this.props.modalVisible } />
       </View>
     )
   }
@@ -57,7 +60,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  modalVisible: state.session.modalVisible,
+})
+
 const mapActionsToProps = (dispatch) => ({})
 
 export default connect(mapStateToProps, mapActionsToProps)(Shopping)
