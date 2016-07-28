@@ -15,15 +15,15 @@ export const session = (state = initialState, action) => {
       return {
         ...state,
         modalVisible: action.bool,
-      }
+      };
     case 'SET_SESSION':
       return {
         ...state,
         session: action.session,
         currentSession: action.bool,
         modalVisible: false,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

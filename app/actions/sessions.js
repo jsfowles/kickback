@@ -1,7 +1,8 @@
 'use strict';
 
 import { loginUser } from '../utils/api';
-import { loadCurrentUser } from './user';
+import { loadCurrentUser, removeCurrentUser } from './user';
+import { switchTab } from './navigation';
 
 export const toggleSessionModal = (bool) => ({ type: 'TOGGLE_SESSION_MODAL', bool, });
 export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool, });

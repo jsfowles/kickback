@@ -6,12 +6,13 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-} from 'react-native'
+  TouchableHighlight,
+} from 'react-native';
 
 const {
   height: deviceHeight,
   width: deviceWidth
-} = Dimensions.get('window')
+} = Dimensions.get('window');
 
 const ParallaxContent = () => (
   <View style={ styles.container }>
@@ -36,7 +37,7 @@ const ParallaxContent = () => (
       </View>
     </View>
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -89,6 +90,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     opacity: 0.8
   },
-})
+});
 
-export default ParallaxContent
+export default ParallaxContent;

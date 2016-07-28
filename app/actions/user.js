@@ -2,11 +2,12 @@
 import {
   serverUrl,
   apiVersion,
-} from '../env'
+} from '../env';
 
 const URL = `${serverUrl}/api/${apiVersion}/users`;
 
-import { getCurrentUser } from '../utils/api'
+import { getCurrentUser } from '../utils/api';
+
 
 export const receiveCurrentUser = userData => ({
   type: 'RECEIVE_CURRENT_USER', userData
