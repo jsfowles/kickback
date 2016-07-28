@@ -30,8 +30,6 @@ class ParallaxBackground extends React.Component {
   }
 
   renderBackground() {
-    const { minHeight, maxHeight, offset } = this.props
-    const length = maxHeight - minHeight
     return (
       <LinearGradient
         style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
