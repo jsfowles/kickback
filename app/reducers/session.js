@@ -1,13 +1,8 @@
 const initialState = {
   modalVisible: false,
-  session: {
-    'client': null,
-    'token-type': null,
-    'access-token': null,
-    'uid': null,
-    'expiry': null,
-  },
-}
+  currentSession: false,
+  session: null,
+};
 
 export const session = (state = initialState, action) => {
   switch(action.type) {
