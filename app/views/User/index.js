@@ -23,7 +23,6 @@ class User extends React.Component {
     if (!this.props.nextPageUrl) { return };
     this.props.loadMoreProducts();
   }
-  }
 
   render() {
     let rightItem = {
