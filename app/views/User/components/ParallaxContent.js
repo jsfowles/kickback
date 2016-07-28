@@ -14,14 +14,16 @@ const {
   width: deviceWidth
 } = Dimensions.get('window');
 
-const ParallaxContent = () => (
+const ParallaxContent = ({ logout }) => (
   <View style={ styles.container }>
     <Image
       style={ styles.profileImage }
       source={{ uri: 'https://pbs.twimg.com/profile_images/2863061875/0e3b0a3a183cdbec6fb70948f4e53d2a.jpeg' }}
     />
 
-    <Text style={ styles.text }>Captain Ahab</Text>
+    <TouchableHighlight onPress={ logout } underlayColor='transparent'>
+      <Text style={ styles.text }>Captain Ahab</Text>
+    </TouchableHighlight>
 
     <View style={ styles.iconsContainer }>
       <View style={ styles.iconGroup }>

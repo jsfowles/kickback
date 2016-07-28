@@ -13,6 +13,7 @@ import {
   setHasScrolled,
   scrollToTop,
   setCurrentRoute,
+  destroySession,
 } from '../../actions'
 
 class User extends React.Component {
@@ -35,7 +36,7 @@ class User extends React.Component {
         hasScrolled={ this.props.hasScrolled }
         setHasScrolled={ this.props.setHasScrolled }
         headerHeight={ headerHeight }
-        parallaxContent={ <ParallaxContent /> }
+        parallaxContent={ <ParallaxContent logout={ this.props.destroySession } /> }
       >
         <Products
           products={ this.props.products }
@@ -65,6 +66,7 @@ const mapActionsToProps = (dispatch) => ({
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
-})
+  destroySession: () => dispatch(destroySession()),
+});
 
 export default connect(mapStateToProps, mapActionsToProps)(User)
