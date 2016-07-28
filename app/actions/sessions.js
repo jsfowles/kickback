@@ -7,6 +7,14 @@ import { switchTab } from './navigation';
 export const toggleSessionModal = (bool) => ({ type: 'TOGGLE_SESSION_MODAL', bool, });
 export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool, });
 
+export const destroySession = _ => {
+  return (dispatch, getState) => {
+    dispatch(setSession(null, false));
+    dispatch(removeCurrentUser());
+    dispatch(switchTab('SHOPPING_TAB'));
+  };
+};
+
 export const createSession = (credentials) => {
   return (dispatch, getState) => {
     loginUser(credentials)
