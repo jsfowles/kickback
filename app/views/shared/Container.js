@@ -7,6 +7,7 @@ import {
   Platform,
   Animated,
   Text,
+  ScrollView,
 } from 'react-native'
 
 import Header from './Header'
@@ -33,6 +34,7 @@ class Container extends React.Component {
       parallaxContent,
       style,
       headerColors,
+      headerHeight,
     } = this.props
 
     const content = React.cloneElement(children, {
@@ -47,7 +49,7 @@ class Container extends React.Component {
             parallaxContent={ parallaxContent }
             offset={ this.state.anim }
             minHeight={ 14 }
-            maxHeight={ 14 + this.props.headerHeight }
+            maxHeight={ 14 + headerHeight }
           /> }
         </View>
 
