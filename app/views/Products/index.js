@@ -12,19 +12,24 @@ import {
 import ProductCard from './components/CardContainer'
 import { makeStandard } from '../../utils/product'
 
+const defaultProps = {
+  headerHeight: 0,
+};
+
+const propTypes = {
+  products: React.PropTypes.array.isRequired,
+  loadMoreProducts: React.PropTypes.func.isRequired,
+  title: React.PropTypes.string,
+  cardSize: React.PropTypes.string,
+  headerHeight: React.PropTypes.number,
+  onScroll: React.PropTypes.func,
+  scrollToTop: React.PropTypes.func,
+  hasScrolled: React.PropTypes.bool,
+  scrollEventThrottle: React.PropTypes.number,
+  emptyListText: React.PropTypes.string.isRequired,
+};
+
 class ProductListView extends React.Component {
-  static defaultProps: {
-    headerHeight: 0,
-  }
-
-  static propTypes: {
-    products: React.PropTypes.array.isRequired,
-    loadMoreProducts: React.PropTypes.func.isRequired,
-    title: React.PropTypes.string,
-    cardSize: React.PropTypes.string,
-    headerHeight: React.PropTyles.integer,
-  };
-
   constructor(props) {
     super(props)
 
@@ -112,6 +117,9 @@ class ProductListView extends React.Component {
     );
   }
 };
+
+ProductListView.defaultProps = defaultProps;
+ProductListView.propTypes = propTypes;
 
 const styles = {
   headerContainer: {
