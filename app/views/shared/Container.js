@@ -18,11 +18,11 @@ class Container extends React.Component {
     super(props)
     this.state = ({
       anim: new Animated.Value(0),
-    })
+    });
   }
 
   handleScroll = (e) => {
-    if (!this.props.hasScrolled) { this.props.setHasScrolled() }
+    if (!this.props.hasScrolled) { this.props.setHasScrolled(); }
     this.state.anim.setValue(e.nativeEvent.contentOffset.y);
   }
 
@@ -35,12 +35,13 @@ class Container extends React.Component {
       style,
       headerColors,
       headerHeight,
-    } = this.props
+    } = this.props;
 
     const content = React.cloneElement(children, {
       onScroll: (e) => this.handleScroll(e),
       scrollEventThrottle: 16,
-    })
+      offset: this.state.anim,
+    });
 
     return (
       <View style={[ styles.container, style ]}>
