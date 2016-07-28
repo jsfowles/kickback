@@ -8,6 +8,7 @@ const URL = `${serverUrl}/api/${apiVersion}/users`;
 
 import { getCurrentUser } from '../utils/api';
 
+export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 
 export const receiveCurrentUser = userData => ({
   type: 'RECEIVE_CURRENT_USER', userData
