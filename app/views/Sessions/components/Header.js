@@ -6,36 +6,37 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
+import DismissKeyboard from 'dismissKeyboard';
+
 const Header = ({ closeModal }) => (
-  <View style={ styles.container }>
-    <Image source={ require('image!loginBg') } style={ styles.bgImage } />
+  <TouchableWithoutFeedback onPress={ () => DismissKeyboard() }>
+    <View style={ styles.container }>
+      <View style={ styles.logoContainer }>
+        <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
+        <Text style={ styles.logoText }>Get paid for referring products</Text>
+      </View>
 
-    <View style={ styles.logoContainer }>
-      <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
-      <Text style={ styles.logoText }>Get paid for referring products</Text>
+      <TouchableHighlight
+        underlayColor='transparent'
+        style={ styles.closeBtn }
+        onPress={ closeModal }
+      >
+        <Image source={ require('image!close') } />
+      </TouchableHighlight>
     </View>
-
-    <TouchableHighlight
-      underlayColor='transparent'
-      style={ styles.closeBtn }
-      onPress={ closeModal }
-    >
-      <Image source={ require('image!close') } />
-    </TouchableHighlight>
-  </View>
+  </TouchableWithoutFeedback>
 );
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ececec',
-    flex: 1,
-    flexDirection: 'row',
     paddingTop: 20,
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
 
   logoContainer: {
@@ -48,7 +49,6 @@ let styles = StyleSheet.create({
   },
 
   logoText: {
-    flex: 1,
     alignSelf: 'center',
     backgroundColor: 'transparent',
     color: '#fff',
