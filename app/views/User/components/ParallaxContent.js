@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 20,
+    paddingVertical: 40,
   },
 
   profileImage: {
@@ -83,11 +83,13 @@ const styles = StyleSheet.create({
   },
 
   amount: {
+    backgroundColor: 'transparent',
     fontSize: 24,
     color: '#fff'
   },
 
   label: {
+    backgroundColor: 'transparent',
     fontSize: 12,
     color: '#fff',
     opacity: 0.8

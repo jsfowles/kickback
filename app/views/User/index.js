@@ -38,9 +38,10 @@ class User extends React.Component {
         hasScrolled={ this.props.hasScrolled }
         setHasScrolled={ this.props.setHasScrolled }
         headerHeight={ headerHeight }
-        parallaxContent={ <ParallaxContent logout={ this.props.destroySession } /> }
+        parallaxContent={ true }
       >
         <Products
+          ref='products'
           products={ this.props.products }
           title='SHARED PRODUCTS'
           cardSize='small'
@@ -49,6 +50,7 @@ class User extends React.Component {
           hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
           emptyListText="You haven't shared any products yet."
+          header={ <ParallaxContent logout={ this.props.destroySession } /> }
         />
       </Container>
     );

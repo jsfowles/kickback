@@ -20,26 +20,16 @@ class ParallaxBackground extends React.Component {
     })
 
     return (
-      <Animated.View
-        style={[ styles.container, { height }]}
-      >
-        { this.renderBackground() }
-        { this.renderContent() }
+      <Animated.View style={[ styles.container, { height }]}>
+        <LinearGradient
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          colors={[ '#45baef', '#34D5d0' ]}
+          start={[0.75, 0]}
+          end={[0, 1]}
+        />
       </Animated.View>
     )
   }
-
-  renderBackground() {
-    return (
-      <LinearGradient
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-        colors={[ '#45baef', '#34D5d0' ]}
-        start={[0.75, 0]}
-        end={[0, 1]}
-      />
-    )
-  }
-
 
   renderContent() {
     const { minHeight, maxHeight, offset } = this.props
