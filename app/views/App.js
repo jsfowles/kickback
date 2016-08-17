@@ -29,7 +29,7 @@ class App extends Component {
    * When component mounts update the AppState
    */
   componentDidMount() {
-    let { currentUser, loadProductFeed, loadCurrentFeed } = this.props;
+    let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
 
     AppState.addEventListener('change', this.handleAppStateChange);
     loadProductFeed();
