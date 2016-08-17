@@ -27,6 +27,7 @@ class LoginForm extends React.Component {
           placeholder='Enter your email'
           autoCapitalize={ 'none' }
           autoCorrect={ false }
+          autoFocus={ true }
           keyboardType={ 'email-address' }
           textAlign={ 'center' }
           returnKeyType={ 'next' }
