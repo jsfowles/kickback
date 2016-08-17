@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
 };
 
 LoginForm.propTypes = {
-  keyboardHeight: React.PropTypes.number.isRequired,
+  styles: React.PropTypes.object.isRequired,
 }
 
 let styles = StyleSheet.create({
