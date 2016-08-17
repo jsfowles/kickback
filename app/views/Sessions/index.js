@@ -8,6 +8,8 @@ import {
   StyleSheet,
   DeviceEventEmitter,
   StatusBar,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -57,14 +59,14 @@ class Sessions extends React.Component {
         animationType='slide'
         transparent={ false }
       >
-        <View style={ styles.container }>
+        <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <Header closeModal={ this.props.toggleSessionModal } />
 
           <LoginForm
             keyboardHeight={ this.state.keyboardHeight }
             login={ this.props.createSession }
           />
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     );
   }
@@ -72,11 +74,9 @@ class Sessions extends React.Component {
 
 let styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: deviceHeight,
-    width: deviceWidth,
+    backgroundColor: '#ececec',
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 

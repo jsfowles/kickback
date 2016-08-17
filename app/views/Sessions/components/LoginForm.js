@@ -1,6 +1,10 @@
 'use strict';
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+} from 'react-native';
 
 const FORM_HEIGHT = 101; // this is the height of the 2 inputs + the separator
 
@@ -21,13 +25,12 @@ class LoginForm extends React.Component {
     let { keyboardHeight } = this.props;
 
     return (
-      <View style={[ styles.container, { height: keyboardHeight + FORM_HEIGHT, paddingBottom: keyboardHeight }]}>
+      <View style={ styles.container }>
         <TextInput
           style={ styles.textInput }
           placeholder='Enter your email'
           autoCapitalize={ 'none' }
           autoCorrect={ false }
-          autoFocus={ true }
           keyboardType={ 'email-address' }
           textAlign={ 'center' }
           returnKeyType={ 'next' }
