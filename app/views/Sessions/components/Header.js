@@ -13,7 +13,7 @@ const Header = ({ closeModal }) => (
     <Image source={ require('image!loginBg') } style={ styles.bgImage } />
 
     <View style={ styles.logoContainer }>
-      <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ 'contain' } />
+      <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
       <Text style={ styles.logoText }>Get paid for referring products</Text>
     </View>
 
@@ -39,10 +39,11 @@ let styles = StyleSheet.create({
   },
 
   logoContainer: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   logo: {
+    width: 278,
     height: 44,
   },
 
