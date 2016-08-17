@@ -9,6 +9,7 @@ import { productFeed } from './productFeed'
 import { search } from './search'
 import { product } from './product'
 import { user } from './user'
+import { session } from './session'
 
 export default combineReducers({
   navigation,
@@ -16,4 +17,5 @@ export default combineReducers({
   search,
   product,
   user,
+  session,
 })

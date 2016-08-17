@@ -8,6 +8,7 @@ import {
   cancelSearch,
   scrollToTop,
   setCurrentRoute,
+  toggleSessionModal,
 } from '../../../actions'
 
 import User from '../../User'
@@ -15,15 +16,17 @@ import Shopping from '../../Shopping'
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    if (this.props.searching) this.props.cancelSearch()
-    if (this.props.tab === tab) return this.props.scrollToTop()
+    if (!this.props.currentUser) { return this.props.toggleSessionModal(); }
 
-    this.props.switchTab(tab)
+    if (this.props.searching) this.props.cancelSearch();
+    if (this.props.tab === tab) return this.props.scrollToTop();
+
+    this.props.switchTab(tab);
 
     if (tab === 'SHOPPING_TAB') {
-      this.props.setCurrentRoute('productFeed')
+      return this.props.setCurrentRoute('productFeed');
     } else {
-      this.props.setCurrentRoute('user')
+      return this.props.setCurrentRoute('user');
     }
   }
 
@@ -67,9 +70,11 @@ Tabs.propTypes = {
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
   searching: state.search.searching,
+  currentUser: state.user.currentUser,
 })
 
 const mapActionsToProps = (dispatch) => ({
+  toggleSessionModal: () => dispatch(toggleSessionModal(true)),
   switchTab: (tab) => dispatch(switchTab(tab)),
   cancelSearch: () => dispatch(cancelSearch()),
   scrollToTop: () => dispatch(scrollToTop('user')),

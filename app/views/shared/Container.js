@@ -7,6 +7,7 @@ import {
   Platform,
   Animated,
   Text,
+  ScrollView,
 } from 'react-native'
 
 import Header from './Header'
@@ -17,11 +18,11 @@ class Container extends React.Component {
     super(props)
     this.state = ({
       anim: new Animated.Value(0),
-    })
+    });
   }
 
   handleScroll = (e) => {
-    if (!this.props.hasScrolled) { this.props.setHasScrolled() }
+    if (!this.props.hasScrolled) { this.props.setHasScrolled(); }
     this.state.anim.setValue(e.nativeEvent.contentOffset.y);
   }
 
@@ -33,12 +34,14 @@ class Container extends React.Component {
       parallaxContent,
       style,
       headerColors,
-    } = this.props
+      headerHeight,
+    } = this.props;
 
     const content = React.cloneElement(children, {
       onScroll: (e) => this.handleScroll(e),
       scrollEventThrottle: 16,
-    })
+      offset: this.state.anim,
+    });
 
     return (
       <View style={[ styles.container, style ]}>
@@ -47,7 +50,7 @@ class Container extends React.Component {
             parallaxContent={ parallaxContent }
             offset={ this.state.anim }
             minHeight={ 14 }
-            maxHeight={ 14 + this.props.headerHeight }
+            maxHeight={ 14 + headerHeight }
           /> }
         </View>
 

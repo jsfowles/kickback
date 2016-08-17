@@ -6,6 +6,7 @@ const initialState = {
   nextPageUrl: null,
   hasScrolled: false,
   isFetching: false,
+  carouselPaused: true,
 }
 
 export const productFeed = (state = initialState, action) => {

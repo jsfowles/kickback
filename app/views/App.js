@@ -29,10 +29,14 @@ class App extends Component {
    * When component mounts update the AppState
    */
   componentDidMount() {
-    AppState.addEventListener('change', this.handleAppStateChange)
+    let { currentUser, loadProductFeed, loadCurrentFeed } = this.props;
 
-    this.props.loadProductFeed()
-    this.props.loadCurrentUser()
+    AppState.addEventListener('change', this.handleAppStateChange);
+    loadProductFeed();
+
+    if (!!currentUser) {
+      loadCurrentUser(currentUser.id);
+    };
   }
 
   /**
@@ -67,6 +71,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loading: state.product.creatingRecommendation,
+  currentUser: state.user.currentUser,
 })
 
 const mapActionsToProps = (dispatch) => ({

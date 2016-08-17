@@ -6,21 +6,24 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-} from 'react-native'
+  TouchableHighlight,
+} from 'react-native';
 
 const {
   height: deviceHeight,
   width: deviceWidth
-} = Dimensions.get('window')
+} = Dimensions.get('window');
 
-const ParallaxContent = () => (
+const ParallaxContent = ({ logout }) => (
   <View style={ styles.container }>
     <Image
       style={ styles.profileImage }
       source={{ uri: 'https://pbs.twimg.com/profile_images/2863061875/0e3b0a3a183cdbec6fb70948f4e53d2a.jpeg' }}
     />
 
-    <Text style={ styles.text }>Captain Ahab</Text>
+    <TouchableHighlight onPress={ logout } underlayColor='transparent'>
+      <Text style={ styles.text }>Captain Ahab</Text>
+    </TouchableHighlight>
 
     <View style={ styles.iconsContainer }>
       <View style={ styles.iconGroup }>
@@ -36,14 +39,14 @@ const ParallaxContent = () => (
       </View>
     </View>
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 20,
+    paddingVertical: 40,
   },
 
   profileImage: {
@@ -80,15 +83,17 @@ const styles = StyleSheet.create({
   },
 
   amount: {
+    backgroundColor: 'transparent',
     fontSize: 24,
     color: '#fff'
   },
 
   label: {
+    backgroundColor: 'transparent',
     fontSize: 12,
     color: '#fff',
     opacity: 0.8
   },
-})
+});
 
-export default ParallaxContent
+export default ParallaxContent;

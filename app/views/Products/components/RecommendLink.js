@@ -1,14 +1,15 @@
-'use strict'
-import React from 'react'
+'use strict';
+
+import React from 'react';
 import {
   View,
   Text,
   TouchableHighlight,
   StyleSheet,
   Image,
-} from 'react-native'
-import Shimmer from 'react-native-shimmer'
-import { connect } from 'react-redux'
+} from 'react-native';
+import Shimmer from 'react-native-shimmer';
+import { connect } from 'react-redux';
 
 const RecommendLink = ({
   creatingRecommendation,
@@ -37,14 +38,14 @@ const RecommendLink = ({
         <Image source={ require('image!share') } style={ shareStyles } />
       </View>
     </TouchableHighlight>
-  )
-}
+  );
+};
 
 RecommendLink.propTypes = {
   creatingRecommendation: React.PropTypes.bool.isRequired,
   showText: React.PropTypes.bool.isRequired,
   recommendProduct: React.PropTypes.func.isRequired,
-}
+};
 
 const styles = StyleSheet.create({
   btnText: {
@@ -65,10 +66,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-})
+});
 
 const mapStateToProps = (state) => ({
   creatingRecommendation: state.product.creatingRecommendation,
-})
+});
 
-export default connect(mapStateToProps)(RecommendLink)
+export default connect(mapStateToProps)(RecommendLink);
