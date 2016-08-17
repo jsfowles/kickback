@@ -11,9 +11,9 @@ import {
 
 import DismissKeyboard from 'dismissKeyboard';
 
-const Header = ({ closeModal }) => (
+const Header = ({ closeModal, style }) => (
   <TouchableWithoutFeedback onPress={ () => DismissKeyboard() }>
-    <View style={ styles.container }>
+    <View style={[ styles.container, style ]}>
       <View style={ styles.logoContainer }>
         <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
         <Text style={ styles.logoText }>Get paid for referring products</Text>

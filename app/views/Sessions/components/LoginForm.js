@@ -22,10 +22,8 @@ class LoginForm extends React.Component {
   submitForm = () => this.props.login(this.state);
 
   render() {
-    let { keyboardHeight } = this.props;
-
     return (
-      <View style={ styles.container }>
+      <View style={[ styles.container, this.props.styles ]}>
         <TextInput
           style={ styles.textInput }
           placeholder='Enter your email'
@@ -72,6 +70,7 @@ let styles = StyleSheet.create({
 
   textInput: {
     height: 50,
+    backgroundColor: '#fff',
   },
 
   separator: {

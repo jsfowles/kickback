@@ -6,7 +6,7 @@ import {
   Modal,
   Dimensions,
   StyleSheet,
-  DeviceEventEmitter,
+  Keyboard,
   StatusBar,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -36,18 +36,39 @@ class Sessions extends React.Component {
     super(props);
 
     this.state = {
-      keyboardHeight: 216,
+      loginFormStyles: {},
+      headerStyles: {},
     };
   }
 
   componentWillMount() {
-    this.keyboardWillShow = DeviceEventEmitter.addListener('keyboardWillShow', e => {
-      this.setState({ keyboardHeight: e.endCoordinates.height });
+    this.keyboardWillShow = Keyboard.addListener('keyboardDidShow', e => {
+      let keyboardHeight = e.endCoordinates.height;
+
+      let loginFormStyles = {
+        paddingBottom: keyboardHeight,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 101 + keyboardHeight,
+      };
+
+      let headerStyles = {
+        height: deviceHeight - (101 + keyboardHeight),
+        flex: 0,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+      };
+
+      this.setState({ loginFormStyles, headerStyles });
     });
   }
 
   componentWillUnmount() {
-    this.keyboardWillShow.remove()
+    this.keyboardDidShow.remove()
   }
 
   render() {
@@ -60,10 +81,10 @@ class Sessions extends React.Component {
         transparent={ false }
       >
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
-          <Header closeModal={ this.props.toggleSessionModal } />
+          <Header closeModal={ this.props.toggleSessionModal } style={ this.state.headerStyles } />
 
           <LoginForm
-            keyboardHeight={ this.state.keyboardHeight }
+            styles={ this.state.loginFormStyles }
             login={ this.props.createSession }
           />
         </KeyboardAvoidingView>
