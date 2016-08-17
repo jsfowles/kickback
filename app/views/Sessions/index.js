@@ -9,6 +9,7 @@ import {
   Keyboard,
   StatusBar,
   KeyboardAvoidingView,
+  Animated,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -21,6 +22,7 @@ import {
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import ResetPasswordLink from './components/ResetPasswordLink';
+import BGVideo from './components/BGVideo';
 
 const {
   height: deviceHeight,
@@ -39,12 +41,14 @@ class Sessions extends React.Component {
       loginFormStyles: {},
       headerStyles: {},
       showResetPassword: false,
+      vidHeight: new Animated.Value(deviceHeight),
     };
   }
 
   componentWillMount() {
-    this.keyboardWillShow = Keyboard.addListener('keyboardDidShow', e => {
+    this.keyboardDidShow = Keyboard.addListener('keyboardDidShow', e => {
       let keyboardHeight = e.endCoordinates.height;
+      let headerHeight = deviceHeight - (101 + keyboardHeight);
 
       let loginFormStyles = {
         paddingBottom: keyboardHeight,
@@ -56,7 +60,7 @@ class Sessions extends React.Component {
       };
 
       let headerStyles = {
-        height: deviceHeight - (101 + keyboardHeight),
+        height: headerHeight,
         flex: 0,
         position: 'absolute',
         top: 0,
@@ -66,10 +70,21 @@ class Sessions extends React.Component {
 
       this.setState({ loginFormStyles, headerStyles, showResetPassword: true, });
     });
+
+    this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', e => {
+      let keyboardHeight = e.endCoordinates.height;
+      let headerHeight = deviceHeight - (101 + keyboardHeight);
+
+      Animated.timing(
+        this.state.vidHeight,
+        { toValue: headerHeight }
+      ).start();
+    });
   }
 
   componentWillUnmount() {
     this.keyboardDidShow.remove()
+    this.keyboardWillShow.remove()
   }
 
   render() {
@@ -81,8 +96,11 @@ class Sessions extends React.Component {
         animationType='slide'
         transparent={ false }
       >
-
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
+          <BGVideo
+            vidHeight={ this.state.vidHeight }
+          />
+
           <Header closeModal={ this.props.toggleSessionModal } style={ this.state.headerStyles } />
 
           <LoginForm
