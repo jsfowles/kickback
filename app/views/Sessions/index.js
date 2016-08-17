@@ -9,7 +9,6 @@ import {
   Keyboard,
   StatusBar,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -21,6 +20,7 @@ import {
 
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
+import ResetPasswordLink from './components/ResetPasswordLink';
 
 const {
   height: deviceHeight,
@@ -38,6 +38,7 @@ class Sessions extends React.Component {
     this.state = {
       loginFormStyles: {},
       headerStyles: {},
+      showResetPassword: false,
     };
   }
 
@@ -63,7 +64,7 @@ class Sessions extends React.Component {
         right: 0,
       };
 
-      this.setState({ loginFormStyles, headerStyles });
+      this.setState({ loginFormStyles, headerStyles, showResetPassword: true, });
     });
   }
 
@@ -80,6 +81,7 @@ class Sessions extends React.Component {
         animationType='slide'
         transparent={ false }
       >
+
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <Header closeModal={ this.props.toggleSessionModal } style={ this.state.headerStyles } />
 
@@ -88,6 +90,8 @@ class Sessions extends React.Component {
             login={ this.props.createSession }
           />
         </KeyboardAvoidingView>
+
+        { this.state.showResetPassword && <ResetPasswordLink /> }
       </Modal>
     );
   }
