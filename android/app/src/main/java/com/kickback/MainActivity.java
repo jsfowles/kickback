@@ -1,6 +1,7 @@
 package com.kickback;
 
 import com.facebook.react.ReactActivity;
+import com.brentvatne.react.ReactVideoPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 
 public class MainActivity extends ReactActivity {
