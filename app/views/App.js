@@ -6,9 +6,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import {
-	View,
+  View,
   Text,
-	AppState,
+  AppState,
   StyleSheet,
 } from 'react-native'
 
@@ -79,4 +79,4 @@ const mapActionsToProps = (dispatch) => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
 })
 
-export default connect(mapStateToProps, mapActionsToProps)(App)
+  export default connect(mapStateToProps, mapActionsToProps)(App)
