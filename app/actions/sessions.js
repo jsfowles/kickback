@@ -50,3 +50,18 @@ export const createSession = (credentials) => {
     });
   };
 };
+
+export const submitForm = password => {
+  return (dispatch, getState) => {
+    let { user, session } = getState();
+
+    if (session.currentTab === session.tabs.SIGN_UP) {
+      console.log('Sign Up');
+    } else {
+      dispatch(createSession({
+        email: session.username,
+        password,
+      }));
+    }
+  };
+};

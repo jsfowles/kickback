@@ -124,6 +124,7 @@ class Sessions extends React.Component {
             login={ this.props.createSession }
             changeTab={ this.props.changeForm }
             tabPosition={ this.state.tabPosition }
+            submitForm={ this.props.submitForm }
             tabs={ this.props.tabs }
           />
         </KeyboardAvoidingView>

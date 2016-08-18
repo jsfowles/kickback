@@ -89,9 +89,7 @@ class LoginForm extends React.Component {
           textAlign={ 'center' }
           returnKeyType={ 'go' }
           ref={ 'password' }
-          value={ this.state.password }
-          onSubmitEditing={ this.submitForm }
-          onChangeText={ password => this.setState({ password }) }
+          onSubmitEditing={ submitForm }
         />
       </View>
     );
