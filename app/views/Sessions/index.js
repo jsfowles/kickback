@@ -29,6 +29,11 @@ const {
   width: deviceWidth
 } = Dimensions.get('window')
 
+const tabs = {
+  SIGN_UP: 'SIGN_UP',
+  LOG_IN: 'LOG_IN',
+};
+
 class Sessions extends React.Component {
   static propTypes = {
     modalVisible: React.PropTypes.bool.isRequired,
@@ -42,6 +47,8 @@ class Sessions extends React.Component {
       headerStyles: {},
       showResetPassword: false,
       vidHeight: new Animated.Value(deviceHeight),
+      tabPosition: new Animated.Value(0),
+      currentTab: tabs['SIGN_UP'],
     };
   }
 
@@ -82,6 +89,19 @@ class Sessions extends React.Component {
     });
   }
 
+  changeTab = (tab) => {
+    let toValue = 0;
+
+    if (tab !== tabs[this.state.currentTab]) {
+      if (tab == tabs.LOG_IN) { toValue = 1; }
+
+      this.setState(
+        { currentTab: tabs[tab] },
+        Animated.timing( this.state.tabPosition, { toValue }).start()
+      );
+    }
+  }
+
   componentWillUnmount() {
     this.keyboardDidShow.remove()
     this.keyboardWillShow.remove()
@@ -98,14 +118,17 @@ class Sessions extends React.Component {
       >
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <BGVideo
+            tabPosition={ this.state.tabPosition }
             vidHeight={ this.state.vidHeight }
           />
-
           <Header closeModal={ this.props.toggleSessionModal } style={ this.state.headerStyles } />
 
           <LoginForm
             styles={ this.state.loginFormStyles }
             login={ this.props.createSession }
+            changeTab={ this.changeTab }
+            tabPosition={ this.state.tabPosition }
+            tabs={ tabs }
           />
         </KeyboardAvoidingView>
 

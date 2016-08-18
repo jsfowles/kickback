@@ -4,9 +4,18 @@ import {
   View,
   TextInput,
   StyleSheet,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+  Animated,
 } from 'react-native';
 
 const FORM_HEIGHT = 101; // this is the height of the 2 inputs + the separator
+
+const {
+  height: deviceHeight,
+  width: deviceWidth
+} = Dimensions.get('window')
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -21,9 +30,38 @@ class LoginForm extends React.Component {
   focusNextField = () => this.refs.password.focus();
   submitForm = () => this.props.login(this.state);
 
+  // TODO (Riley): We could probably move the btn's to outside this component,
+  //               for right now I am in shipit mode.
   render() {
     return (
       <View style={[ styles.container, this.props.styles ]}>
+        <View style={ styles.btnContainer }>
+          <TouchableOpacity
+            style={ styles.btn }
+            onPress={ () => this.props.changeTab(this.props.tabs.SIGN_UP) }
+          >
+            <Text style={ styles.btnText }>SIGN UP</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={ styles.btn }
+            onPress={ () => this.props.changeTab(this.props.tabs.LOG_IN) }
+          >
+            <Text style={ styles.btnText }>LOG IN</Text>
+          </TouchableOpacity>
+
+          <Animated.View
+            style={[
+              styles.borderBottom,
+              { transform: [{
+                translateX: this.props.tabPosition.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, deviceWidth / 2]
+                }),
+              }]}
+            ]}
+          />
+        </View>
+
         <TextInput
           style={ styles.textInput }
           placeholder='Enter your email'
@@ -66,6 +104,7 @@ let styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 20,
+    position: 'relative',
   },
 
   textInput: {
@@ -76,6 +115,35 @@ let styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#ececec',
+  },
+
+  btnContainer: {
+    position: 'absolute',
+    top: -57,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+  },
+
+  btn: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+
+  btnText: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontWeight: '700',
+  },
+
+  borderBottom: {
+    height: 5,
+    backgroundColor: '#f7f8f9',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: deviceWidth / 2,
   },
 });
 
