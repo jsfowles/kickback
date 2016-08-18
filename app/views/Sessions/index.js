@@ -18,6 +18,8 @@ import {
   createSession,
   toggleSessionModal,
   changeForm,
+  submitForm,
+  updateUsername,
 } from '../../actions';
 
 import LoginForm from './components/LoginForm';
@@ -126,6 +128,8 @@ class Sessions extends React.Component {
             tabPosition={ this.state.tabPosition }
             submitForm={ this.props.submitForm }
             tabs={ this.props.tabs }
+            updateUsername={ this.props.updateUsername }
+            email={ this.props.username }
           />
         </KeyboardAvoidingView>
 
@@ -146,12 +150,15 @@ let styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   tabs: state.session.tabs,
   currentTab: state.session.currentTab,
+  username: state.session.username,
 });
 
 const mapActionsToProps = (dispatch) => ({
   createSession: (credentials) => dispatch(createSession(credentials)),
   toggleSessionModal: _ => dispatch(toggleSessionModal(false)),
   changeForm: tab => dispatch(changeForm(tab)),
+  updateUsername: v => dispatch(updateUsername(v)),
+  submitForm: e => dispatch(submitForm(e.nativeEvent.text)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Sessions);

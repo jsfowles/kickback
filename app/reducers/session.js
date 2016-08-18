@@ -7,6 +7,7 @@ const initialState = {
     LOG_IN: 'LOG_IN',
   },
   currentTab: 'SIGN_UP',
+  username: null,
 };
 
 export const session = (state = initialState, action) => {
@@ -27,6 +28,11 @@ export const session = (state = initialState, action) => {
       return {
         ...state,
         currentTab: action.tab,
+      };
+    case 'UPDATE_USERNAME':
+      return {
+        ...state,
+        username: action.username
       };
     default:
       return state;

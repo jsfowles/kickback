@@ -18,22 +18,17 @@ const {
 } = Dimensions.get('window')
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: 'hello@underbelly.is',
-      password: 'password',
-    };
-  }
-
-  focusNextField = () => this.refs.password.focus();
-  submitForm = () => this.props.login(this.state);
-
   // TODO (Riley): We could probably move the btn's to outside this component,
   //               for right now I am in shipit mode.
   render() {
-    let { changeTab, tabs, tabPosition, } = this.props;
+    let {
+      changeTab,
+      tabs,
+      tabPosition,
+      submitForm,
+      email,
+      updateUsername,
+    } = this.props;
 
     return (
       <View style={[ styles.container, this.props.styles ]}>
@@ -73,9 +68,9 @@ class LoginForm extends React.Component {
           textAlign={ 'center' }
           returnKeyType={ 'next' }
           ref={ 'email' }
-          value={ this.state.email }
-          onSubmitEditing={ this.focusNextField }
-          onChangeText={ email => this.setState({ email }) }
+          value={ email }
+          onChangeText={ updateUsername }
+          onSubmitEditing={ _ => this.refs.password.focus() }
         />
 
         <View style={ styles.separator } />
