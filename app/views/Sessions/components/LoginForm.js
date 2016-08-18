@@ -33,18 +33,20 @@ class LoginForm extends React.Component {
   // TODO (Riley): We could probably move the btn's to outside this component,
   //               for right now I am in shipit mode.
   render() {
+    let { changeTab, tabs, tabPosition, } = this.props;
+
     return (
       <View style={[ styles.container, this.props.styles ]}>
         <View style={ styles.btnContainer }>
           <TouchableOpacity
             style={ styles.btn }
-            onPress={ () => this.props.changeTab(this.props.tabs.SIGN_UP) }
+            onPress={ () => changeTab(tabs.SIGN_UP) }
           >
             <Text style={ styles.btnText }>SIGN UP</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={ styles.btn }
-            onPress={ () => this.props.changeTab(this.props.tabs.LOG_IN) }
+            onPress={ () => changeTab(tabs.LOG_IN) }
           >
             <Text style={ styles.btnText }>LOG IN</Text>
           </TouchableOpacity>
@@ -53,7 +55,7 @@ class LoginForm extends React.Component {
             style={[
               styles.borderBottom,
               { transform: [{
-                translateX: this.props.tabPosition.interpolate({
+                translateX: tabPosition.interpolate({
                   inputRange: [0, 1],
                   outputRange: [0, deviceWidth / 2]
                 }),

@@ -6,6 +6,7 @@ import { switchTab } from './navigation';
 
 export const toggleSessionModal = (bool) => ({ type: 'TOGGLE_SESSION_MODAL', bool, });
 export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool, });
+export const changeForm = tab => ({ type: 'CHANGE_FORM', tab });
 
 export const destroySession = _ => {
   return (dispatch, getState) => {

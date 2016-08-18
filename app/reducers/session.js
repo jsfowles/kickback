@@ -2,6 +2,11 @@ const initialState = {
   modalVisible: false,
   currentSession: false,
   session: null,
+  tabs: {
+    SIGN_UP: 'SIGN_UP',
+    LOG_IN: 'LOG_IN',
+  },
+  currentTab: 'SIGN_UP',
 };
 
 export const session = (state = initialState, action) => {
@@ -17,6 +22,11 @@ export const session = (state = initialState, action) => {
         session: action.session,
         currentSession: action.bool,
         modalVisible: false,
+      };
+    case 'CHANGE_FORM':
+      return {
+        ...state,
+        currentTab: action.tab,
       };
     default:
       return state;

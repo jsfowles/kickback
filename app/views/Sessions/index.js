@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import {
   createSession,
   toggleSessionModal,
+  changeForm,
 } from '../../actions';
 
 import LoginForm from './components/LoginForm';
@@ -29,11 +30,6 @@ const {
   width: deviceWidth
 } = Dimensions.get('window')
 
-const tabs = {
-  SIGN_UP: 'SIGN_UP',
-  LOG_IN: 'LOG_IN',
-};
-
 class Sessions extends React.Component {
   static propTypes = {
     modalVisible: React.PropTypes.bool.isRequired,
@@ -42,13 +38,14 @@ class Sessions extends React.Component {
   constructor(props) {
     super(props);
 
+    let tabPosition = props.currentTab === 'SIGN_UP' ? 0 : 1;
+
     this.state = {
       loginFormStyles: {},
       headerStyles: {},
       showResetPassword: false,
       vidHeight: new Animated.Value(deviceHeight),
-      tabPosition: new Animated.Value(0),
-      currentTab: tabs['SIGN_UP'],
+      tabPosition: new Animated.Value(tabPosition),
     };
   }
 
@@ -89,16 +86,11 @@ class Sessions extends React.Component {
     });
   }
 
-  changeTab = (tab) => {
-    let toValue = 0;
-
-    if (tab !== tabs[this.state.currentTab]) {
-      if (tab == tabs.LOG_IN) { toValue = 1; }
-
-      this.setState(
-        { currentTab: tabs[tab] },
-        Animated.timing( this.state.tabPosition, { toValue }).start()
-      );
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentTab !== nextProps.currentTab) {
+      let toValue = 0;
+      if (nextProps.currentTab == this.props.tabs.LOG_IN) { toValue = 1; }
+      Animated.timing( this.state.tabPosition, { toValue }).start()
     }
   }
 
@@ -121,14 +113,18 @@ class Sessions extends React.Component {
             tabPosition={ this.state.tabPosition }
             vidHeight={ this.state.vidHeight }
           />
-          <Header closeModal={ this.props.toggleSessionModal } style={ this.state.headerStyles } />
+
+          <Header
+            closeModal={ this.props.toggleSessionModal }
+            style={ this.state.headerStyles }
+          />
 
           <LoginForm
             styles={ this.state.loginFormStyles }
             login={ this.props.createSession }
-            changeTab={ this.changeTab }
+            changeTab={ this.props.changeForm }
             tabPosition={ this.state.tabPosition }
-            tabs={ tabs }
+            tabs={ this.props.tabs }
           />
         </KeyboardAvoidingView>
 
@@ -146,11 +142,15 @@ let styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  tabs: state.session.tabs,
+  currentTab: state.session.currentTab,
+});
 
 const mapActionsToProps = (dispatch) => ({
   createSession: (credentials) => dispatch(createSession(credentials)),
-  toggleSessionModal: () => dispatch(toggleSessionModal(false)),
+  toggleSessionModal: _ => dispatch(toggleSessionModal(false)),
+  changeForm: tab => dispatch(changeForm(tab)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Sessions);
