@@ -18,8 +18,6 @@ const {
 } = Dimensions.get('window')
 
 class LoginForm extends React.Component {
-  // TODO (Riley): We could probably move the btn's to outside this component,
-  //               for right now I am in shipit mode.
   render() {
     let {
       changeTab,
