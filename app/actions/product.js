@@ -14,7 +14,7 @@ export const recommendProduct = (product) => {
       // If user is currently logged in
       dispatch(toggleCreatingRecommendation(true));
 
-      createLink(product, user.currentUser.id).then((res) => {
+      createLink(product, user.currentUser.data.id).then((res) => {
         dispatch(toggleCreatingRecommendation(false));
 
         ActionSheetIOS.showShareActionSheetWithOptions(

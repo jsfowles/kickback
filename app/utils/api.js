@@ -13,14 +13,14 @@ export const getProductFeed = (url) => {
   .catch(e => console.error(e))
 }
 
-export const createLink = (product) => {
+export const createLink = (product, user) => {
   let url = `${URL}/links`;
   return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       given_url: product.buyUrl,
-      user_id: 1,
+      user_id: user,
       product,
     })
   })

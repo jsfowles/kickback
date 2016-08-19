@@ -42,7 +42,7 @@ class User extends React.Component {
       >
         <Products
           ref='products'
-          products={ this.props.products }
+          products={ this.props.user.sharedProducts }
           title='SHARED PRODUCTS'
           cardSize='small'
           headerHeight={ headerHeight }
@@ -50,7 +50,7 @@ class User extends React.Component {
           hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
           emptyListText="You haven't shared any products yet."
-          header={ <ParallaxContent logout={ this.props.destroySession } /> }
+          header={ <ParallaxContent logout={ this.props.destroySession } user={ this.props.user } /> }
         />
       </Container>
     );
@@ -58,7 +58,7 @@ class User extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.user.sharedProducts,
+  user: state.user,
   nextPageUrl: state.user.nextPageUrl,
   hasScrolled: state.user.hasScrolled,
   tab: state.navigation.tab,

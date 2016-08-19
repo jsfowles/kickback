@@ -18,9 +18,9 @@ export const toggleError = bool => ({ type: 'TOGGLE_ERROR', bool });
 
 export const destroySession = _ => {
   return (dispatch, getState) => {
+    dispatch(switchTab('SHOPPING_TAB'));
     dispatch(setSession(null, false));
     dispatch(removeCurrentUser());
-    dispatch(switchTab('SHOPPING_TAB'));
   };
 };
 

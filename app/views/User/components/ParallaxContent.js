@@ -14,7 +14,7 @@ const {
   width: deviceWidth
 } = Dimensions.get('window');
 
-const ParallaxContent = ({ logout }) => (
+const ParallaxContent = ({ logout, user }) => (
   <View style={ styles.container }>
     <Image
       style={ styles.profileImage }
@@ -22,7 +22,7 @@ const ParallaxContent = ({ logout }) => (
     />
 
     <TouchableHighlight onPress={ logout } underlayColor='transparent'>
-      <Text style={ styles.text }>Captain Ahab</Text>
+      <Text style={ styles.text }>{ user.currentUser && user.currentUser.data.email }</Text>
     </TouchableHighlight>
 
     <View style={ styles.iconsContainer }>
