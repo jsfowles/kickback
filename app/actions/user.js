@@ -6,20 +6,28 @@ import {
 
 const URL = `${serverUrl}/api/${apiVersion}/users`;
 
-import { getCurrentUser } from '../utils/api';
+import {
+  getCurrentUser,
+  createUser as createUserAPI,
+} from '../utils/api';
+
+import {
+  createSession,
+  destroySession,
+} from './sessions';
 
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const receiveCurrentUser = userData => ({ type: 'RECEIVE_CURRENT_USER', userData });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
-//
-// TODO (Riley): Lets change this to something like appendProducts
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 
 export const loadCurrentUser = currentUser => {
   return (dispatch, getState) => {
+    let { session } = getState();
     dispatch(toggleFetching(true));
 
-    getCurrentUser(`${URL}/${currentUser}`)
+    getCurrentUser(`${URL}/${currentUser.id}`, session.session)
+    .then(res => dispatch(createSession(res)))
     .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })))
     .catch(e => console.error(e));
   };
@@ -37,5 +45,14 @@ export const loadMoreCurrentUser = _ => {
       .then(res => dispatch(receiveMoreProducts(res)))
       .catch(e => console.error(e));
     }
+  };
+};
+
+export const createUser = credentials => {
+  return (dispatch, getState) => {
+    createUserAPI(credentials)
+    .then(res => dispatch(createSession(res)))
+    .then(res => dispatch(loadCurrentUser(res)))
+    .catch(e => console.error(e));
   };
 };

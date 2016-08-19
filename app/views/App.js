@@ -35,7 +35,7 @@ class App extends Component {
     loadProductFeed();
 
     if (!!currentUser) {
-      loadCurrentUser(currentUser.id);
+      loadCurrentUser(currentUser);
     };
   }
 
@@ -76,7 +76,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   loadProductFeed: () => dispatch(loadProductFeed()),
-  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
 })
 
   export default connect(mapStateToProps, mapActionsToProps)(App)
