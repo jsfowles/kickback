@@ -66,13 +66,11 @@ export const loginUser = (credentials) => {
 
 export const createUser = credentials => {
   let url = `${URL}/auth`;
-  console.log(url);
 
   return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   })
-  .then(res => res)
   .catch(e => console.log(e));
 };

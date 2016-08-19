@@ -8,6 +8,7 @@ const initialState = {
   },
   currentTab: 'SIGN_UP',
   username: null,
+  showError: false,
 };
 
 export const session = (state = initialState, action) => {
@@ -33,6 +34,11 @@ export const session = (state = initialState, action) => {
       return {
         ...state,
         username: action.username
+      };
+    case 'TOGGLE_ERROR':
+      return {
+        ...state,
+        showError: action.bool,
       };
     default:
       return state;

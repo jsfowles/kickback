@@ -10,6 +10,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Animated,
+  Easing,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -20,12 +21,14 @@ import {
   changeForm,
   submitForm,
   updateUsername,
+  toggleError,
 } from '../../actions';
 
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import ResetPasswordLink from './components/ResetPasswordLink';
 import BGVideo from './components/BGVideo';
+import Errors from '../shared/Errors';
 
 const {
   height: deviceHeight,
@@ -48,6 +51,7 @@ class Sessions extends React.Component {
       showResetPassword: false,
       vidHeight: new Animated.Value(deviceHeight),
       tabPosition: new Animated.Value(tabPosition),
+      errorPosition: new Animated.Value(0),
     };
   }
 
@@ -94,6 +98,22 @@ class Sessions extends React.Component {
       if (nextProps.currentTab == this.props.tabs.LOG_IN) { toValue = 1; }
       Animated.timing( this.state.tabPosition, { toValue }).start()
     }
+
+    if (!this.props.showError && nextProps.showError) {
+      Animated.sequence([
+        Animated.timing(this.state.errorPosition, {
+          toValue: 1,
+          duration: 500,
+          easing: Easing.bezier(0.25, 1, 0.25, 1)
+        }),
+        Animated.delay(1000),
+        Animated.timing( this.state.errorPosition, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.bezier(0.25, 1, 0.25, 1)
+        }),
+      ]).start(() => this.props.toggleError());
+    }
   }
 
   componentWillUnmount() {
@@ -131,6 +151,8 @@ class Sessions extends React.Component {
             updateUsername={ this.props.updateUsername }
             email={ this.props.username }
           />
+
+          <Errors message={ 'Invalid email or password' } position={ this.state.errorPosition } />
         </KeyboardAvoidingView>
 
         { this.state.showResetPassword && <ResetPasswordLink /> }
@@ -144,6 +166,7 @@ let styles = StyleSheet.create({
     backgroundColor: '#ececec',
     flex: 1,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
 });
 
@@ -151,6 +174,7 @@ const mapStateToProps = (state) => ({
   tabs: state.session.tabs,
   currentTab: state.session.currentTab,
   username: state.session.username,
+  showError: state.session.showError,
 });
 
 const mapActionsToProps = (dispatch) => ({
@@ -159,6 +183,7 @@ const mapActionsToProps = (dispatch) => ({
   changeForm: tab => dispatch(changeForm(tab)),
   updateUsername: v => dispatch(updateUsername(v)),
   submitForm: e => dispatch(submitForm(e.nativeEvent.text)),
+  toggleError: _ => dispatch(toggleError(false)),
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(Sessions);
+  export default connect(mapStateToProps, mapActionsToProps)(Sessions);

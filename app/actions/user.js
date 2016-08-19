@@ -20,6 +20,7 @@ export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const receiveCurrentUser = userData => ({ type: 'RECEIVE_CURRENT_USER', userData });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
+export const toggleError = bool => ({ type: 'TOGGLE_ERROR', bool });
 
 export const loadCurrentUser = currentUser => {
   return (dispatch, getState) => {
@@ -50,9 +51,16 @@ export const loadMoreCurrentUser = _ => {
 
 export const createUser = credentials => {
   return (dispatch, getState) => {
-    createUserAPI(credentials)
-    .then(res => dispatch(createSession(res)))
-    .then(res => dispatch(loadCurrentUser(res)))
-    .catch(e => console.error(e));
+    let emailPresentAndValid = credentials.email !== '';
+    let passwordPresentAndValid = credentials.password !== '';
+
+    if (emailPresentAndValid && passwordPresentAndValid) {
+      createUserAPI(credentials)
+      .then(res => dispatch(createSession(res)))
+      .then(res => dispatch(loadCurrentUser(res)))
+      .catch(e => console.error(e));
+    } else {
+      dispatch(toggleError(true));
+    }
   };
 };
