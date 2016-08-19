@@ -6,6 +6,5 @@ export const validateEmail = (email) => {
 export const validateNum = (n) => !isNaN(parseFloat(n)) && isFinite(n)
 
 export const validatePassword = (s) => {
-	let re = /^[a-zA-Z]{6,}$/
-	return re.test(s);
+  return s.length > 5;
 }

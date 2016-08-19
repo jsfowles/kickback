@@ -62,9 +62,21 @@ export const submitForm = password => {
         dispatch(createUser(credentials));
       } else {
         loginUser(credentials)
-        .then(res => dispatch(createSession(res)))
-        .then(res => dispatch(loadCurrentUser(res.data)))
-        .catch(e => console.log('error in submitForm'));
+        .then(res => {
+          if (res.status === 401) {
+            return { error: 'Incorrect username or password.' }
+          } else {
+            return dispatch(createSession(res))
+          }
+        })
+        .then(res => {
+          if (res.hasOwnProperty('data')) {
+            dispatch(loadCurrentUser(res))
+          } else {
+            return dispatch(toggleError(true));
+          }
+        })
+        .catch(e => console.log(e));
       }
     } else {
       dispatch(toggleError(true));
