@@ -1,6 +1,7 @@
 'use strict';
 
 import { loginUser } from '../utils/api';
+import { validateEmail, validatePassword } from '../utils/validations';
 import { switchTab } from './navigation';
 
 import {
@@ -53,8 +54,8 @@ export const submitForm = password => {
       password,
     };
 
-    let emailPresentAndValid = credentials.email !== '';
-    let passwordPresentAndValid = credentials.password !== '';
+    let emailPresentAndValid = credentials.email !== '' && validateEmail(credentials.email);
+    let passwordPresentAndValid = credentials.password !== '' && validatePassword(credentials.password);
 
     if (emailPresentAndValid && passwordPresentAndValid) {
       if (session.currentTab === session.tabs.SIGN_UP) {
