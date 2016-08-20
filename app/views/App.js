@@ -6,9 +6,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import {
-	View,
+  View,
   Text,
-	AppState,
+  AppState,
   StyleSheet,
 } from 'react-native'
 
@@ -29,13 +29,13 @@ class App extends Component {
    * When component mounts update the AppState
    */
   componentDidMount() {
-    let { currentUser, loadProductFeed, loadCurrentFeed } = this.props;
+    let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
 
     AppState.addEventListener('change', this.handleAppStateChange);
     loadProductFeed();
 
     if (!!currentUser) {
-      loadCurrentUser(currentUser.id);
+      loadCurrentUser(currentUser);
     };
   }
 
@@ -76,7 +76,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   loadProductFeed: () => dispatch(loadProductFeed()),
-  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
 })
 
-export default connect(mapStateToProps, mapActionsToProps)(App)
+  export default connect(mapStateToProps, mapActionsToProps)(App)

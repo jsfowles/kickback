@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  DeviceEventEmitter,
+  Keyboard,
   Image,
   TouchableHighlight,
 } from 'react-native'
@@ -39,11 +39,11 @@ class Search extends React.Component {
   }
 
   componentWillMount() {
-    this.keyboardWillShow = DeviceEventEmitter.addListener('keyboardWillShow', e => {
+    this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', e => {
       this.setState({ keyboardHeight: e.endCoordinates.height + 64 })
     })
 
-    this.keyboardWillHide = DeviceEventEmitter.addListener('keyboardWillHide', e => {
+    this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', e => {
       this.setState({ keyboardHeight: 0 })
     })
   }

@@ -13,15 +13,14 @@ export const getProductFeed = (url) => {
   .catch(e => console.error(e))
 }
 
-export const createLink = (product) => {
+export const createLink = (product, user) => {
   let url = `${URL}/links`;
   return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       given_url: product.buyUrl,
-      // TODO (Riley) : Do not hardcode this
-      user_id: 1,
+      user_id: user,
       product,
     })
   })
@@ -41,11 +40,16 @@ export const getProducts = (searchTerm) => {
   .catch(e => console.error(e))
 }
 
-export const getCurrentUser = (url) => {
+export const getCurrentUser = (url, session) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...session,
+  };
+
   return fetch(url, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  }).then((res) => res.json())
+    headers: headers,
+  })
   .catch(e => console.error(e))
 }
 
@@ -57,6 +61,16 @@ export const loginUser = (credentials) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   })
-  .then(res => res)
   .catch(e => console.error(e))
 }
+
+export const createUser = credentials => {
+  let url = `${URL}/auth`;
+
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(credentials),
+  })
+  .catch(e => console.log(e));
+};

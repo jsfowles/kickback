@@ -66,24 +66,36 @@ class ProductListView extends React.Component {
     )
   }
 
-  renderSectionHeader = () => (
-    <TouchableWithoutFeedback
-      onPress={ () => this.props.scrollToTop() }
-    >
-      <View style={ styles.headerContainer }>
-        <Text style={ styles.headerText }>
-          { this.props.title }
-        </Text>
-      </View>
-    </TouchableWithoutFeedback>
-  )
+  renderSectionHeader = () => {
+    if (this.props.products.length === 0) {
+      return (
+        <View style={[{ height: 200 }, styles.placeholderContainer ]}>
+          <Text style={ styles.placeholderText }>{ this.props.emptyListText }</Text>
+        </View>
+      );
+    }
 
-  renderRow = (data) => (
-    <ProductCard
-      product={ data }
-      cardSize={ this.props.cardSize }
-    />
-  )
+    return (
+      <TouchableWithoutFeedback
+        onPress={ () => this.props.scrollToTop() }
+      >
+        <View style={ styles.headerContainer }>
+          <Text style={ styles.headerText }>
+            { this.props.title }
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+
+  renderRow = (data) => {
+    return (
+      <ProductCard
+        product={ data }
+        cardSize={ this.props.cardSize }
+      />
+    );
+  }
 
   renderSeparator = (sectionID, rowID) => (
     <View style={ styles.separator } key={ rowID } />
@@ -91,14 +103,6 @@ class ProductListView extends React.Component {
 
   render() {
     let { products, title, loadMoreProducts } = this.props;
-
-    if (products.length === 0) {
-      return (
-        <View style={[{ marginTop: this.props.headerHeight }, styles.placeholderContainer ]}>
-          <Text style={ styles.placeholderText }>{ this.props.emptyListText }</Text>
-        </View>
-      )
-    };
 
     return (
       <ListView
@@ -112,6 +116,7 @@ class ProductListView extends React.Component {
         renderSeparator={ this.renderSeparator }
         contentInset={{ top: 0, bottom: 45 }}
         onEndReached={ loadMoreProducts }
+        enableEmptySections={ true }
         {...this.props}
       />
     );
@@ -141,10 +146,9 @@ const styles = {
   },
 
   placeholderContainer: {
-    flex: 1,
+    backgroundColor: '#f7f8f9',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 49,
   },
 
   placeholderText: {

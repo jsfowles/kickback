@@ -6,10 +6,11 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react": "15.0.2",
-    "react-native": "^0.26.0",
+    "react": "^15.2.1",
+    "react-native": "^0.31.0",
     "react-native-linear-gradient": "^1.5.7",
     "react-native-shimmer": "^0.1.0",
+    "react-native-video": "^0.9.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",

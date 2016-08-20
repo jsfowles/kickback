@@ -54,6 +54,7 @@ class FeaturedProducts extends React.Component {
             loadMoreProducts={ this.loadMoreProducts }
             hasScrolled={ this.props.hasScrolled }
             scrollToTop={ this.props.scrollToTop }
+            emptyListText='Featured products coming soon!'
             header={ <FeaturedCarousel /> }
           />
         </Container>
