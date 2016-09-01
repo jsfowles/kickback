@@ -1,7 +1,8 @@
-'use strict'
-import React from 'react'
-import { TabBarIOS, View, } from 'react-native'
-import { connect } from 'react-redux'
+'use strict';
+
+import React from 'react';
+import { TabBarIOS } from 'react-native';
+import { connect } from 'react-redux';
 
 import {
   switchTab,
@@ -9,29 +10,36 @@ import {
   scrollToTop,
   setCurrentRoute,
   toggleSessionModal,
-} from '../../../actions'
+} from '../../../actions';
 
-import User from '../../User'
-import Shopping from '../../Shopping'
+import Profile from '../../Profile';
+import Shopping from '../../Shopping';
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    if (!this.props.currentUser) { return this.props.toggleSessionModal(); }
+    if (!this.props.currentUser) {
+      return this.props.toggleSessionModal();
+    }
 
-    if (this.props.searching) this.props.cancelSearch();
-    if (this.props.tab === tab) return this.props.scrollToTop();
+    if (this.props.searching) {
+      this.props.cancelSearch();
+    }
+
+    if (this.props.tab === tab) {
+      return this.props.scrollToTop();
+    }
 
     this.props.switchTab(tab);
 
     if (tab === 'SHOPPING_TAB') {
       return this.props.setCurrentRoute('productFeed');
-    } else {
-      return this.props.setCurrentRoute('user');
     }
+
+    return this.props.setCurrentRoute('user');
   }
 
   render() {
-    let { tab, searching } = this.props
+    let { tab } = this.props;
 
     return (
       <TabBarIOS
@@ -54,24 +62,29 @@ class Tabs extends React.Component {
           selected={ tab === 'USER_TAB' }
           onPress={ () => this.switchTab('USER_TAB') }
         >
-          { tab === 'USER_TAB' && <User /> }
+          { tab === 'USER_TAB' && <Profile /> }
         </TabBarIOS.Item>
       </TabBarIOS>
-    )
+    );
   }
 }
 
 Tabs.propTypes = {
+  currentUser: React.PropTypes.object,
   switchTab: React.PropTypes.func.isRequired,
+  toggleSessionModal: React.PropTypes.func.isRequired,
+  cancelSearch: React.PropTypes.func.isRequired,
+  scrollToTop: React.PropTypes.func.isRequired,
+  setCurrentRoute: React.PropTypes.func.isRequired,
   tab: React.PropTypes.string.isRequired,
   searching: React.PropTypes.bool.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
   searching: state.search.searching,
   currentUser: state.user.currentUser,
-})
+});
 
 const mapActionsToProps = (dispatch) => ({
   toggleSessionModal: () => dispatch(toggleSessionModal(true)),
@@ -79,6 +92,6 @@ const mapActionsToProps = (dispatch) => ({
   cancelSearch: () => dispatch(cancelSearch()),
   scrollToTop: () => dispatch(scrollToTop('user')),
   setCurrentRoute: (route) => dispatch(setCurrentRoute(route)),
-})
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Tabs)
+export default connect(mapStateToProps, mapActionsToProps)(Tabs);

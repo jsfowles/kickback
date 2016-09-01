@@ -1,29 +1,27 @@
-'use strict'
-import React from 'react'
-import { Navigator, View, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
+'use strict';
+import React from 'react';
+import { Navigator, View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
-import Container from '../shared/Container'
-import Header from './components/Header'
-import FeaturedProducts from '../FeaturedProducts'
-import Search from '../Search'
-import SearchOverlay from '../Search/components/SearchOverlay'
-import { setNavigator } from '../../actions'
-import LinearGradient from 'react-native-linear-gradient'
-import SessionModal from '../Sessions'
+import Header from './components/Header';
+import FeaturedProducts from '../FeaturedProducts';
+import Search from '../Search';
+import SearchOverlay from '../Search/components/SearchOverlay';
+import LinearGradient from 'react-native-linear-gradient';
+import SessionModal from '../Sessions';
 
 class Shopping extends React.Component {
   renderScene = (route, navigator) => {
     let scene = {
       0: <FeaturedProducts />,
       1: <Search />,
-    }
+    };
 
     return React.cloneElement(
       scene[route.index],
-      { navigator, route, ...this.props, },
+      { navigator, route, ...this.props },
       <SearchOverlay />
-    )
+    );
   }
 
   render() {
@@ -43,9 +41,13 @@ class Shopping extends React.Component {
 
         <SessionModal modalVisible={ this.props.modalVisible } />
       </View>
-    )
+    );
   }
 }
+
+Shopping.propTypes = {
+  modalVisible: React.PropTypes.bool.isRequired,
+};
 
 const styles = StyleSheet.create({
   headerWrapper: {
@@ -58,12 +60,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
-})
+});
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   modalVisible: state.session.modalVisible,
-})
+});
 
-const mapActionsToProps = (dispatch) => ({})
+const mapActionsToProps = _ => ({});
 
-export default connect(mapStateToProps, mapActionsToProps)(Shopping)
+export default connect(mapStateToProps, mapActionsToProps)(Shopping);

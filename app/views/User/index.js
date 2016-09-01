@@ -1,14 +1,11 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
-import { navigateSettings } from '../../actions/settings';
 import Products from '../Products';
 import ParallaxContent from './components/ParallaxContent';
-import ParallaxBackground from '../shared/ParallaxBackground';
 
 import {
   loadMoreCurrentUser,
@@ -20,25 +17,25 @@ import {
 
 class User extends React.Component {
   loadMoreProducts = () => {
-    if (!this.props.nextPageUrl) { return };
+    if (!this.props.nextPageUrl) { return; }
     this.props.loadMoreProducts();
   }
 
   render() {
     let rightItem = {
       icon: require('image!settings'),
-      onPress: () => this.props.navigateSettings(),
+      onPress: () => this.props.navigator.push({ id: 1 }),
     };
 
     let headerHeight = 350;
 
     return (
       <Container
-        style={{ paddingTop: 20 }}
         hasScrolled={ this.props.hasScrolled }
         setHasScrolled={ this.props.setHasScrolled }
         headerHeight={ headerHeight }
         parallaxContent={ true }
+        rightItem={ rightItem }
       >
         <Products
           ref='products'
@@ -57,6 +54,20 @@ class User extends React.Component {
   }
 }
 
+User.propTypes = {
+  nextPageUrl: React.PropTypes.string,
+  loadMoreProducts: React.PropTypes.func,
+  navigateSettings: React.PropTypes.func,
+  hasScrolled: React.PropTypes.bool,
+  destroySession: React.PropTypes.func,
+  scrollToTop: React.PropTypes.func,
+  setHasScrolled: React.PropTypes.func,
+  user: React.PropTypes.object.isRequired,
+  navigator: React.PropTypes.shape({
+    push: React.PropTypes.func.isRequired,
+  }),
+};
+
 const mapStateToProps = (state) => ({
   user: state.user,
   nextPageUrl: state.user.nextPageUrl,
@@ -65,7 +76,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = (dispatch) => ({
-  navigateSettings: () => dispatch(navigateSettings()),
   loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),

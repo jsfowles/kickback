@@ -40,6 +40,7 @@ class Search extends React.Component {
         { !fetchingProducts && <Container
           hasScrolled={ this.props.hasScrolled }
           setHasScrolled={ this.props.setHasScrolled }
+          customHeader={ true }
         >
           <Products
             products={ searchResults }
