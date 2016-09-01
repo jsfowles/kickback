@@ -1,23 +1,18 @@
-/**
- * @flow
- */
-
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import {
   View,
-  Text,
   AppState,
   StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
 import {
   loadProductFeed,
   loadCurrentUser,
-} from '../actions'
+} from '../actions';
 
-import Navigation from './Navigation'
+import Navigation from './Navigation';
 
 /**
  * App Component
@@ -27,6 +22,7 @@ import Navigation from './Navigation'
 class App extends Component {
   /**
    * When component mounts update the AppState
+   * @returns { void }
    */
   componentDidMount() {
     let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
@@ -34,25 +30,27 @@ class App extends Component {
     AppState.addEventListener('change', this.handleAppStateChange);
     loadProductFeed();
 
-    if (!!currentUser) {
+    if (currentUser) {
       loadCurrentUser(currentUser);
-    };
+    }
   }
 
   /**
    * Remove AppState event listener when unmounting
+   * @returns { void }
    */
   componentWillUnmount() {
-    AppState.removeEventListener('change', this.handleAppStateChange)
+    AppState.removeEventListener('change', this.handleAppStateChange);
   }
 
   /**
    * Handle the app state change
    * @todo: when app is active sync all the things
+   * @returns { void }
    */
   handleAppStateChange = () => {
     if (AppState.currentState === 'active') {
-      this.props.loadProductFeed()
+      this.props.loadProductFeed();
     }
   }
 
@@ -61,22 +59,28 @@ class App extends Component {
       <View style={ styles.container }>
         <Navigation />
       </View>
-    )
+    );
   }
 }
 
+App.propTypes = {
+  currentUser: React.PropTypes.object.isRequired,
+  loadProductFeed: React.PropTypes.func.isRequired,
+  loadCurrentUser: React.PropTypes.func.isRequired,
+};
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
-})
+});
 
 const mapStateToProps = (state) => ({
   loading: state.product.creatingRecommendation,
   currentUser: state.user.currentUser,
-})
+});
 
 const mapActionsToProps = (dispatch) => ({
   loadProductFeed: () => dispatch(loadProductFeed()),
   loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
-})
+});
 
-  export default connect(mapStateToProps, mapActionsToProps)(App)
+export default connect(mapStateToProps, mapActionsToProps)(App);

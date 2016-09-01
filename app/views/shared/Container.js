@@ -1,21 +1,18 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
 import {
   View,
   StyleSheet,
-  Platform,
   Animated,
-  Text,
-  ScrollView,
-} from 'react-native'
+} from 'react-native';
 
-import Header from './Header'
-import ParallaxBackground from './ParallaxBackground'
+import ParallaxBackground from './ParallaxBackground';
+import Header from './Header';
 
 class Container extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super(...arguments);
     this.state = ({
       anim: new Animated.Value(0),
     });
@@ -28,13 +25,12 @@ class Container extends React.Component {
 
   render() {
     const {
-      header,
       children,
-      rightItem,
       parallaxContent,
       style,
-      headerColors,
       headerHeight,
+      leftItem,
+      rightItem,
     } = this.props;
 
     const content = React.cloneElement(children, {
@@ -54,11 +50,29 @@ class Container extends React.Component {
           /> }
         </View>
 
+        <Header
+          rightItem={ rightItem }
+          leftItem={ leftItem }
+        />
+
         { content }
       </View>
-    )
+    );
   }
 }
+
+Container.propTypes = {
+  hasScrolled: React.PropTypes.bool,
+  setHasScrolled: React.PropTypes.func,
+  header: React.PropTypes.object,
+  children: React.PropTypes.object,
+  rightItem: React.PropTypes.object,
+  leftItem: React.PropTypes.object,
+  parallaxContent: React.PropTypes.bool,
+  style: React.PropTypes.object,
+  headerHeight: React.PropTypes.number,
+  headerColors: React.PropTypes.array,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -66,13 +80,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#f7f8f9',
   },
+});
 
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-})
-
-export default Container
+export default Container;

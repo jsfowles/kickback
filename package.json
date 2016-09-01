@@ -16,5 +16,10 @@
     "redux-logger": "^2.6.1",
     "redux-persist": "^3.1.1",
     "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.4.0",
+    "eslint-plugin-react": "^6.2.0"
   }
 }
