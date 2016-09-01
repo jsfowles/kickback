@@ -1,48 +1,57 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+  Text,
+} from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient'
-import ItemWrapper from './HeaderItemWrapper'
+import ItemWrapper from './HeaderItemWrapper';
 
-// TODO (Riley) : write documentation
 class Header extends React.Component {
-  static propTypes = {
-    // TODO (Riley) : Make this shape
-    leftItem: React.PropTypes.shape({}),
-    // TODO (Riley) : Make this shape
-    rightItem: React.PropTypes.shape({}),
-    title: React.PropTypes.string,
-    headerColors: React.PropTypes.array.isRequired,
-  }
-
-  // TODO (Riley) : write documentation
   static defaultProps = {
     headerColors: [ 'transparent' ],
-  }
+  };
 
   render() {
-    const { leftItem, title, rightItem, headerColors, children } = this.props;
+    const {
+      rightItem,
+      title,
+      leftItem,
+      headerColors,
+    } = this.props;
 
     return (
       <LinearGradient
         colors={ headerColors }
         style={[ styles.header, this.props.style ]}
       >
-        <View style={ styles.centerItem }>{ children }</View>
+        <View style={ styles.leftItem }>
+          <ItemWrapper item={ leftItem } />
+        </View>
 
-        { rightItem && <View style={ styles.rightItem }>
+        <View style={ styles.centerItem }>
+          <Text style={ styles.titleText }>{ title }</Text>
+        </View>
+
+        <View style={ styles.rightItem }>
           <ItemWrapper item={ rightItem } />
-        </View> }
+        </View>
       </LinearGradient>
-    )
+    );
   }
 }
+
+Header.propTypes = {
+  leftItem: React.PropTypes.shape({}),
+  rightItem: React.PropTypes.shape({}),
+  title: React.PropTypes.string,
+  headerColors: React.PropTypes.array,
+  style: React.PropTypes.object,
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -58,11 +67,23 @@ const styles = StyleSheet.create({
 
   centerItem: {
     flex: 2,
-    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   rightItem: {
+    flex: 1,
+    alignItems: 'flex-end',
   },
-})
 
-export default Header
+  leftItem: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+
+  titleText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+});
+
+export default Header;

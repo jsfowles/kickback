@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 
 const ItemWrapper = ({ item }) => {
+  if (!item) { return null; }
+
   let content;
 
   if (item.icon) {

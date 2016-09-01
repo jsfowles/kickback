@@ -11,6 +11,10 @@ import ParallaxBackground from './ParallaxBackground';
 import Header from './Header';
 
 class Container extends React.Component {
+  static defaultProps = {
+    customHeader: false,
+  };
+
   constructor() {
     super(...arguments);
     this.state = ({
@@ -31,6 +35,9 @@ class Container extends React.Component {
       headerHeight,
       leftItem,
       rightItem,
+      headerColors,
+      customHeader,
+      title,
     } = this.props;
 
     const content = React.cloneElement(children, {
@@ -50,10 +57,12 @@ class Container extends React.Component {
           /> }
         </View>
 
-        <Header
+        { !customHeader && <Header
           rightItem={ rightItem }
           leftItem={ leftItem }
-        />
+          headerColors={ headerColors }
+          title={ title }
+        /> }
 
         { content }
       </View>
@@ -72,6 +81,8 @@ Container.propTypes = {
   style: React.PropTypes.object,
   headerHeight: React.PropTypes.number,
   headerColors: React.PropTypes.array,
+  customHeader: React.PropTypes.bool,
+  title: React.PropTypes.string,
 };
 
 const styles = StyleSheet.create({

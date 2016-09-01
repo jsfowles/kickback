@@ -46,6 +46,7 @@ class FeaturedProducts extends React.Component {
           headerColors={[ '#45baef', '#34Bcd5' ]}
           hasScrolled={ this.props.hasScrolled }
           setHasScrolled={ this.props.setHasScrolled }
+          customHeader={ true }
         >
           <Products
             products={ productFeed.products }
