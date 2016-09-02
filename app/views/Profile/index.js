@@ -23,9 +23,9 @@ class Profile extends React.Component {
     case 1:
       return <Settings { ...props } />;
     case 5:
-      return <WebView { ...props } url='http://www.kbck.me/privacy-policy' />;
+      return <WebView { ...props } url='http://www.kbck.me/privacy-policy' title='Privacy Policy' />;
     case 6:
-      return <WebView { ...props } url='http://www.kbck.me/terms-and-conditions' />;
+      return <WebView { ...props } url='http://www.kbck.me/terms-and-conditions' title='Terms' />;
     default:
       return <User { ...props } />;
     }

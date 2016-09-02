@@ -31,7 +31,7 @@ class Settings extends React.Component {
         title: 'About',
         options: [
           { title: 'Privacy Policy', onPress: () => this.props.navigator.push({ id: 5 }), bordered: true },
-          { title: 'Terms', onPress: () => this.props.navigator.push({ id: 5 }), bordered: false },
+          { title: 'Terms', onPress: () => this.props.navigator.push({ id: 6 }), bordered: false },
         ],
       },
 
