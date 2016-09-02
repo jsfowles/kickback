@@ -1,15 +1,16 @@
 /**
  * @flow
  */
-'use strict'
+'use strict';
 
-import { combineReducers } from 'redux'
-import { navigation } from './navigation'
-import { productFeed } from './productFeed'
-import { search } from './search'
-import { product } from './product'
-import { user } from './user'
-import { session } from './session'
+import { combineReducers } from 'redux';
+import { navigation } from './navigation';
+import { productFeed } from './productFeed';
+import { search } from './search';
+import { product } from './product';
+import { user } from './user';
+import { session } from './session';
+import { settings } from './settings';
 
 export default combineReducers({
   navigation,
@@ -18,4 +19,5 @@ export default combineReducers({
   product,
   user,
   session,
-})
+  settings,
+});

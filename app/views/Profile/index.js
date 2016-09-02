@@ -11,13 +11,11 @@ import {
 import User from '../User';
 import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
+import ReportAProblem from '../Settings/components/ReportAProblem';
 
 class Profile extends React.Component {
   renderScene = (route, navigator) => {
-    let props = {
-      ...this.props,
-      navigator: navigator,
-    };
+    let props = { ...this.props, navigator, route };
 
     switch (route.id) {
     case 1:
@@ -26,6 +24,8 @@ class Profile extends React.Component {
       return <WebView { ...props } url='http://www.kbck.me/privacy-policy' title='Privacy Policy' />;
     case 6:
       return <WebView { ...props } url='http://www.kbck.me/terms-and-conditions' title='Terms' />;
+    case 7:
+      return <ReportAProblem { ...props } />;
     default:
       return <User { ...props } />;
     }

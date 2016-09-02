@@ -37,8 +37,8 @@ export const getProducts = (searchTerm) => {
     body: JSON.stringify({ search: { search_term: searchTerm }})
   })
   .then(res => res.json())
-  .catch(e => console.error(e))
-}
+  .catch(_ => null);
+};
 
 export const getCurrentUser = (url, session) => {
   const headers = {
@@ -50,19 +50,19 @@ export const getCurrentUser = (url, session) => {
     method: 'GET',
     headers: headers,
   })
-  .catch(e => console.error(e))
-}
+  .catch(_ => null);
+};
 
 export const loginUser = (credentials) => {
-  let url = `${URL}/auth/sign_in`
+  let url = `${URL}/auth/sign_in`;
 
   return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   })
-  .catch(e => console.error(e))
-}
+  .catch(_ => null);
+};
 
 export const createUser = credentials => {
   let url = `${URL}/auth`;
@@ -72,5 +72,15 @@ export const createUser = credentials => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   })
-  .catch(e => console.log(e));
+  .catch(_ => null);
+};
+
+export const submitProblem = (currentUser, subject, body) => {
+  let url = `${URL}/help`;
+
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: currentUser.data.email, subject, body }),
+  });
 };
