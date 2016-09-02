@@ -10,6 +10,7 @@ import { destroySession } from '../../actions';
 
 class Settings extends React.Component {
   settingsNavigation = () => {
+    let { navigator } = this.props;
     return [
       {
         title: 'Account',
@@ -30,16 +31,23 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
-          { title: 'Privacy Policy', onPress: () => this.props.navigator.push({ id: 5 }), bordered: true },
-          { title: 'Terms', onPress: () => this.props.navigator.push({ id: 6 }), bordered: false },
+          { title: 'Privacy Policy', onPress: () => navigator.push({ id: 5, title: 'Privacy Policty' }), bordered: true },
+          { title: 'Terms', onPress: () => navigator.push({ id: 6, title: 'Terms' }), bordered: false },
         ],
       },
 
       {
         title: 'Support',
-        options: [
-          { title: 'Report a Problem', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
-        ],
+        options: [{
+          title: 'Report a Problem',
+          onPress: () => Alert.alert('Report a Problem', null, [
+            { text: 'Spam or Abuse', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
+            { text: 'Something isn\'t Working', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
+            { text: 'General Feedback', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
+            { text: 'Cancel', onPress: () => null },
+          ]),
+          bordered: false,
+        }],
       },
 
       {

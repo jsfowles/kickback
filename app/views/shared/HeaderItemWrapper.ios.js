@@ -15,13 +15,14 @@ const ItemWrapper = ({ item }) => {
   let content;
 
   if (item.icon) {
-    content = <Image source={ item.icon } />;
+    content = <Image source={ item.icon } style={ item.disabled ? styles.disabled : {}} />;
   } else if (item.title) {
-    content = <Text>{ item.title }</Text>;
+    content = <Text style={[ styles.text, item.disabled ? styles.disabled : {} ]}>{ item.title }</Text>;
   }
 
   return (
     <TouchableOpacity
+      disabled={ !!item.disabled }
       onPress={ item.onPress }
       style={ styles.itemWrapper }
     >
@@ -32,13 +33,16 @@ const ItemWrapper = ({ item }) => {
 
 ItemWrapper.propTypes = {
   item: React.PropTypes.shape({
-    icon: React.PropTypes.string,
+    icon: React.PropTypes.object,
     title: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
   }),
 };
 
 const styles = StyleSheet.create({
   itemWrapper: { paddingVertical: 11 },
+  text: { color: '#fff' },
+  disabled: { opacity: 0.5 },
 });
 
 export default ItemWrapper;
