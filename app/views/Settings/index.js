@@ -30,8 +30,8 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
-          { title: 'Privacy Policy', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
-          { title: 'Terms', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
+          { title: 'Privacy Policy', onPress: () => this.props.navigator.push({ id: 5 }), bordered: true },
+          { title: 'Terms', onPress: () => this.props.navigator.push({ id: 5 }), bordered: false },
         ],
       },
 
@@ -83,6 +83,7 @@ class Settings extends React.Component {
 Settings.propTypes = {
   navigator: React.PropTypes.shape({
     pop: React.PropTypes.func.isRequired,
+    push: React.PropTypes.func.isRequired,
   }),
   logout: React.PropTypes.func.isRequired,
 };
