@@ -23,8 +23,10 @@ class Container extends React.Component {
   }
 
   handleScroll = (e) => {
-    if (!this.props.hasScrolled) { this.props.setHasScrolled(); }
-    this.state.anim.setValue(e.nativeEvent.contentOffset.y);
+    if (this.props.setHasScrolled) {
+      if (!this.props.hasScrolled) { this.props.setHasScrolled(); }
+      this.state.anim.setValue(e.nativeEvent.contentOffset.y);
+    }
   }
 
   render() {
