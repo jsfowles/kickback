@@ -1,9 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { ScrollView, Alert } from 'react-native';
+
 import Container from '../shared/Container';
 import SettingsGroup from './components/SettingsGroup';
+import { destroySession } from '../../actions';
 
 class Settings extends React.Component {
   settingsNavigation = () => {
@@ -40,9 +43,14 @@ class Settings extends React.Component {
       },
 
       {
-        options: [
-          { title: 'Log Out', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
-        ],
+        options: [{
+          title: 'Log Out',
+          onPress: () => Alert.alert('Are you sure?', null, [
+            { text: 'No', onPress: () => null },
+            { text: 'Yes', onPress: () => this.props.logout() },
+          ]),
+          bordered: false,
+        }],
       },
     ];
   }
@@ -76,6 +84,13 @@ Settings.propTypes = {
   navigator: React.PropTypes.shape({
     pop: React.PropTypes.func.isRequired,
   }),
+  logout: React.PropTypes.func.isRequired,
 };
 
-export default Settings;
+const mapStateToProps = _ => ({});
+
+const mapActionsToProps = dispatch => ({
+  logout: () => dispatch(destroySession()),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Settings);
