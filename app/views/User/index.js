@@ -12,7 +12,6 @@ import {
   setHasScrolled,
   scrollToTop,
   setCurrentRoute,
-  destroySession,
 } from '../../actions';
 
 class User extends React.Component {
@@ -47,7 +46,7 @@ class User extends React.Component {
           hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
           emptyListText="You haven't shared any products yet."
-          header={ <ParallaxContent logout={ this.props.destroySession } user={ this.props.user } /> }
+          header={ <ParallaxContent user={ this.props.user } /> }
         />
       </Container>
     );
@@ -59,7 +58,6 @@ User.propTypes = {
   loadMoreProducts: React.PropTypes.func,
   navigateSettings: React.PropTypes.func,
   hasScrolled: React.PropTypes.bool,
-  destroySession: React.PropTypes.func,
   scrollToTop: React.PropTypes.func,
   setHasScrolled: React.PropTypes.func,
   user: React.PropTypes.object.isRequired,
@@ -80,7 +78,6 @@ const mapActionsToProps = (dispatch) => ({
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
-  destroySession: () => dispatch(destroySession()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);
