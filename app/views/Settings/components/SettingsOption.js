@@ -3,6 +3,8 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  View,
+  Image,
   TouchableHighlight,
 } from 'react-native';
 
@@ -10,9 +12,12 @@ const SettingOption = ({ title, onPress, bordered }) => (
   <TouchableHighlight
     onPress={ onPress }
     underlayColor={ '#e8edef' }
-    style={[ styles.container, bordered ? styles.bordered : {}]}
+    style={ styles.container }
   >
-    <Text style={ styles.linkText }>{ title }</Text>
+    <View style={[ styles.optionWrapper, bordered ? styles.linkBordered : {} ]}>
+      <Text style={ styles.linkText }>{ title }</Text>
+      <Image source={ require('image!forward') } />
+    </View>
   </TouchableHighlight>
 );
 
@@ -25,7 +30,15 @@ SettingOption.propTypes = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    paddingLeft: 13,
+  },
+
+  optionWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: 10,
+    paddingRight: 13,
   },
 
   linkText: {
@@ -33,9 +46,9 @@ const styles = StyleSheet.create({
     color: '#1b1e1f',
   },
 
-  bordered: {
+  linkBordered: {
     borderBottomWidth: 1,
-    borderBottomColor: '#e8edef',
+    borderColor: '#e8edef',
   },
 });
 

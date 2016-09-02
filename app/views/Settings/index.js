@@ -35,7 +35,6 @@ class Settings extends React.Component {
       {
         title: 'Support',
         options: [
-          { title: 'Help Center', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
           { title: 'Report a Problem', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },

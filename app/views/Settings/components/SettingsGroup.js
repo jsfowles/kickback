@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     borderTopColor: '#e8edef',
     borderBottomWidth: 1,
     borderBottomColor: '#e8edef',
-    paddingLeft: 13,
   },
 });
 
