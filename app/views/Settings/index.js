@@ -6,7 +6,10 @@ import { ScrollView, Alert } from 'react-native';
 
 import Container from '../shared/Container';
 import SettingsGroup from './components/SettingsGroup';
-import { destroySession } from '../../actions';
+import {
+  destroySession,
+  updateUser,
+} from '../../actions';
 
 class Settings extends React.Component {
   settingsNavigation = () => {
@@ -15,7 +18,7 @@ class Settings extends React.Component {
       {
         title: 'Account',
         options: [
-          { title: 'Edit Profile', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
+          { title: 'Edit Profile', onPress: this.props.updateUser, bordered: true },
           { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },
@@ -94,12 +97,14 @@ Settings.propTypes = {
     push: React.PropTypes.func.isRequired,
   }),
   logout: React.PropTypes.func.isRequired,
+  updateUser: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = _ => ({});
 
 const mapActionsToProps = dispatch => ({
   logout: () => dispatch(destroySession()),
+  updateUser: () => dispatch(updateUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Settings);

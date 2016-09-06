@@ -77,3 +77,21 @@ export const createUser = credentials => {
     );
   };
 };
+
+export const updateUser = _ => {
+  return (dispatch, getState) => {
+    let { session } = getState().session;
+
+    updateUserAPI(session)
+    .then(res => {
+      if (res.status === 200) {
+        return dispatch(createSession(res));
+      }
+    })
+    .then(res => {
+      if (res.status === 'success') {
+        return dispatch(loadCurrentUser(res));
+      }
+    });
+  };
+};
