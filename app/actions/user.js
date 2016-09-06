@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 import {
   serverUrl,
   apiVersion,
@@ -9,6 +9,7 @@ const URL = `${serverUrl}/api/${apiVersion}/users`;
 import {
   getCurrentUser,
   createUser as createUserAPI,
+  updateUser as updateUserAPI,
 } from '../utils/api';
 
 import {
@@ -17,7 +18,6 @@ import {
 
 import {
   createSession,
-  destroySession,
   updateUsername,
 } from './sessions';
 
@@ -33,8 +33,7 @@ export const loadCurrentUser = currentUser => {
 
     getCurrentUser(`${URL}/${currentUser.id}`, session.session)
     .then(res => dispatch(createSession(res)))
-    .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })))
-    .catch(e => console.error(e));
+    .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })));
   };
 };
 
@@ -47,36 +46,32 @@ export const loadMoreCurrentUser = _ => {
       dispatch(toggleFetching(true));
 
       getCurrentUser(nextPageUrl)
-      .then(res => dispatch(receiveMoreProducts(res)))
-      .catch(e => console.error(e));
+      .then(res => dispatch(receiveMoreProducts(res)));
     }
   };
 };
 
 export const createUser = credentials => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     Alert.alert(
       'Is this correct?',
       `You entered your email as: ${credentials.email}`,
       [
-        { text: 'Cancel', onPress: () => dispatch(updateUsername('')), },
+        { text: 'Cancel', onPress: () => dispatch(updateUsername('')) },
         { text: 'Ok', onPress: () => {
           createUserAPI(credentials)
           .then(res => {
             if (res.status === 200) {
               return dispatch(createSession(res));
-            } else {
-              return { error: 'Email address already taken.' }
             }
+
+            return { error: 'Email address already taken.' };
           })
           .then(res => {
             if (res.status === 'success') {
-              dispatch(loadCurrentUser(res))
-            } else {
-              console.log(res);
+              dispatch(loadCurrentUser(res));
             }
-          })
-          .catch(e => console.error(e));
+          });
         }},
       ]
     );
