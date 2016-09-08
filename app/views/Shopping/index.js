@@ -38,8 +38,6 @@ class Shopping extends React.Component {
           initialRoute={{ name: 'Featured Products', index: 0 }}
           renderScene={ this.renderScene }
         />
-
-        <SessionModal modalVisible={ this.props.modalVisible } />
       </View>
     );
   }
@@ -47,6 +45,10 @@ class Shopping extends React.Component {
 
 Shopping.propTypes = {
   modalVisible: React.PropTypes.bool.isRequired,
+};
+
+Shopping.defaultProps = {
+  modalVisible: false,
 };
 
 const styles = StyleSheet.create({

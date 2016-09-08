@@ -1,44 +1,52 @@
-'used strict'
+'used strict';
 
-import React from 'react'
-import { connect } from 'react-redux'
-import { View } from 'react-native'
+import React from 'react';
+import { connect } from 'react-redux';
+import { View } from 'react-native';
 
-import Products from '../Products'
-import FeaturedCarousel from './components/FeaturedSearchesCarousel'
+import Products from '../Products';
+import FeaturedCarousel from './components/FeaturedSearchesCarousel';
 import {
   loadMoreProductFeed,
   setHasScrolled,
   scrollToTop,
-} from '../../actions'
-import Container from '../shared/Container'
+} from '../../actions';
+
+import Container from '../shared/Container';
 
 class FeaturedProducts extends React.Component {
   componentWillReceiveProps(nextProps) {
-    let { navigator, fetchingProducts } = this.props
+    let { navigator, fetchingProducts } = this.props;
     if (nextProps.fetchingProducts && !fetchingProducts && navigator.state.presentedIndex === 0) {
-      this.pushNewSearchResults()
+      this.pushNewSearchResults();
     }
   }
 
   componentWillMount() {
     if (this.props.searching) {
-      this.pushNewSearchResults()
+      this.pushNewSearchResults();
     }
   }
 
   pushNewSearchResults() {
-    this.props.navigator.push({ name: 'Search Results', index: 1, searchText: this.props.searchText })
+    this.props.navigator.push({ name: 'Search Results', index: 1, searchText: this.props.searchText });
   }
 
   loadMoreProducts = () => {
-    if (!this.props.productFeed.nextPageUrl) { return }
-    this.props.loadMoreProducts()
+    if (!this.props.productFeed.nextPageUrl) { return; }
+    this.props.loadMoreProducts();
   }
 
   render() {
-    let { productFeed, currentTab, searchOverlay, route } = this.props
-    if (currentTab !== 'SHOPPING_TAB') return null
+    let {
+      productFeed,
+      currentTab,
+      searchOverlay,
+      route,
+      isFetching,
+    } = this.props;
+
+    if (currentTab !== 'SHOPPING_TAB') return null;
 
     return (
       <View style={{ flex: 1 }}>
@@ -56,6 +64,7 @@ class FeaturedProducts extends React.Component {
             hasScrolled={ this.props.hasScrolled }
             scrollToTop={ this.props.scrollToTop }
             emptyListText='Featured products coming soon!'
+            isFetching={ true }
             header={ <FeaturedCarousel /> }
           />
         </Container>
@@ -73,14 +82,14 @@ const mapStateToProps = (state) => ({
   searchOverlay: state.search.searchOverlay,
   searching: state.search.searching,
   searchText: state.search.searchText,
-  fetchingProducts: state.search.fetchingProducts,
+  isFetching: state.productFeed.isFetching,
   hasScrolled: state.productFeed.hasScrolled,
-})
+});
 
 const mapActionsToProps = (dispatch) => ({
   loadMoreProducts: () => dispatch(loadMoreProductFeed()),
   setHasScrolled: () => dispatch(setHasScrolled('productFeed')),
   scrollToTop: () => dispatch(scrollToTop()),
-})
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts)
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts);

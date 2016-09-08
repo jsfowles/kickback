@@ -25,9 +25,10 @@ class App extends Component {
    * @returns { void }
    */
   componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange);
+
     let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
 
-    AppState.addEventListener('change', this.handleAppStateChange);
     loadProductFeed();
 
     if (currentUser) {
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loading: state.product.creatingRecommendation,
-  currentUser: state.user.currentUser,
+  currentUser: state.currentUser,
 });
 
 const mapActionsToProps = (dispatch) => ({

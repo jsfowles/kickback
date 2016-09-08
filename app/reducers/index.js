@@ -8,7 +8,7 @@ import { navigation } from './navigation';
 import { productFeed } from './productFeed';
 import { search } from './search';
 import { product } from './product';
-import { user } from './user';
+import { currentUser } from './user';
 import { session } from './session';
 import { settings } from './settings';
 
@@ -17,7 +17,7 @@ export default combineReducers({
   productFeed,
   search,
   product,
-  user,
+  currentUser,
   session,
   settings,
 });

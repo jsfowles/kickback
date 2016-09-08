@@ -5,6 +5,11 @@ const initialState = {
 
 export const navigation = (state = initialState, action) => {
   switch (action.type) {
+  case 'TOGGLE_SESSION_MODAL':
+    return {
+      ...state,
+      modalVisible: action.bool,
+    };
   case 'SET_ROUTE':
     return {
       ...state,

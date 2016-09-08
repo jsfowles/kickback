@@ -36,10 +36,6 @@ const {
 } = Dimensions.get('window')
 
 class Sessions extends React.Component {
-  static propTypes = {
-    modalVisible: React.PropTypes.bool.isRequired,
-  }
-
   constructor(props) {
     super(props);
 
@@ -117,19 +113,13 @@ class Sessions extends React.Component {
   }
 
   componentWillUnmount() {
-    this.keyboardDidShow.remove()
-    this.keyboardWillShow.remove()
+    this.keyboardDidShow.remove();
+    this.keyboardWillShow.remove();
   }
 
   render() {
-    StatusBar.setHidden(this.props.modalVisible, true);
-
     return (
-      <Modal
-        visible={ this.props.modalVisible }
-        animationType='slide'
-        transparent={ false }
-      >
+      <View style={{ flex: 1 }}>
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <BGVideo
             tabPosition={ this.state.tabPosition }
@@ -137,7 +127,7 @@ class Sessions extends React.Component {
           />
 
           <Header
-            closeModal={ this.props.toggleSessionModal }
+            closeModal={ this.props.navigator.pop }
             style={ this.state.headerStyles }
           />
 
@@ -156,7 +146,7 @@ class Sessions extends React.Component {
         </KeyboardAvoidingView>
 
         { this.state.showResetPassword && <ResetPasswordLink /> }
-      </Modal>
+      </View>
     );
   }
 };

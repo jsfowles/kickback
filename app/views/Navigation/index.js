@@ -4,20 +4,31 @@ import React, { Component } from 'react';
 import { Navigator, StyleSheet } from 'react-native';
 
 import Tabs from './components/Tabs';
+import SessionModal from '../Sessions';
 
 class Navigation extends Component {
   renderScene = (route, navigator) => {
-    return <Tabs navigator={ navigator } />;
+    let props = { ...this.props, navigator, route };
+
+    switch (route.id) {
+    case 1:
+      return <SessionModal { ...props } />;
+    default:
+      return <Tabs { ...props } />;
+    }
+  }
+
+  configureScene = _ => {
+    return Navigator.SceneConfigs.FloatFromBottom;
   }
 
   render() {
     return (
       <Navigator
-        ref='navigator'
         style={ styles.container }
-        initialRout={{}}
+        initialRoute={{}}
+        configureScene={ this.configureScene }
         renderScene={ this.renderScene }
-        configureScene={ (route) => {} }
       />
     );
   }

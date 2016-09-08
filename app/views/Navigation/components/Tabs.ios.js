@@ -17,25 +17,28 @@ import Shopping from '../../Shopping';
 
 class Tabs extends React.Component {
   switchTab = (tab) => {
-    if (!this.props.currentUser) {
-      return this.props.toggleSessionModal();
-    }
+    let {
+      currentUser,
+      toggleSessionModal,
+      searching,
+      cancelSearch,
+      scrollToTop,
+      setCurrentRoute,
+      switchTab,
+      navigator,
+    } = this.props;
 
-    if (this.props.searching) {
-      this.props.cancelSearch();
-    }
+    if (this.props.tab === tab) { return scrollToTop(); }
+    if (currentUser) { return navigator.push({ id: 1 }); }
+    if (searching) { cancelSearch(); }
 
-    if (this.props.tab === tab) {
-      return this.props.scrollToTop();
-    }
-
-    this.props.switchTab(tab);
+    switchTab(tab);
 
     if (tab === 'SHOPPING_TAB') {
-      return this.props.setCurrentRoute('productFeed');
+      return setCurrentRoute('productFeed');
     }
 
-    return this.props.setCurrentRoute('user');
+    return setCurrentRoute('user');
   }
 
   render() {
@@ -83,7 +86,7 @@ Tabs.propTypes = {
 const mapStateToProps = (state) => ({
   tab: state.navigation.tab,
   searching: state.search.searching,
-  currentUser: state.user.currentUser,
+  currentUser: state.currentUser,
 });
 
 const mapActionsToProps = (dispatch) => ({
