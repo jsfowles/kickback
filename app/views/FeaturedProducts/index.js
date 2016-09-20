@@ -2,43 +2,42 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableHighlight } from 'react-native';
-
-import Products from '../Products';
-import FeaturedCarousel from './components/FeaturedSearchesCarousel';
-
-import {
-  loadMoreProductFeed,
-  setHasScrolled,
-  scrollToTop,
-} from '../../actions';
-
-const route = {
-  type: 'push',
-  route: { key: 'search' },
-};
+import { Text, StyleSheet } from 'react-native';
 
 import Container from '../shared/Container';
+import Products from '../Products';
 
 class FeaturedProducts extends React.Component {
   render() {
-    return (
-      <View style={{ flex: 1, paddingTop: 65 }}>
-        <Text>Feed</Text>
+    let { feed } = this.props;
 
-        <TouchableHighlight
-          style={{ flex: 1 }}
-          underlayColor='pink'
-          onPress={ () => this.props.handleNavigate(route) }
-        >
-          <Text>Button</Text>
-        </TouchableHighlight>
-      </View>
+    return (
+      <Container style={ styles.container }>
+        { feed.isFetching ? (
+          <Text>Fetching Products</Text>
+        ) : (
+          <Products
+            products={ feed.products }
+            cardSize={ 'large' }
+            title={ 'FEATURED PRODUCTS' }
+          />
+        )}
+      </Container>
     );
   }
 }
 
-const mapStateToProps = _ => ({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 65,
+  },
+});
+
+const mapStateToProps = state => ({
+  feed: state.feed,
+});
+
 const mapActionsToProps = _ => ({});
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts);

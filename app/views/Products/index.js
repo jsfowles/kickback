@@ -26,7 +26,7 @@ const propTypes = {
   scrollToTop: React.PropTypes.func,
   hasScrolled: React.PropTypes.bool,
   scrollEventThrottle: React.PropTypes.number,
-  emptyListText: React.PropTypes.string.isRequired,
+  emptyListText: React.PropTypes.string,
 };
 
 class ProductListView extends React.Component {

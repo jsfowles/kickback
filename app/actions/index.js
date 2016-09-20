@@ -1,4 +1,4 @@
-import * as productFeedActions from './productFeed';
+import * as feedActions from './feed';
 import * as searchActions from './search';
 import * as navigationActions from './navigation';
 import * as productActions from './product';
@@ -8,7 +8,7 @@ import * as settingsActions from './settings';
 import * as tabsActions from './tabs';
 
 module.exports = {
-  ...productFeedActions,
+  ...feedActions,
   ...searchActions,
   ...navigationActions,
   ...productActions,

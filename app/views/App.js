@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import {
-  loadProductFeed,
+  fetchFeed,
   loadCurrentUser,
 } from '../actions';
 
@@ -34,9 +34,9 @@ class App extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
 
-    let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
+    let { currentUser, fetchFeed, loadCurrentUser } = this.props;
 
-    loadProductFeed();
+    fetchFeed();
 
     if (currentUser.id) {
       loadCurrentUser(currentUser);
@@ -58,7 +58,7 @@ class App extends Component {
    */
   handleAppStateChange = () => {
     if (AppState.currentState === 'active') {
-      this.props.loadProductFeed();
+      this.props.fetchFeed();
     }
   }
 
@@ -80,7 +80,7 @@ class App extends Component {
 App.propTypes = {
   navigation: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.object.isRequired,
-  loadProductFeed: React.PropTypes.func.isRequired,
+  fetchFeed: React.PropTypes.func.isRequired,
   loadCurrentUser: React.PropTypes.func.isRequired,
 };
 
@@ -95,7 +95,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = (dispatch) => ({
-  loadProductFeed: () => dispatch(loadProductFeed()),
+  fetchFeed: () => dispatch(fetchFeed()),
   loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
 });
 

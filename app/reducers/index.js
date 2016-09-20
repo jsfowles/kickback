@@ -5,7 +5,7 @@
 
 import { combineReducers } from 'redux';
 import { navigation } from './navigation';
-import { productFeed } from './productFeed';
+import feed from './feed';
 import { search } from './search';
 import { product } from './product';
 import { currentUser } from './user';
@@ -15,7 +15,7 @@ import { tabs } from './tabs';
 
 export default combineReducers({
   navigation,
-  productFeed,
+  feed,
   search,
   product,
   currentUser,
