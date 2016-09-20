@@ -5,6 +5,7 @@ import * as productActions from './product';
 import * as userActions from './user';
 import * as sessionActions from './sessions';
 import * as settingsActions from './settings';
+import * as tabsActions from './tabs';
 
 module.exports = {
   ...productFeedActions,
@@ -14,4 +15,5 @@ module.exports = {
   ...userActions,
   ...sessionActions,
   ...settingsActions,
+  ...tabsActions,
 };

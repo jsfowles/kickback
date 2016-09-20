@@ -11,6 +11,7 @@ import { product } from './product';
 import { currentUser } from './user';
 import { session } from './session';
 import { settings } from './settings';
+import { tabs } from './tabs';
 
 export default combineReducers({
   navigation,
@@ -20,4 +21,5 @@ export default combineReducers({
   currentUser,
   session,
   settings,
+  tabs,
 });
