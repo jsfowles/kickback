@@ -11,6 +11,8 @@ const initialState = {
 export const tabs = (state = initialState, action) => {
   switch (action.type) {
   case 'CHANGE_TAB':
+    if (action.index === state.index) { return state; }
+
     return {
       ...state,
       index: action.index,

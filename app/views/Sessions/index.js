@@ -3,7 +3,6 @@
 import React from 'react';
 import {
   View,
-  Modal,
   Dimensions,
   StyleSheet,
   Keyboard,
@@ -32,8 +31,8 @@ import Errors from '../shared/Errors';
 
 const {
   height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+  width: deviceWidth,
+} = Dimensions.get('window');
 
 class Sessions extends React.Component {
   constructor(props) {
@@ -127,8 +126,8 @@ class Sessions extends React.Component {
           />
 
           <Header
-            closeModal={ this.props.navigator.pop }
             style={ this.state.headerStyles }
+            closeModal={ () => this.props.handleNavigate({ type: 'pop' }, 'global') }
           />
 
           <LoginForm
@@ -149,7 +148,7 @@ class Sessions extends React.Component {
       </View>
     );
   }
-};
+}
 
 let styles = StyleSheet.create({
   container: {

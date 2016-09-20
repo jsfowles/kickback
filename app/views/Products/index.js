@@ -18,7 +18,7 @@ const defaultProps = {
 
 const propTypes = {
   products: React.PropTypes.array.isRequired,
-  loadMoreProducts: React.PropTypes.func.isRequired,
+  loadMoreProducts: React.PropTypes.func,
   title: React.PropTypes.string,
   cardSize: React.PropTypes.string,
   headerHeight: React.PropTypes.number,

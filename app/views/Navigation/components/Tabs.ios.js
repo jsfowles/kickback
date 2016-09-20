@@ -7,12 +7,9 @@ import { connect } from 'react-redux';
 import Profile from '../../Profile';
 import Shopping from '../../Shopping';
 
-import { changeTab } from '../../../actions';
+import { onTabClick } from '../../../actions';
 
 class Tabs extends React.Component {
-  componentWillMount() {
-    this.props.changeTab(0);
-  }
   renderTab(tab) {
     switch (tab) {
     case 'shopping': return <Shopping />;
@@ -21,17 +18,8 @@ class Tabs extends React.Component {
     }
   }
 
-  onTabClick(index) {
-    const { tabs, changeTab, currentUser } = this.props;
-
-    if (tabs.index === index) { return null; }
-    if (Object.keys(currentUser).length === 0) { return null; }
-
-    changeTab(index);
-  }
-
   renderChildren() {
-    const { tabs } = this.props;
+    const { tabs, onTabClick } = this.props;
 
     return tabs.tabs.map((tab, i) => (
       <TabBarIOS.Item
@@ -39,7 +27,7 @@ class Tabs extends React.Component {
         icon={ tab.icon }
         title=''
         selected={ tabs.index === i }
-        onPress={ _ => this.onTabClick(i) }
+        onPress={ _ => onTabClick(i) }
       >
         { this.renderTab(tab.key) }
       </TabBarIOS.Item>
@@ -64,17 +52,15 @@ Tabs.propTypes = {
     index: React.PropTypes.number.isRequired,
     tabs: React.PropTypes.array.isRequired,
   }),
-  currentUser: React.PropTypes.shape({}),
-  changeTab: React.PropTypes.func.isRequired,
+  onTabClick: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   tabs: state.tabs,
-  currentUser: state.currentUser,
 });
 
 const mapActionsToProps = dispatch => ({
-  changeTab(index) { dispatch(changeTab(index)); },
+  onTabClick(index) { dispatch(onTabClick(index)); },
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Tabs);

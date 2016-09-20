@@ -13,6 +13,13 @@ import {
 } from '../actions';
 
 import Navigation from './Navigation';
+import Session from './Sessions';
+import Tabs from './Navigation/components/Tabs';
+
+const scenes = {
+  tabs: <Tabs />,
+  session: <Session />,
+};
 
 /**
  * App Component
@@ -31,7 +38,7 @@ class App extends Component {
 
     loadProductFeed();
 
-    if (currentUser) {
+    if (currentUser.id) {
       loadCurrentUser(currentUser);
     }
   }
@@ -56,15 +63,22 @@ class App extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={ styles.container }>
-        <Navigation />
+        <Navigation
+          scenes={ scenes }
+          navigation={ navigation }
+          direction='vertical'
+        />
       </View>
     );
   }
 }
 
 App.propTypes = {
+  navigation: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.object.isRequired,
   loadProductFeed: React.PropTypes.func.isRequired,
   loadCurrentUser: React.PropTypes.func.isRequired,
@@ -77,6 +91,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   loading: state.product.creatingRecommendation,
   currentUser: state.currentUser,
+  navigation: state.navigation.global,
 });
 
 const mapActionsToProps = (dispatch) => ({
