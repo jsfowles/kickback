@@ -8,14 +8,13 @@ import { getProductFeed } from '../utils/api'
 
 const URL = `${serverUrl}/api/${apiVersion}/product_feeds`
 
-export const fetchFeed = () => (dispatch, getState) => {
+export const fetchFeed = () => (dispatch, _) => {
   dispatch({ type: 'FETCH_PRODUCT_FEED_REQUEST' });
 
-  return getProductFeed(URL)
-  .then(
+  return getProductFeed(URL).then(
     res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', res }),
     err => dispatch({ type: 'FETCH_PRODUCT_FEED_FAILURE', err }),
-  )
+  );
 };
 
 /**

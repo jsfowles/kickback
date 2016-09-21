@@ -9,7 +9,7 @@ import {
 
 import {
   toggleSearchOverlay,
-  requestProducts,
+  fetchSearch,
   cancelSearch,
 } from '../../../actions';
 
@@ -76,7 +76,7 @@ class Header extends React.Component {
   }
 
   render() {
-    let { navigator, toggleSearchOverlay, searchText, searchOverlay, requestProducts } = this.props;
+    let { navigator, toggleSearchOverlay, searchText, searchOverlay, fetchSearch } = this.props;
     let placeholder = searchText ? searchText : 'Search';
 
     return (
@@ -91,7 +91,7 @@ class Header extends React.Component {
 
         { this.state.showForm ? (
           <SearchInput
-            requestProducts={ requestProducts }
+            requestProducts={ fetchSearch }
             style={ styles.button }
             navigator={ navigator }
             toggleSearchOverlay={ toggleSearchOverlay }
@@ -145,7 +145,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
-  requestProducts: (e) => dispatch(requestProducts(e.nativeEvent.text)),
+  fetchSearch: (e) => dispatch(fetchSearch(e.nativeEvent.text)),
   cancelSearch: () => dispatch(cancelSearch()),
 });
 
