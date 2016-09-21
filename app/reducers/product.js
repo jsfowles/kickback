@@ -10,7 +10,7 @@ export const products = type => (state = [], action) => {
   }
 };
 
-export const isFetching = type => (state = true, action) => {
+export const isFetching = type => (state = false, action) => {
   switch (action.type) {
     case `FETCH_${type}_REQUEST`:
       return true;

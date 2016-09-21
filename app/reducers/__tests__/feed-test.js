@@ -11,7 +11,7 @@ describe('products', () => {
 
 describe('isFetching', () => {
   it('has the correct initial state', () => {
-    expect(isFetching('PRODUCT_FEED')(undefined, {})).toEqual(true);
+    expect(isFetching('PRODUCT_FEED')(undefined, {})).toEqual(false);
   });
 });
 

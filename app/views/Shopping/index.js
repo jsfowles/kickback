@@ -8,11 +8,11 @@ import Navigation from '../Navigation';
 import Header from './components/Header';
 import Feed from '../FeaturedProducts';
 import Search from '../Search';
+import SearchOverlay from '../Search/components/SearchOverlay';
 
 const {
-  height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+  width: deviceWidth,
+} = Dimensions.get('window');
 
 const scenes = {
   feed: <Feed />,
@@ -20,8 +20,13 @@ const scenes = {
 };
 
 class Shopping extends React.Component {
+  static propTypes = {
+    searchOverlay: React.PropTypes.bool.isRequired,
+    navigation: React.PropTypes.object.isRequired,
+  };
+
   render() {
-    let { navigation } = this.props;
+    let { navigation, searchOverlay } = this.props;
 
     return (
       <View style={ styles.container }>
@@ -36,14 +41,12 @@ class Shopping extends React.Component {
           navigation={ navigation }
           scenes={ scenes }
         />
+
+        { searchOverlay && <SearchOverlay /> }
       </View>
     );
   }
 }
-
-Shopping.propTypes = {
-  navigation: React.PropTypes.object.isRequired,
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -70,6 +73,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   navigation: state.navigation.shopping,
+  searchOverlay: state.search.searchOverlay,
 });
 
 const mapActionsToProps = _ => ({});

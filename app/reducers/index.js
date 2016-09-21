@@ -6,7 +6,7 @@
 import { combineReducers } from 'redux';
 import { navigation } from './navigation';
 import feed from './feed';
-import { search } from './search';
+import search from './search';
 import { product } from './product';
 import { currentUser } from './user';
 import { session } from './session';

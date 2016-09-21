@@ -125,7 +125,7 @@
       //
       // These rules are purely matters of style and are quite subjective.
       //
-      "indent": [1, 2, {indentSwitchCase: true}], // this option sets a specific tab width for your code (off by default)
+      "indent": ["error", 2, { "SwitchCase": 1 }], // this option sets a specific tab width for your code (off by default)
       "brace-style": ["error", "1tbs", { "allowSingleLine": true }], // enforce one true brace style (off by default)
       "comma-spacing": [1, {"before": false, "after": true}], // enforce spacing before and after comma
       "comma-style": [1, "last"], // enforce one true comma style (off by default)
