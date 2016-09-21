@@ -6,7 +6,6 @@ import {
   Dimensions,
   StyleSheet,
   Keyboard,
-  StatusBar,
   KeyboardAvoidingView,
   Animated,
   Easing,
@@ -15,11 +14,6 @@ import {
 import { connect } from 'react-redux';
 
 import {
-  createSession,
-  toggleSessionModal,
-  changeForm,
-  submitForm,
-  updateUsername,
   toggleError,
 } from '../../actions';
 
@@ -29,16 +23,25 @@ import ResetPasswordLink from './components/ResetPasswordLink';
 import BGVideo from './components/BGVideo';
 import Errors from '../shared/Errors';
 
-const {
-  height: deviceHeight,
-  width: deviceWidth,
-} = Dimensions.get('window');
+const { height: deviceHeight } = Dimensions.get('window');
+
+const TABS = {
+  SIGN_UP: 'SIGN_UP',
+  LOG_IN: 'LOG_IN',
+};
 
 class Sessions extends React.Component {
+  static propTypes = {
+    tab: React.PropTypes.string.isRequired,
+    showError: React.PropTypes.bool.isRequired,
+    toggleError: React.PropTypes.func.isRequired,
+    handleNavigate: React.PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
-    let tabPosition = props.currentTab === 'SIGN_UP' ? 0 : 1;
+    let tabPosition = props.tab === 'SIGN_UP' ? 0 : 1;
 
     this.state = {
       loginFormStyles: {},
@@ -73,7 +76,7 @@ class Sessions extends React.Component {
         right: 0,
       };
 
-      this.setState({ loginFormStyles, headerStyles, showResetPassword: true, });
+      this.setState({ loginFormStyles, headerStyles, showResetPassword: true });
     });
 
     this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', e => {
@@ -88,10 +91,10 @@ class Sessions extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentTab !== nextProps.currentTab) {
+    if (this.props.tab !== nextProps.tab) {
       let toValue = 0;
-      if (nextProps.currentTab == this.props.tabs.LOG_IN) { toValue = 1; }
-      Animated.timing( this.state.tabPosition, { toValue }).start()
+      if (nextProps.tab === TABS.LOG_IN) { toValue = 1; }
+      Animated.timing( this.state.tabPosition, { toValue }).start();
     }
 
     if (!this.props.showError && nextProps.showError) {
@@ -99,13 +102,13 @@ class Sessions extends React.Component {
         Animated.timing(this.state.errorPosition, {
           toValue: 1,
           duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1)
+          easing: Easing.bezier(0.25, 1, 0.25, 1),
         }),
         Animated.delay(1000),
         Animated.timing( this.state.errorPosition, {
           toValue: 0,
           duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1)
+          easing: Easing.bezier(0.25, 1, 0.25, 1),
         }),
       ]).start(() => this.props.toggleError());
     }
@@ -117,6 +120,8 @@ class Sessions extends React.Component {
   }
 
   render() {
+    let { handleNavigate } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
@@ -127,18 +132,13 @@ class Sessions extends React.Component {
 
           <Header
             style={ this.state.headerStyles }
-            closeModal={ () => this.props.handleNavigate({ type: 'pop' }, 'global') }
+            closeModal={ () => handleNavigate({ type: 'pop' }, 'global') }
           />
 
           <LoginForm
+            tabs={ TABS }
             styles={ this.state.loginFormStyles }
-            login={ this.props.createSession }
-            changeTab={ this.props.changeForm }
             tabPosition={ this.state.tabPosition }
-            submitForm={ this.props.submitForm }
-            tabs={ this.props.tabs }
-            updateUsername={ this.props.updateUsername }
-            email={ this.props.username }
           />
 
           <Errors message={ 'Invalid email or password' } position={ this.state.errorPosition } />
@@ -160,19 +160,12 @@ let styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  tabs: state.session.tabs,
-  currentTab: state.session.currentTab,
-  username: state.session.username,
+  tab: state.session.tab,
   showError: state.session.showError,
 });
 
 const mapActionsToProps = (dispatch) => ({
-  createSession: (credentials) => dispatch(createSession(credentials)),
-  toggleSessionModal: _ => dispatch(toggleSessionModal(false)),
-  changeForm: tab => dispatch(changeForm(tab)),
-  updateUsername: v => dispatch(updateUsername(v)),
-  submitForm: e => dispatch(submitForm(e.nativeEvent.text)),
   toggleError: _ => dispatch(toggleError(false)),
 });
 
-  export default connect(mapStateToProps, mapActionsToProps)(Sessions);
+export default connect(mapStateToProps, mapActionsToProps)(Sessions);

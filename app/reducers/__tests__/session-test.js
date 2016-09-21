@@ -2,7 +2,7 @@
 'use strict';
 
 import 'react-native';
-import { session } from '../session';
+import { currentSession, tab, enteredEmail } from '../session';
 
 jest.autoMockOff();
 
@@ -16,16 +16,16 @@ const sessionObj = {
 
 describe('session reducer', () => {
   it('is empty by default', () => {
-    expect(session(undefined, {})).toEqual({});
+    expect(currentSession(undefined, {})).toEqual({});
   });
 
   it('sets session when logging in', () => {
-    expect(session(undefined, { type: 'CREATE_SESSION', session: sessionObj }))
+    expect(currentSession(undefined, { type: 'CREATE_SESSION', session: sessionObj }))
     .toEqual(sessionObj);
   });
 
   it('removes the session when logging out', () => {
-    expect(session(sessionObj, { type: 'DESTROY_SESSION' }))
+    expect(currentSession(sessionObj, { type: 'DESTROY_SESSION' }))
     .toEqual({});
   });
 
@@ -39,8 +39,40 @@ describe('session reducer', () => {
     };
 
     it('updates correctly', () => {
-      expect(session(sessionObj, { type: 'UPDATE_SESSION', session:  newSessionObj }))
+      expect(currentSession(sessionObj, { type: 'UPDATE_SESSION', session:  newSessionObj }))
       .toEqual(newSessionObj);
     });
+  });
+});
+
+describe('sets up the session form tabs', () => {
+  it('should initially be on SIGN_UP', () => {
+    expect(tab(undefined, {})).toEqual('SIGN_UP');
+  });
+
+  it('should switch tabs to provided string when CHANGE_SESSION_TAB comes in', () => {
+    const action = { type: 'CHANGE_SESSION_TAB', tab: 'LOG_IN' };
+    expect(tab(undefined, action)).toEqual('LOG_IN');
+  });
+
+  it('should immediatly exit out of reducer if state === new tab', () => {
+    const action = { type: 'CHANGE_SESSION_TAB', tab: 'SIGN_UP' };
+    expect(tab('SIGN_UP', action)).toEqual('SIGN_UP');
+  });
+});
+
+describe('sets up the session form entered email', () => {
+  it('should be initiall null', () => {
+    expect(enteredEmail(undefined, {})).toBeNull();
+  });
+
+  it('should update the email with the provided string', () => {
+    const action = { type: 'UPDATE_EMAIL', string: 'monstro@underbelly.is' };
+    expect(enteredEmail(undefined, action)).toEqual('monstro@underbelly.is');
+  });
+
+  it('should return to null if string is blank', () => {
+    const action = { type: 'UPDATE_EMAIL', string: '' };
+    expect(enteredEmail('monstro@underbelly.is', action)).toBeNull();
   });
 });
