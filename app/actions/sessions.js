@@ -1,7 +1,7 @@
 'use strict';
 
 import { loginUser } from '../utils/api';
-import { validateEmail, validatePassword } from '../utils/validations';
+import { validateCredentials } from '../utils/validations';
 import { switchTab } from './navigation';
 
 import {
@@ -10,22 +10,20 @@ import {
   createUser,
 } from './user';
 
-export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool });
+export const receiveSession = (session, bool) => ({ type: 'SET_SESSION', session, bool });
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const toggleError = bool => ({ type: 'TOGGLE_ERROR', bool });
 export const updateSessionEmail = string => ({ type: 'UPDATE_EMAIL', string });
 
 export const destroySession = _ => (dispatch) => {
   dispatch(switchTab('SHOPPING_TAB'));
-  dispatch(setSession(null, false));
+  dispatch(receiveSession(null, false));
   dispatch(removeCurrentUser());
 };
 
-export const createSession = (sess) => (dispatch, getState) => {
-  let { headers } = sess;
+export const createSession = ({ headers }) => dispatch => {
   let { map } = headers;
-
-  let session = getState().session.session;
+  let session = {};
 
   if (map.hasOwnProperty('client')) {
     session = {
@@ -37,22 +35,18 @@ export const createSession = (sess) => (dispatch, getState) => {
     };
   }
 
-  dispatch(setSession(session, true));
-  return sess.json();
+  return dispatch(receiveSession(session, true));
 };
 
 export const submitForm = password => (dispatch, getState) => {
-  let { session } = getState();
+  let { enteredEmail, tab } = getState().session;
   let credentials = {
-    email: session.username,
+    email: enteredEmail,
     password,
   };
 
-  let emailPresentAndValid = credentials.email !== '' && validateEmail(credentials.email);
-  let passwordPresentAndValid = credentials.password !== '' && validatePassword(credentials.password);
-
-  if (emailPresentAndValid && passwordPresentAndValid) {
-    if (session.currentTab === session.tabs.SIGN_UP) {
+  if (validateCredentials(credentials)) {
+    if (tab === 'SIGN_UP') {
       dispatch(createUser(credentials));
     } else {
       loginUser(credentials)
@@ -62,13 +56,6 @@ export const submitForm = password => (dispatch, getState) => {
         }
 
         return dispatch(createSession(res));
-      })
-      .then(res => {
-        if (res.hasOwnProperty('data')) {
-          dispatch(loadCurrentUser(res));
-        } else {
-          return dispatch(toggleError(true));
-        }
       })
       .catch(e => e);
     }

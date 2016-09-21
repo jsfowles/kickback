@@ -16,7 +16,7 @@ const sessionObj = {
 
 describe('session reducer', () => {
   it('is empty by default', () => {
-    expect(currentSession(undefined, {})).toEqual({});
+    expect(currentSession(undefined, {})).toBeNull();
   });
 
   it('sets session when logging in', () => {
@@ -26,7 +26,7 @@ describe('session reducer', () => {
 
   it('removes the session when logging out', () => {
     expect(currentSession(sessionObj, { type: 'DESTROY_SESSION' }))
-    .toEqual({});
+    .toBeNull();
   });
 
   describe('updates session when needed (typically when a post request comes back)', () => {

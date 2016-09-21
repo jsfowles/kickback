@@ -32,7 +32,6 @@ export const loadCurrentUser = currentUser => {
     dispatch(toggleFetching(true));
 
     getCurrentUser(`${URL}/${currentUser.id}`, session.session)
-    .then(res => dispatch(createSession(res)))
     .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })));
   };
 };
@@ -51,31 +50,29 @@ export const loadMoreCurrentUser = _ => {
   };
 };
 
-export const createUser = credentials => {
-  return (dispatch) => {
-    Alert.alert(
-      'Is this correct?',
-      `You entered your email as: ${credentials.email}`,
-      [
-        { text: 'Cancel', onPress: () => dispatch(updateUsername('')) },
-        { text: 'Ok', onPress: () => {
-          createUserAPI(credentials)
-          .then(res => {
-            if (res.status === 200) {
-              return dispatch(createSession(res));
-            }
+export const createUser = credentials => (dispatch) => {
+  Alert.alert(
+    'Is this correct?',
+    `You entered your email as: ${credentials.email}`,
+    [
+      { text: 'Cancel', onPress: () => dispatch(updateUsername('')) },
+      { text: 'Ok', onPress: () => {
+        createUserAPI(credentials)
+        .then(res => {
+          if (res.status === 200) {
+            return dispatch(createSession(res));
+          }
 
-            return { error: 'Email address already taken.' };
-          })
-          .then(res => {
-            if (res.status === 'success') {
-              dispatch(loadCurrentUser(res));
-            }
-          });
-        }},
-      ]
-    );
-  };
+          return { error: 'Email address already taken.' };
+        })
+        .then(res => {
+          if (res.status === 'success') {
+            dispatch(loadCurrentUser(res));
+          }
+        });
+      }},
+    ]
+  );
 };
 
 export const updateUser = _ => {
@@ -85,7 +82,6 @@ export const updateUser = _ => {
     updateUserAPI(session)
     .then(res => {
       if (res.status === 200) {
-        return dispatch(createSession(res));
       }
     })
     .then(res => {

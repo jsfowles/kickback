@@ -5,6 +5,10 @@ import * as actions from '../sessions';
 jest.autoMockOff();
 
 describe('sessions actions', () => {
+  describe('receiveSession', () => {
+
+  });
+
   describe('changeSessionTab', () => {
     it('should create an action to switch the tab', () => {
       const tab = 'SIGN_UP';

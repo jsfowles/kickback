@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-export const currentSession = (state = {}, action) => {
+export const currentSession = (state = null, action) => {
   switch (action.type) {
     case 'CREATE_SESSION':
       return action.session;
     case 'UPDATE_SESSION':
       return action.session;
     case 'DESTROY_SESSION':
-      return {};
+      return null;
     default:
       return state;
   }
