@@ -34,10 +34,6 @@ class Profile extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Navigator
-          initialRoute={{}}
-          renderScene={ this.renderScene }
-        />
       </View>
     );
   }

@@ -1,12 +1,45 @@
 /* eslint-env node, jest */
 'use strict';
+
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
 import * as actions from '../sessions';
 
-jest.autoMockOff();
+const validSessionObject = {
+  'uid': 'hello@underbelly.is',
+  'client': 'esEn6p0ftGs7v9_6pvxViw',
+  'expiry': 1474392944,
+  'token-type': 'Bearer',
+  'access-token': '88pu9HS1PVutlU59mH_kpw',
+};
+
+const mockSessionResponse = { headers: { map: {
+  'uid': [ 'hello@underbelly.is' ],
+  'client': [ 'esEn6p0ftGs7v9_6pvxViw' ],
+  'expiry': [ 1474392944 ],
+  'token-type': [ 'Bearer' ],
+  'access-token': [ '88pu9HS1PVutlU59mH_kpw' ],
+}}};
 
 describe('sessions actions', () => {
-  describe('receiveSession', () => {
+  describe('fetchRequestFailure', () => {
+    it('should create a action with a default message', () => {
+      const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid username or password' };
+      expect(actions.fetchRequestFailure()).toEqual(expectedAction);
+    });
 
+    it('should create a action with a custom message', () => {
+      const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Custom message!' };
+      expect(actions.fetchRequestFailure('Custom message!')).toEqual(expectedAction);
+    });
+  });
+
+  describe('fetchSessionSuccess', () => {
+    it('should create a action with a valid session', () => {
+      const expectedAction = { type: 'FETCH_SESSION_SUCCESS', session: validSessionObject };
+      expect(actions.fetchSessionSuccess(mockSessionResponse)).toEqual(expectedAction);
+    });
   });
 
   describe('changeSessionTab', () => {

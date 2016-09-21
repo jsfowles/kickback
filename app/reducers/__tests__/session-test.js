@@ -2,7 +2,7 @@
 'use strict';
 
 import 'react-native';
-import { currentSession, tab, enteredEmail } from '../session';
+import { session, tab, enteredEmail } from '../session';
 
 jest.autoMockOff();
 
@@ -15,33 +15,13 @@ const sessionObj = {
 };
 
 describe('session reducer', () => {
-  it('is empty by default', () => {
-    expect(currentSession(undefined, {})).toBeNull();
+  it('should initially be null', () => {
+    expect(session(undefined, {})).toBeNull();
   });
 
-  it('sets session when logging in', () => {
-    expect(currentSession(undefined, { type: 'CREATE_SESSION', session: sessionObj }))
-    .toEqual(sessionObj);
-  });
-
-  it('removes the session when logging out', () => {
-    expect(currentSession(sessionObj, { type: 'DESTROY_SESSION' }))
-    .toBeNull();
-  });
-
-  describe('updates session when needed (typically when a post request comes back)', () => {
-    const newSessionObj = {
-      'uid': 'hello@underbelly.is',
-      'client': 'qQfDFKRfyQCDwR-hQY9vxQ',
-      'expiry': 1474394035,
-      'token-type': 'Bearer',
-      'access-token': 'iZC8bY3EbxpCMo5OjLNWFQ',
-    };
-
-    it('updates correctly', () => {
-      expect(currentSession(sessionObj, { type: 'UPDATE_SESSION', session:  newSessionObj }))
-      .toEqual(newSessionObj);
-    });
+  it('should set the session when a session successfully comes through', () => {
+    const action = { type: 'FETCH_SESSION_SUCCESS', session: sessionObj };
+    expect(session(undefined, action)).toEqual(sessionObj);
   });
 });
 

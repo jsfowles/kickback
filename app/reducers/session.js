@@ -1,16 +1,15 @@
 import { combineReducers } from 'redux';
 
-export const currentSession = (state = null, action) => {
+export const session = (state = null, action) => {
   switch (action.type) {
-    case 'CREATE_SESSION':
+    case 'FETCH_SESSION_SUCCESS':
       return action.session;
-    case 'UPDATE_SESSION':
-      return action.session;
-    case 'DESTROY_SESSION':
-      return null;
-    default:
-      return state;
+    default: return state;
   }
+};
+
+export const isFetching = (state = false) => {
+  return state;
 };
 
 export const tab = (state = 'SIGN_UP', action) => {
@@ -34,7 +33,8 @@ export const enteredEmail = (state = null, action) => {
 };
 
 export default combineReducers({
-  currentSession,
+  session,
+  isFetching,
   tab,
   enteredEmail,
 });

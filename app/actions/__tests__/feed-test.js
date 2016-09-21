@@ -10,8 +10,6 @@ import * as actions from '../feed';
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
-jest.autoMockOff();
-
 describe('feed actions', () => {
   describe('fetchFeed', () => {
     afterEach(() => {
@@ -19,9 +17,9 @@ describe('feed actions', () => {
     });
 
     it('creates the correct actions when requesting the feed', () => {
-      nock('http://example.dev')
+      nock('http://www.kbck.me')
       .get('/api/v1/product_feeds')
-      .reply(200, { body: { products: [{}]}})
+      .reply(200, { body: { products: [{}]}});
 
       // TODO: This is actually broken, have a issue on stackoverflow. It should be returning a body.
       //       http://stackoverflow.com/questions/39604721/jest-nock-only-returning-null
@@ -32,8 +30,7 @@ describe('feed actions', () => {
 
       const store = mockStore({ products: [] });
 
-      return store.dispatch(actions.fetchFeed())
-      .then(() => {
+      return store.dispatch(actions.fetchFeed()).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });

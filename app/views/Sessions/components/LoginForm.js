@@ -14,7 +14,7 @@ import {
 
 import {
   changeSessionTab,
-  submitForm,
+  fetchSession,
   updateSessionEmail,
 } from '../../../actions';
 
@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
     changeSessionTab: React.PropTypes.func.isRequired,
     tabs: React.PropTypes.object.isRequired,
     tabPosition: React.PropTypes.node,
-    submitForm: React.PropTypes.func.isRequired,
+    fetchSession: React.PropTypes.func.isRequired,
     updateSessionEmail: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
   };
@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
       changeSessionTab,
       tabs,
       tabPosition,
-      submitForm,
+      fetchSession,
       email,
       updateSessionEmail,
     } = this.props;
@@ -94,7 +94,7 @@ class LoginForm extends React.Component {
           textAlign={ 'center' }
           returnKeyType={ 'go' }
           ref={ 'password' }
-          onSubmitEditing={ submitForm }
+          onSubmitEditing={ fetchSession }
         />
       </View>
     );
@@ -158,7 +158,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = dispatch => ({
   changeSessionTab: tab => dispatch(changeSessionTab(tab)),
-  submitForm: e => dispatch(submitForm(e.nativeEvent.text)),
+  fetchSession: e => dispatch(fetchSession(e.nativeEvent.text)),
   updateSessionEmail: v => dispatch(updateSessionEmail(v)),
 });
 
