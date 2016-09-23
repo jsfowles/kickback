@@ -12,23 +12,23 @@ jest.autoMockOff();
 
 describe('tab actions', () => {
   describe('onTabClick', () => {
-    it('it should dispatch PUSH_ROUTE if no current user and id !== 0', () => {
+    it('it should PUSH_ROUTE to the login form(session) if there is no current session and they try to view profile', () => {
       const expectedAction = { type: 'PUSH_ROUTE', route: { key: 'session' }, key: 'global' };
-      const store = mockStore({ session: null });
+      const store = mockStore({ session: { session: null }});
 
       return expect(store.dispatch(actions.onTabClick(1))).toEqual(expectedAction);
     });
 
-    it('it should dispatch CHANGE_TAB if no current user and id === 0', () => {
+    it('should fire CHANGE_TAB if the tab === current tab and session is null, but the tab stays the same', () => {
       const expectedAction = { type: 'CHANGE_TAB', index: 0 };
-      const store = mockStore({ session: null });
+      const store = mockStore({ session: { session: null }});
 
       return expect(store.dispatch(actions.onTabClick(0))).toEqual(expectedAction);
     });
 
-    it('should dispatch CHANGE_TAB if there is a current user and id !== 0', () => {
+    it('should dispatch CHANGE_TAB if there is a session', () => {
       const expectedAction = { type: 'CHANGE_TAB', index: 1 };
-      const store = mockStore({ session: {}});
+      const store = mockStore({ session: { session: {}}});
 
       return expect(store.dispatch(actions.onTabClick(1))).toEqual(expectedAction);
     });

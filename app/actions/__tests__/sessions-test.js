@@ -1,9 +1,6 @@
 /* eslint-env node, jest */
 'use strict';
 
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-
 import * as actions from '../sessions';
 
 const validSessionObject = {
@@ -22,41 +19,47 @@ const mockSessionResponse = { headers: { map: {
   'access-token': [ '88pu9HS1PVutlU59mH_kpw' ],
 }}};
 
-describe('sessions actions', () => {
-  describe('fetchRequestFailure', () => {
-    it('should create a action with a default message', () => {
-      const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid username or password' };
-      expect(actions.fetchRequestFailure()).toEqual(expectedAction);
-    });
-
-    it('should create a action with a custom message', () => {
-      const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Custom message!' };
-      expect(actions.fetchRequestFailure('Custom message!')).toEqual(expectedAction);
-    });
+describe('fetchRequestFailure', () => {
+  it('should create a action with a default message', () => {
+    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid username or password' };
+    expect(actions.fetchRequestFailure()).toEqual(expectedAction);
   });
 
-  describe('fetchSessionSuccess', () => {
-    it('should create a action with a valid session', () => {
-      const expectedAction = { type: 'FETCH_SESSION_SUCCESS', session: validSessionObject };
-      expect(actions.fetchSessionSuccess(mockSessionResponse)).toEqual(expectedAction);
-    });
+  it('should create a action with a custom message', () => {
+    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Custom message!' };
+    expect(actions.fetchRequestFailure('Custom message!')).toEqual(expectedAction);
   });
+});
 
-  describe('changeSessionTab', () => {
-    it('should create an action to switch the tab', () => {
-      const tab = 'SIGN_UP';
-      const expectedAction = { type: 'CHANGE_SESSION_TAB', tab: 'SIGN_UP' };
-
-      expect(actions.changeSessionTab(tab)).toEqual(expectedAction);
-    });
+describe('fetchSessionSuccess', () => {
+  it('should create a action with a valid session', () => {
+    const expectedAction = { type: 'FETCH_SESSION_SUCCESS', session: validSessionObject };
+    expect(actions.fetchSessionSuccess(mockSessionResponse)).toEqual(expectedAction);
   });
+});
 
-  describe('updateSessionEmail', () => {
-    it('should create an action to update the email with passed in email', () => {
-      const string = 'monstro@underbelly.is';
-      const expectedAction = { type: 'UPDATE_EMAIL', string: 'monstro@underbelly.is' };
+describe('changeSessionTab', () => {
+  it('should create an action to switch the tab', () => {
+    const tab = 'SIGN_UP';
+    const expectedAction = { type: 'CHANGE_SESSION_TAB', tab: 'SIGN_UP' };
 
-      expect(actions.updateSessionEmail(string)).toEqual(expectedAction);
-    });
+    expect(actions.changeSessionTab(tab)).toEqual(expectedAction);
+  });
+});
+
+describe('updateSessionEmail', () => {
+  it('should create an action to update the email with passed in email', () => {
+    const string = 'monstro@underbelly.is';
+    const expectedAction = { type: 'UPDATE_EMAIL', string: 'monstro@underbelly.is' };
+
+    expect(actions.updateSessionEmail(string)).toEqual(expectedAction);
+  });
+});
+
+describe('destroySession', () => {
+  const expectedAction = { type: 'DESTROY_SESSION' };
+
+  it('should create an action to destroy the session(logout)', () => {
+    expect(actions.destroySession()).toEqual(expectedAction);
   });
 });

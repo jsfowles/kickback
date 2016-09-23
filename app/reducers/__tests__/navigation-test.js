@@ -17,6 +17,11 @@ const initialState = {
     key: 'shopping',
     routes: [{ key: 'feed' }],
   },
+  profile: {
+    index: 0,
+    key: 'profile',
+    routes: [{ key: 'user' }],
+  },
 };
 
 describe('navigation reducer', () => {

@@ -5,7 +5,6 @@ import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
 import Products from '../Products';
-import ParallaxContent from './components/ParallaxContent';
 
 import {
   loadMoreCurrentUser,
@@ -15,15 +14,10 @@ import {
 } from '../../actions';
 
 class User extends React.Component {
-  loadMoreProducts = () => {
-    if (!this.props.nextPageUrl) { return; }
-    this.props.loadMoreProducts();
-  }
-
   render() {
     let rightItem = {
       icon: require('image!settings'),
-      onPress: () => this.props.navigator.push({ id: 1 }),
+      onPress: () => console.log('Navigate!'),
     };
 
     let headerHeight = 350;
@@ -38,7 +32,7 @@ class User extends React.Component {
       >
         <Products
           ref='products'
-          products={ this.props.user.sharedProducts }
+          products={[]}
           title='SHARED PRODUCTS'
           cardSize='small'
           headerHeight={ headerHeight }
@@ -46,7 +40,6 @@ class User extends React.Component {
           hasScrolled={ this.props.hasScrolled }
           scrollToTop={ this.props.scrollToTop }
           emptyListText="You haven't shared any products yet."
-          header={ <ParallaxContent user={ this.props.user } /> }
         />
       </Container>
     );
@@ -60,7 +53,6 @@ User.propTypes = {
   hasScrolled: React.PropTypes.bool,
   scrollToTop: React.PropTypes.func,
   setHasScrolled: React.PropTypes.func,
-  user: React.PropTypes.object.isRequired,
   navigator: React.PropTypes.shape({
     push: React.PropTypes.func.isRequired,
   }),
@@ -68,8 +60,6 @@ User.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  nextPageUrl: state.user.nextPageUrl,
-  hasScrolled: state.user.hasScrolled,
   tab: state.navigation.tab,
 });
 

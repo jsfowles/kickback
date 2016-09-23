@@ -21,10 +21,14 @@ const mockSessionResponse = { headers: { map: {
   'access-token': [ '88pu9HS1PVutlU59mH_kpw' ],
 }}};
 
-describe('Session tests', () => {
-  describe('formatSession', () => {
-    it('should correctly format the session when the correct params are passed in', () => {
-      expect(formatSession(mockSessionResponse)).toEqual(validSessionObject);
-    });
+const invalidMockSessionResponse = { headers: { map: {}}};
+
+describe('formatSession', () => {
+  it('should correctly format the session when the correct params are passed in', () => {
+    expect(formatSession(mockSessionResponse)).toEqual(validSessionObject);
+  });
+
+  it('should return null if the session is not valid', () => {
+    expect(formatSession(invalidMockSessionResponse)).toEqual(null);
   });
 });

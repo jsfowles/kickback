@@ -12,14 +12,12 @@ const {
   width: deviceWidth,
 } = Dimensions.get('window');
 
-const ParallaxContent = ({ user }) => (
+const ParallaxContent = () => (
   <View style={ styles.container }>
     <Image
       style={ styles.profileImage }
       source={{ uri: 'https://pbs.twimg.com/profile_images/2863061875/0e3b0a3a183cdbec6fb70948f4e53d2a.jpeg' }}
     />
-
-    <Text style={ styles.text }>{ user.currentUser && user.currentUser.data.email }</Text>
 
     <View style={ styles.iconsContainer }>
       <View style={ styles.iconGroup }>

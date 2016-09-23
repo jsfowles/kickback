@@ -10,6 +10,7 @@ import {
 import {
   fetchFeed,
   loadCurrentUser,
+  destroySession,
 } from '../actions';
 
 import Navigation from './Navigation';
@@ -34,12 +35,18 @@ class App extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
 
-    let { currentUser, fetchFeed, loadCurrentUser } = this.props;
+    let {
+      fetchFeed,
+      loadCurrentUser,
+      session,
+    } = this.props;
 
     fetchFeed();
+    console.log(session);
 
-    if (currentUser.id) {
-      loadCurrentUser(currentUser);
+    if (session) {
+      this.props.destroySession();
+      // loadCurrentUser(session);
     }
   }
 
@@ -88,8 +95,9 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.product.creatingRecommendation,
+  session: state.session.session,
   currentUser: state.currentUser,
   navigation: state.navigation.global,
 });
@@ -97,6 +105,7 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   fetchFeed: () => dispatch(fetchFeed()),
   loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
+  destroySession: _ => dispatch(destroySession()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

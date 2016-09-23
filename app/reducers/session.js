@@ -4,6 +4,8 @@ export const session = (state = null, action) => {
   switch (action.type) {
     case 'FETCH_SESSION_SUCCESS':
       return action.session;
+    case 'DESTROY_SESSION':
+      return null;
     default: return state;
   }
 };

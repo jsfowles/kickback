@@ -26,14 +26,12 @@ export const receiveCurrentUser = userData => ({ type: 'RECEIVE_CURRENT_USER', u
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 
-export const loadCurrentUser = currentUser => {
-  return (dispatch, getState) => {
-    let { session } = getState();
-    dispatch(toggleFetching(true));
+export const loadCurrentUser = session => dispatch => {
+  dispatch(toggleFetching(true));
 
-    getCurrentUser(`${URL}/${currentUser.id}`, session.session)
-    .then(res => dispatch(receiveCurrentUser({ ...res, currentUser })));
-  };
+  // How was I getting current user before?
+  // getCurrentUser(`${URL}/${currentUser.id}`, session)
+  // .then(res => console.log(res));
 };
 
 export const loadMoreCurrentUser = _ => {

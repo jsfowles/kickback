@@ -23,6 +23,11 @@ describe('session reducer', () => {
     const action = { type: 'FETCH_SESSION_SUCCESS', session: sessionObj };
     expect(session(undefined, action)).toEqual(sessionObj);
   });
+
+  it('should be able to destroy the session', () => {
+    const action = { type: 'DESTROY_SESSION' };
+    expect(session(sessionObj, action)).toEqual(null);
+  });
 });
 
 describe('sets up the session form tabs', () => {

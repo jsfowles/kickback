@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 
 import ProductCard from './components/CardContainer'
-import { makeStandard } from '../../utils/product'
 
 const defaultProps = {
   headerHeight: 0,

@@ -12,6 +12,7 @@ import {
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = string => ({ type: 'UPDATE_EMAIL', string });
 export const fetchSessionSuccess = res => ({ type: 'FETCH_SESSION_SUCCESS', session: formatSession(res) });
+export const destroySession = _ => ({ type: 'DESTROY_SESSION' });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
