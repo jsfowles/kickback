@@ -2,41 +2,28 @@
 'use strict';
 
 import 'react-native';
-import { currentUser } from '../user';
+import { user } from '../user';
 
 jest.autoMockOff();
 
-const currentUserObj = {
+const userObj = {
   username: 'riley@underbelly.is',
   pendingAmount: 1000,
   paidAmount: 1000,
 };
 
-describe('user reducer', () => {
-  it('is empty by default', () => {
-    expect(currentUser(undefined, {})).toEqual({});
+describe('user', () => {
+  it('should initially be null', () => {
+    expect(user(undefined, {})).toBeNull();
   });
 
-  it('sets the user when logging in', () => {
-    expect(currentUser(undefined, { type: 'CREATE_CURRENT_USER', currentUser: currentUserObj }))
-    .toEqual(currentUserObj);
+  it('should add the user to the reducer', () => {
+    const action = { type: 'RECEIVE_CURRENT_USER', user: userObj };
+    expect(user(undefined, action)).toEqual(userObj);
   });
 
-  it('removes the user when logging out', () => {
-    expect(currentUser(currentUserObj, { type: 'DESTROY_CURRENT_USER' }))
-    .toEqual({});
-  });
-
-  describe('updates currentUser when needed (this would be when they update username, or email)', () => {
-    const newCurrentUser = {
-      username: 'Riley Bracken',
-      pendingAmount: 1000,
-      paidAmount: 1000,
-    };
-
-    it('updates correctly', () => {
-      expect(currentUser(currentUserObj, { type: 'UPDATE_CURRENT_USER', currentUser:  newCurrentUser }))
-      .toEqual(newCurrentUser);
-    });
+  it('should set the user to null when DESTROY_SESSION is called', () => {
+    const action = { type: 'DESTROY_SESSION' };
+    expect(user(userObj, action)).toBeNull();
   });
 });

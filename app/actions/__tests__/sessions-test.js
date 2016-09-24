@@ -49,10 +49,10 @@ describe('changeSessionTab', () => {
 
 describe('updateSessionEmail', () => {
   it('should create an action to update the email with passed in email', () => {
-    const string = 'monstro@underbelly.is';
-    const expectedAction = { type: 'UPDATE_EMAIL', string: 'monstro@underbelly.is' };
+    const email = 'monstro@underbelly.is';
+    const expectedAction = { type: 'UPDATE_EMAIL', email: 'monstro@underbelly.is' };
 
-    expect(actions.updateSessionEmail(string)).toEqual(expectedAction);
+    expect(actions.updateSessionEmail(email)).toEqual(expectedAction);
   });
 });
 

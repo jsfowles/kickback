@@ -41,7 +41,9 @@ export const getProducts = (searchTerm) => {
   .catch(_ => null);
 };
 
-export const getCurrentUser = (url, session) => {
+export const getUsersProducts = (id, session) => {
+  let url = `${URL}/users/${id}/products`;
+
   const headers = {
     'Content-Type': 'application/json',
     ...session,
@@ -51,7 +53,7 @@ export const getCurrentUser = (url, session) => {
     method: 'GET',
     headers: headers,
   })
-  .catch(_ => null);
+  .then(res => res.json());
 };
 
 export const loginUser = (credentials) => {

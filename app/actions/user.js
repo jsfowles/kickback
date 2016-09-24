@@ -1,38 +1,19 @@
 'use strict';
-import {
-  serverUrl,
-  apiVersion,
-} from '../env';
-
-const URL = `${serverUrl}/api/${apiVersion}/users`;
 
 import {
-  getCurrentUser,
   createUser as createUserAPI,
   updateUser as updateUserAPI,
 } from '../utils/api';
 
-import {
-  Alert,
-} from 'react-native';
+import { Alert } from 'react-native';
 
-import {
-  createSession,
-  updateUsername,
-} from './sessions';
+import { updateUsername } from './sessions';
+
+export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
-export const receiveCurrentUser = userData => ({ type: 'RECEIVE_CURRENT_USER', userData });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
-
-export const loadCurrentUser = session => dispatch => {
-  dispatch(toggleFetching(true));
-
-  // How was I getting current user before?
-  // getCurrentUser(`${URL}/${currentUser.id}`, session)
-  // .then(res => console.log(res));
-};
 
 export const loadMoreCurrentUser = _ => {
   return (dispatch, getState) => {

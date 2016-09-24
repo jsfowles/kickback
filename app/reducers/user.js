@@ -1,14 +1,16 @@
 'use strict';
+import { combineReducers } from 'redux';
 
-export const currentUser = (state = {}, action) => {
+export const user = (state = null, action) => {
   switch (action.type) {
-  case 'DESTROY_CURRENT_USER':
-    return {};
-  case 'CREATE_CURRENT_USER':
-    return action.currentUser;
-  case 'UPDATE_CURRENT_USER':
-    return action.currentUser;
-  default:
-    return state;
+    case 'RECEIVE_CURRENT_USER':
+      return action.user;
+    case 'DESTROY_SESSION':
+      return null;
+    default: return state;
   }
 };
+
+export default combineReducers({
+  user,
+});

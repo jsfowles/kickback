@@ -9,7 +9,7 @@ import {
 
 import {
   fetchFeed,
-  loadCurrentUser,
+  fetchUserProducts,
   destroySession,
 } from '../actions';
 
@@ -28,26 +28,18 @@ const scenes = {
  *               the user is logged in on the featured products tab.
  */
 class App extends Component {
-  /**
-   * When component mounts update the AppState
-   * @returns { void }
-   */
+  static propTypes = {
+    navigation: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object,
+    session: React.PropTypes.object,
+    fetchFeed: React.PropTypes.func.isRequired,
+    fetchUserProducts: React.PropTypes.func.isRequired,
+    destroySession: React.PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-
-    let {
-      fetchFeed,
-      loadCurrentUser,
-      session,
-    } = this.props;
-
-    fetchFeed();
-    console.log(session);
-
-    if (session) {
-      this.props.destroySession();
-      // loadCurrentUser(session);
-    }
+    return this.loadApp();
   }
 
   /**
@@ -59,14 +51,30 @@ class App extends Component {
   }
 
   /**
+   * @returns { destroySession }
+   *
+   * Lets load the app.
+   * When component mounts or is set to active update the AppState,
+   * if there is a session && user then lets load the user, else
+   * make sure there is no session or use by calling destroySession.
+   */
+  loadApp() {
+    // TODO: I should validate tokens before fetching user stuff.
+    let { fetchFeed, fetchUserProducts, session, destroySession, user } = this.props;
+
+    fetchFeed();
+
+    if (session && user) { return fetchUserProducts(); }
+    return destroySession();
+  }
+
+  /**
    * Handle the app state change
    * @todo: when app is active sync all the things
    * @returns { void }
    */
   handleAppStateChange = () => {
-    if (AppState.currentState === 'active') {
-      this.props.fetchFeed();
-    }
+    this.loadApp();
   }
 
   render() {
@@ -84,13 +92,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  navigation: React.PropTypes.object.isRequired,
-  currentUser: React.PropTypes.object.isRequired,
-  fetchFeed: React.PropTypes.func.isRequired,
-  loadCurrentUser: React.PropTypes.func.isRequired,
-};
-
 const styles = StyleSheet.create({
   container: { flex: 1 },
 });
@@ -98,13 +99,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   loading: state.product.creatingRecommendation,
   session: state.session.session,
+  user: state.user.user,
   currentUser: state.currentUser,
   navigation: state.navigation.global,
 });
 
 const mapActionsToProps = (dispatch) => ({
   fetchFeed: () => dispatch(fetchFeed()),
-  loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
+  fetchUserProducts: (user) => dispatch(fetchUserProducts(user)),
   destroySession: _ => dispatch(destroySession()),
 });
 
