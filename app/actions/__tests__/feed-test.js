@@ -3,36 +3,30 @@
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import nock from 'nock';
 
 import * as actions from '../feed';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
-describe('feed actions', () => {
-  describe('fetchFeed', () => {
-    afterEach(() => {
-      nock.cleanAll();
-    });
+jest.mock('../../utils/request');
 
-    it('creates the correct actions when requesting the feed', () => {
-      nock('http://www.kbck.me')
-      .get('/api/v1/product_feeds')
-      .reply(200, { body: { products: [{}]}});
+describe('fetchFeed', () => {
+  it('creates the correct actions when requesting the feed', () => {
+    const products =  [
+      { id: 103, title: 'Beal Tiger Unicore Dry Cover Climbing Rope - 10mm' },
+      { id: 86, title: 'Beal Joker Unicore Dry Cover Climbing Rope - 9.1mm' },
+    ];
 
-      // TODO: This is actually broken, have a issue on stackoverflow. It should be returning a body.
-      //       http://stackoverflow.com/questions/39604721/jest-nock-only-returning-null
-      const expectedActions = [
-        { type: 'FETCH_PRODUCT_FEED_REQUEST' },
-        { type: 'FETCH_PRODUCT_FEED_SUCCESS', res: null},
-      ];
+    const expectedActions = [
+      { type: 'FETCH_PRODUCT_FEED_REQUEST' },
+      { type: 'FETCH_PRODUCT_FEED_SUCCESS', res: products},
+    ];
 
-      const store = mockStore({ products: [] });
+    const store = mockStore({ products: [] });
 
-      return store.dispatch(actions.fetchFeed()).then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
-      });
+    return store.dispatch(actions.fetchFeed()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 });
