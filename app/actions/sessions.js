@@ -1,5 +1,6 @@
 'use strict';
 
+import Request from '../utils/request';
 import { loginUser } from '../utils/api';
 import { validateCredentials } from '../utils/validations';
 import { formatSession } from '../utils/session';
@@ -17,14 +18,27 @@ export const destroySession = _ => ({ type: 'DESTROY_SESSION' });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
-  message: msg || 'Invalid username or password',
+  message: msg || 'Invalid email or password',
 });
 
 export const fetchSession = password => (dispatch, getState) => {
   let { enteredEmail, tab } = getState().session;
+
   let creds = {
     email: enteredEmail || '',
     password,
+  };
+
+  let requestObj = {
+    method: 'POST',
+    path: '/auth/sign_in',
+    body: creds,
+    requestCallback: (res) => {
+      if (res.status === 401) { return dispatch(fetchRequestFailure()); }
+
+      dispatch(pop('global'));
+      dispatch(fetchSessionSuccess(res));
+    },
   };
 
   if (!validateCredentials(creds)) { return dispatch(fetchRequestFailure()); }
@@ -32,14 +46,6 @@ export const fetchSession = password => (dispatch, getState) => {
 
   dispatch({ type: 'FETCH_SESSION_REQUEST' });
 
-  return loginUser(creds)
-  .then(res => {
-    if (res.status === 401) { return dispatch(fetchRequestFailure()); }
-
-    dispatch(pop('global'));
-    dispatch(fetchSessionSuccess(res));
-
-    return res.json();
-  })
+  return new Request(requestObj)
   .then(res => dispatch(fetchUserSuccess(res.data)));
 };

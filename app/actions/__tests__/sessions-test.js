@@ -1,7 +1,13 @@
 /* eslint-env node, jest */
 'use strict';
 
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import * as actions from '../sessions';
+import { createUser } from '../user';
+
+const middlewares = [ thunk ];
+const mockStore = configureMockStore(middlewares);
 
 const validSessionObject = {
   'uid': 'hello@underbelly.is',
@@ -19,9 +25,31 @@ const mockSessionResponse = { headers: { map: {
   'access-token': [ '88pu9HS1PVutlU59mH_kpw' ],
 }}};
 
+describe('fetchSession', () => {
+  it('should dispatch action FETCH_REQUEST_FAILURE if password isnt long enough', () => {
+    const store = mockStore({ session: { enteredEmail: 'monstro@underbelly.is' }});
+    const action = store.dispatch(actions.fetchSession('123'));
+    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid email or password' };
+
+    expect(action).toEqual(expectedAction);
+  });
+
+  it('should dispatch action FETCH_REQUEST_FAILURE if email isnt formatted correct', () => {
+    const store = mockStore({ session: { enteredEmail: 'monstro' }});
+    const action = store.dispatch(actions.fetchSession('password'));
+    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid email or password' };
+
+    expect(action).toEqual(expectedAction);
+  });
+
+  it('should dispatch action CREATE_USER if we are on SIGN_UP tab', () => {
+    // TODO
+  });
+});
+
 describe('fetchRequestFailure', () => {
   it('should create a action with a default message', () => {
-    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid username or password' };
+    const expectedAction = { type: 'FETCH_REQUEST_FAILURE', message: 'Invalid email or password' };
     expect(actions.fetchRequestFailure()).toEqual(expectedAction);
   });
 
