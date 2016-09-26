@@ -10,7 +10,11 @@ const request = requestObj => {
   switch (requestObj.path) {
     case 'product_feeds':
       return new Promise(resolve => {
-        process.nextTick(_ => resolve(products));
+        process.nextTick(_ => resolve({ products: products }));
+      });
+    case '/users/1/products':
+      return new Promise(resolve => {
+        process.nextTick(_ => resolve({ products: products }));
       });
     default: return 'should do a error';
   }

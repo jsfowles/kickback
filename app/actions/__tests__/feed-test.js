@@ -13,14 +13,14 @@ jest.mock('../../utils/request');
 
 describe('fetchFeed', () => {
   it('creates the correct actions when requesting the feed', () => {
-    const products =  [
+    const products = [
       { id: 103, title: 'Beal Tiger Unicore Dry Cover Climbing Rope - 10mm' },
       { id: 86, title: 'Beal Joker Unicore Dry Cover Climbing Rope - 9.1mm' },
     ];
 
     const expectedActions = [
       { type: 'FETCH_PRODUCT_FEED_REQUEST' },
-      { type: 'FETCH_PRODUCT_FEED_SUCCESS', res: products},
+      { type: 'FETCH_PRODUCT_FEED_SUCCESS', products: products },
     ];
 
     const store = mockStore({ products: [] });

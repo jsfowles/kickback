@@ -33,32 +33,6 @@ export const getProducts = (searchTerm) => {
   .catch(_ => null);
 };
 
-export const getUsersProducts = (id, session) => {
-  let url = `${URL}/users/${id}/products`;
-
-  const headers = {
-    'Content-Type': 'application/json',
-    ...session,
-  };
-
-  return fetch(url, {
-    method: 'GET',
-    headers: headers,
-  })
-  .then(res => res.json());
-};
-
-export const loginUser = (credentials) => {
-  let url = `${URL}/auth/sign_in`;
-
-  return fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(credentials),
-  })
-  .catch(_ => null);
-};
-
 export const createUser = credentials => {
   let url = `${URL}/auth`;
 

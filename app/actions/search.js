@@ -11,7 +11,7 @@ export const fetchSearch = searchTerm => (dispatch) => {
   dispatch(push({ key: 'search' }, 'shopping'));
 
   return getProducts(searchTerm).then(
-    res => dispatch({ type: 'FETCH_SEARCH_SUCCESS', res: { products: res }}),
+    res => dispatch({ type: 'FETCH_SEARCH_SUCCESS', products: res }),
     err => dispatch({ type: 'FETCH_PRODUCT_FEED_FAILURE', err }),
   );
 };

@@ -1,8 +1,6 @@
 'use strict';
 
-import {
-  getUsersProducts,
-} from '../utils/api';
+import Request from '../utils/request';
 
 export const fetchUserProductsSuccess = (nextPage, products) => ({
   type: 'FETCH_USER_PRODUCTS_SUCCESS',
@@ -13,13 +11,17 @@ export const fetchUserProductsSuccess = (nextPage, products) => ({
 export const fetchUserProducts = () => (dispatch, getState) => {
   let { user } = getState().user;
   let { session } = getState().session;
+  let requestObj = {
+    path: `/users/${user.id}/products`,
+    method: 'GET',
+    headers: { ...session },
+  };
 
   dispatch({ type: 'FETCH_USER_PRODUCTS_REQUEST' });
 
-  return getUsersProducts(user.id, session)
-  .then(
-    json => dispatch(fetchUserProductsSuccess({ type: 'FETCH_USER_PRODUCTS_SUCCESS', ...json })),
-    err => dispatch({ type: 'FETCH_USER_PRODUCTS_ERROR' }),
-  );
+  return new Request(requestObj)
+  .then(res => (
+    dispatch(fetchUserProductsSuccess(res.nextPage, res.products))
+  ));
 };
 

@@ -32,7 +32,7 @@ describe('products', () => {
   describe('successfull request', () => {
     let action = {
       type: 'FETCH_SEARCH_SUCCESS',
-      res: { products: [{"title":"DeFeet Crash Test Dummy 5in Sock"}]},
+      products: [{"title":"DeFeet Crash Test Dummy 5in Sock"}],
     };
 
     /**
