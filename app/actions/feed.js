@@ -1,19 +1,16 @@
-'use strict'
-import {
-  serverUrl,
-  apiVersion,
-} from '../env';
+'use strict';
 
-import { getProductFeed } from '../utils/api';
-import request from '../utils/request';
+import Request from '../utils/request';
 
-const URL = `${serverUrl}/api/${apiVersion}/product_feeds`;
+export const fetchFeed = () => dispatch => {
+  const requestObj = {
+    path: `product_feeds`,
+    method: 'GET',
+  };
 
-export const fetchFeed = () => (dispatch) => {
   dispatch({ type: 'FETCH_PRODUCT_FEED_REQUEST' });
 
-  return request().then(
-    res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', res }),
-    err => dispatch({ type: 'FETCH_PRODUCT_FEED_FAILURE', err }),
+  return new Request(requestObj).then(
+    res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', res })
   );
 };

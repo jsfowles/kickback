@@ -5,14 +5,6 @@ import {
 
 const URL = `${serverUrl}/api/${apiVersion}`;
 
-export const getProductFeed = (url) => {
-  return fetch(url, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  }).then((res) => res.json())
-  .catch(_ => null);
-};
-
 export const createLink = (product, user) => {
   let url = `${URL}/links`;
   return fetch(url, {

@@ -18,7 +18,7 @@ describe('user', () => {
   });
 
   it('should add the user to the reducer', () => {
-    const action = { type: 'RECEIVE_CURRENT_USER', user: userObj };
+    const action = { type: 'FETCH_USER_SUCCESS', user: userObj };
     expect(user(undefined, action)).toEqual(userObj);
   });
 

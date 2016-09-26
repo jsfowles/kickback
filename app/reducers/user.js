@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 export const user = (state = null, action) => {
   switch (action.type) {
-    case 'RECEIVE_CURRENT_USER':
+    case 'FETCH_USER_SUCCESS':
       return action.user;
     case 'DESTROY_SESSION':
       return null;

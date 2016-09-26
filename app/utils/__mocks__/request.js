@@ -6,8 +6,14 @@ const products = [
   { id: 86, title: 'Beal Joker Unicore Dry Cover Climbing Rope - 9.1mm' },
 ];
 
-export default function request() {
-  return new Promise((resolve) => {
-    process.nextTick(_ => resolve(products));
-  });
-}
+const request = requestObj => {
+  switch (requestObj.path) {
+    case 'product_feeds':
+      return new Promise(resolve => {
+        process.nextTick(_ => resolve(products));
+      });
+    default: return 'should do a error';
+  }
+};
+
+export default request;
