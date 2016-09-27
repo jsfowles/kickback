@@ -14,7 +14,7 @@ export const fetchUserProducts = () => (dispatch, getState) => {
   let requestObj = {
     path: `/users/${user.id}/products`,
     method: 'GET',
-    headers: { ...session },
+    headers: session,
   };
 
   dispatch({ type: 'FETCH_USER_PRODUCTS_REQUEST' });

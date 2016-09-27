@@ -6,7 +6,19 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import ParallaxBackground from './ParallaxBackground';
+
 class Container extends React.Component {
+  static propTypes = {
+    headerHeight: React.PropTypes.number,
+    style: React.PropTypes.number,
+    children: React.PropTypes.node,
+  };
+
+  static defaultProps = {
+    headerHeight: 0,
+  };
+
   renderContent() {
     const { children } = this.props;
     return React.Children.map(children, (child, _) => {
@@ -17,20 +29,21 @@ class Container extends React.Component {
   }
 
   render() {
-    const { style } = this.props;
+    const { style, headerHeight } = this.props;
 
     return (
       <View style={[ styles.container, style ]}>
+        <View style={ styles.headerWrapper }>
+          <ParallaxBackground
+            height={ headerHeight }
+          />
+        </View>
+
         { this.renderContent() }
       </View>
     );
   }
 }
-
-Container.propTypes = {
-  style: React.PropTypes.number,
-  children: React.PropTypes.node,
-};
 
 const styles = StyleSheet.create({
   container: {

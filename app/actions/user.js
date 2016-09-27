@@ -5,15 +5,29 @@ import {
   updateUser as updateUserAPI,
 } from '../utils/api';
 
+import Request from '../utils/request';
 import { Alert } from 'react-native';
-
 import { updateUsername } from './sessions';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
-
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
+
+export const fetchUser = _ => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
+
+  let requestObj = {
+    path: `users/${user.id}`,
+    method: 'GET',
+    headers: session,
+  };
+
+  return new Request(requestObj).then(
+    res => dispatch(fetchUserSuccess({ ...res, id: res.user.id, email: res.user.email }))
+  );
+};
 
 export const loadMoreCurrentUser = _ => {
   return (dispatch, getState) => {

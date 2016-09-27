@@ -11,9 +11,14 @@ import {
   setHasScrolled,
   scrollToTop,
   setCurrentRoute,
+  fetchUser,
 } from '../../actions';
 
 class User extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     let rightItem = {
       icon: require('image!settings'),
@@ -53,21 +58,20 @@ User.propTypes = {
   hasScrolled: React.PropTypes.bool,
   scrollToTop: React.PropTypes.func,
   setHasScrolled: React.PropTypes.func,
+  fetchUser: React.PropTypes.func,
   navigator: React.PropTypes.shape({
     push: React.PropTypes.func.isRequired,
   }),
 };
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  tab: state.navigation.tab,
-});
+const mapStateToProps = _ => ({});
 
 const mapActionsToProps = (dispatch) => ({
   loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
+  fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);

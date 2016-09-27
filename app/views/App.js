@@ -38,6 +38,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    // this.props.destroySession();
     AppState.addEventListener('change', this.handleAppStateChange);
     return this.loadApp();
   }
