@@ -52,12 +52,12 @@ describe('sets up the session form entered email', () => {
   });
 
   it('should update the email with the provided string', () => {
-    const action = { type: 'UPDATE_EMAIL', string: 'monstro@underbelly.is' };
+    const action = { type: 'UPDATE_EMAIL', email: 'monstro@underbelly.is' };
     expect(enteredEmail(undefined, action)).toEqual('monstro@underbelly.is');
   });
 
   it('should return to null if string is blank', () => {
-    const action = { type: 'UPDATE_EMAIL', string: '' };
+    const action = { type: 'UPDATE_EMAIL', email: '' };
     expect(enteredEmail('monstro@underbelly.is', action)).toBeNull();
   });
 });

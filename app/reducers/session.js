@@ -25,7 +25,7 @@ export const tab = (state = 'SIGN_UP', action) => {
 };
 
 export const enteredEmail = (state = null, action) => {
-  if (action.email === '') { return state; }
+  if (action.email === '') { return null; }
 
   switch (action.type) {
     case 'UPDATE_EMAIL':
