@@ -26,4 +26,9 @@ describe('user', () => {
     const action = { type: 'DESTROY_SESSION' };
     expect(user(userObj, action)).toBeNull();
   });
+
+  it('DESTROY_SESSION should set user to null', () => {
+    const action = { type: 'DESTROY_SESSION' };
+    expect(user(userObj, action)).toEqual(null);
+  });
 });

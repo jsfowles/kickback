@@ -18,6 +18,10 @@ import {
 
 const HEADER_HEIGHT = 350;
 
+const NEXT_ROUTE = {
+  key: 'settings',
+};
+
 class User extends React.Component {
   static propTypes = {
     products: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -45,7 +49,7 @@ class User extends React.Component {
 
     const rightItem = {
       icon: require('image!settings'),
-      onPress: () => handleNavigate({ type: 'push', route: { key: 'settings' }}, 'profile'),
+      onPress: () => handleNavigate({ type: 'push', route: NEXT_ROUTE }, 'profile'),
     };
 
     return (

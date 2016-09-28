@@ -17,6 +17,11 @@ export const tabs = (state = initialState, action) => {
       ...state,
       index: action.index,
     };
+  case 'DESTROY_SESSION':
+    return {
+      ...state,
+      index: 0,
+    }
   default:
     return state;
   }

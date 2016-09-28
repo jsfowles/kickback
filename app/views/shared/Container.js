@@ -35,14 +35,13 @@ class Container extends React.Component {
 
     return (
       <View style={[ styles.container, style ]}>
-        <View style={ styles.headerWrapper }>
+        <View>
           <ParallaxBackground height={ headerHeight }>
             { this.renderParallaxContent() }
           </ParallaxBackground>
 
-          <Header { ...this.props } />
+          { (this.props.rightItem || this.props.leftItem) && <Header { ...this.props } /> }
         </View>
-
         { this.renderContent() }
       </View>
     );

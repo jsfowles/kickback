@@ -50,6 +50,9 @@ export const navigation = (state = initialState, action) => {
 
       return state;
     }
+    case 'DESTROY_SESSION': {
+      return initialState;
+    }
     default: return state;
   }
 };

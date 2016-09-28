@@ -6,6 +6,8 @@ export const products = type => (state = [], action) => {
   switch (action.type) {
     case `FETCH_${type}_SUCCESS`:
       return action.products;
+    case 'DESTROY_SESSION':
+      return [];
     default: return state;
   }
 };

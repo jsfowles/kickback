@@ -11,14 +11,26 @@ import {
   updateUser,
 } from '../../actions';
 
+const ROUTES = {
+  terms: {
+    type: 'push',
+    route: { key: 'terms' },
+  },
+
+  privacyPolicy: {
+    type: 'push',
+    route: { key: 'privacyPolicy' },
+  },
+};
+
 class Settings extends React.Component {
   settingsNavigation = () => {
-    let { navigator } = this.props;
+    let { handleNavigate } = this.props;
     return [
       {
         title: 'Account',
         options: [
-          { title: 'Edit Profile', onPress: this.props.updateUser, bordered: true },
+          { title: 'Edit Profile', onPress: () => Alert.alert('Coming soon!', null, null), bordered: true },
           { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },
@@ -34,8 +46,8 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
-          { title: 'Privacy Policy', onPress: () => navigator.push({ id: 5, title: 'Privacy Policty' }), bordered: true },
-          { title: 'Terms', onPress: () => navigator.push({ id: 6, title: 'Terms' }), bordered: false },
+          { title: 'Privacy Policy', onPress: () => handleNavigate(ROUTES.privacyPolicy), bordered: true },
+          { title: 'Terms', onPress: () => handleNavigate(ROUTES.terms), bordered: false },
         ],
       },
 
@@ -44,9 +56,9 @@ class Settings extends React.Component {
         options: [{
           title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
-            { text: 'Spam or Abuse', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
-            { text: 'Something isn\'t Working', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
-            { text: 'General Feedback', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
+            { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
+            { text: 'Something isn\'t Working', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
+            { text: 'General Feedback', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
             { text: 'Cancel', onPress: () => null },
           ]),
           bordered: false,
