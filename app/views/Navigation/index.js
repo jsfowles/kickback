@@ -20,9 +20,9 @@ class Navigation extends Component {
     let { pushRoute, popRoute, navigation } = this.props;
 
     switch (type) {
-    case 'push': return pushRoute(route, navigation.key);
-    case 'pop': return popRoute(navigation.key);
-    default: return false;
+      case 'push': return pushRoute(route, navigation.key);
+      case 'pop': return popRoute(navigation.key);
+      default: return false;
     }
   }
 

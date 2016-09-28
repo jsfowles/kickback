@@ -8,15 +8,24 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 class ParallaxBackground extends React.Component {
+  static propTypes = {
+    height: React.PropTypes.number.isRequired,
+    children: React.PropTypes.object,
+  };
+
   render() {
+    const { height } = this.props;
+
     return (
-      <Animated.View style={[ styles.container, { height: this.props.height }]}>
+      <Animated.View style={[ styles.container, { height }]}>
         <LinearGradient
           style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-          colors={[ '#45baef', '#34D5d0' ]}
+          colors={[ '#28b5f5', '#34D5d0' ]}
           start={[ 0.75, 0 ]}
           end={[ 0, 1 ]}
-        />
+        >
+          { this.props.children }
+        </LinearGradient>
       </Animated.View>
     );
   }
@@ -41,6 +50,6 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     height: 415,
   },
-})
+});
 
-export default ParallaxBackground
+export default ParallaxBackground;

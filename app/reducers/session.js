@@ -25,11 +25,11 @@ export const tab = (state = 'SIGN_UP', action) => {
 };
 
 export const enteredEmail = (state = null, action) => {
-  if (action.string === '') { return null; }
+  if (action.email === '') { return state; }
 
   switch (action.type) {
     case 'UPDATE_EMAIL':
-      return action.string;
+      return action.email;
     default: return state;
   }
 };

@@ -7,12 +7,14 @@ import {
 } from 'react-native';
 
 import ParallaxBackground from './ParallaxBackground';
+import Header from './Header';
 
 class Container extends React.Component {
   static propTypes = {
     headerHeight: React.PropTypes.number,
     style: React.PropTypes.number,
-    children: React.PropTypes.node,
+    children: React.PropTypes.object,
+    parallaxContent: React.PropTypes.func,
   };
 
   static defaultProps = {
@@ -21,7 +23,7 @@ class Container extends React.Component {
 
   renderContent() {
     const { children } = this.props;
-    return React.Children.map(children, (child, _) => {
+    return React.Children.map(children, (child) => {
       if (child === null) { return null; }
 
       return React.cloneElement(child, {});
@@ -34,14 +36,23 @@ class Container extends React.Component {
     return (
       <View style={[ styles.container, style ]}>
         <View style={ styles.headerWrapper }>
-          <ParallaxBackground
-            height={ headerHeight }
-          />
+          <ParallaxBackground height={ headerHeight }>
+            { this.renderParallaxContent() }
+          </ParallaxBackground>
+
+          <Header { ...this.props } />
         </View>
 
         { this.renderContent() }
       </View>
     );
+  }
+
+  renderParallaxContent() {
+    let { parallaxContent } = this.props;
+
+    if (!parallaxContent) { return null; }
+    return parallaxContent();
   }
 }
 
