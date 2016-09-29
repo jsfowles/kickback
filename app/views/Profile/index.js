@@ -7,6 +7,7 @@ import { View } from 'react-native';
 
 import Navigation from '../Navigation';
 import User from '../User';
+import EditUser from '../User/Edit';
 import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
@@ -17,6 +18,7 @@ const scenes = {
   terms: <WebView url='http://www.kbck.me/terms-and-conditions' title='Terms' />,
   reportAProblem: <ReportAProblem />,
   user: <User />,
+  editProfile: <EditUser />,
 };
 
 class Profile extends React.Component {

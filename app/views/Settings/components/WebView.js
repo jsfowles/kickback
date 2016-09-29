@@ -6,12 +6,12 @@ import Container from '../../shared/Container';
 
 const SettingsWebView = ({ handleNavigate, url, title }) => (
   <Container
+    title={ title }
+    headerColors={[ '#45baef', '#34bcd5' ]}
     leftItem={{
       icon: require('image!back'),
       onPress: () => handleNavigate({ type: 'pop' }),
     }}
-    headerColors={[ '#45baef', '#34bcd5' ]}
-    title={ title }
   >
     <WebView source={{ uri: url }} />
   </Container>

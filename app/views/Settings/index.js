@@ -21,6 +21,11 @@ const ROUTES = {
     type: 'push',
     route: { key: 'privacyPolicy' },
   },
+
+  editProfile: {
+    type: 'push',
+    route: { key: 'editProfile' },
+  },
 };
 
 class Settings extends React.Component {
@@ -30,7 +35,7 @@ class Settings extends React.Component {
       {
         title: 'Account',
         options: [
-          { title: 'Edit Profile', onPress: () => Alert.alert('Coming soon!', null, null), bordered: true },
+          { title: 'Edit Profile', onPress: () => handleNavigate(ROUTES.editProfile), bordered: true },
           { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },

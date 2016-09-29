@@ -1,8 +1,7 @@
 /* eslint-env node, jest */
 'use strict';
 
-import 'react-native';
-import { user } from '../user';
+import { user, editUser } from '../user';
 
 jest.autoMockOff();
 
@@ -30,5 +29,24 @@ describe('user', () => {
   it('DESTROY_SESSION should set user to null', () => {
     const action = { type: 'DESTROY_SESSION' };
     expect(user(userObj, action)).toEqual(null);
+  });
+});
+
+describe('editUser', () => {
+  it('should initially be null', () => {
+    expect(editUser(undefined, {})).toBeNull();
+  });
+
+  it('should replace the editUSer if no edit has been set yet', () => {
+    const edit = { name: 'Monstro' };
+    const action = { type: 'EDIT_USER', edit };
+    expect(editUser(undefined, action)).toEqual(edit);
+  });
+
+  it('should merge existing data and new date if an edit is present', () => {
+    const existing = { email: 'hello@underbelly.is' };
+    const edit = { name: 'Monstro' };
+    const action = { type: 'EDIT_USER', edit };
+    expect(editUser(existing, action)).toEqual({ ...existing, ...edit });
   });
 });

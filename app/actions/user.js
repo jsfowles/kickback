@@ -13,6 +13,7 @@ export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
+export const editUser = edit => ({ type: 'EDIT_USER', edit });
 
 export const fetchUser = _ => (dispatch, getState) => {
   let { user } = getState().user;

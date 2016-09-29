@@ -18,6 +18,18 @@ export const user = (state = null, action) => {
   }
 };
 
+export const editUser = (state = null, action) => {
+  switch (action.type) {
+    case 'EDIT_USER':
+      if (state) {
+        return { ...state, ...action.edit };
+      }
+
+      return action.edit;
+    default: return state;
+  }
+};
+
 export default combineReducers({
   user,
   products,

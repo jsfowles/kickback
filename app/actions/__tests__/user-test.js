@@ -1,7 +1,7 @@
 /* eslint-env node, jest */
 'use strict';
 
-import { fetchUserSuccess } from '../user';
+import { fetchUserSuccess, editUser } from '../user';
 
 jest.autoMockOff();
 
@@ -19,5 +19,14 @@ describe('fetchUserSuccess', () => {
     const expectedAction = { type: 'FETCH_USER_SUCCESS', user };
 
     expect(fetchUserSuccess(user)).toEqual(expectedAction);
+  });
+});
+
+describe('editUser', () => {
+  it('should create an action that updates the editUser reducer', () => {
+    const edit = { email: 'monstro@underbelly.is' };
+    const expectedAction = { type: 'EDIT_USER', edit };
+
+    expect(editUser(edit)).toEqual(expectedAction);
   });
 });

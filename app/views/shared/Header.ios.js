@@ -51,7 +51,10 @@ Header.propTypes = {
   rightItem: React.PropTypes.shape({}),
   title: React.PropTypes.string,
   headerColors: React.PropTypes.array,
-  headerStyles: React.PropTypes.object,
+  headerStyles: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.object,
+  ]),
 };
 
 const styles = StyleSheet.create({

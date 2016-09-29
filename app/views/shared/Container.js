@@ -12,7 +12,10 @@ import Header from './Header';
 class Container extends React.Component {
   static propTypes = {
     headerHeight: React.PropTypes.number,
-    style: React.PropTypes.number,
+    style: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.number,
+    ]),
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.object,

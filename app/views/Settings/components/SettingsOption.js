@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
 
   linkBordered: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderColor: '#e8edef',
   },
 });
