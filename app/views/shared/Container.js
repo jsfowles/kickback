@@ -13,7 +13,10 @@ class Container extends React.Component {
   static propTypes = {
     headerHeight: React.PropTypes.number,
     style: React.PropTypes.number,
-    children: React.PropTypes.object,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.object,
+    ]),
     parallaxContent: React.PropTypes.func,
   };
 
@@ -35,13 +38,12 @@ class Container extends React.Component {
 
     return (
       <View style={[ styles.container, style ]}>
-        <View>
-          <ParallaxBackground height={ headerHeight }>
-            { this.renderParallaxContent() }
-          </ParallaxBackground>
+        { (this.props.rightItem || this.props.leftItem) && <Header { ...this.props } /> }
 
-          { (this.props.rightItem || this.props.leftItem) && <Header { ...this.props } /> }
-        </View>
+        <ParallaxBackground height={ headerHeight }>
+          { this.renderParallaxContent() }
+        </ParallaxBackground>
+
         { this.renderContent() }
       </View>
     );

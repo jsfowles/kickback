@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
   profilePicture: {
     height: 75,
     width: 75,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#0e739f',
+    borderWidth: 2,
+    borderColor: '#ffffff',
+    borderStyle: 'solid',
     borderRadius: 75,
     marginBottom: 9,
   },
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
   profileText: {
     backgroundColor: 'transparent',
     color: '#0e739f',
+    fontSize: 18,
   },
 });
 

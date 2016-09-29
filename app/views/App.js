@@ -16,10 +16,15 @@ import {
 import Navigation from './Navigation';
 import Session from './Sessions';
 import Tabs from './Navigation/components/Tabs';
+import EarningsInfo from './User/components/EarningsInfo';
+import PayoutInfo from './User/components/PayoutInfo';
+import UserModal from './User/components/UserModal';
 
 const scenes = {
   tabs: <Tabs />,
   session: <Session />,
+  earningsInfo: <EarningsInfo />,
+  payoutInfo: <PayoutInfo />,
 };
 
 /**
@@ -105,9 +110,9 @@ const mapStateToProps = state => ({
   navigation: state.navigation.global,
 });
 
-const mapActionsToProps = (dispatch) => ({
-  fetchFeed: () => dispatch(fetchFeed()),
-  fetchUserProducts: (user) => dispatch(fetchUserProducts(user)),
+const mapActionsToProps = dispatch => ({
+  fetchFeed: _ => dispatch(fetchFeed()),
+  fetchUserProducts: user => dispatch(fetchUserProducts(user)),
   destroySession: _ => dispatch(destroySession()),
 });
 

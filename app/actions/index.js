@@ -7,8 +7,10 @@ import * as sessionActions from './sessions';
 import * as settingsActions from './settings';
 import * as tabsActions from './tabs';
 import * as userProductsActions from './user-products';
+import * as appActions from './app';
 
 module.exports = {
+  ...appActions,
   ...feedActions,
   ...searchActions,
   ...navigationActions,

@@ -12,9 +12,9 @@ import { onTabClick } from '../../../actions';
 class Tabs extends React.Component {
   renderTab(tab) {
     switch (tab) {
-    case 'shopping': return <Shopping />;
-    case 'profile': return <Profile />;
-    default: return null;
+      case 'shopping': return <Shopping />;
+      case 'profile': return <Profile />;
+      default: return null;
     }
   }
 
@@ -32,6 +32,16 @@ class Tabs extends React.Component {
         { this.renderTab(tab.key) }
       </TabBarIOS.Item>
     ));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.modal) {
+      nextProps.handleNavigate({ type: 'push', route: { key: nextProps.modal }});
+    }
+
+    if (this.props.modal && nextProps.modal === null) {
+      nextProps.handleNavigate({ type: 'pop' });
+    }
   }
 
   render() {
@@ -57,6 +67,7 @@ Tabs.propTypes = {
 
 const mapStateToProps = state => ({
   tabs: state.tabs,
+  modal: state.app.modal,
 });
 
 const mapActionsToProps = dispatch => ({

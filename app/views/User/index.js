@@ -1,12 +1,13 @@
 'use strict';
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
 import Products from '../Products';
-import ProfilePicture from './components/ProfilePicture'
+import ProfilePicture from './components/ProfilePicture';
+import EarningsLink from './components/EarningsLink';
 
 import {
   loadMoreCurrentUser,
@@ -14,6 +15,7 @@ import {
   scrollToTop,
   setCurrentRoute,
   fetchUser,
+  triggerModal,
 } from '../../actions';
 
 const HEADER_HEIGHT = 350;
@@ -22,11 +24,11 @@ const NEXT_ROUTE = {
   key: 'settings',
 };
 
+const { width: WIDTH } = Dimensions.get('window');
+
 class User extends React.Component {
   static propTypes = {
-    products: React.PropTypes.arrayOf(React.PropTypes.shape({
-      // TODO: Add products proptypes
-    }).isRequired).isRequired,
+    user: React.PropTypes.object.isRequired,
     fetchUser: React.PropTypes.func,
     navigator: React.PropTypes.shape({
       push: React.PropTypes.func.isRequired,
@@ -43,8 +45,10 @@ class User extends React.Component {
 
   render() {
     const {
-      products,
       handleNavigate,
+      user,
+      products,
+      triggerModal,
     } = this.props;
 
     const rightItem = {
@@ -59,6 +63,7 @@ class User extends React.Component {
         headerHeight={ HEADER_HEIGHT }
         rightItem={ rightItem }
         parallaxContent={ this.renderParallaxContent }
+        headerStyles={ styles.header }
       >
         { products.length === 0 ? (
           <View />
@@ -70,21 +75,49 @@ class User extends React.Component {
             cardSize='small'
             headerHeight={ HEADER_HEIGHT }
             loadMoreProducts={ this.loadMoreProducts }
-            hasScrolled={ this.props.hasScrolled }
-            scrollToTop={ this.props.scrollToTop }
             emptyListText="You haven't shared any products yet."
           />
         )}
+
+        <EarningsLink
+          position='left'
+          earnings={ user.totalEarned }
+          headerHeight={ HEADER_HEIGHT }
+          icon={ require('image!earnings') }
+          title='Total Earnings'
+          handleNavigate={ () => triggerModal('earningsInfo') }
+        />
+
+        <EarningsLink
+          position='right'
+          earnings={ user.totalPendingOrWaitingApproval }
+          headerHeight={ HEADER_HEIGHT }
+          icon={ require('image!pending') }
+          title='Total Pending'
+          handleNavigate={ () => triggerModal('payoutInfo') }
+        />
       </Container>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  header: {
+    position: 'absolute',
+    top: 0,
+    width: WIDTH,
+    right: 0,
+    zIndex: 10,
+  },
+});
+
 const mapStateToProps = state => ({
+  user: state.user.user,
   products: state.user.products,
 });
 
 const mapActionsToProps = (dispatch) => ({
+  triggerModal: modal => dispatch(triggerModal(modal)),
   loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),

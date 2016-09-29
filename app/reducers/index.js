@@ -11,6 +11,7 @@ import search from './search';
 import { product } from './product';
 import user from './user';
 import session from './session';
+import app from './app';
 import { settings } from './settings';
 import { tabs } from './tabs';
 
@@ -23,4 +24,5 @@ export default combineReducers({
   session,
   settings,
   tabs,
+  app,
 });

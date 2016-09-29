@@ -22,12 +22,13 @@ class Header extends React.Component {
       title,
       leftItem,
       headerColors,
+      headerStyles,
     } = this.props;
 
     return (
       <LinearGradient
         colors={ headerColors }
-        style={[ styles.header, this.props.style ]}
+        style={[ styles.header, headerStyles ]}
       >
         <View style={ styles.leftItem }>
           <ItemWrapper item={ leftItem } />
@@ -50,7 +51,7 @@ Header.propTypes = {
   rightItem: React.PropTypes.shape({}),
   title: React.PropTypes.string,
   headerColors: React.PropTypes.array,
-  style: React.PropTypes.object,
+  headerStyles: React.PropTypes.object,
 };
 
 const styles = StyleSheet.create({
