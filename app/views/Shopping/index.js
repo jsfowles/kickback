@@ -1,32 +1,35 @@
 'use strict';
 import React from 'react';
-import { Navigator, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
+import Navigation from '../Navigation';
 import Header from './components/Header';
-import FeaturedProducts from '../FeaturedProducts';
+import Feed from '../FeaturedProducts';
 import Search from '../Search';
 import SearchOverlay from '../Search/components/SearchOverlay';
-import LinearGradient from 'react-native-linear-gradient';
-import SessionModal from '../Sessions';
+
+const {
+  width: deviceWidth,
+} = Dimensions.get('window');
+
+const scenes = {
+  feed: <Feed />,
+  search: <Search />,
+};
 
 class Shopping extends React.Component {
-  renderScene = (route, navigator) => {
-    let scene = {
-      0: <FeaturedProducts />,
-      1: <Search />,
-    };
-
-    return React.cloneElement(
-      scene[route.index],
-      { navigator, route, ...this.props },
-      <SearchOverlay />
-    );
-  }
+  static propTypes = {
+    searchOverlay: React.PropTypes.bool.isRequired,
+    navigation: React.PropTypes.object.isRequired,
+  };
 
   render() {
+    let { navigation, searchOverlay } = this.props;
+
     return (
-      <View style={{ flex: 1 }}>
+      <View style={ styles.container }>
         <LinearGradient
           style={ styles.headerWrapper }
           colors={[ '#45baef', '#34Bcd5' ]}
@@ -34,24 +37,30 @@ class Shopping extends React.Component {
           <Header />
         </LinearGradient>
 
-        <Navigator
-          initialRoute={{ name: 'Featured Products', index: 0 }}
-          renderScene={ this.renderScene }
+        <Navigation
+          navigation={ navigation }
+          scenes={ scenes }
         />
 
-        <SessionModal modalVisible={ this.props.modalVisible } />
+        { searchOverlay && <SearchOverlay /> }
       </View>
     );
   }
 }
 
-Shopping.propTypes = {
-  modalVisible: React.PropTypes.bool.isRequired,
-};
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+
   headerWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     height: 65,
+    zIndex: 10,
+    width: deviceWidth,
     paddingHorizontal: 10,
     paddingTop: 20,
     flexDirection: 'row',
@@ -63,7 +72,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  modalVisible: state.session.modalVisible,
+  navigation: state.navigation.shopping,
+  searchOverlay: state.search.searchOverlay,
 });
 
 const mapActionsToProps = _ => ({});

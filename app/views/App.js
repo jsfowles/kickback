@@ -8,11 +8,24 @@ import {
 } from 'react-native';
 
 import {
-  loadProductFeed,
-  loadCurrentUser,
+  fetchFeed,
+  fetchUserProducts,
+  destroySession,
 } from '../actions';
 
 import Navigation from './Navigation';
+import Session from './Sessions';
+import Tabs from './Navigation/components/Tabs';
+import EarningsInfo from './User/components/EarningsInfo';
+import PayoutInfo from './User/components/PayoutInfo';
+import UserModal from './User/components/UserModal';
+
+const scenes = {
+  tabs: <Tabs />,
+  session: <Session />,
+  earningsInfo: <EarningsInfo />,
+  payoutInfo: <PayoutInfo />,
+};
 
 /**
  * App Component
@@ -20,19 +33,19 @@ import Navigation from './Navigation';
  *               the user is logged in on the featured products tab.
  */
 class App extends Component {
-  /**
-   * When component mounts update the AppState
-   * @returns { void }
-   */
+  static propTypes = {
+    navigation: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object,
+    session: React.PropTypes.object,
+    fetchFeed: React.PropTypes.func.isRequired,
+    fetchUserProducts: React.PropTypes.func.isRequired,
+    destroySession: React.PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
-    let { currentUser, loadProductFeed, loadCurrentUser } = this.props;
-
+    // this.props.destroySession();
     AppState.addEventListener('change', this.handleAppStateChange);
-    loadProductFeed();
-
-    if (currentUser) {
-      loadCurrentUser(currentUser);
-    }
+    return this.loadApp();
   }
 
   /**
@@ -44,43 +57,63 @@ class App extends Component {
   }
 
   /**
+   * @returns { destroySession }
+   *
+   * Lets load the app.
+   * When component mounts or is set to active update the AppState,
+   * if there is a session && user then lets load the user, else
+   * make sure there is no session or use by calling destroySession.
+   */
+  loadApp() {
+    // TODO: I should validate tokens before fetching user stuff.
+    let { fetchFeed, fetchUserProducts, session, destroySession, user } = this.props;
+
+    fetchFeed();
+
+    if (session && user) { return fetchUserProducts(); }
+    return destroySession();
+  }
+
+  /**
    * Handle the app state change
    * @todo: when app is active sync all the things
    * @returns { void }
    */
   handleAppStateChange = () => {
-    if (AppState.currentState === 'active') {
-      this.props.loadProductFeed();
-    }
+    this.loadApp();
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={ styles.container }>
-        <Navigation />
+        <Navigation
+          scenes={ scenes }
+          navigation={ navigation }
+          direction='vertical'
+        />
       </View>
     );
   }
 }
 
-App.propTypes = {
-  currentUser: React.PropTypes.object.isRequired,
-  loadProductFeed: React.PropTypes.func.isRequired,
-  loadCurrentUser: React.PropTypes.func.isRequired,
-};
-
 const styles = StyleSheet.create({
   container: { flex: 1 },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.product.creatingRecommendation,
-  currentUser: state.user.currentUser,
+  session: state.session.session,
+  user: state.user.user,
+  currentUser: state.currentUser,
+  navigation: state.navigation.global,
 });
 
-const mapActionsToProps = (dispatch) => ({
-  loadProductFeed: () => dispatch(loadProductFeed()),
-  loadCurrentUser: (currentUser) => dispatch(loadCurrentUser(currentUser)),
+const mapActionsToProps = dispatch => ({
+  fetchFeed: _ => dispatch(fetchFeed()),
+  fetchUserProducts: user => dispatch(fetchUserProducts(user)),
+  destroySession: _ => dispatch(destroySession()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

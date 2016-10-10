@@ -1,5 +1,7 @@
 'use strict';
 import React from 'react';
+import { connect } from 'react-redux';
+
 import {
   View,
   TextInput,
@@ -10,22 +12,32 @@ import {
   Animated,
 } from 'react-native';
 
-const FORM_HEIGHT = 101; // this is the height of the 2 inputs + the separator
+import {
+  changeSessionTab,
+  fetchSession,
+  updateSessionEmail,
+} from '../../../actions';
 
-const {
-  height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+const { width: deviceWidth } = Dimensions.get('window');
 
 class LoginForm extends React.Component {
+  static propTypes = {
+    changeSessionTab: React.PropTypes.func.isRequired,
+    tabs: React.PropTypes.object.isRequired,
+    tabPosition: React.PropTypes.node,
+    fetchSession: React.PropTypes.func.isRequired,
+    updateSessionEmail: React.PropTypes.func.isRequired,
+    email: React.PropTypes.string.isRequired,
+  };
+
   render() {
     let {
-      changeTab,
+      changeSessionTab,
       tabs,
       tabPosition,
-      submitForm,
+      fetchSession,
       email,
-      updateUsername,
+      updateSessionEmail,
     } = this.props;
 
     return (
@@ -33,13 +45,13 @@ class LoginForm extends React.Component {
         <View style={ styles.btnContainer }>
           <TouchableOpacity
             style={ styles.btn }
-            onPress={ () => changeTab(tabs.SIGN_UP) }
+            onPress={ () => changeSessionTab(tabs.SIGN_UP) }
           >
             <Text style={ styles.btnText }>SIGN UP</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={ styles.btn }
-            onPress={ () => changeTab(tabs.LOG_IN) }
+            onPress={ () => changeSessionTab(tabs.LOG_IN) }
           >
             <Text style={ styles.btnText }>LOG IN</Text>
           </TouchableOpacity>
@@ -49,10 +61,10 @@ class LoginForm extends React.Component {
               styles.borderBottom,
               { transform: [{
                 translateX: tabPosition.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, deviceWidth / 2]
+                  inputRange: [ 0, 1 ],
+                  outputRange: [ 0, deviceWidth / 2 ],
                 }),
-              }]}
+              }]},
             ]}
           />
         </View>
@@ -67,7 +79,7 @@ class LoginForm extends React.Component {
           returnKeyType={ 'next' }
           ref={ 'email' }
           value={ email }
-          onChangeText={ updateUsername }
+          onChangeText={ updateSessionEmail }
           onSubmitEditing={ _ => this.refs.password.focus() }
         />
 
@@ -82,16 +94,16 @@ class LoginForm extends React.Component {
           textAlign={ 'center' }
           returnKeyType={ 'go' }
           ref={ 'password' }
-          onSubmitEditing={ submitForm }
+          onSubmitEditing={ fetchSession }
         />
       </View>
     );
   }
-};
+}
 
 LoginForm.propTypes = {
   styles: React.PropTypes.object.isRequired,
-}
+};
 
 let styles = StyleSheet.create({
   container: {
@@ -140,4 +152,14 @@ let styles = StyleSheet.create({
   },
 });
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  email: state.session.enteredEmail,
+});
+
+const mapActionsToProps = dispatch => ({
+  changeSessionTab: tab => dispatch(changeSessionTab(tab)),
+  fetchSession: e => dispatch(fetchSession(e.nativeEvent.text)),
+  updateSessionEmail: v => dispatch(updateSessionEmail(v)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(LoginForm);

@@ -4,88 +4,61 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  Animated,
 } from 'react-native';
 
 import ParallaxBackground from './ParallaxBackground';
 import Header from './Header';
 
 class Container extends React.Component {
-  static defaultProps = {
-    customHeader: false,
+  static propTypes = {
+    headerHeight: React.PropTypes.number,
+    style: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.number,
+    ]),
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.object,
+    ]),
+    parallaxContent: React.PropTypes.func,
   };
 
-  constructor() {
-    super(...arguments);
-    this.state = ({
-      anim: new Animated.Value(0),
-    });
-  }
+  static defaultProps = {
+    headerHeight: 0,
+  };
 
-  handleScroll = (e) => {
-    if (this.props.setHasScrolled) {
-      if (!this.props.hasScrolled) { this.props.setHasScrolled(); }
-      this.state.anim.setValue(e.nativeEvent.contentOffset.y);
-    }
+  renderContent() {
+    const { children } = this.props;
+    return React.Children.map(children, (child) => {
+      if (child === null) { return null; }
+
+      return React.cloneElement(child, {});
+    });
   }
 
   render() {
-    const {
-      children,
-      parallaxContent,
-      style,
-      headerHeight,
-      leftItem,
-      rightItem,
-      headerColors,
-      customHeader,
-      title,
-    } = this.props;
-
-    const content = React.cloneElement(children, {
-      onScroll: (e) => this.handleScroll(e),
-      scrollEventThrottle: 16,
-      offset: this.state.anim,
-    });
+    const { style, headerHeight } = this.props;
 
     return (
       <View style={[ styles.container, style ]}>
-        <View style={ styles.header }>
-          { parallaxContent && <ParallaxBackground
-            parallaxContent={ parallaxContent }
-            offset={ this.state.anim }
-            minHeight={ 14 }
-            maxHeight={ 14 + headerHeight }
-          /> }
-        </View>
+        { (this.props.rightItem || this.props.leftItem) && <Header { ...this.props } /> }
 
-        { !customHeader && <Header
-          rightItem={ rightItem }
-          leftItem={ leftItem }
-          headerColors={ headerColors }
-          title={ title }
-        /> }
+        <ParallaxBackground height={ headerHeight }>
+          { this.renderParallaxContent() }
+        </ParallaxBackground>
 
-        { content }
+        { this.renderContent() }
       </View>
     );
   }
-}
 
-Container.propTypes = {
-  hasScrolled: React.PropTypes.bool,
-  setHasScrolled: React.PropTypes.func,
-  header: React.PropTypes.object,
-  children: React.PropTypes.object,
-  rightItem: React.PropTypes.object,
-  leftItem: React.PropTypes.object,
-  parallaxContent: React.PropTypes.bool,
-  style: React.PropTypes.object,
-  headerHeight: React.PropTypes.number,
-  headerColors: React.PropTypes.array,
-  customHeader: React.PropTypes.bool,
-  title: React.PropTypes.string,
-};
+  renderParallaxContent() {
+    let { parallaxContent } = this.props;
+
+    if (!parallaxContent) { return null; }
+    return parallaxContent();
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

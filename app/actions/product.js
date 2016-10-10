@@ -8,29 +8,24 @@ export const toggleCreatingRecommendation = (bool) => ({ type: 'TOGGLE_CREATING_
 
 export const recommendProduct = (product) => {
   return (dispatch, getState) => {
-    const { user } = getState();
+    const { currentUser } = getState();
 
-    if (user.currentUser) {
-      // If user is currently logged in
+    if (currentUser) {
       dispatch(toggleCreatingRecommendation(true));
 
-      createLink(product, user.currentUser.data.id).then((res) => {
+      createLink(product, currentUser.data.id).then((res) => {
         dispatch(toggleCreatingRecommendation(false));
 
         ActionSheetIOS.showShareActionSheetWithOptions(
           { url: `http://www.${res.url}` },
-          (e) => console.error(e),
-          (success,method) => {
-            // TODO (Riley) : Show success
-          }
-        )
-      // TODO (Riley) : Show some type of error
-      }).catch((res) => {
+          () => null,
+          () => null,
+        );
+      }).catch((_) => {
         dispatch(toggleCreatingRecommendation(false));
       });
     } else {
-      // User is not logged in
       dispatch(toggleSessionModal(true));
     }
-  }
+  };
 };

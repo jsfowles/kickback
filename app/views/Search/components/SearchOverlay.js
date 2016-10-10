@@ -1,10 +1,9 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
-  ScrollView,
   Text,
   ListView,
   StyleSheet,
@@ -13,58 +12,59 @@ import {
   Keyboard,
   Image,
   TouchableHighlight,
-} from 'react-native'
+} from 'react-native';
 
-import { requestProducts } from '../../../actions'
+import { requestProducts } from '../../../actions';
 
 const {
   height: deviceHeight,
   width: deviceWidth,
-} = Dimensions.get('window')
+} = Dimensions.get('window');
 
 class Search extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     let ds = new ListView.DataSource({
-      rowHasChanged: (r1,r2) => r1 !== r2
-    })
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
 
     this.state = {
       fadeAnim: new Animated.Value(0),
       ds: ds.cloneWithRows(props.categories),
       keyboardHeight: 0,
-    }
+    };
 
-    this.renderRow = this.renderRow.bind(this)
+    this.renderRow = this.renderRow.bind(this);
   }
 
   componentWillMount() {
     this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', e => {
-      this.setState({ keyboardHeight: e.endCoordinates.height + 64 })
-    })
+      this.setState({ keyboardHeight: e.endCoordinates.height + 64 });
+    });
 
     this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', e => {
-      this.setState({ keyboardHeight: 0 })
-    })
+      this.setState({ keyboardHeight: 0 });
+    });
   }
 
   componentDidMount() {
     Animated.timing(
       this.state.fadeAnim,
       { toValue: 1, duration: 200 }
-    ).start()
+    ).start();
   }
 
   componentWillUnmount() {
-    this.keyboardWillShow.remove()
-    this.keyboardWillHide.remove()
+    this.keyboardWillShow.remove();
+    this.keyboardWillHide.remove();
   }
 
   renderRow = (data) => (
     <TouchableHighlight
       underlayColor='#f7f8f9'
       style={{ paddingLeft: 16 }}
-      onPress={ () => { this.props.requestProducts(data.title) }}
+      onPress={ () => this.props.requestProducts(data.title) }
     >
       <View style={ styles.categoryContainer }>
         <Text style={ styles.categoryText }>{ data.title }</Text>
@@ -86,7 +86,7 @@ class Search extends React.Component {
           keyboardShouldPersistTaps={ true }
         />
       </Animated.View>
-    )
+    );
   }
 }
 
@@ -113,14 +113,14 @@ const styles = StyleSheet.create({
     fontSize:  16,
     color: '#6d7577',
   },
-})
+});
 
-const mapStateToProps = (state) => ({
-  categories: state.productFeed.featuredCategories
-})
+const mapStateToProps = _ => ({
+  categories: [{ title: 'test' }],
+});
 
-const mapActionsToProps = (dispatch) => ({
+const mapActionsToProps = dispatch => ({
   requestProducts: (s) => dispatch(requestProducts(s)),
-})
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Search)
+export default connect(mapStateToProps, mapActionsToProps)(Search);

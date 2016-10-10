@@ -1,85 +1,53 @@
 'use strict';
 
+import Request from '../utils/request';
 import { loginUser } from '../utils/api';
-import { validateEmail, validatePassword } from '../utils/validations';
-import { switchTab } from './navigation';
+import { validateCredentials } from '../utils/validations';
+import { formatSession } from '../utils/session';
+import { pop } from './navigation';
+import { fetchUserSuccess } from './user';
 
 import {
-  loadCurrentUser,
-  removeCurrentUser,
   createUser,
 } from './user';
 
-export const toggleSessionModal = (bool) => ({ type: 'TOGGLE_SESSION_MODAL', bool, });
-export const setSession = (session, bool) => ({ type: 'SET_SESSION', session, bool, });
-export const changeForm = tab => ({ type: 'CHANGE_FORM', tab });
-export const updateUsername = username => ({ type: 'UPDATE_USERNAME', username });
-export const toggleError = bool => ({ type: 'TOGGLE_ERROR', bool });
+export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
+export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
+export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session: formatSession(session) });
+export const destroySession = _ => ({ type: 'DESTROY_SESSION' });
 
-export const destroySession = _ => {
-  return (dispatch, getState) => {
-    dispatch(switchTab('SHOPPING_TAB'));
-    dispatch(setSession(null, false));
-    dispatch(removeCurrentUser());
+export const fetchRequestFailure = msg => ({
+  type: 'FETCH_REQUEST_FAILURE',
+  message: msg || 'Invalid email or password',
+});
+
+export const fetchSession = password => (dispatch, getState) => {
+  let { enteredEmail, tab } = getState().session;
+
+  let creds = {
+    email: enteredEmail || '',
+    password,
   };
-};
 
-export const createSession = (sess) => {
-  return (dispatch, getState) => {
-    let { status, headers } = sess;
-    let { map } = headers;
+  let requestObj = {
+    method: 'POST',
+    path: '/auth/sign_in',
+    body: creds,
+    requestCallback: (res) => {
+      if (res.status === 401) { return dispatch(fetchRequestFailure()); }
 
-    let session = getState().session.session;
-
-    if (map.hasOwnProperty('client')) {
-      session = {
-        'client': map['client'][0],
-        'token-type': map['token-type'][0],
-        'access-token': map['access-token'][0],
-        'uid': map['uid'][0],
-        'expiry': map['expiry'][0],
-      };
-    }
-
-    dispatch(setSession(session, true));
-    return sess.json();
+      dispatch(pop('global'));
+      dispatch(fetchSessionSuccess(res));
+    },
   };
-};
 
-export const submitForm = password => {
-  return (dispatch, getState) => {
-    let { user, session } = getState();
-    let credentials = {
-      email: session.username,
-      password,
-    };
+  if (!validateCredentials(creds)) { return dispatch(fetchRequestFailure()); }
+  if (tab === 'SIGN_UP') { return dispatch(createUser(creds)); }
 
-    let emailPresentAndValid = credentials.email !== '' && validateEmail(credentials.email);
-    let passwordPresentAndValid = credentials.password !== '' && validatePassword(credentials.password);
+  dispatch({ type: 'FETCH_SESSION_REQUEST' });
 
-    if (emailPresentAndValid && passwordPresentAndValid) {
-      if (session.currentTab === session.tabs.SIGN_UP) {
-        dispatch(createUser(credentials));
-      } else {
-        loginUser(credentials)
-        .then(res => {
-          if (res.status === 401) {
-            return { error: 'Incorrect username or password.' }
-          } else {
-            return dispatch(createSession(res))
-          }
-        })
-        .then(res => {
-          if (res.hasOwnProperty('data')) {
-            dispatch(loadCurrentUser(res))
-          } else {
-            return dispatch(toggleError(true));
-          }
-        })
-        .catch(e => console.log(e));
-      }
-    } else {
-      dispatch(toggleError(true));
-    }
-  };
+  return new Request(requestObj)
+  .then(res => {
+    return dispatch(fetchUserSuccess(res.data));
+  });
 };

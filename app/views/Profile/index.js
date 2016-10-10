@@ -3,47 +3,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  View,
-  Navigator,
-} from 'react-native';
+import { View } from 'react-native';
 
+import Navigation from '../Navigation';
 import User from '../User';
+import EditUser from '../User/Edit';
 import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
 
-class Profile extends React.Component {
-  renderScene = (route, navigator) => {
-    let props = { ...this.props, navigator, route };
+const scenes = {
+  settings: <Settings />,
+  privacyPolicy: <WebView url='http://www.kbck.me/privacy-policy' title='Privacy Policy' />,
+  terms: <WebView url='http://www.kbck.me/terms-and-conditions' title='Terms' />,
+  reportAProblem: <ReportAProblem />,
+  user: <User />,
+  editProfile: <EditUser />,
+};
 
-    switch (route.id) {
-    case 1:
-      return <Settings { ...props } />;
-    case 5:
-      return <WebView { ...props } url='http://www.kbck.me/privacy-policy' title='Privacy Policy' />;
-    case 6:
-      return <WebView { ...props } url='http://www.kbck.me/terms-and-conditions' title='Terms' />;
-    case 7:
-      return <ReportAProblem { ...props } />;
-    default:
-      return <User { ...props } />;
-    }
-  }
+class Profile extends React.Component {
+  static propTypes = {
+    navigation: React.PropTypes.object.isRequired,
+  };
 
   render() {
+    let { navigation } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
-        <Navigator
-          initialRoute={{}}
-          renderScene={ this.renderScene }
+        <Navigation
+          navigation= { navigation }
+          scenes={ scenes }
         />
       </View>
     );
   }
 }
 
-const mapStateToProps = _ => ({});
+const mapStateToProps = state => ({
+  navigation: state.navigation.profile,
+});
+
 const mapActionsToProps = _ => ({});
 
 export default connect(mapStateToProps, mapActionsToProps)(Profile);

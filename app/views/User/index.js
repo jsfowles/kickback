@@ -1,83 +1,128 @@
 'use strict';
 
 import React from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
 import Products from '../Products';
-import ParallaxContent from './components/ParallaxContent';
+import ProfilePicture from './components/ProfilePicture';
+import EarningsLink from './components/EarningsLink';
 
 import {
   loadMoreCurrentUser,
   setHasScrolled,
   scrollToTop,
   setCurrentRoute,
+  fetchUser,
+  triggerModal,
 } from '../../actions';
 
+const HEADER_HEIGHT = 350;
+
+const NEXT_ROUTE = {
+  key: 'settings',
+};
+
+const { width: WIDTH } = Dimensions.get('window');
+
 class User extends React.Component {
-  loadMoreProducts = () => {
-    if (!this.props.nextPageUrl) { return; }
-    this.props.loadMoreProducts();
+  static propTypes = {
+    user: React.PropTypes.object.isRequired,
+    fetchUser: React.PropTypes.func,
+    navigator: React.PropTypes.shape({
+      push: React.PropTypes.func.isRequired,
+    }),
+  };
+
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
+  renderParallaxContent() {
+    return <ProfilePicture />;
   }
 
   render() {
-    let rightItem = {
-      icon: require('image!settings'),
-      onPress: () => this.props.navigator.push({ id: 1 }),
-    };
+    const {
+      handleNavigate,
+      user,
+      products,
+      triggerModal,
+    } = this.props;
 
-    let headerHeight = 350;
+    const rightItem = {
+      icon: require('image!settings'),
+      onPress: () => handleNavigate({ type: 'push', route: NEXT_ROUTE }, 'profile'),
+    };
 
     return (
       <Container
         hasScrolled={ this.props.hasScrolled }
         setHasScrolled={ this.props.setHasScrolled }
-        headerHeight={ headerHeight }
-        parallaxContent={ true }
+        headerHeight={ HEADER_HEIGHT }
         rightItem={ rightItem }
+        parallaxContent={ this.renderParallaxContent }
+        headerStyles={ styles.header }
       >
-        <Products
-          ref='products'
-          products={ this.props.user.sharedProducts }
-          title='SHARED PRODUCTS'
-          cardSize='small'
-          headerHeight={ headerHeight }
-          loadMoreProducts={ this.loadMoreProducts }
-          hasScrolled={ this.props.hasScrolled }
-          scrollToTop={ this.props.scrollToTop }
-          emptyListText="You haven't shared any products yet."
-          header={ <ParallaxContent user={ this.props.user } /> }
+        { products.length === 0 ? (
+          <View />
+        ) : (
+          <Products
+            ref='products'
+            products={ products }
+            title='SHARED PRODUCTS'
+            cardSize='small'
+            headerHeight={ HEADER_HEIGHT }
+            loadMoreProducts={ this.loadMoreProducts }
+            emptyListText="You haven't shared any products yet."
+          />
+        )}
+
+        <EarningsLink
+          position='left'
+          earnings={ user.totalEarned }
+          headerHeight={ HEADER_HEIGHT }
+          icon={ require('image!earnings') }
+          title='Total Earnings'
+          handleNavigate={ () => triggerModal('earningsInfo') }
+        />
+
+        <EarningsLink
+          position='right'
+          earnings={ user.totalPendingOrWaitingApproval }
+          headerHeight={ HEADER_HEIGHT }
+          icon={ require('image!pending') }
+          title='Total Pending'
+          handleNavigate={ () => triggerModal('payoutInfo') }
         />
       </Container>
     );
   }
 }
 
-User.propTypes = {
-  nextPageUrl: React.PropTypes.string,
-  loadMoreProducts: React.PropTypes.func,
-  navigateSettings: React.PropTypes.func,
-  hasScrolled: React.PropTypes.bool,
-  scrollToTop: React.PropTypes.func,
-  setHasScrolled: React.PropTypes.func,
-  user: React.PropTypes.object.isRequired,
-  navigator: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired,
-  }),
-};
+const styles = StyleSheet.create({
+  header: {
+    position: 'absolute',
+    top: 0,
+    width: WIDTH,
+    right: 0,
+    zIndex: 10,
+  },
+});
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  nextPageUrl: state.user.nextPageUrl,
-  hasScrolled: state.user.hasScrolled,
-  tab: state.navigation.tab,
+const mapStateToProps = state => ({
+  user: state.user.user,
+  products: state.user.products,
 });
 
 const mapActionsToProps = (dispatch) => ({
+  triggerModal: modal => dispatch(triggerModal(modal)),
   loadMoreProducts: () => dispatch(loadMoreCurrentUser()),
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
+  fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);

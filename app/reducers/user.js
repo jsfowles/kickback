@@ -1,46 +1,37 @@
 'use strict';
+import { combineReducers } from 'redux';
+import * as base from './product';
 
-const initialState = {
-  sharedProducts: [],
-  currentUser: null,
-  nextPageUrl: null,
-  hasScrolled: false,
-  isFetching: false,
-};
+const products = base.products('USER_PRODUCTS');
+const nextPage = base.nextPage('USER_PRODUCTS');
 
-export const user = (state = initialState, action) => {
-  switch(action.type) {
-    case 'RECEIVE_CURRENT_USER':
+export const user = (state = null, action) => {
+  switch (action.type) {
+    case 'FETCH_USER_SUCCESS':
       return {
         ...state,
-        sharedProducts: action.userData.products,
-        nextPageUrl: action.userData.nextPage,
-        currentUser: action.userData.currentUser,
-        isFetching: false,
+        ...action.user,
       };
-    case 'RECEIVE_MORE_CURRENT_USER':
-      return {
-        ...state,
-        sharedProducts: [
-          ...state.sharedProducts,
-          ...action.userData.products
-        ],
-        nextPageUrl: action.userData.nextPage,
-        isFetching: false,
-      };
-    case 'TOGGLE_USER_FETCHING':
-      return {
-        ...state,
-        isFetching: action.bool,
-      };
-    case 'SET_USER_HAS_SCROLLED':
-      return {
-        ...state,
-        hasScrolled: !state.hasScrolled,
-      };
-    case 'REMOVE_CURRENT_USER':
-      return initialState;
-    default:
-      return state;
+    case 'DESTROY_SESSION':
+      return null;
+    default: return state;
   }
 };
+
+export const editUser = (state = null, action) => {
+  switch (action.type) {
+    case 'EDIT_USER':
+      if (state) {
+        return { ...state, ...action.edit };
+      }
+
+      return action.edit;
+    default: return state;
+  }
+};
+
+export default combineReducers({
+  user,
+  products,
+  nextPage,
+});

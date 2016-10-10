@@ -6,16 +6,36 @@ import { ScrollView, Alert } from 'react-native';
 
 import Container from '../shared/Container';
 import SettingsGroup from './components/SettingsGroup';
-import { destroySession } from '../../actions';
+import {
+  destroySession,
+  updateUser,
+} from '../../actions';
+
+const ROUTES = {
+  terms: {
+    type: 'push',
+    route: { key: 'terms' },
+  },
+
+  privacyPolicy: {
+    type: 'push',
+    route: { key: 'privacyPolicy' },
+  },
+
+  editProfile: {
+    type: 'push',
+    route: { key: 'editProfile' },
+  },
+};
 
 class Settings extends React.Component {
   settingsNavigation = () => {
-    let { navigator } = this.props;
+    let { handleNavigate } = this.props;
     return [
       {
         title: 'Account',
         options: [
-          { title: 'Edit Profile', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
+          { title: 'Edit Profile', onPress: () => handleNavigate(ROUTES.editProfile), bordered: true },
           { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },
@@ -31,8 +51,8 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
-          { title: 'Privacy Policy', onPress: () => navigator.push({ id: 5, title: 'Privacy Policty' }), bordered: true },
-          { title: 'Terms', onPress: () => navigator.push({ id: 6, title: 'Terms' }), bordered: false },
+          { title: 'Privacy Policy', onPress: () => handleNavigate(ROUTES.privacyPolicy), bordered: true },
+          { title: 'Terms', onPress: () => handleNavigate(ROUTES.terms), bordered: false },
         ],
       },
 
@@ -41,9 +61,9 @@ class Settings extends React.Component {
         options: [{
           title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
-            { text: 'Spam or Abuse', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
-            { text: 'Something isn\'t Working', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
-            { text: 'General Feedback', onPress: () => navigator.push({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
+            { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
+            { text: 'Something isn\'t Working', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
+            { text: 'General Feedback', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
             { text: 'Cancel', onPress: () => null },
           ]),
           bordered: false,
@@ -66,7 +86,7 @@ class Settings extends React.Component {
   render() {
     let leftItem = {
       icon: require('image!back'),
-      onPress: this.props.navigator.pop,
+      onPress: () => this.props.handleNavigate({ type: 'pop' }),
     };
 
     return (
@@ -94,12 +114,14 @@ Settings.propTypes = {
     push: React.PropTypes.func.isRequired,
   }),
   logout: React.PropTypes.func.isRequired,
+  updateUser: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = _ => ({});
 
 const mapActionsToProps = dispatch => ({
   logout: () => dispatch(destroySession()),
+  updateUser: () => dispatch(updateUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Settings);

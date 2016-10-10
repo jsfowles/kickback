@@ -1,18 +1,17 @@
-'use strict'
+'use strict';
 
-import { getProducts } from '../utils/api'
+import { getProducts } from '../utils/api';
+import { push } from './navigation';
 
-export const receiveProducts = (products) => ({ type: 'RECEIVE_PRODUCTS', products })
-export const toggleSearchOverlay = () => ({ type: 'TOGGLE_SEARCH_OVERLAY' })
-export const fetchingProducts = (string) => ({ type: 'FETCHING_PRODUCTS', string })
-export const cancelSearch = () => ({ type: 'CANCEL_SEARCH' })
+export const toggleSearchOverlay = () => ({ type: 'TOGGLE_SEARCH_OVERLAY' });
+export const cancelSearch = () => ({ type: 'CANCEL_SEARCH' });
 
-export const requestProducts = (searchTerm) => {
-  return (dispatch) => {
-    dispatch(fetchingProducts(searchTerm))
+export const fetchSearch = searchTerm => (dispatch) => {
+  dispatch({ type: 'FETCH_SEARCH_REQUEST' });
+  dispatch(push({ key: 'search' }, 'shopping'));
 
-    getProducts(searchTerm).then(res => {
-      dispatch((receiveProducts(res)))
-    })
-  }
-}
+  return getProducts(searchTerm).then(
+    res => dispatch({ type: 'FETCH_SEARCH_SUCCESS', products: res }),
+    err => dispatch({ type: 'FETCH_PRODUCT_FEED_FAILURE', err }),
+  );
+};
