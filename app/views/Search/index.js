@@ -29,7 +29,6 @@ class Search extends React.Component {
           <Products
             products={ search.products }
             cardSize={ 'large' }
-            title={ 'PRODUCTS FOUND' }
           />
         )}
       </Container>
