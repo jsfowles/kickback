@@ -66,25 +66,16 @@ class ProductListView extends React.Component {
   }
 
   renderSectionHeader = () => {
-    if (this.props.products.length === 0) {
+    if (this.props.title) {
       return (
-        <View style={[{ height: 200 }, styles.placeholderContainer ]}>
-          <Text style={ styles.placeholderText }>{ this.props.emptyListText }</Text>
+        <View style={ styles.headerContainer }>
+          <Text style={ styles.headerText }>
+             { this.props.title }
+          </Text>
         </View>
       );
     }
-
-    return (
-      <TouchableWithoutFeedback
-        onPress={ () => this.props.scrollToTop() }
-      >
-        <View style={ styles.headerContainer }>
-          <Text style={ styles.headerText }>
-            { this.props.title }
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
-    );
+    return null;
   }
 
   renderRow = (data) => {
@@ -120,7 +111,7 @@ class ProductListView extends React.Component {
       />
     );
   }
-};
+}
 
 ProductListView.defaultProps = defaultProps;
 ProductListView.propTypes = propTypes;
