@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Keyboard,
   KeyboardAvoidingView,
+  StatusBar,
   Animated,
   Easing,
 } from 'react-native';
@@ -33,7 +34,6 @@ const TABS = {
 class Sessions extends React.Component {
   static propTypes = {
     tab: React.PropTypes.string.isRequired,
-    showError: React.PropTypes.bool.isRequired,
     toggleError: React.PropTypes.func.isRequired,
     handleNavigate: React.PropTypes.func.isRequired,
   };
@@ -96,22 +96,6 @@ class Sessions extends React.Component {
       if (nextProps.tab === TABS.LOG_IN) { toValue = 1; }
       Animated.timing( this.state.tabPosition, { toValue }).start();
     }
-
-    if (!this.props.showError && nextProps.showError) {
-      Animated.sequence([
-        Animated.timing(this.state.errorPosition, {
-          toValue: 1,
-          duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1),
-        }),
-        Animated.delay(1000),
-        Animated.timing( this.state.errorPosition, {
-          toValue: 0,
-          duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1),
-        }),
-      ]).start(() => this.props.toggleError());
-    }
   }
 
   componentWillUnmount() {
@@ -124,6 +108,7 @@ class Sessions extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar hidden={ true } />
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <BGVideo
             tabPosition={ this.state.tabPosition }
@@ -161,7 +146,6 @@ let styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   tab: state.session.tab,
-  showError: state.session.showError,
 });
 
 const mapActionsToProps = (dispatch) => ({

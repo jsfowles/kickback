@@ -7,7 +7,7 @@ import {
 
 import Request from '../utils/request';
 import { Alert } from 'react-native';
-import { updateUsername } from './sessions';
+import { updateSessionEmail } from './sessions';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
@@ -49,7 +49,7 @@ export const createUser = credentials => (dispatch) => {
     'Is this correct?',
     `You entered your email as: ${credentials.email}`,
     [
-      { text: 'Cancel', onPress: () => dispatch(updateUsername('')) },
+      { text: 'Cancel', onPress: () => dispatch(updateSessionEmail('')) },
       { text: 'Ok', onPress: () => {
         createUserAPI(credentials)
         .then(res => {
