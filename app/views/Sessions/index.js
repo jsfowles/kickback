@@ -97,22 +97,6 @@ class Sessions extends React.Component {
       if (nextProps.tab === TABS.LOG_IN) { toValue = 1; }
       Animated.timing( this.state.tabPosition, { toValue }).start();
     }
-
-    if (!this.props.showError && nextProps.showError) {
-      Animated.sequence([
-        Animated.timing(this.state.errorPosition, {
-          toValue: 1,
-          duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1),
-        }),
-        Animated.delay(1000),
-        Animated.timing( this.state.errorPosition, {
-          toValue: 0,
-          duration: 500,
-          easing: Easing.bezier(0.25, 1, 0.25, 1),
-        }),
-      ]).start(() => this.props.toggleError());
-    }
   }
 
   componentWillUnmount() {
