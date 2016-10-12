@@ -7,10 +7,10 @@ import {
 
 import Request from '../utils/request';
 import { Alert } from 'react-native';
-import { updateUsername } from './sessions';
+import { updateSessionEmail } from './sessions';
+import
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
-export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
