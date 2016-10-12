@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Keyboard,
   KeyboardAvoidingView,
+  StatusBar,
   Animated,
   Easing,
 } from 'react-native';
@@ -33,7 +34,7 @@ const TABS = {
 class Sessions extends React.Component {
   static propTypes = {
     tab: React.PropTypes.string.isRequired,
-    showError: React.PropTypes.bool.isRequired,
+
     toggleError: React.PropTypes.func.isRequired,
     handleNavigate: React.PropTypes.func.isRequired,
   };
@@ -124,6 +125,7 @@ class Sessions extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar hidden={ true } />
         <KeyboardAvoidingView behavior='padding' style={ styles.container }>
           <BGVideo
             tabPosition={ this.state.tabPosition }
@@ -161,7 +163,6 @@ let styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   tab: state.session.tab,
-  showError: state.session.showError,
 });
 
 const mapActionsToProps = (dispatch) => ({
