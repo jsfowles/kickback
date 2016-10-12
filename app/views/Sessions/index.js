@@ -34,7 +34,6 @@ const TABS = {
 class Sessions extends React.Component {
   static propTypes = {
     tab: React.PropTypes.string.isRequired,
-
     toggleError: React.PropTypes.func.isRequired,
     handleNavigate: React.PropTypes.func.isRequired,
   };
