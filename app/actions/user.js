@@ -8,7 +8,6 @@ import {
 import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail } from './sessions';
-import
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
