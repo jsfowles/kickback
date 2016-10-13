@@ -83,11 +83,3 @@ describe('updateSessionEmail', () => {
     expect(actions.updateSessionEmail(email)).toEqual(expectedAction);
   });
 });
-
-describe('destroySession', () => {
-  const expectedAction = { type: 'DESTROY_SESSION' };
-
-  it('should create an action to destroy the session(logout)', () => {
-    expect(actions.destroySession()).toEqual(expectedAction);
-  });
-});
