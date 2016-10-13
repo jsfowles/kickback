@@ -48,10 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({
-  user: state.user.user,
-});
-
-const mapActionsToProps = _ => ({});
-
-export default connect(mapStateToProps, mapActionsToProps)(ProfilePicture);
+export default ProfilePicture;
