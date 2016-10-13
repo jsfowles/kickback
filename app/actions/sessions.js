@@ -1,12 +1,11 @@
 'use strict';
 
 import Request from '../utils/request';
-import { loginUser } from '../utils/api';
 import { validateCredentials } from '../utils/validations';
 import { formatSession } from '../utils/session';
 import { pop } from './navigation';
 import { fetchUserSuccess } from './user';
-
+import { changeTab } from './tabs';
 import {
   createUser,
 } from './user';
@@ -14,7 +13,6 @@ import {
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
 export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session: formatSession(session) });
-export const destroySession = _ => ({ type: 'DESTROY_SESSION' });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
@@ -50,4 +48,10 @@ export const fetchSession = password => (dispatch, getState) => {
   .then(res => {
     return dispatch(fetchUserSuccess(res.data));
   });
+};
+
+export const destroySession = _ => dispatch => {
+  dispatch(pop('profile'));
+  dispatch(changeTab(0));
+  dispatch({ type: 'DESTROY_SESSION' });
 };
