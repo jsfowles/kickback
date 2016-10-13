@@ -33,4 +33,11 @@ describe('tab actions', () => {
       return expect(store.dispatch(actions.onTabClick(1))).toEqual(expectedAction);
     });
   });
+
+  describe('changeTab', () => {
+    it('should distatch CHANGE tab with the expected action', () => {
+      const expectedAction = { type: 'CHANGE_TAB', index: 1 };
+      return expect(actions.changeTab(1)).toEqual(expectedAction);
+    });
+  });
 });

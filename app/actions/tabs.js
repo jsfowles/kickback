@@ -2,7 +2,11 @@
 
 import { push } from './navigation';
 
-const changeTab = index => ({ type: 'CHANGE_TAB', index });
+<<<<<<< HEAD
+=======
+
+>>>>>>> abb85ac... Destroy User now works and returns to feed tab
+export const changeTab = index => ({ type: 'CHANGE_TAB', index });
 
 export const onTabClick = index => (dispatch, getState) => {
   const { session } = getState().session;
