@@ -28,19 +28,28 @@ const { width: WIDTH } = Dimensions.get('window');
 
 class User extends React.Component {
   static propTypes = {
-    user: React.PropTypes.object.isRequired,
+    user: React.PropTypes.shape({
+      email: React.PropTypes.string,
+      name: React.PropTypes.string,
+      totalApproved: React.PropTypes.number.isRequred,
+      totalPendingOrWaitingApproval: React.PropTypes.number.isRequired,
+    }),
     fetchUser: React.PropTypes.func,
     navigator: React.PropTypes.shape({
       push: React.PropTypes.func.isRequired,
     }),
+    // TODO: We should make this a shape one day.
+    products: React.PropTypes.array,
+    triggerModal: React.PropTypes.func,
+    handleNavigate: React.PropTypes.func,
   };
 
   componentDidMount() {
     this.props.fetchUser();
   }
 
-  renderParallaxContent() {
-    return <ProfilePicture />;
+  renderParallaxContent = () => {
+    return <ProfilePicture user={ this.props.user } />;
   }
 
   render() {
@@ -56,48 +65,50 @@ class User extends React.Component {
       onPress: () => handleNavigate({ type: 'push', route: NEXT_ROUTE }, 'profile'),
     };
 
-    return (
-      <Container
-        hasScrolled={ this.props.hasScrolled }
-        setHasScrolled={ this.props.setHasScrolled }
-        headerHeight={ HEADER_HEIGHT }
-        rightItem={ rightItem }
-        parallaxContent={ this.renderParallaxContent }
-        headerStyles={ styles.header }
-      >
-        { products.length === 0 ? (
-          <View />
-        ) : (
-          <Products
-            ref='products'
-            products={ products }
-            title='SHARED PRODUCTS'
-            cardSize='small'
+    if (user) {
+      return (
+        <Container
+          headerHeight={ HEADER_HEIGHT }
+          rightItem={ rightItem }
+          headerStyles={ styles.header }
+          parallaxContent={ this.renderParallaxContent }
+        >
+          { products.length === 0 ? (
+            <View />
+          ) : (
+            <Products
+              ref='products'
+              products={ products }
+              title='SHARED PRODUCTS'
+              cardSize='small'
+              headerHeight={ HEADER_HEIGHT }
+              loadMoreProducts={ this.loadMoreProducts }
+              emptyListText="You haven't shared any products yet."
+            />
+          )}
+
+          <EarningsLink
+            position='left'
+            earnings={ user.totalEarned }
             headerHeight={ HEADER_HEIGHT }
-            loadMoreProducts={ this.loadMoreProducts }
-            emptyListText="You haven't shared any products yet."
+            icon={ require('image!earnings') }
+            title='Total Earnings'
+            handleNavigate={ () => triggerModal('earningsInfo') }
           />
-        )}
 
-        <EarningsLink
-          position='left'
-          earnings={ user.totalEarned }
-          headerHeight={ HEADER_HEIGHT }
-          icon={ require('image!earnings') }
-          title='Total Earnings'
-          handleNavigate={ () => triggerModal('earningsInfo') }
-        />
+          <EarningsLink
+            position='right'
+            earnings={ user.totalPendingOrWaitingApproval }
+            headerHeight={ HEADER_HEIGHT }
+            icon={ require('image!pending') }
+            title='Total Pending'
+            handleNavigate={ () => triggerModal('payoutInfo') }
+            />
+        </Container>
+      );
+    }
 
-        <EarningsLink
-          position='right'
-          earnings={ user.totalPendingOrWaitingApproval }
-          headerHeight={ HEADER_HEIGHT }
-          icon={ require('image!pending') }
-          title='Total Pending'
-          handleNavigate={ () => triggerModal('payoutInfo') }
-        />
-      </Container>
-    );
+    return null;
   }
 }
 
