@@ -1,19 +1,19 @@
 'use strict';
 
 import { createLink } from '../utils/api';
-import { toggleSessionModal } from './sessions';
 import { ActionSheetIOS } from 'react-native';
+import { triggerModal } from './app';
 
 export const toggleCreatingRecommendation = (bool) => ({ type: 'TOGGLE_CREATING_RECOMMENDATION', bool });
 
 export const recommendProduct = (product) => {
   return (dispatch, getState) => {
-    const { currentUser } = getState();
+    const { user } = getState().user;
 
-    if (currentUser) {
+    if (user) {
       dispatch(toggleCreatingRecommendation(true));
 
-      createLink(product, currentUser.data.id).then((res) => {
+      createLink(product, user.id).then((res) => {
         dispatch(toggleCreatingRecommendation(false));
 
         ActionSheetIOS.showShareActionSheetWithOptions(
@@ -25,7 +25,7 @@ export const recommendProduct = (product) => {
         dispatch(toggleCreatingRecommendation(false));
       });
     } else {
-      dispatch(toggleSessionModal(true));
+      dispatch(triggerModal('session'));
     }
   };
 };

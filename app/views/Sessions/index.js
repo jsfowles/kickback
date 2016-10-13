@@ -15,7 +15,7 @@ import {
 import { connect } from 'react-redux';
 
 import {
-  toggleError,
+  toggleError, closeModal,
 } from '../../actions';
 
 import LoginForm from './components/LoginForm';
@@ -35,7 +35,7 @@ class Sessions extends React.Component {
   static propTypes = {
     tab: React.PropTypes.string.isRequired,
     toggleError: React.PropTypes.func.isRequired,
-    handleNavigate: React.PropTypes.func.isRequired,
+    closeModal: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -104,7 +104,7 @@ class Sessions extends React.Component {
   }
 
   render() {
-    let { handleNavigate } = this.props;
+    let { closeModal } = this.props;
 
     return (
       <View style={{ flex: 1 }}>
@@ -117,7 +117,7 @@ class Sessions extends React.Component {
 
           <Header
             style={ this.state.headerStyles }
-            closeModal={ () => handleNavigate({ type: 'pop' }, 'global') }
+            closeModal={ closeModal }
           />
 
           <LoginForm
@@ -150,6 +150,8 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
   toggleError: _ => dispatch(toggleError(false)),
+  closeModal: _ => dispatch(closeModal()),
+
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Sessions);

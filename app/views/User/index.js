@@ -133,7 +133,7 @@ const mapActionsToProps = (dispatch) => ({
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
-  fetchUser: () => dispatch(fetchUser()),
+    fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);
