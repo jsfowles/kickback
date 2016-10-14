@@ -8,6 +8,7 @@ import {
 import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail } from './sessions';
+import { closeModal } from './app';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
@@ -54,14 +55,17 @@ export const createUser = credentials => (dispatch) => {
         createUserAPI(credentials)
         .then(res => {
           if (res.status === 200) {
-            return dispatch(createSession(res));
+            dispatch(closeModal());
+            // TODO: Should log you in.
+            // return dispatch(createSession(res));
           }
 
           return { error: 'Email address already taken.' };
         })
         .then(res => {
           if (res.status === 'success') {
-            dispatch(loadCurrentUser(res));
+            // TODO: this isn't going to work either
+            // dispatch(fetchUser(res));
           }
         });
       }},
