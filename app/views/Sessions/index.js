@@ -15,7 +15,8 @@ import {
 import { connect } from 'react-redux';
 
 import {
-  toggleError, closeModal,
+  toggleError,
+  closeModal,
 } from '../../actions';
 
 import LoginForm from './components/LoginForm';
