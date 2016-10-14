@@ -151,7 +151,6 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   toggleError: _ => dispatch(toggleError(false)),
   closeModal: _ => dispatch(closeModal()),
-
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Sessions);
