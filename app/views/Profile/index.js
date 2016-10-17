@@ -19,6 +19,7 @@ const scenes = {
   reportAProblem: <ReportAProblem />,
   user: <User />,
   editProfile: <EditUser />,
+  depositSettings: <EditUser />,
 };
 
 class Profile extends React.Component {

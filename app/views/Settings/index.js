@@ -26,6 +26,11 @@ const ROUTES = {
     type: 'push',
     route: { key: 'editProfile' },
   },
+
+  depositSettings: {
+    type: 'push',
+    route: { key: 'depositSettings' },
+  },
 };
 
 class Settings extends React.Component {
@@ -44,7 +49,7 @@ class Settings extends React.Component {
         title: 'Settings',
         options: [
           { title: 'Push Notification Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
-          { title: 'Deposit Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
+          { title: 'Deposit Settings', onPress: () => handleNavigate(ROUTES.depositSettings), bordered: true },
         ],
       },
 
