@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
 
   payablesFaq: {
-    fontSize: 100,
+    fontSize: 22,
     color: '#45BAEF',
     backgroundColor: '#45BAEF',
     textAlign: 'center',
