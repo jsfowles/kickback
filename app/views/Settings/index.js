@@ -56,6 +56,7 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
+          { title: 'Blog', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
           { title: 'Privacy Policy', onPress: () => handleNavigate(ROUTES.privacyPolicy), bordered: true },
           { title: 'Terms', onPress: () => handleNavigate(ROUTES.terms), bordered: false },
         ],
