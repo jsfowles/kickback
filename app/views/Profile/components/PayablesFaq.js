@@ -5,10 +5,10 @@ import {
   Text,
   StyleSheet,
   Image,
+  ScrollView,
 } from 'react-native';
 
 import Container from '../../shared/Container';
-import Input from '../../User/components/EditInput';
 
 class PayablesFaq extends React.Component {
   static propTypes = {
@@ -28,37 +28,38 @@ class PayablesFaq extends React.Component {
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
       >
-        <View style={ styles.payablePicContainer }>
-          <TouchableOpacity>
-            <Image style={styles.payablePic} source={require('../img/payable.png')} />
-          </TouchableOpacity>
-        </View>
+        <ScrollView>
+          <View style={ styles.payablePicContainer }>
+            <TouchableOpacity>
+              <Image style={styles.payablePic} source={require('../img/payable.png')} />
+            </TouchableOpacity>
+          </View>
 
-        <View style={ styles.payableCopyContainer }>
-          <Text style={ styles.payableHeader}>
-            What is Payable?
-          </Text>
-          <Text style={ styles.payableCopy}>
-            Chillwave tote bag taxidermy, Tumblr
-            whatever locavore quinoa literally jean
-            shorts church-key. High Life Schlitz
-            actually seitan, gluten-free fanny pack
-            Vice pour-over deep v blog leggings.
-          </Text>
+          <View style={ styles.payableCopyContainer }>
+            <Text style={ styles.payableHeader}>
+              What is Payable?
+            </Text>
+            <Text style={ styles.payableCopy}>
+              Chillwave tote bag taxidermy, Tumblr
+              whatever locavore quinoa literally jean
+              shorts church-key. High Life Schlitz
+              actually seitan, gluten-free fanny pack
+              Vice pour-over deep v blog leggings.
+            </Text>
 
-          <Text style={ styles.payableHeader}>
-            How do I get a Payable Account?
-          </Text>
-          <Text style={ styles.payableCopy}>
-            Chillwave tote bag taxidermy, Tumblr
-            whatever locavore quinoa literally jean
-            shorts church-key. High Life Schlitz
-            actually seitan, gluten-free fanny pack
-            Vice pour-over deep v blog leggings
-            Austin really deep v.
-          </Text>
-
-        </View>
+            <Text style={ styles.payableHeader}>
+              How do I get a Payable Account?
+            </Text>
+            <Text style={ styles.payableCopy}>
+              Chillwave tote bag taxidermy, Tumblr
+              whatever locavore quinoa literally jean
+              shorts church-key. High Life Schlitz
+              actually seitan, gluten-free fanny pack
+              Vice pour-over deep v blog leggings
+              Austin really deep v.
+            </Text>
+          </View>
+        </ScrollView>
       </Container>
     );
   }
