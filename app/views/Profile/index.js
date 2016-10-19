@@ -12,6 +12,7 @@ import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
 import DepositSettings from './components/DepositSettings';
+import PayablesFaq from './components/PayablesFaq';
 
 const scenes = {
   settings: <Settings />,
@@ -21,6 +22,7 @@ const scenes = {
   user: <User />,
   editProfile: <EditUser />,
   depositSettings: <DepositSettings />,
+  payablesFaq: <PayablesFaq />,
 };
 
 class Profile extends React.Component {

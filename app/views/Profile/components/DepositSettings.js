@@ -5,11 +5,17 @@ import {
   Text,
   StyleSheet,
   Image,
-  TabBa
 } from 'react-native';
 
 import Container from '../../shared/Container';
 import Input from '../../User/components/EditInput';
+
+const ROUTES = {
+  payablesFaq: {
+    type: 'push',
+    route: { key: 'payablesFaq' },
+  },
+};
 
 class DepositSettings extends React.Component {
   static propTypes = {
@@ -36,7 +42,7 @@ class DepositSettings extends React.Component {
         </View>
 
         <View style={ styles.formContainer }>
-          <Input type='text' defaultValue='hello' icon={ require('image!email')} />
+          <Input icon={ require('image!email')} />
         </View>
         <View>
           <Text style={ styles.payableCopy }>
@@ -44,9 +50,12 @@ class DepositSettings extends React.Component {
           </Text>
         </View>
         <View>
-          <Text style={ styles.payableFaq }>
-            Payable FAQ
-          </Text>
+          <Container
+            style={styles.payablesFaq}
+            leftItem={{
+              title: 'Payable FAQ',
+              onPress: () => handleNavigate(ROUTES.payablesFaq),
+            }}/>
         </View>
       </Container>
     );
@@ -73,9 +82,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 
-  payableFaq: {
-    fontSize: 22,
+  payablesFaq: {
+    fontSize: 100,
     color: '#45BAEF',
+    backgroundColor: '#45BAEF',
     textAlign: 'center',
     marginTop: 197,
   },
