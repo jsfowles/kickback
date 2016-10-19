@@ -12,16 +12,6 @@ import {
 } from '../../actions';
 
 const ROUTES = {
-  terms: {
-    type: 'push',
-    route: { key: 'terms' },
-  },
-
-  privacyPolicy: {
-    type: 'push',
-    route: { key: 'privacyPolicy' },
-  },
-
   editProfile: {
     type: 'push',
     route: { key: 'editProfile' },
@@ -30,6 +20,16 @@ const ROUTES = {
   depositSettings: {
     type: 'push',
     route: { key: 'depositSettings' },
+  },
+
+  terms: {
+    type: 'push',
+    route: { key: 'terms' },
+  },
+
+  privacyPolicy: {
+    type: 'push',
+    route: { key: 'privacyPolicy' },
   },
 };
 
@@ -63,8 +63,9 @@ class Settings extends React.Component {
 
       {
         title: 'Support',
-        options: [{
-          title: 'Report a Problem',
+        options: [
+          { title: 'Help Center', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
+          { title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
             { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
             { text: 'Something isn\'t Working', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
