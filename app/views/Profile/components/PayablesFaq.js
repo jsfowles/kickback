@@ -58,6 +58,30 @@ class PayablesFaq extends React.Component {
               Vice pour-over deep v blog leggings
               Austin really deep v.
             </Text>
+
+            <Text style={ styles.payableHeader}>
+              What if I all ready have a Payable Account?
+            </Text>
+            <Text style={ styles.payableCopy}>
+              Chillwave tote bag taxidermy, Tumblr
+              whatever locavore quinoa literally jean
+              shorts church-key. High Life Schlitz
+              actually seitan, gluten-free fanny pack
+              Vice pour-over deep v blog leggings
+              Austin Anthony kicks like a girl.
+            </Text>
+
+            <Text style={ styles.payableHeader}>
+              When do I get paid?
+            </Text>
+            <Text style={ styles.payableCopy}>
+              Chillwave tote bag taxidermy, Tumblr
+              whatever locavore quinoa literally jean
+              shorts church-key. High Life Schlitz
+              actually seitan, gluten-free fanny pack
+              Vice pour-over deep v blog leggings
+              Austin Anthony kicks like a girl.
+            </Text>
           </View>
         </ScrollView>
       </Container>
@@ -82,7 +106,6 @@ const styles = StyleSheet.create({
     color: '#1C343A',
     marginTop: 52,
     marginLeft: 27,
-    marginRight: 133,
   },
 
   payableCopy: {
