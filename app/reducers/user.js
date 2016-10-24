@@ -30,8 +30,19 @@ export const editUser = (state = null, action) => {
   }
 };
 
+export const payableEmail = (state = null, action) => {
+  if (action.email === '') { return null; }
+
+  switch (action.type) {
+    case 'UPDATE_PAYABLE_EMAIL':
+      return action.email;
+    default: return state;
+  }
+};
+
 export default combineReducers({
   user,
   products,
   nextPage,
+  payableEmail,
 });

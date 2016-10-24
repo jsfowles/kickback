@@ -14,13 +14,23 @@ export const recommendProduct = (product) => (dispatch, getState) => {
     path: `/links`,
     method: 'POST',
     headers: session,
-
+    body: {
+      given_url: product.buyUrl,
+      user_id: user,
+      product,
+    },
   };
 
-  dispatch({ type: 'TOGGLE_CREATING_RECOMMENDATION' });
+  console.log(requestObj);
+
+  // { product: {...}}
+  // { ... }
+
+  // dispatch({ type: 'TOGGLE_CREATING_RECOMMENDATION' });
 
   return new Request(requestObj)
-  .then(res => (
-    dispatch(toggleCreatingRecommendation(res.bool))
-  ));
+  .then(res => {
+    console.log(res);
+    // dispatch(toggleCreatingRecommendation(res.bool))
+  });
 };

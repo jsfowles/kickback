@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   TouchableOpacity,
@@ -8,7 +9,11 @@ import {
 } from 'react-native';
 
 import Container from '../../shared/Container';
-import Input from '../../User/components/EditInput';
+import Input from '../../shared/Input';
+import {
+  attachPayable,
+  updatePayableEmail,
+} from '../../../actions';
 
 const ROUTES = {
   payablesFaq: {
@@ -20,10 +25,17 @@ const ROUTES = {
 class DepositSettings extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
+    attachPayable: React.PropTypes.func,
+    updatePayableEmail: React.PropTypes.func.isRequired,
+    email: React.PropTypes.string.isRequired,
   };
 
   render() {
-    const { handleNavigate } = this.props;
+    let {
+      handleNavigate,
+      email,
+      updatePayableEmail,
+     } = this.props;
 
     return (
       <Container
@@ -34,6 +46,10 @@ class DepositSettings extends React.Component {
           icon: require('image!back'),
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
+        rightItem={{
+          title: 'SAVE',
+          onPress: () => this.props.attachPayable(),
+        }}
       >
         <View style={ styles.payablePicContainer }>
           <TouchableOpacity>
@@ -42,20 +58,18 @@ class DepositSettings extends React.Component {
         </View>
 
         <View style={ styles.formContainer }>
-          <Input icon={ require('image!email')} />
+          <Input
+            icon={ require('image!email')}
+            placeholder='youremail@yourhost.com'
+            value={ email }
+            onChangeText={ updatePayableEmail }
+          />
         </View>
+
         <View>
           <Text style={ styles.payableCopy }>
             Deposits will be transferd to you through Payable on a monthly basis. See our Terms & Service agreement for more info.
           </Text>
-        </View>
-        <View>
-          <Container
-            style={styles.payablesFaq}
-            leftItem={{
-              title: 'Payable FAQ',
-              onPress: () => handleNavigate(ROUTES.payablesFaq),
-            }}/>
         </View>
       </Container>
     );
@@ -83,10 +97,7 @@ const styles = StyleSheet.create({
   },
 
   payablesFaq: {
-    fontSize: 22,
-    color: '#45BAEF',
     backgroundColor: '#45BAEF',
-    textAlign: 'center',
     marginTop: 197,
   },
 
@@ -101,4 +112,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DepositSettings;
+const mapStateToProps = state => ({
+  email: state.user.payableEmail,
+});
+
+const mapActionsToProps = dispatch => ({
+  attachPayable: _ => dispatch(attachPayable()),
+  updatePayableEmail: v => dispatch(updatePayableEmail(v)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(DepositSettings);

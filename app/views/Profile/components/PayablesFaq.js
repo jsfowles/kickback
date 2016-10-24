@@ -36,51 +36,32 @@ class PayablesFaq extends React.Component {
           </View>
 
           <View style={ styles.payableCopyContainer }>
-            <Text style={ styles.payableHeader}>
+            <Text style={ styles.payableHeader }>
               What is Payable?
             </Text>
-            <Text style={ styles.payableCopy}>
-              Chillwave tote bag taxidermy, Tumblr
-              whatever locavore quinoa literally jean
-              shorts church-key. High Life Schlitz
-              actually seitan, gluten-free fanny pack
-              Vice pour-over deep v blog leggings.
+            <Text style={ styles.payableCopy }>
+              Chillwave tote bag taxidermy, Tumblr whatever locavore quinoa literally jean shorts church-key. High Life Schlitz actually seitan, gluten-free fanny pack Vice pour-over deep v blog leggings.
             </Text>
 
-            <Text style={ styles.payableHeader}>
+            <Text style={ styles.payableHeader }>
               How do I get a Payable Account?
             </Text>
-            <Text style={ styles.payableCopy}>
-              Chillwave tote bag taxidermy, Tumblr
-              whatever locavore quinoa literally jean
-              shorts church-key. High Life Schlitz
-              actually seitan, gluten-free fanny pack
-              Vice pour-over deep v blog leggings
-              Austin really deep v.
+            <Text style={ styles.payableCopy }>
+              Chillwave tote bag taxidermy, Tumblr whatever locavore quinoa literally jean shorts church-key. High Life Schlitz actually seitan, gluten-free fanny pack Vice pour-over deep v blog leggings Austin really deep v.
             </Text>
 
-            <Text style={ styles.payableHeader}>
+            <Text style={ styles.payableHeader }>
               What if I all ready have a Payable Account?
             </Text>
-            <Text style={ styles.payableCopy}>
-              Chillwave tote bag taxidermy, Tumblr
-              whatever locavore quinoa literally jean
-              shorts church-key. High Life Schlitz
-              actually seitan, gluten-free fanny pack
-              Vice pour-over deep v blog leggings
-              Austin Anthony kicks like a girl.
+            <Text style={ styles.payableCopy }>
+              Chillwave tote bag taxidermy, Tumblr whatever locavore quinoa literally jean shorts church-key. High Life Schlitz actually seitan, gluten-free fanny pack Vice pour-over deep v blog leggings Austin Anthony kicks like a girl.
             </Text>
 
-            <Text style={ styles.payableHeader}>
+            <Text style={ styles.payableHeader }>
               When do I get paid?
             </Text>
-            <Text style={ styles.payableCopy}>
-              Chillwave tote bag taxidermy, Tumblr
-              whatever locavore quinoa literally jean
-              shorts church-key. High Life Schlitz
-              actually seitan, gluten-free fanny pack
-              Vice pour-over deep v blog leggings
-              Austin Anthony kicks like a girl.
+            <Text style={ styles.payableCopy }>
+              Chillwave tote bag taxidermy, Tumblr whatever locavore quinoa literally jean shorts church-key. High Life Schlitz actually seitan, gluten-free fanny pack Vice pour-over deep v blog leggings Austin Anthony kicks like a girl.
             </Text>
           </View>
         </ScrollView>
@@ -99,6 +80,10 @@ const styles = StyleSheet.create({
     height: 145,
     width: 272,
 
+  },
+
+  payableCopyContainer: {
+    marginBottom: 55,
   },
 
   payableHeader: {

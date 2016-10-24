@@ -22,7 +22,7 @@ const scenes = {
   user: <User />,
   editProfile: <EditUser />,
   depositSettings: <DepositSettings />,
-  payablesFaq: <PayablesFaq />,
+  payablesFaq: <WebView url='http://www.kbck.me/privacy-policy' title='Payable FAQ' />,
 };
 
 class Profile extends React.Component {

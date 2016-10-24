@@ -15,6 +15,7 @@ export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 export const editUser = edit => ({ type: 'EDIT_USER', edit });
+export const updatePayableEmail = email => ({ type: 'UPDATE_PAYABLE_EMAIL', email });
 
 export const fetchUser = _ => (dispatch, getState) => {
   let { user } = getState().user;
@@ -71,6 +72,22 @@ export const createUser = credentials => (dispatch) => {
       }},
     ]
   );
+};
+
+export const attachPayable = _ => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
+  let requestObj = {
+    path: `/users/${user.id}/payable_accounts`,
+    method: 'POST',
+    headers: session,
+  };
+
+  return new Request(requestObj)
+  .then(res => {
+    console.log(res);
+    // dispatch(toggleCreatingRecommendation(res.bool))
+  });
 };
 
 export const updateUser = _ => {
