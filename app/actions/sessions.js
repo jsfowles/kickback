@@ -46,8 +46,7 @@ export const fetchSession = password => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
-    console.log(res);
-    return dispatch(fetchUserSuccess(res.data));
+    return dispatch(fetchUserSuccess(res));
   });
 };
 

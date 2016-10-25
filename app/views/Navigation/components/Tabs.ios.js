@@ -10,6 +10,16 @@ import Shopping from '../../Shopping';
 import { onTabClick } from '../../../actions';
 
 class Tabs extends React.Component {
+  static propTypes = {
+    tabs: React.PropTypes.shape({
+      index: React.PropTypes.number.isRequired,
+      tabs: React.PropTypes.array.isRequired,
+    }),
+    onTabClick: React.PropTypes.func.isRequired,
+    handleNavigate: React.PropTypes.func.isRequired,
+    modal: React.PropTypes.string,
+  };
+
   renderTab(tab) {
     switch (tab) {
       case 'shopping': return <Shopping />;
@@ -35,11 +45,13 @@ class Tabs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.modal) {
-      nextProps.handleNavigate({ type: 'push', route: { key: nextProps.modal }});
+    let { modal, handleNavigate } = this.props;
+
+    if (nextProps.modal && modal === null) {
+      handleNavigate({ type: 'push', route: { key: nextProps.modal }});
     }
 
-    if (this.props.modal && nextProps.modal === null) {
+    if (modal && nextProps.modal === null) {
       nextProps.handleNavigate({ type: 'pop' });
     }
   }
@@ -57,13 +69,6 @@ class Tabs extends React.Component {
   }
 }
 
-Tabs.propTypes = {
-  tabs: React.PropTypes.shape({
-    index: React.PropTypes.number.isRequired,
-    tabs: React.PropTypes.array.isRequired,
-  }),
-  onTabClick: React.PropTypes.func.isRequired,
-};
 
 const mapStateToProps = state => ({
   tabs: state.tabs,
