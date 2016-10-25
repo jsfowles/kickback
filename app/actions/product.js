@@ -39,7 +39,7 @@ export const recommendProduct = product => (dispatch, getState) => {
     return new Request(requestObj)
     .then(res => (
       ActionSheetIOS.showShareActionSheetWithOptions(
-        { url: res.url },
+        { url: `http://www.${res.url}` },
         () => null,
         () => null,
       )
