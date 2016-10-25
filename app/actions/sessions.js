@@ -6,6 +6,7 @@ import { formatSession } from '../utils/session';
 import { pop } from './navigation';
 import { fetchUserSuccess } from './user';
 import { changeTab } from './tabs';
+import { closeModal } from './app';
 import {
   createUser,
 } from './user';
@@ -33,8 +34,7 @@ export const fetchSession = password => (dispatch, getState) => {
     body: creds,
     requestCallback: (res) => {
       if (res.status === 401) { return dispatch(fetchRequestFailure()); }
-
-      dispatch(pop('global'));
+      dispatch(closeModal());
       dispatch(fetchSessionSuccess(res));
     },
   };
@@ -46,7 +46,7 @@ export const fetchSession = password => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
-    return dispatch(fetchUserSuccess(res.data));
+    return dispatch(fetchUserSuccess(res));
   });
 };
 

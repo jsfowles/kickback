@@ -8,6 +8,7 @@ import {
 import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail } from './sessions';
+import { closeModal } from './app';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
@@ -26,22 +27,8 @@ export const fetchUser = _ => (dispatch, getState) => {
   };
 
   return new Request(requestObj).then(
-    res => dispatch(fetchUserSuccess({ ...res, id: res.user.id, email: res.user.email }))
+    res => dispatch(fetchUserSuccess(res))
   );
-};
-
-export const loadMoreCurrentUser = _ => {
-  return (dispatch, getState) => {
-    let nextPageUrl = getState().user.nextPageUrl;
-    let isFetching = getState().user.isFetching;
-
-    if (!isFetching) {
-      dispatch(toggleFetching(true));
-
-      getCurrentUser(nextPageUrl)
-      .then(res => dispatch(receiveMoreProducts(res)));
-    }
-  };
 };
 
 export const createUser = credentials => (dispatch) => {
@@ -54,14 +41,17 @@ export const createUser = credentials => (dispatch) => {
         createUserAPI(credentials)
         .then(res => {
           if (res.status === 200) {
-            return dispatch(createSession(res));
+            dispatch(closeModal());
+            // TODO: Should log you in.
+            // return dispatch(createSession(res));
           }
 
           return { error: 'Email address already taken.' };
         })
         .then(res => {
           if (res.status === 'success') {
-            dispatch(loadCurrentUser(res));
+            // TODO: this isn't going to work either
+            // dispatch(fetchUser(res));
           }
         });
       }},
