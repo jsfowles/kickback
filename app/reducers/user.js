@@ -12,6 +12,11 @@ export const user = (state = null, action) => {
         ...state,
         ...action.user,
       };
+    case 'UPDATE_PAYABLE_EMAIL':
+      return {
+        ...state,
+        payableEmail: action.payableEmail,
+      };
     case 'DESTROY_SESSION':
       return null;
     default: return state;
@@ -30,19 +35,8 @@ export const editUser = (state = null, action) => {
   }
 };
 
-export const payableEmail = (state = null, action) => {
-  if (action.email === '') { return null; }
-
-  switch (action.type) {
-    case 'UPDATE_PAYABLE_EMAIL':
-      return action.email;
-    default: return state;
-  }
-};
-
 export default combineReducers({
   user,
   products,
   nextPage,
-  payableEmail,
 });

@@ -9,6 +9,7 @@ import SettingsGroup from './components/SettingsGroup';
 import {
   destroySession,
   updateUser,
+  fetchUser,
 } from '../../actions';
 
 const ROUTES = {
@@ -49,7 +50,14 @@ class Settings extends React.Component {
         title: 'Settings',
         options: [
           { title: 'Push Notification Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
-          { title: 'Deposit Settings', onPress: () => handleNavigate(ROUTES.depositSettings), bordered: true },
+          {
+            title: 'Deposit Settings',
+            onPress: () => {
+              this.props.fetchUser();
+              return handleNavigate(ROUTES.depositSettings);
+            },
+            bordered: true,
+          },
         ],
       },
 
@@ -122,6 +130,7 @@ Settings.propTypes = {
   }),
   logout: React.PropTypes.func.isRequired,
   updateUser: React.PropTypes.func.isRequired,
+  fetchUser: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = _ => ({});
@@ -129,6 +138,7 @@ const mapStateToProps = _ => ({});
 const mapActionsToProps = dispatch => ({
   logout: () => dispatch(destroySession()),
   updateUser: () => dispatch(updateUser()),
+  fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Settings);

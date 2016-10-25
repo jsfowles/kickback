@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 
+import { validateEmail } from '../../../utils/validations';
+
 import Container from '../../shared/Container';
 import Input from '../../shared/Input';
 import BottomLink from '../../shared/BottomLink';
@@ -51,6 +53,7 @@ class DepositSettings extends React.Component {
         rightItem={{
           title: 'SAVE',
           onPress: () => this.props.attachPayable(),
+          disabled: !validateEmail(email),
         }}
       >
         <View style={ styles.contentContainer }>
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  email: state.user.payableEmail,
+  email: state.user.user.payableEmail,
 });
 
 const mapActionsToProps = dispatch => ({

@@ -21,7 +21,7 @@ const scenes = {
   user: <User />,
   editProfile: <EditUser />,
   depositSettings: <DepositSettings />,
-  payablesFaq: <WebView url='http://localhost:3000/payable-faq' title='Payable FAQ' />,
+  payablesFaq: <WebView url='http://www.kbck.me/payable-faq' title='Payable FAQ' />,
 };
 
 class Profile extends React.Component {
