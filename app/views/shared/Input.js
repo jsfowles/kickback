@@ -1,8 +1,16 @@
 import React from 'react';
 import { View, Image, StyleSheet, TextInput } from 'react-native';
 
-const Input = ({ icon, placeholder, value, autoCapitalize, autoCorrect, onChangeText }) => (
-  <View style={ styles.textInputContainer }>
+const Input = ({
+  icon,
+  placeholder,
+  value,
+  autoCapitalize,
+  autoCorrect,
+  onChangeText,
+  wrapperStyles,
+}) => (
+  <View style={[ styles.textInputContainer, wrapperStyles ]}>
     <View style={ styles.iconContainer }>
       <Image source={ icon } style={ styles.icon } />
     </View>
@@ -25,16 +33,17 @@ Input.propTypes = {
   autoCapitalize: React.PropTypes.string.isRequired,
   autoCorrect: React.PropTypes.string.isRequired,
   onChangeText: React.PropTypes.string.isRequired,
+  wrapperStyles: React.PropTypes.object.isRequired,
 };
 
 Input.defaultProps = {
   autoCapitalize: 'none',
   autoCorrect: false,
+  wrapperStyles: {},
 };
 
 const styles = StyleSheet.create({
   textInputContainer: {
-    flex: 1,
     flexDirection: 'row',
   },
 

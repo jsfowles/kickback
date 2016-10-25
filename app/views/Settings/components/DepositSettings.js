@@ -10,6 +10,7 @@ import {
 
 import Container from '../../shared/Container';
 import Input from '../../shared/Input';
+import BottomLink from '../../shared/BottomLink';
 import {
   attachPayable,
   updatePayableEmail,
@@ -28,6 +29,7 @@ class DepositSettings extends React.Component {
     attachPayable: React.PropTypes.func,
     updatePayableEmail: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
+    handleClick: React.PropTypes.object.isRequired,
   };
 
   render() {
@@ -39,7 +41,7 @@ class DepositSettings extends React.Component {
 
     return (
       <Container
-        style={{ flex: 1 }}
+        style={{ flex: 1, paddingBottom: 50 }}
         title='Deposit Settings'
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
@@ -51,25 +53,25 @@ class DepositSettings extends React.Component {
           onPress: () => this.props.attachPayable(),
         }}
       >
-        <View style={ styles.payablePicContainer }>
-          <TouchableOpacity>
-            <Image style={styles.payablePic} source={require('../img/payable.png')} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={ styles.formContainer }>
+        <View style={ styles.contentContainer }>
+          <Image style={styles.payablePic} source={require('image!payable')} />
           <Input
+            wrapperStyles={ styles.formContainer }
             icon={ require('image!email')}
             placeholder='youremail@yourhost.com'
             value={ email }
             onChangeText={ updatePayableEmail }
           />
-        </View>
-
-        <View>
           <Text style={ styles.payableCopy }>
             Deposits will be transferd to you through Payable on a monthly basis. See our Terms & Service agreement for more info.
           </Text>
+
+        </View>
+
+        <View style={ styles.btnContainer }>
+          <BottomLink
+            title='Payable FAQ'
+            onPress={() => handleNavigate(ROUTES.payablesFaq)} />
         </View>
       </Container>
     );
@@ -77,15 +79,11 @@ class DepositSettings extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  payablePicContainer: {
-    marginTop: 43,
-    alignItems: 'center',
-  },
-
   payablePic: {
+    marginTop: 43,
     height: 145,
     width: 272,
-
+    alignSelf: 'center',
   },
 
   payableCopy: {
@@ -108,7 +106,15 @@ const styles = StyleSheet.create({
     borderTopColor: '#e8edef',
     borderBottomWidth: 1,
     borderBottomColor: '#e8edef',
+  },
 
+  contentContainer: {
+    flex: 1,
+    position: 'relative',
+  },
+
+  btnContainer: {
+    justifyContent: 'center',
   },
 });
 

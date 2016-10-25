@@ -31,6 +31,6 @@ export const recommendProduct = (product) => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => {
     console.log(res);
-    // dispatch(toggleCreatingRecommendation(res.bool))
+    dispatch(toggleCreatingRecommendation(false))
   });
 };

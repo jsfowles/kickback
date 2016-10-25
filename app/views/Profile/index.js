@@ -11,8 +11,7 @@ import EditUser from '../User/Edit';
 import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
-import DepositSettings from './components/DepositSettings';
-import PayablesFaq from './components/PayablesFaq';
+import DepositSettings from '../Settings/components/DepositSettings';
 
 const scenes = {
   settings: <Settings />,
@@ -22,7 +21,7 @@ const scenes = {
   user: <User />,
   editProfile: <EditUser />,
   depositSettings: <DepositSettings />,
-  payablesFaq: <WebView url='http://www.kbck.me/privacy-policy' title='Payable FAQ' />,
+  payablesFaq: <WebView url='http://localhost:3000/payable-faq' title='Payable FAQ' />,
 };
 
 class Profile extends React.Component {

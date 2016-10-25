@@ -21,7 +21,7 @@ import {
 
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
-import ResetPasswordLink from './components/ResetPasswordLink';
+import BottomLink from '../shared/BottomLink';
 import BGVideo from './components/BGVideo';
 import Errors from '../shared/Errors';
 
@@ -130,7 +130,7 @@ class Sessions extends React.Component {
           <Errors message={ 'Invalid email or password' } position={ this.state.errorPosition } />
         </KeyboardAvoidingView>
 
-        { this.state.showResetPassword && <ResetPasswordLink /> }
+        { this.state.showResetPassword && <BottomLink /> }
       </View>
     );
   }
