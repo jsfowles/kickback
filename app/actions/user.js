@@ -27,22 +27,8 @@ export const fetchUser = _ => (dispatch, getState) => {
   };
 
   return new Request(requestObj).then(
-    res => dispatch(fetchUserSuccess({ ...res, id: res.user.id, email: res.user.email }))
+    res => dispatch(fetchUserSuccess(res))
   );
-};
-
-export const loadMoreCurrentUser = _ => {
-  return (dispatch, getState) => {
-    let nextPageUrl = getState().user.nextPageUrl;
-    let isFetching = getState().user.isFetching;
-
-    if (!isFetching) {
-      dispatch(toggleFetching(true));
-
-      getCurrentUser(nextPageUrl)
-      .then(res => dispatch(receiveMoreProducts(res)));
-    }
-  };
 };
 
 export const createUser = credentials => (dispatch) => {
