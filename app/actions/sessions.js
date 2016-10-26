@@ -31,7 +31,7 @@ export const fetchSession = password => (dispatch, getState) => {
 
   let requestObj = {
     method: 'POST',
-    path: '/auth/sign_in',
+    path: 'auth/sign_in',
     body: creds,
     requestCallback: (res) => {
       if (res.status === 401) { return dispatch(fetchRequestFailure()); }
@@ -51,9 +51,20 @@ export const fetchSession = password => (dispatch, getState) => {
   });
 };
 
-export const destroySession = _ => dispatch => {
-  dispatch(pop('profile'));
-  dispatch(changeTab(0));
-  dispatch({ type: 'DESTROY_SESSION' });
-  dispatch(fetchFeed());
+export const destroySession = _ => (dispatch, getState) => {
+  let { session } = getState().session;
+
+  let requestObj = {
+    method: 'DELETE',
+    path: 'auth/sign_out',
+    headers: session,
+  };
+
+  return new Request(requestObj)
+  .then(_ => {
+    dispatch(pop('profile'));
+    dispatch(changeTab(0));
+    dispatch({ type: 'DESTROY_SESSION' });
+    return dispatch(fetchFeed());
+  });
 };
