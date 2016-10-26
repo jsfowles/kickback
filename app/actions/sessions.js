@@ -7,6 +7,7 @@ import { pop } from './navigation';
 import { fetchUserSuccess } from './user';
 import { changeTab } from './tabs';
 import { closeModal } from './app';
+import { fetchFeed } from './feed';
 import {
   createUser,
 } from './user';
@@ -54,4 +55,5 @@ export const destroySession = _ => dispatch => {
   dispatch(pop('profile'));
   dispatch(changeTab(0));
   dispatch({ type: 'DESTROY_SESSION' });
+  dispatch(fetchFeed());
 };
