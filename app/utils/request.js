@@ -4,7 +4,7 @@ import { serverUrl, apiVersion } from '../env';
 export default class Request {
   constructor(props) {
     this.props = props;
-    this.url = `${serverUrl}/api/${apiVersion}/${props.path}`;
+    this.url = `${serverUrl}api/${apiVersion}/${props.path}`;
 
     return this.sendRequest();
   }
@@ -14,7 +14,11 @@ export default class Request {
 
     return {
       method: method,
-      headers: { 'Content-Type': 'application/json', ...headers },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        ...headers,
+      },
       body: JSON.stringify(body) || null,
     };
   }
