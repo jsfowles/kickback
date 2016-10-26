@@ -64,7 +64,6 @@ class Settings extends React.Component {
       {
         title: 'About',
         options: [
-          { title: 'Blog', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
           { title: 'Privacy Policy', onPress: () => handleNavigate(ROUTES.privacyPolicy), bordered: true },
           { title: 'Terms', onPress: () => handleNavigate(ROUTES.terms), bordered: false },
         ],
@@ -73,7 +72,6 @@ class Settings extends React.Component {
       {
         title: 'Support',
         options: [
-          { title: 'Help Center', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
           { title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
             { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
