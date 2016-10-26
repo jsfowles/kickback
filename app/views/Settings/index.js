@@ -9,9 +9,20 @@ import SettingsGroup from './components/SettingsGroup';
 import {
   destroySession,
   updateUser,
+  fetchUser,
 } from '../../actions';
 
 const ROUTES = {
+  editProfile: {
+    type: 'push',
+    route: { key: 'editProfile' },
+  },
+
+  depositSettings: {
+    type: 'push',
+    route: { key: 'depositSettings' },
+  },
+
   terms: {
     type: 'push',
     route: { key: 'terms' },
@@ -20,11 +31,6 @@ const ROUTES = {
   privacyPolicy: {
     type: 'push',
     route: { key: 'privacyPolicy' },
-  },
-
-  editProfile: {
-    type: 'push',
-    route: { key: 'editProfile' },
   },
 };
 
@@ -44,7 +50,14 @@ class Settings extends React.Component {
         title: 'Settings',
         options: [
           { title: 'Push Notification Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
-          { title: 'Deposit Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
+          {
+            title: 'Deposit Settings',
+            onPress: () => {
+              this.props.fetchUser();
+              return handleNavigate(ROUTES.depositSettings);
+            },
+            bordered: false,
+          },
         ],
       },
 
@@ -115,6 +128,7 @@ Settings.propTypes = {
   }),
   logout: React.PropTypes.func.isRequired,
   updateUser: React.PropTypes.func.isRequired,
+  fetchUser: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = _ => ({});
@@ -122,6 +136,7 @@ const mapStateToProps = _ => ({});
 const mapActionsToProps = dispatch => ({
   logout: () => dispatch(destroySession()),
   updateUser: () => dispatch(updateUser()),
+  fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Settings);

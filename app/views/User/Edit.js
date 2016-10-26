@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import Container from '../shared/Container';
-import Input from './components/EditInput';
+import Input from '../shared/Input';
 
 class EditProfile extends React.Component {
   static propTypes = {

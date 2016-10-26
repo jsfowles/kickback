@@ -15,6 +15,7 @@ export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 export const editUser = edit => ({ type: 'EDIT_USER', edit });
+export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL', payableEmail });
 
 export const fetchUser = _ => (dispatch, getState) => {
   let { user } = getState().user;
@@ -26,9 +27,13 @@ export const fetchUser = _ => (dispatch, getState) => {
     headers: session,
   };
 
-  return new Request(requestObj).then(
-    res => dispatch(fetchUserSuccess(res))
-  );
+  dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
+
+  return new Request(requestObj).then(res => {
+    dispatch({ type: 'FETCH_USER_PROFILE_SUCCESS' });
+    return dispatch(fetchUserSuccess(res));
+  })
+  .catch(e => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
 export const createUser = credentials => (dispatch) => {
@@ -57,6 +62,27 @@ export const createUser = credentials => (dispatch) => {
       }},
     ]
   );
+};
+
+export const attachPayable = _ => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
+
+  let requestObj = {
+    method: 'POST',
+    path: `/users/${user.id}/payable_accounts`,
+    headers: session,
+    body: { email: user.payableEmail },
+  };
+
+  dispatch({ type: 'FETCH_USER_PAYABLE_REQUEST' });
+
+  return new Request(requestObj)
+  .then(res => {
+    dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
+    return dispatch(fetchUserSuccess(res.data));
+  })
+  .catch(e => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
 };
 
 export const updateUser = _ => {
