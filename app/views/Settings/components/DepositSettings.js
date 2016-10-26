@@ -77,7 +77,8 @@ class DepositSettings extends React.Component {
         <View style={ styles.btnContainer }>
           <BottomLink
             title='Payable FAQ'
-            onPress={() => handleNavigate(ROUTES.payablesFaq)} />
+            onPress={() => handleNavigate(ROUTES.payablesFaq)}
+            />
         </View>
       </Container>
     );

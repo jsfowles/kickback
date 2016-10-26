@@ -6,8 +6,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const BottomLink = ({ title, onPress }) => (
-  <TouchableOpacity onPress= { onPress }>
+const BottomLink = ({ containerStyles, title, onPress }) => (
+  <TouchableOpacity onPress= { onPress } style={ containerStyles }>
     <Text style={ styles.text }>{ title }</Text>
   </TouchableOpacity>
 );
@@ -15,6 +15,11 @@ const BottomLink = ({ title, onPress }) => (
 BottomLink.propTypes = {
   title: React.PropTypes.string.isRequired,
   onPress: React.PropTypes.func.isRequired,
+  containerStyles: React.PropTypes.number.isRequired,
+};
+
+BottomLink.defaultProps = {
+  containerStyles: {},
 };
 
 let styles = StyleSheet.create({

@@ -130,7 +130,11 @@ class Sessions extends React.Component {
           <Errors message={ 'Invalid email or password' } position={ this.state.errorPosition } />
         </KeyboardAvoidingView>
 
-        { this.state.showResetPassword && <BottomLink /> }
+        { this.state.showResetPassword && <BottomLink
+          title='Forgot your Password?'
+          containerStyles={ styles.btnContainer }
+          onPress={ () => null }
+        /> }
       </View>
     );
   }
@@ -138,10 +142,17 @@ class Sessions extends React.Component {
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ececec',
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+
+  btnContainer: {
+    backgroundColor: '#fff',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });
 
