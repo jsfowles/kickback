@@ -14,7 +14,11 @@ export default class Request {
 
     return {
       method: method,
-      headers: { 'Content-Type': 'application/json', ...headers },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        ...headers,
+      },
       body: JSON.stringify(body) || null,
     };
   }
