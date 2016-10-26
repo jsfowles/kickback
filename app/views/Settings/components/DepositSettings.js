@@ -60,7 +60,7 @@ class DepositSettings extends React.Component {
         }}
       >
         <View style={ styles.contentContainer }>
-          <Image style={styles.payablePic} source={require('image!payable')} />
+          <Image style={ styles.payablePic } source={require('image!payable')} />
           <Input
             wrapperStyles={ styles.formContainer }
             icon={ require('image!email')}
@@ -99,11 +99,6 @@ const styles = StyleSheet.create({
     marginTop: 14,
     marginLeft: 16,
     marginRight: 15,
-  },
-
-  payablesFaq: {
-    backgroundColor: '#45BAEF',
-    marginTop: 197,
   },
 
   formContainer: {

@@ -56,7 +56,7 @@ class Settings extends React.Component {
               this.props.fetchUser();
               return handleNavigate(ROUTES.depositSettings);
             },
-            bordered: true,
+            bordered: false,
           },
         ],
       },
@@ -71,8 +71,8 @@ class Settings extends React.Component {
 
       {
         title: 'Support',
-        options: [
-          { title: 'Report a Problem',
+        options: [{
+          title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
             { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
             { text: 'Something isn\'t Working', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
