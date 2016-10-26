@@ -31,9 +31,9 @@ Input.propTypes = {
   placeholder: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   autoCapitalize: React.PropTypes.string.isRequired,
-  autoCorrect: React.PropTypes.string.isRequired,
-  onChangeText: React.PropTypes.string.isRequired,
-  wrapperStyles: React.PropTypes.object.isRequired,
+  autoCorrect: React.PropTypes.bool.isRequired,
+  onChangeText: React.PropTypes.func.isRequired,
+  wrapperStyles: React.PropTypes.number.isRequired,
 };
 
 Input.defaultProps = {

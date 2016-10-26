@@ -31,7 +31,8 @@ class DepositSettings extends React.Component {
     attachPayable: React.PropTypes.func,
     updatePayableEmail: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
-    handleClick: React.PropTypes.object.isRequired,
+    isFetchingUserPayable: React.PropTypes.bool.isRequired,
+    isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
   render() {
@@ -39,6 +40,8 @@ class DepositSettings extends React.Component {
       handleNavigate,
       email,
       updatePayableEmail,
+      isFetchingUserPayable,
+      isFetchingUserProfile,
      } = this.props;
 
     return (
@@ -53,7 +56,7 @@ class DepositSettings extends React.Component {
         rightItem={{
           title: 'SAVE',
           onPress: () => this.props.attachPayable(),
-          disabled: !validateEmail(email),
+          disabled: !validateEmail(email) || isFetchingUserPayable || isFetchingUserProfile,
         }}
       >
         <View style={ styles.contentContainer }>
@@ -123,6 +126,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   email: state.user.user.payableEmail,
+  isFetchingUserPayable: state.user.isFetchingUserPayable,
+  isFetchingUserProfile: state.user.isFetchingUserProfile,
 });
 
 const mapActionsToProps = dispatch => ({

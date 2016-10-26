@@ -27,9 +27,13 @@ export const fetchUser = _ => (dispatch, getState) => {
     headers: session,
   };
 
-  return new Request(requestObj).then(
-    res => dispatch(fetchUserSuccess(res))
-  );
+  dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
+
+  return new Request(requestObj).then(res => {
+    dispatch({ type: 'FETCH_USER_PROFILE_SUCCESS' });
+    return dispatch(fetchUserSuccess(res));
+  })
+  .catch(e => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
 export const createUser = credentials => (dispatch) => {
@@ -68,12 +72,17 @@ export const attachPayable = _ => (dispatch, getState) => {
     method: 'POST',
     path: `/users/${user.id}/payable_accounts`,
     headers: session,
+    body: { email: user.payableEmail },
   };
+
+  dispatch({ type: 'FETCH_USER_PAYABLE_REQUEST' });
 
   return new Request(requestObj)
   .then(res => {
+    dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
     return dispatch(fetchUserSuccess(res.data));
-  });
+  })
+  .catch(e => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
 };
 
 export const updateUser = _ => {

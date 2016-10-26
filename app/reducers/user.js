@@ -1,9 +1,14 @@
 'use strict';
 import { combineReducers } from 'redux';
 import * as base from './product';
+import { isFetching } from './fetching';
+
 
 const products = base.products('USER_PRODUCTS');
 const nextPage = base.nextPage('USER_PRODUCTS');
+const isFetchingUserPayable = isFetching('USER_PAYABLE');
+const isFetchingUserProducts = isFetching('USER_PRODUCTS');
+const isFetchingUserProfile = isFetching('USER_PROFILE');
 
 export const user = (state = null, action) => {
   switch (action.type) {
@@ -39,4 +44,7 @@ export default combineReducers({
   user,
   products,
   nextPage,
+  isFetchingUserPayable,
+  isFetchingUserProducts,
+  isFetchingUserProfile,
 });
