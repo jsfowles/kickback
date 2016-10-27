@@ -16,6 +16,7 @@ export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 export const editUser = edit => ({ type: 'EDIT_USER', edit });
 export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL', payableEmail });
+export const updateUserEmail = userEmail => ({ type: 'UPDATE_USER_EMAIL', userEmail });
 
 export const fetchUser = _ => (dispatch, getState) => {
   let { user } = getState().user;
@@ -83,6 +84,27 @@ export const attachPayable = _ => (dispatch, getState) => {
     return dispatch(fetchUserSuccess(res.data));
   })
   .catch(e => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
+};
+
+export const attachEmail = _ => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
+
+  let requestObj = {
+    method: 'PUT',
+    path: `/auth`,
+    headers: session,
+    body: { email: user.userEmail },
+  };
+
+  dispatch({ type: 'FETCH_USER_EMAIL_REQUEST' });
+
+  return new Request(requestObj)
+  .then(res => {
+    dispatch({ type: 'FETCH_USER_EMAIL_SUCCESS' });
+    return dispatch(fetchUserSuccess(res.data));
+  })
+  .catch(e => dispatch({ type: 'FETCH_USER_EMAIL_FAILURE' }));
 };
 
 export const updateUser = _ => {

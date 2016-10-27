@@ -6,39 +6,42 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import { validateEmail } from '../../utils/validations';
+
 import Container from '../shared/Container';
 import Input from '../shared/Input';
+
+import {
+  attachEmail,
+  updateUserEmail,
+} from '../../actions';
 
 class EditProfile extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
+    attachEmail: React.PropTypes.func,
+    updateUserEmail: React.PropTypes.func.isRequired,
+    email: React.PropTypes.string.isRequired,
+    isFetchingUserEmail: React.PropTypes.bool.isRequired,
+    isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
   render() {
-    const { handleNavigate } = this.props;
+    let {
+      handleNavigate,
+      email,
+      updateUserEmail,
+      isFetchingUserProfile,
+      isFetchingUserEmail,
+     } = this.props;
 
     return (
       <Container
         style={{ flex: 1 }}
         title='Edit Profile'
         headerColors={[ '#45baef', '#34bcd5' ]}
-        leftItem={{
-          icon: require('image!back'),
-          onPress: () => handleNavigate({ type: 'pop' }),
-        }}
       >
-        <View style={ styles.profilePicContainer }>
-          <TouchableOpacity>
-            <View style={ styles.profilePic } />
-            <Text style={ styles.editLabel }>Edit</Text>
-          </TouchableOpacity>
-        </View>
 
-        <View style={ styles.formContainer }>
-          <Input icon={ require('image!user') } />
-          <View style={ styles.seperator } />
-          <Input icon={ require('image!email') } />
-        </View>
       </Container>
     );
   }
@@ -79,4 +82,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditProfile;
+const mapStateToProps = state => ({
+  email: state.user.user.updateEmail,
+  isFetchingUserEmail: state.user.isFetchingUserEmail,
+  isFetchingUserProfile: state.user.isFetchingUserProfile,
+});
+
+const mapActionsToProps = dispatch => ({
+  attachEmail: _ => dispatch(attachEmail()),
+  updateUserEmail: v => dispatch(updateUserEmail(v)),
+});
+
+export default(mapStateToProps, mapActionsToProps)(EditProfile);
