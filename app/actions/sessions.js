@@ -12,7 +12,7 @@ import { fetchUserProducts } from './user-products';
 
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
-export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session: formatSession(session) });
+export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
@@ -21,6 +21,7 @@ export const fetchRequestFailure = msg => ({
 
 export const fetchSession = password => (dispatch, getState) => {
   let { enteredEmail, tab } = getState().session;
+  let session = null;
 
   let creds = {
     email: enteredEmail || '',
@@ -33,8 +34,11 @@ export const fetchSession = password => (dispatch, getState) => {
     body: creds,
     requestCallback: (res) => {
       if (res.status === 401) { return dispatch(fetchRequestFailure()); }
+
+      session = formatSession(res);
+
       dispatch(closeModal());
-      dispatch(fetchSessionSuccess(res));
+      return dispatch(fetchSessionSuccess(session));
     },
   };
 
@@ -45,7 +49,8 @@ export const fetchSession = password => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
-    return dispatch(fetchUserSuccess(res));
+    dispatch(fetchUserSuccess(res));
+    return dispatch(fetchUserProducts(session));
   });
 };
 
