@@ -4,13 +4,11 @@ import Request from '../utils/request';
 import { validateCredentials } from '../utils/validations';
 import { formatSession } from '../utils/session';
 import { pop } from './navigation';
-import { fetchUserSuccess } from './user';
 import { changeTab } from './tabs';
 import { closeModal } from './app';
 import { fetchFeed } from './feed';
-import {
-  createUser,
-} from './user';
+import { createUser, fetchUser, fetchUserSuccess } from './user';
+import { fetchUserProducts } from './user-products';
 
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
@@ -51,13 +49,13 @@ export const fetchSession = password => (dispatch, getState) => {
   });
 };
 
-export const destroySession = _ => (dispatch, getState) => {
-  let { session } = getState().session;
+export const destroySession = (session = null) => (dispatch, getState) => {
+  let localSession = session || getState().session.session;
 
   let requestObj = {
     method: 'DELETE',
     path: 'auth/sign_out',
-    headers: session,
+    headers: localSession,
   };
 
   return new Request(requestObj)
@@ -67,4 +65,30 @@ export const destroySession = _ => (dispatch, getState) => {
     dispatch({ type: 'DESTROY_SESSION' });
     return dispatch(fetchFeed());
   });
+};
+
+/**
+ * Validates the current session.
+ * @returns { function } either will destroy the session or get the user profile and products
+ */
+export const fetchValidateSession = () => (dispatch, getState) => {
+  let { session } = getState().session;
+
+  if (session) {
+    let requestObj = {
+      method: 'GET',
+      path: 'auth/validate_token',
+      headers: session,
+    };
+
+    return new Request(requestObj)
+    .then(res => {
+      if (res.success === true) {
+        dispatch(fetchUser(session));
+        return dispatch(fetchUserProducts(session));
+      }
+
+      return dispatch(destroySession(session));
+    });
+  }
 };
