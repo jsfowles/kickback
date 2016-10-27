@@ -2,7 +2,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, StyleSheet, RefreshControl } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 
 import { fetchFeed } from '../../actions';
 import Container from '../shared/Container';
@@ -11,18 +16,20 @@ import Products from '../Products';
 const FeaturedProducts = ({ feed, fetchFeed }) => (
   <Container style={ styles.container }>
     { feed.isFetching && feed.products.length === 0 ? (
-      <Text>Fetching Products</Text>
+    <View style={ styles.centering }>
+      <ActivityIndicator size='large' />
+    </View>
     ) : (
-      <Products
-        products={ feed.products }
-        cardSize={ 'large' }
-        title={ 'FEATURED PRODUCTS' }
-        refreshControl={ <RefreshControl
-          refreshing={ feed.isFetching }
-          tintColor='#d4d9da'
-          onRefresh={ fetchFeed }
-        /> }
-      />
+    <Products
+      products={ feed.products }
+      cardSize={ 'large' }
+      title={ 'FEATURED PRODUCTS' }
+      refreshControl={ <RefreshControl
+        refreshing={ feed.isFetching }
+        tintColor='#d4d9da'
+        onRefresh={ fetchFeed }
+      /> }
+    />
     )}
   </Container>
 );
@@ -38,6 +45,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 65,
+    alignItems: 'center',
+  },
+
+  centering: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -65,
   },
 });
 
