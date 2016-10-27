@@ -12,7 +12,7 @@ const isFetchingUserProfile = isFetching('USER_PROFILE');
 
 export const user = (state = null, action) => {
   switch (action.type) {
-    case 'FETCH_USER_SUCCESS':
+    case 'FETCH_USER_PROFILE_SUCCESS':
       return {
         ...state,
         ...action.user,

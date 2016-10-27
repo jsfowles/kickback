@@ -107,7 +107,7 @@ class ProductListView extends React.Component {
         contentInset={{ top: 0, bottom: 45 }}
         onEndReached={ loadMoreProducts }
         enableEmptySections={ true }
-        {...this.props}
+        { ...this.props }
       />
     );
   }
