@@ -20,6 +20,10 @@ export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL
 export const updateEmail = email => ({ type: 'UPDATE_USER_EMAIL', email });
 export const updateName = name => ({ type: 'UPDATE_USER_NAME', name });
 
+export const fetchRequestFailure = msg => ({
+  type: 'FETCH_REQUEST_FAILURE',
+  message: msg || 'Invalid email or password',
+});
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
   let { user } = getState().user;
@@ -99,6 +103,8 @@ export const updateUserProfile = _ => (dispatch, getState) => {
       name: user.name,
     },
     requestCallback: (res) => {
+      if (res.status === 500) { return dispatch(fetchRequestFailure()); }
+
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },
   };
