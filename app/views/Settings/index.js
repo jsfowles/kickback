@@ -18,6 +18,11 @@ const ROUTES = {
     route: { key: 'editProfile' },
   },
 
+  changePassword: {
+    type: 'push',
+    route: { key: 'changePassword' },
+  },
+
   depositSettings: {
     type: 'push',
     route: { key: 'depositSettings' },
@@ -42,7 +47,7 @@ class Settings extends React.Component {
         title: 'Account',
         options: [
           { title: 'Edit Profile', onPress: () => handleNavigate(ROUTES.editProfile), bordered: true },
-          { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
+          { title: 'Change Password', onPress: () => handleNavigate(ROUTES.changePassword), bordered: false },
         ],
       },
 
