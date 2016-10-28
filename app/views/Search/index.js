@@ -24,7 +24,7 @@ class Search extends React.Component {
     return (
       <Container style={ styles.container }>
         { search.isFetching ? (
-          <Text>Searching...</Text>
+          <Text>HOLD YOUR HORSES BRO...</Text>
         ) : (
           <Products
             products={ search.products }

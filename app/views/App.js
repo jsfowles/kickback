@@ -10,7 +10,8 @@ import {
 import {
   fetchFeed,
   fetchUserProducts,
-  destroySession,
+  fetchValidateSession,
+  closeModal,
 } from '../actions';
 
 import Navigation from './Navigation';
@@ -18,7 +19,6 @@ import Session from './Sessions';
 import Tabs from './Navigation/components/Tabs';
 import EarningsInfo from './User/components/EarningsInfo';
 import PayoutInfo from './User/components/PayoutInfo';
-import UserModal from './User/components/UserModal';
 
 const scenes = {
   tabs: <Tabs />,
@@ -39,13 +39,16 @@ class App extends Component {
     session: React.PropTypes.object,
     fetchFeed: React.PropTypes.func.isRequired,
     fetchUserProducts: React.PropTypes.func.isRequired,
-    destroySession: React.PropTypes.func.isRequired,
+    fetchValidateSession: React.PropTypes.func.isRequired,
+    closeModal: React.PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    // this.props.destroySession();
     AppState.addEventListener('change', this.handleAppStateChange);
-    return this.loadApp();
+
+    this.props.closeModal();
+    this.props.fetchValidateSession();
+    this.props.fetchFeed();
   }
 
   /**
@@ -57,7 +60,7 @@ class App extends Component {
   }
 
   /**
-   * @returns { destroySession }
+   * @returns { function }
    *
    * Lets load the app.
    * When component mounts or is set to active update the AppState,
@@ -65,22 +68,12 @@ class App extends Component {
    * make sure there is no session or use by calling destroySession.
    */
   loadApp() {
-    // TODO: I should validate tokens before fetching user stuff.
-    let { fetchFeed, fetchUserProducts, session, destroySession, user } = this.props;
-
-    fetchFeed();
-
-    if (session && user) { return fetchUserProducts(); }
-    return destroySession();
+    this.props.fetchValidateSession();
+    return this.props.fetchFeed();
   }
 
-  /**
-   * Handle the app state change
-   * @todo: when app is active sync all the things
-   * @returns { void }
-   */
-  handleAppStateChange = () => {
-    this.loadApp();
+  handleAppStateChange = (state) => {
+    if (state === 'active') { return this.loadApp(); }
   }
 
   render() {
@@ -113,7 +106,8 @@ const mapStateToProps = state => ({
 const mapActionsToProps = dispatch => ({
   fetchFeed: _ => dispatch(fetchFeed()),
   fetchUserProducts: user => dispatch(fetchUserProducts(user)),
-  destroySession: _ => dispatch(destroySession()),
+  fetchValidateSession: _ => dispatch(fetchValidateSession()),
+  closeModal: _ => dispatch(closeModal()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

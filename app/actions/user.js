@@ -24,6 +24,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
   let localSession = session || getState().session.session;
 
   let requestObj = {
+    path: `users/${user.id}`,
     method: 'GET',
     headers: localSession,
   };

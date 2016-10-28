@@ -8,20 +8,23 @@ export const fetchUserProductsSuccess = (nextPage, products) => ({
   products,
 });
 
-export const fetchUserProducts = () => (dispatch, getState) => {
+export const fetchUserProducts = (session = null) => (dispatch, getState) => {
   let { user } = getState().user;
-  let { session } = getState().session;
-  let requestObj = {
-    path: `/users/${user.id}/products`,
-    method: 'GET',
-    headers: session,
-  };
+  let localSession = session || getState().session.session;
 
-  dispatch({ type: 'FETCH_USER_PRODUCTS_REQUEST' });
+  if (user && localSession) {
+    let requestObj = {
+      path: `/users/${user.id}/products`,
+      method: 'GET',
+      headers: localSession,
+    };
 
-  return new Request(requestObj)
-  .then(res => (
-    dispatch(fetchUserProductsSuccess(res.nextPage, res.products))
-  ));
+    dispatch({ type: 'FETCH_USER_PRODUCTS_REQUEST' });
+
+    return new Request(requestObj)
+    .then(res => (
+      dispatch(fetchUserProductsSuccess(res.nextPage, res.products))
+    ));
+  }
 };
 
