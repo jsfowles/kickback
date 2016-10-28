@@ -1,13 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
+
 import {
   View,
-  TouchableOpacity,
-  Text,
   StyleSheet,
-  Image,
 } from 'react-native';
-
 
 import Container from '../../shared/Container';
 import Input from '../../shared/Input';
@@ -38,20 +35,20 @@ class ChangePassword extends React.Component {
       >
         <View style={ styles.currentPassword }>
           <Input
-            icon={ require('image!lock')}
+            icon={ require('image!lock') }
             placeholder='Current Password'
             secureTextEntry={ true }
           />
         </View>
         <View style={ styles.newPassword }>
           <Input
-            icon={ require('image!lock')}
+            icon={ require('image!lock') }
             placeholder='New Password'
             secureTextEntry={ true }
           />
           <View style={ styles.seperator } />
           <Input
-            icon={ require('image!lock')}
+            icon={ require('image!lock') }
             placeholder='Confirm New Password'
             secureTextEntry={ true }
           />
