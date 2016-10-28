@@ -22,18 +22,18 @@ const Input = ({
       autoCapitalize={ autoCapitalize }
       autoCorrect={ autoCorrect }
       onChangeText={ onChangeText}
-      />
+    />
   </View>
 );
 
 Input.propTypes = {
   icon: React.PropTypes.object.isRequired,
   placeholder: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string.isRequired,
+  value: React.PropTypes.string,
   autoCapitalize: React.PropTypes.string.isRequired,
   autoCorrect: React.PropTypes.bool.isRequired,
   onChangeText: React.PropTypes.func.isRequired,
-  wrapperStyles: React.PropTypes.number.isRequired,
+  wrapperStyles: React.PropTypes.object.isRequired,
 };
 
 Input.defaultProps = {

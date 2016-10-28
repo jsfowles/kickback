@@ -13,26 +13,34 @@ import Container from '../shared/Container';
 import Input from '../shared/Input';
 
 import {
-  attachEmail,
-  updateUserEmail,
+  updateUserProfile,
+  updateEmail,
+  updateName,
 } from '../../actions';
 
 class EditProfile extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
-    attachEmail: React.PropTypes.func,
-    updateUserEmail: React.PropTypes.func.isRequired,
+    updateUserProfile: React.PropTypes.func,
+    updateEmail: React.PropTypes.func.isRequired,
+    updateName: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
-    isFetchingUserEmail: React.PropTypes.bool.isRequired,
+    name: React.PropTypes.string,
+    isFetchingEmail: React.PropTypes.bool,
+    isFetchingName: React.PropTypes.bool,
+    isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
   render() {
     let {
       handleNavigate,
       email,
-      updateUserEmail,
-      isFetchingUserEmail,
-     } = this.props;
+      name,
+      updateEmail,
+      updateName,
+      isFetchingEmail,
+      isFetchingUserProfile,
+    } = this.props;
 
     return (
       <Container
@@ -45,8 +53,8 @@ class EditProfile extends React.Component {
         }}
         rightItem={{
           title: 'SAVE',
-          onPress: () => this.props.attachEmail,
-          disabled: !validateEmail(email) || isFetchingUserEmail,
+          onPress: () => this.props.updateUserProfile(),
+          disabled: !validateEmail(email) || isFetchingEmail || isFetchingUserProfile,
         }}
       >
         <View style={ styles.profilePicContainer }>
@@ -57,12 +65,19 @@ class EditProfile extends React.Component {
         </View>
 
         <View style={ styles.formContainer }>
-          <Input icon={ require('image!user') }/>
+          <Input
+            icon={ require('image!user') }
+            value={ name }
+            onChangeText={ updateName }
+            placeholder={ 'Your Name' }
+          />
           <View style={ styles.seperator } />
           <Input
             icon={ require('image!email') }
             value={ email }
-            onChangeText={ updateUserEmail } />
+            onChangeText={ updateEmail }
+            placeholder={ 'Your Email' }
+          />
         </View>
       </Container>
     );
@@ -105,13 +120,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  email: state.user.user.updateEmail,
-  isFetchingUserEmail: state.user.isFetchingUserEmail,
+  email: state.user.user.email,
+  name: state.user.user.name,
+  isFetchingName: state.user.isFetchingName,
+  isFetchingEmail: state.user.isFetchingEmail,
+  isFetchingUserProfile: state.user.isFetchingUserProfile,
 });
 
 const mapActionsToProps = dispatch => ({
-  attachEmail: _ => dispatch(attachEmail()),
-  updateUserEmail: v => dispatch(updateUserEmail(v)),
+  updateUserProfile: _ => dispatch(updateUserProfile()),
+  updateEmail: v => dispatch(updateEmail(v)),
+  updateName: v => dispatch(updateName(v)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(EditProfile);
