@@ -9,6 +9,8 @@ const nextPage = base.nextPage('USER_PRODUCTS');
 const isFetchingUserPayable = isFetching('USER_PAYABLE');
 const isFetchingUserProducts = isFetching('USER_PRODUCTS');
 const isFetchingUserProfile = isFetching('USER_PROFILE');
+const isFetchingEmail = isFetching('USER_EMAIL');
+const isFetchingName = isFetching('USER_NAME');
 
 export const user = (state = null, action) => {
   switch (action.type) {
@@ -21,6 +23,16 @@ export const user = (state = null, action) => {
       return {
         ...state,
         payableEmail: action.payableEmail,
+      };
+    case 'UPDATE_USER_EMAIL':
+      return {
+        ...state,
+        email: action.email,
+      };
+    case 'UPDATE_USER_NAME':
+      return {
+        ...state,
+        name: action.name,
       };
     case 'DESTROY_SESSION':
       return null;
@@ -47,4 +59,6 @@ export default combineReducers({
   isFetchingUserPayable,
   isFetchingUserProducts,
   isFetchingUserProfile,
+  isFetchingEmail,
+  isFetchingName,
 });

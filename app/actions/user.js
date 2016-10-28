@@ -5,9 +5,10 @@ import {
   updateUser as updateUserAPI,
 } from '../utils/api';
 
+import { formatSession } from '../utils/session';
 import Request from '../utils/request';
 import { Alert } from 'react-native';
-import { updateSessionEmail } from './sessions';
+import { updateSessionEmail, fetchSessionSuccess } from './sessions';
 import { closeModal } from './app';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_PROFILE_SUCCESS', user });
@@ -16,6 +17,13 @@ export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 export const editUser = edit => ({ type: 'EDIT_USER', edit });
 export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL', payableEmail });
+export const updateEmail = email => ({ type: 'UPDATE_USER_EMAIL', email });
+export const updateName = name => ({ type: 'UPDATE_USER_NAME', name });
+
+export const fetchRequestFailure = msg => ({
+  type: 'FETCH_REQUEST_FAILURE',
+  message: msg || 'Invalid email or password',
+});
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
   let { user } = getState().user;
@@ -30,7 +38,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
   dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
 
   return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)))
-  .catch(e => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
+  .catch(_ => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
 export const createUser = credentials => (dispatch) => {
@@ -79,22 +87,34 @@ export const attachPayable = _ => (dispatch, getState) => {
     dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
     return dispatch(fetchUserSuccess(res.data));
   })
-  .catch(e => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
+  .catch(_ => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
 };
 
-export const updateUser = _ => {
-  return (dispatch, getState) => {
-    let { session } = getState().session;
+export const updateUserProfile = _ => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
 
-    updateUserAPI(session)
-    .then(res => {
-      if (res.status === 200) {
-      }
-    })
-    .then(res => {
-      if (res.status === 'success') {
-        return dispatch(loadCurrentUser(res));
-      }
-    });
+  let requestObj = {
+    method: 'PUT',
+    path: `/auth`,
+    headers: session,
+    body: {
+      email: user.email,
+      name: user.name,
+    },
+    requestCallback: (res) => {
+      if (res.status !== 200) { return dispatch(fetchRequestFailure()); }
+
+      return dispatch(fetchSessionSuccess(formatSession(res)));
+    },
   };
+
+  dispatch({ type: 'FETCH_USER_UPDATE_REQUEST' });
+
+  return new Request(requestObj)
+  .then(res => {
+    dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
+    return dispatch(fetchUserSuccess(res.data));
+  })
+  .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));
 };
