@@ -103,7 +103,7 @@ export const updateUserProfile = _ => (dispatch, getState) => {
       name: user.name,
     },
     requestCallback: (res) => {
-      if (res.status === 500) { return dispatch(fetchRequestFailure()); }
+      if (res.status !== 200) { return dispatch(fetchRequestFailure()); }
 
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },

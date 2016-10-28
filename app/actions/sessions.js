@@ -38,7 +38,7 @@ export const fetchSession = password => (dispatch, getState) => {
       session = formatSession(res);
 
       dispatch(closeModal());
-      return dispatch(fetchSessionSuccess(formatSession(res)));
+      return dispatch(fetchSessionSuccess(session));
     },
   };
 
