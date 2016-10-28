@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   View,
-  TouchableOpacity,
   Text,
   StyleSheet,
   Image,
@@ -63,7 +62,7 @@ class DepositSettings extends React.Component {
           <Image style={ styles.payablePic } source={require('image!payable')} />
           <Input
             wrapperStyles={ styles.formContainer }
-            icon={ require('image!email')}
+            icon={ require('image!email') }
             placeholder='youremail@yourhost.com'
             value={ email }
             onChangeText={ updatePayableEmail }
