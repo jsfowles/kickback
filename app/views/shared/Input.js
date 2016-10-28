@@ -37,7 +37,6 @@ Input.propTypes = {
   onChangeText: React.PropTypes.func,
   wrapperStyles: React.PropTypes.object,
   secureTextEntry: React.PropTypes.object,
-  iconDimensions: React.PropTypes.object,
 };
 
 Input.defaultProps = {
