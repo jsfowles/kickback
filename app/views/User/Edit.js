@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   TouchableOpacity,
@@ -23,7 +24,6 @@ class EditProfile extends React.Component {
     updateUserEmail: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
     isFetchingUserEmail: React.PropTypes.bool.isRequired,
-    isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
   render() {
@@ -31,7 +31,6 @@ class EditProfile extends React.Component {
       handleNavigate,
       email,
       updateUserEmail,
-      isFetchingUserProfile,
       isFetchingUserEmail,
      } = this.props;
 
@@ -40,8 +39,31 @@ class EditProfile extends React.Component {
         style={{ flex: 1 }}
         title='Edit Profile'
         headerColors={[ '#45baef', '#34bcd5' ]}
+        leftItem={{
+          icon: require('image!back'),
+          onPress: () => handleNavigate({ type: 'pop' }),
+        }}
+        rightItem={{
+          title: 'SAVE',
+          onPress: () => this.props.attachEmail,
+          disabled: !validateEmail(email) || isFetchingUserEmail,
+        }}
       >
+        <View style={ styles.profilePicContainer }>
+          <TouchableOpacity>
+            <View style={ styles.profilePic } />
+            <Text style={ styles.editLabel }>Edit</Text>
+          </TouchableOpacity>
+        </View>
 
+        <View style={ styles.formContainer }>
+          <Input icon={ require('image!user') }/>
+          <View style={ styles.seperator } />
+          <Input
+            icon={ require('image!email') }
+            value={ email }
+            onChangeText={ updateUserEmail } />
+        </View>
       </Container>
     );
   }
@@ -85,7 +107,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   email: state.user.user.updateEmail,
   isFetchingUserEmail: state.user.isFetchingUserEmail,
-  isFetchingUserProfile: state.user.isFetchingUserProfile,
 });
 
 const mapActionsToProps = dispatch => ({
@@ -93,4 +114,4 @@ const mapActionsToProps = dispatch => ({
   updateUserEmail: v => dispatch(updateUserEmail(v)),
 });
 
-export default(mapStateToProps, mapActionsToProps)(EditProfile);
+export default connect(mapStateToProps, mapActionsToProps)(EditProfile);

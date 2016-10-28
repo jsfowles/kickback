@@ -10,7 +10,7 @@ import { Alert } from 'react-native';
 import { updateSessionEmail } from './sessions';
 import { closeModal } from './app';
 
-export const fetchUserSuccess = user => ({ type: 'FETCH_USER_SUCCESS', user });
+export const fetchUserSuccess = user => ({ type: 'FETCH_USER_PROFILE_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
@@ -18,22 +18,19 @@ export const editUser = edit => ({ type: 'EDIT_USER', edit });
 export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL', payableEmail });
 export const updateUserEmail = userEmail => ({ type: 'UPDATE_USER_EMAIL', userEmail });
 
-export const fetchUser = _ => (dispatch, getState) => {
+
+export const fetchUser = (session = null) => (dispatch, getState) => {
   let { user } = getState().user;
-  let { session } = getState().session;
+  let localSession = session || getState().session.session;
 
   let requestObj = {
-    path: `users/${user.id}`,
     method: 'GET',
-    headers: session,
+    headers: localSession,
   };
 
   dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
 
-  return new Request(requestObj).then(res => {
-    dispatch({ type: 'FETCH_USER_PROFILE_SUCCESS' });
-    return dispatch(fetchUserSuccess(res));
-  })
+  return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)))
   .catch(e => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
