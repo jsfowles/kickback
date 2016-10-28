@@ -9,10 +9,11 @@ const Input = ({
   autoCorrect,
   onChangeText,
   wrapperStyles,
+  secureTextEntry,
 }) => (
   <View style={[ styles.textInputContainer, wrapperStyles ]}>
     <View style={ styles.iconContainer }>
-      <Image source={ icon } style={ styles.icon } />
+      <Image source={ icon } style={[ styles.icon ]} />
     </View>
 
     <TextInput
@@ -21,7 +22,8 @@ const Input = ({
       value={ value }
       autoCapitalize={ autoCapitalize }
       autoCorrect={ autoCorrect }
-      onChangeText={ onChangeText}
+      onChangeText={ onChangeText }
+      secureTextEntry={ secureTextEntry }
       />
   </View>
 );
@@ -34,6 +36,8 @@ Input.propTypes = {
   autoCorrect: React.PropTypes.bool.isRequired,
   onChangeText: React.PropTypes.func,
   wrapperStyles: React.PropTypes.object,
+  secureTextEntry: React.PropTypes.object,
+  iconDimensions: React.PropTypes.object,
 };
 
 Input.defaultProps = {
@@ -61,8 +65,6 @@ const styles = StyleSheet.create({
 
   icon: {
     tintColor: '#bdc1c9',
-    height: 22,
-    width: 22,
   },
 });
 

@@ -40,17 +40,20 @@ class ChangePassword extends React.Component {
           <Input
             icon={ require('image!lock')}
             placeholder='Current Password'
+            secureTextEntry={ true }
           />
         </View>
         <View style={ styles.newPassword }>
           <Input
             icon={ require('image!lock')}
             placeholder='New Password'
+            secureTextEntry={ true }
           />
           <View style={ styles.seperator } />
           <Input
             icon={ require('image!lock')}
             placeholder='Confirm New Password'
+            secureTextEntry={ true }
           />
         </View>
       </Container>
@@ -81,13 +84,6 @@ const styles = StyleSheet.create({
     marginLeft: 50,
     backgroundColor: '#e8edef',
     height: 1,
-  },
-
-  iconContainer: {
-    height: 50,
-    width: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
