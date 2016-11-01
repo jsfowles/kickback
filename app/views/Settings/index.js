@@ -46,8 +46,13 @@ class Settings extends React.Component {
       {
         title: 'Account',
         options: [
-          { title: 'Edit Profile', onPress: () => handleNavigate(ROUTES.editProfile), bordered: true },
-          { title: 'Change Password', onPress: () => handleNavigate(ROUTES.changePassword), bordered: false },
+          { title: 'Edit Profile',
+            onPress: () => {
+              this.props.fetchUser();
+              return handleNavigate(ROUTES.editProfile);
+            },
+          bordered: true },
+          { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
         ],
       },
 

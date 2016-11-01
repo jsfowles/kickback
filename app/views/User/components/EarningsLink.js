@@ -6,32 +6,46 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Animated,
 } from 'react-native';
 
 import { numberToDollars, numberToCurrency } from '../../../utils/number';
 
-const EarningsLink = ({
-  position,
-  headerHeight,
-  title,
-  earnings,
-  icon,
-  handleNavigate,
-}) => (
-  <TouchableOpacity
-    style={[ styles.button, {
-      top: headerHeight - 130,
-      [position]: 40,
-    }]}
-    onPress={ handleNavigate }
-  >
-    <View style={ styles.container }>
-      <Image source={ icon } style={ styles.icon } />
-      <Text style={ styles.earnings }>{ numberToCurrency(numberToDollars(earnings)) }</Text>
-      <Text style={ styles.title }>{ title }</Text>
-    </View>
-  </TouchableOpacity>
-);
+class EarningsLink extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
+    let {
+      position,
+      headerHeight,
+      title,
+      earnings,
+      icon,
+      handleNavigate,
+      animatedStyles,
+    } = this.props;
+
+    return (
+      <Animated.View
+        style={[
+          styles.button,
+          { top: headerHeight - 130, [position]: 40 },
+          animatedStyles,
+        ]}
+      >
+        <TouchableOpacity onPress={ handleNavigate }>
+          <View style={ styles.container }>
+            <Image source={ icon } style={ styles.icon } />
+            <Text style={ styles.earnings }>{ numberToCurrency(numberToDollars(earnings)) }</Text>
+            <Text style={ styles.title }>{ title }</Text>
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   button: {

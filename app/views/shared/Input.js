@@ -1,49 +1,60 @@
 import React from 'react';
-import { View, Image, StyleSheet, TextInput } from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TextInput,
+} from 'react-native';
 
-const Input = ({
-  icon,
-  placeholder,
-  value,
-  autoCapitalize,
-  autoCorrect,
-  onChangeText,
-  wrapperStyles,
-  secureTextEntry,
-}) => (
-  <View style={[ styles.textInputContainer, wrapperStyles ]}>
-    <View style={ styles.iconContainer }>
-      <Image source={ icon } style={[ styles.icon ]} />
-    </View>
+class Input extends React.Component {
+  static propTypes = {
+    icon: React.PropTypes.object.isRequired,
+    placeholder: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string,
+    autoCapitalize: React.PropTypes.string.isRequired,
+    autoCorrect: React.PropTypes.bool.isRequired,
+    onChangeText: React.PropTypes.func.isRequired,
+    wrapperStyles: React.PropTypes.object.isRequired,
+    refs: React.PropTypes.func.isRequired,
+  };
 
-    <TextInput
-      style={ styles.textInput }
-      placeholder={ placeholder }
-      value={ value }
-      autoCapitalize={ autoCapitalize }
-      autoCorrect={ autoCorrect }
-      onChangeText={ onChangeText }
-      secureTextEntry={ secureTextEntry }
-      />
-  </View>
-);
+  static defaultProps = {
+    autoCapitalize: 'none',
+    autoCorrect: false,
+    wrapperStyles: {},
+  };
 
-Input.propTypes = {
-  icon: React.PropTypes.object.isRequired,
-  placeholder: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string,
-  autoCapitalize: React.PropTypes.string.isRequired,
-  autoCorrect: React.PropTypes.bool.isRequired,
-  onChangeText: React.PropTypes.func,
-  wrapperStyles: React.PropTypes.object,
-  secureTextEntry: React.PropTypes.bool,
-};
+  render() {
+    let {
+      icon,
+      placeholder,
+      value,
+      autoCapitalize,
+      autoCorrect,
+      onChangeText,
+      wrapperStyles,
+      refs,
+    } = this.props;
 
-Input.defaultProps = {
-  autoCapitalize: 'none',
-  autoCorrect: false,
-  wrapperStyles: {},
-};
+    return (
+      <View style={[ styles.textInputContainer, wrapperStyles ]}>
+        <View style={ styles.iconContainer }>
+          <Image source={ icon } style={ styles.icon } />
+        </View>
+
+        <TextInput
+          style={ styles.textInput }
+          placeholder={ placeholder }
+          value={ value }
+          autoCapitalize={ autoCapitalize }
+          autoCorrect={ autoCorrect }
+          onChangeText={ onChangeText }
+          refs={ refs }
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   textInputContainer: {
