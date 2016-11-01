@@ -36,7 +36,7 @@ Input.propTypes = {
   autoCorrect: React.PropTypes.bool.isRequired,
   onChangeText: React.PropTypes.func,
   wrapperStyles: React.PropTypes.object,
-  secureTextEntry: React.PropTypes.object,
+  secureTextEntry: React.PropTypes.bool,
 };
 
 Input.defaultProps = {
