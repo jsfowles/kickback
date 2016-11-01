@@ -5,7 +5,7 @@ const password = (type) => (state = null, action) => {
   switch (action.type) {
     case `UPDATE_${type}`:
       return action.password;
-    case 'RESET_PASSWORDS':
+    case 'CLEAR_CHANGE_PASSWORD':
       return null;
     default: return state;
   }

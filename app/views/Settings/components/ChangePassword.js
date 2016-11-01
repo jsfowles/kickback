@@ -14,6 +14,7 @@ import Input from '../../shared/Input';
 import {
   changePassword,
   updatePassword,
+  clearChangePassword,
 } from '../../../actions';
 
 class ChangePassword extends React.Component {
@@ -21,19 +22,28 @@ class ChangePassword extends React.Component {
     handleNavigate: React.PropTypes.func,
     changePassword: React.PropTypes.func,
     updatePassword: React.PropTypes.func,
-    currentPassword: React.PropTypes.string.isRequired,
-    newPassword: React.PropTypes.string.isRequired,
-    passwordConfirmation: React.PropTypes.string.isRequired,
+    currentPassword: React.PropTypes.string,
+    newPassword: React.PropTypes.string,
+    passwordConfirmation: React.PropTypes.string,
   };
 
-  render() {
+  isDisabled = () => {
     let {
-      handleNavigate,
-      changePassword,
       currentPassword,
       newPassword,
       passwordConfirmation,
      } = this.props;
+
+    return !validatePassword(passwordConfirmation) || !validatePassword(currentPassword) || newPassword !== passwordConfirmation;
+  }
+
+  backButton = () => {
+    this.props.clearChangePassword();
+    return this.props.handleNavigate({ type: 'pop' });
+  }
+
+  render() {
+    let { changePassword } = this.props;
 
     return (
       <Container
@@ -42,12 +52,12 @@ class ChangePassword extends React.Component {
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
           icon: require('image!back'),
-          onPress: () => handleNavigate({ type: 'pop' }),
+          onPress: this.backButton,
         }}
         rightItem={{
           title: 'SAVE',
           onPress: changePassword,
-          disabled: !validatePassword(passwordConfirmation) || !validatePassword(currentPassword) || newPassword !== passwordConfirmation,
+          disabled: this.isDisabled(),
         }}
       >
         <View style={ styles.currentPassword }>
@@ -55,7 +65,6 @@ class ChangePassword extends React.Component {
             icon={ require('image!lock') }
             placeholder='Current Password'
             secureTextEntry={ true }
-            value={ currentPassword }
             onChangeText={ v => this.props.updatePassword(v, 'CURRENT_PASSWORD') }
           />
         </View>
@@ -64,7 +73,6 @@ class ChangePassword extends React.Component {
             icon={ require('image!lock') }
             placeholder='New Password'
             secureTextEntry={ true }
-            value={ newPassword }
             onChangeText={ e => this.props.updatePassword(e, 'NEW_PASSWORD') }
           />
           <View style={ styles.seperator } />
@@ -72,7 +80,6 @@ class ChangePassword extends React.Component {
             icon={ require('image!lock') }
             placeholder='Confirm New Password'
             secureTextEntry={ true }
-            value={ passwordConfirmation }
             onChangeText={ e => this.props.updatePassword(e, 'PASSWORD_CONFIRMATION') }
           />
         </View>
@@ -114,6 +121,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = dispatch => ({
+  clearChangePassword: _ => dispatch(clearChangePassword()),
   changePassword: _ => dispatch(changePassword()),
   updatePassword: (v, type) => dispatch(updatePassword(v, type)),
 });
