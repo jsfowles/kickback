@@ -7,16 +7,17 @@ import {
   Text,
   Image,
   StyleSheet,
+  Animated,
 } from 'react-native';
 
-const ProfilePicture = ({ user }) => (
-  <View style={ styles.container }>
+const ProfilePicture = ({ user, animatedStyles }) => (
+  <Animated.View style={[ styles.container, animatedStyles ]}>
     <View style={ styles.profilePicture }>
       <Image />
     </View>
 
     <Text style={ styles.profileText }>{ user.email }</Text>
-  </View>
+  </Animated.View>
 );
 
 ProfilePicture.propTypes = {
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 70,
+    position: 'relative',
   },
 
   profilePicture: {

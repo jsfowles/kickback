@@ -4,10 +4,13 @@ import React from 'react';
 import {
   View,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 
 import ParallaxBackground from './ParallaxBackground';
 import Header from './Header';
+
+let { height: HEIGHT } = Dimensions.get('window');
 
 class Container extends React.Component {
   static propTypes = {
@@ -43,9 +46,13 @@ class Container extends React.Component {
       <View style={[ styles.container, style ]}>
         { (this.props.rightItem || this.props.leftItem) && <Header { ...this.props } /> }
 
-        <ParallaxBackground height={ headerHeight }>
+        { this.props.showParallaxBackground && <ParallaxBackground
+          offset={ this.props.offset }
+          maxHeight={ 14 + HEIGHT }
+          minHeight={ 14 }
+        >
           { this.renderParallaxContent() }
-        </ParallaxBackground>
+        </ParallaxBackground> }
 
         { this.renderContent() }
       </View>
