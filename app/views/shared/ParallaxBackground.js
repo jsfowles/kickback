@@ -14,7 +14,13 @@ class ParallaxBackground extends React.Component {
   };
 
   render() {
-    const { height } = this.props;
+    const { minHeight, maxHeight, offset } = this.props;
+    const buffer = 10;
+    const height = offset.interpolate({
+      inputRange: [ 0, maxHeight - minHeight ],
+      outputRange: [ maxHeight + buffer, minHeight + buffer ],
+      extrapolate: 'clamp',
+    });
 
     return (
       <Animated.View style={[ styles.container, { height }]}>

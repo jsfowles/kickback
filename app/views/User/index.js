@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Animated } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
@@ -44,12 +44,43 @@ class User extends React.Component {
     handleNavigate: React.PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      anim: new Animated.Value(0),
+    };
+  }
+
   componentDidMount() {
     this.props.fetchUser();
   }
 
   renderParallaxContent = () => {
-    return <ProfilePicture user={ this.props.user } />;
+    return <ProfilePicture animatedStyles={ this.animatedStyles() } user={ this.props.user } />;
+  }
+
+  handleScroll = e => {
+    this.state.anim.setValue(e.nativeEvent.contentOffset.y);
+  }
+
+  animatedStyles = () => {
+    let opacity = this.state.anim.interpolate({
+      inputRange: [ -100, 0, 45 ],
+      outputRange: [ 0, 1, 0 ],
+      extrapolate: 'clamp',
+    });
+
+    let translateY = this.state.anim.interpolate({
+      inputRange: [ -100, 0, 45, 46 ],
+      outputRange: [ 25, 0, -20, 2000 ],
+      extrapolate: 'clamp',
+    });
+
+    return {
+      opacity,
+      transform: [{ translateY }],
+    };
   }
 
   render() {
@@ -69,8 +100,11 @@ class User extends React.Component {
       return (
         <Container
           headerHeight={ HEADER_HEIGHT }
+          style={{ paddingTop: 20 }}
           rightItem={ rightItem }
           headerStyles={ styles.header }
+          offset={ this.state.anim }
+          showParallaxBackground={ true }
           parallaxContent={ this.renderParallaxContent }
         >
           { products.length === 0 ? (
@@ -84,6 +118,7 @@ class User extends React.Component {
               headerHeight={ HEADER_HEIGHT }
               loadMoreProducts={ this.loadMoreProducts }
               emptyListText="You haven't shared any products yet."
+              onScroll={ this.handleScroll }
             />
           )}
 
@@ -93,6 +128,8 @@ class User extends React.Component {
             headerHeight={ HEADER_HEIGHT }
             icon={ require('image!earnings') }
             title='Total Earnings'
+            offset={ this.state.anim }
+            animatedStyles={ this.animatedStyles() }
             handleNavigate={ () => triggerModal('earningsInfo') }
           />
 
@@ -102,8 +139,10 @@ class User extends React.Component {
             headerHeight={ HEADER_HEIGHT }
             icon={ require('image!pending') }
             title='Total Pending'
+            offset={ this.state.anim }
+            animatedStyles={ this.animatedStyles() }
             handleNavigate={ () => triggerModal('payoutInfo') }
-            />
+          />
         </Container>
       );
     }
