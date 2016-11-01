@@ -18,6 +18,11 @@ const ROUTES = {
     route: { key: 'editProfile' },
   },
 
+  changePassword: {
+    type: 'push',
+    route: { key: 'changePassword' },
+  },
+
   depositSettings: {
     type: 'push',
     route: { key: 'depositSettings' },

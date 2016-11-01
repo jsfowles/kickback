@@ -13,6 +13,9 @@ import { fetchUserProducts } from './user-products';
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
 export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session });
+export const updateCurrentPassword = currentPassword => ({ type: 'UPDATE_CURRENT_PASSWORD', currentPassword });
+export const updateNewPassword = newPassword => ({ type: 'UPDATE_NEW_PASSWORD', newPassword });
+export const updatePasswordConfirmation = passwordConfirmation => ({ type: 'UPDATE_PASSWORD_CONFIRMATION', passwordConfirmation });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',

@@ -26,6 +26,10 @@ describe('validate password', () => {
     it('should be false when password =< 5 characters', () => {
       expect(validations.validatePassword('abc12')).toBeFalsy();
     });
+
+    it('should return false if s is null', () => {
+      expect(validations.validatePassword(null)).toBeFalsy();
+    });
   });
 
   describe('correct validations', () => {

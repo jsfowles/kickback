@@ -12,6 +12,7 @@ import Settings from '../Settings';
 import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
 import DepositSettings from '../Settings/components/DepositSettings';
+import ChangePassword from '../Settings/components/ChangePassword';
 
 const scenes = {
   settings: <Settings />,
@@ -20,6 +21,7 @@ const scenes = {
   reportAProblem: <ReportAProblem />,
   user: <User />,
   editProfile: <EditProfile />,
+  changePassword: <ChangePassword />,
   depositSettings: <DepositSettings />,
   payablesFaq: <WebView url='http://www.kbck.me/payable-faq' title='Payable FAQ' />,
 };

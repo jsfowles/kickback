@@ -2,7 +2,6 @@
 
 import {
   createUser as createUserAPI,
-  updateUser as updateUserAPI,
 } from '../utils/api';
 
 import { formatSession } from '../utils/session';
@@ -10,6 +9,7 @@ import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail, fetchSessionSuccess } from './sessions';
 import { closeModal } from './app';
+import { pop } from './navigation';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_PROFILE_SUCCESS', user });
 export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
@@ -90,6 +90,7 @@ export const attachPayable = _ => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => {
     dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
+    dispatch(pop('profile'));
     return dispatch(fetchUserSuccess(res.data));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
@@ -119,6 +120,7 @@ export const updateUserProfile = _ => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => {
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
+    dispatch(pop('profile'));
     return dispatch(fetchUserSuccess(res.data));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));

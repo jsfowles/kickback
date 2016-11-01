@@ -75,8 +75,6 @@ const styles = StyleSheet.create({
 
   icon: {
     tintColor: '#bdc1c9',
-    height: 22,
-    width: 22,
   },
 });
 
