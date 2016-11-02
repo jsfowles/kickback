@@ -25,73 +25,62 @@ const {
  *              and icon should move to the left. Depending on the state
  *              of the button the offset of center is different.
  */
-class SearchBtn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      buttonWidth: 0,
-      textWidth: 0,
-    };
-  }
-
-  onLayout = (e, context) => {
-    let { x, y, width, height } = e.nativeEvent.layout;
-    this.setState({ [`${context}Width`]: width });
-  }
-
-  render() {
-    let halfContainer = deviceWidth * 0.5;
-    let halfText = this.state.textWidth * 0.5;
-
-    let translatePosition = this.props.anim.interpolate({
-      inputRange: [0,1],
-      outputRange: [halfText, 0],
-    });
-
-    let textPosition = {
-      right: (halfContainer - 10),
-      transform: [{ translateX: translatePosition }]
-    };
-
-    return (
-      <TouchableOpacity
-        style={ this.props.style }
-        activeOpacity={ 1 }
-        onPress={ this.props.toggleSearchOverlay }
+const SearchBtn = ({
+  onPress,
+  buttonStyles,
+  buttonWidth,
+  buttonPosX,
+  onLayout,
+  textPosX,
+  placeholder,
+}) => (
+  <Animated.View style={{
+    width: buttonWidth,
+    transform: [{ translateX: buttonPosX }],
+  }}>
+    <TouchableOpacity style={ buttonStyles } onPress={ onPress } activeOpacity={ 1 }>
+      <Animated.View
+        style={[
+          styles.textContainer,
+          { transform: [{ translateX: textPosX }] },
+        ]}
       >
-        <View
-          style={ styles.buttonOuterContainer }
-          onLayout={ (e) => this.onLayout(e, 'button') }
+        <Image
+          source={ require('image!search') }
+          style={{ marginRight: 5 }}
+          onLayout={ (e) => onLayout(e, 'searchIconLayout') }
+        />
+        <Text
+          style={ styles.buttonText }
+          onLayout={ (e) => onLayout(e, 'searchTextLayout') }
         >
-          <Animated.View
-            style={[ styles.buttonInnerContainer, textPosition ]}
-            onLayout={ (e) => this.onLayout(e, 'text') }
-          >
-            <Image source={ require('image!search') } />
-            <Text style={ styles.buttonText }>{ this.props.placeholder }</Text>
-          </Animated.View>
-        </View>
-      </TouchableOpacity>
-    );
-  }
+          { placeholder }
+        </Text>
+      </Animated.View>
+    </TouchableOpacity>
+  </Animated.View>
+);
+
+SearchBtn.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  onLayout: React.PropTypes.func.isRequired,
+  buttonStyles: React.PropTypes.number.isRequired,
+  buttonWidth: React.PropTypes.object.isRequired,
+  buttonPosX: React.PropTypes.object.isRequired,
+  textPosX: React.PropTypes.object.isRequired,
+  placeholder: React.PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
-  buttonOuterContainer: {
-    flex: 1,
-    position: 'relative',
-  },
-
-  buttonInnerContainer: {
+  textContainer: {
     flexDirection: 'row',
-    position: 'absolute',
-    height: 30,
     alignItems: 'center',
   },
 
   buttonText: {
     color: '#fff',
-    marginLeft: 5,
+    lineHeight: 29,
+    fontSize: 16,
   },
 });
 

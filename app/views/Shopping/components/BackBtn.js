@@ -1,39 +1,46 @@
-'use strict'
-
-import React from 'react'
+import React from 'react';
 import {
-  View,
   Image,
   StyleSheet,
   TouchableOpacity,
-  Animated
-} from 'react-native'
+  Animated,
+} from 'react-native';
 
-class BackBtn extends React.Component {
-  render() {
-    return (
-      <Animated.View
-        style={{ overflow: 'hidden', width: this.props.width }}
-      >
-        <TouchableOpacity
-          activeOpacity={ 1 }
-          onPress={ this.props.cancelSearch }
-        >
-          <Image
-            source={ require('image!back') }
-            style={ styles.backBtn }
-          />
-        </TouchableOpacity>
-      </Animated.View>
-    )
-  }
-}
+const BackBtn = ({
+  btnSize,
+  backButtonPosX,
+  onBackPress,
+}) => (
+  <Animated.View
+    style={[
+      { transform: [{ translateX: backButtonPosX }], width: btnSize },
+      styles.backBtnContainer,
+    ]}
+  >
+    <TouchableOpacity style={ styles.backBtn } onPress={ onBackPress }>
+      <Image source={ require('image!back') } />
+    </TouchableOpacity>
+  </Animated.View>
+);
+
+BackBtn.propTypes = {
+  btnSize: React.PropTypes.number.isRequired,
+  backButtonPosX: React.PropTypes.object.isRequired,
+  onBackPress: React.PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
-  backBtn: {
-    marginRight: 10,
-    width: 14,
-  }
-})
+  backBtnContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: 30,
+  },
 
-export default BackBtn
+  backBtn: {
+    height: 30,
+    justifyContent: 'center',
+  },
+});
+
+export default BackBtn;

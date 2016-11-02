@@ -1,54 +1,28 @@
-'use strict'
-import React from 'react'
-import { connect } from 'react-redux'
-import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  View,
-  Animated,
-} from 'react-native'
+import React from 'react';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { toggleSearchOverlay } from '../../../actions'
-
-class CancelBtn extends React.Component {
-  render() {
-    let { toggleSearchOverlay } = this.props
-
-    return (
-      <Animated.View
-        style={{ overflow: 'hidden', width: this.props.width }}
-      >
-        <TouchableOpacity
-          activeOpacity={ 1 }
-          onPress={ toggleSearchOverlay }
-        >
-          <Text style={ styles.cancelTxt }>Cancel</Text>
-        </TouchableOpacity>
-      </Animated.View>
-    )
-  }
-}
+const CancelBtn = ({ onPress, onLayout, posX }) => (
+  <TouchableOpacity
+    style={{ transform: [{ translateX: posX }], height: 30 }}
+    onPress={ onPress }
+    onLayout={ (e) => onLayout(e, 'cancelLayout') }
+  >
+    <Text style={ styles.cancelText }>Cancel</Text>
+  </TouchableOpacity>
+);
 
 CancelBtn.propTypes = {
-  /**
-   * @description: This is to hide the search overlay
-   */
-  toggleSearchOverlay: React.PropTypes.func.isRequired,
-}
+  onPress: React.PropTypes.func.isRequired,
+  onLayout: React.PropTypes.func.isRequired,
+  posX: React.PropTypes.number.isRequired,
+};
 
-const styles= StyleSheet.create({
-  cancelTxt: {
+const styles = StyleSheet.create({
+  cancelText: {
     color: '#fff',
     marginLeft: 10,
-    width: 44.5,
+    lineHeight: 30,
   },
-})
+});
 
-const mapStateToProps = (state) => ({})
-
-const mapActionsToProps = (dispatch) => ({
-  toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
-})
-
-export default connect(mapStateToProps, mapActionsToProps)(CancelBtn)
+export default CancelBtn;

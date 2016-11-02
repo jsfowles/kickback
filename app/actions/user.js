@@ -37,9 +37,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
 
   dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
 
-  return new Request(requestObj).then(res => {
-    return dispatch(fetchUserSuccess(res));
-  })
+  return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)))
   .catch(_ => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
