@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { View, StyleSheet, Dimensions, Animated } from 'react-native';
+import { View, StyleSheet, Dimensions, Animated, Text } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
@@ -108,7 +108,9 @@ class User extends React.Component {
           parallaxContent={ this.renderParallaxContent }
         >
           { products.length === 0 ? (
-            <View />
+            <View style={{ paddingTop: HEADER_HEIGHT }}>
+              <Text style={ styles.emptyText }>You haven’t Shared any products yet.</Text>
+            </View>
           ) : (
             <Products
               ref='products'
@@ -158,6 +160,13 @@ const styles = StyleSheet.create({
     width: WIDTH,
     right: 0,
     zIndex: 10,
+  },
+
+  emptyText: {
+    marginTop: 100,
+    textAlign: 'center',
+    color: '#adadad',
+    fontSize: 17,
   },
 });
 

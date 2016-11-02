@@ -76,6 +76,7 @@ class LoginForm extends React.Component {
           autoCorrect={ false }
           keyboardType={ 'email-address' }
           textAlign={ 'center' }
+          autoFocus={ true }
           returnKeyType={ 'next' }
           ref={ 'email' }
           value={ email }

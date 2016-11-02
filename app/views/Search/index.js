@@ -36,13 +36,12 @@ class Search extends React.Component {
               />
             ) : (
               <View style={ styles.centering }>
-                <Text>No Products Found</Text>
+                <Text style={ styles.emptyText }>No products found</Text>
               </View>
             )}
           </View>
         )}
       </Container>
-
     );
   }
 }
@@ -57,7 +56,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -65,
+    marginTop: -130,
+  },
+
+  emptyText: {
+    marginTop: 100,
+    textAlign: 'center',
+    color: '#adadad',
+    fontSize: 17,
   },
 });
 

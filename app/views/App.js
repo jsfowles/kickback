@@ -16,6 +16,7 @@ import {
 
 import Navigation from './Navigation';
 import Session from './Sessions';
+import Message from './shared/Message';
 import Tabs from './Navigation/components/Tabs';
 import EarningsInfo from './User/components/EarningsInfo';
 import PayoutInfo from './User/components/PayoutInfo';
@@ -41,6 +42,7 @@ class App extends Component {
     fetchUserProducts: React.PropTypes.func.isRequired,
     fetchValidateSession: React.PropTypes.func.isRequired,
     closeModal: React.PropTypes.func.isRequired,
+    message: React.PropTypes.string,
   };
 
   componentDidMount() {
@@ -77,10 +79,12 @@ class App extends Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, message } = this.props;
 
     return (
       <View style={ styles.container }>
+        { message && <Message text={ message } /> }
+
         <Navigation
           scenes={ scenes }
           navigation={ navigation }
@@ -101,6 +105,7 @@ const mapStateToProps = state => ({
   user: state.user.user,
   currentUser: state.currentUser,
   navigation: state.navigation.global,
+  message: state.app.message,
 });
 
 const mapActionsToProps = dispatch => ({
