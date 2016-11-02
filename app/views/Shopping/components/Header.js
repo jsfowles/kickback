@@ -11,6 +11,7 @@ import {
   toggleSearchOverlay,
   fetchSearch,
   cancelSearch,
+  pop,
 } from '../../../actions';
 
 import SearchInput from './SearchInput';
@@ -35,7 +36,7 @@ class Header extends React.Component {
       this.setState({ animCancel: new Animated.Value(0) });
     }
 
-    if (this.props.route === 'search') {
+    if (this.props.route.index) {
       this.setState({ animBackButton: new Animated.Value(1) });
     } else {
       this.setState({ animBackButton: new Animated.Value(0) });
@@ -47,7 +48,7 @@ class Header extends React.Component {
       this.animateSearching(nextProps.searchOverlay);
     }
 
-    if (nextProps.route !== this.props.route) {
+    if (nextProps.route !== 0) {
       this.animateBack(nextProps.route);
     }
   }
@@ -66,7 +67,7 @@ class Header extends React.Component {
   }
 
   animateBack = (route) => {
-    let toValue = route === 'search' ? 1 : 0;
+    let toValue = route.index ? 1 : 0;
     let animationConfig = { duration: 250 };
 
     Animated.timing(this.state.animBackButton, {
@@ -140,13 +141,13 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   searchOverlay: state.search.searchOverlay,
   searchText: state.search.searchText,
-  route: state.navigation.route,
+  route: state.navigation.shopping,
 });
 
 const mapActionsToProps = (dispatch) => ({
   toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
   fetchSearch: (e) => dispatch(fetchSearch(e.nativeEvent.text)),
-  cancelSearch: () => dispatch(cancelSearch()),
+  cancelSearch: () => dispatch(pop('shopping')),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Header);
