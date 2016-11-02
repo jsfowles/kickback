@@ -17,11 +17,11 @@ class ParallaxBackground extends React.Component {
 
   render() {
     const { minHeight, maxHeight, offset } = this.props;
-    const buffer = 10;
+    const buffer = 20;
     const height = offset.interpolate({
       inputRange: [ 0, maxHeight - minHeight ],
       outputRange: [ maxHeight + buffer, minHeight + buffer ],
-      extrapolate: 'clamp',
+      extrapolateRight: 'clamp',
     });
 
     return (
