@@ -71,10 +71,7 @@ class EditProfile extends React.Component {
         }}
       >
         <View style={ styles.profilePicContainer }>
-          <TouchableOpacity>
-            <Gravatar emailAddress={ email } style={ styles.profilePic } />
-            <Text style={ styles.editLabel }>Edit</Text>
-          </TouchableOpacity>
+          <Gravatar emailAddress={ this.state.email } style={ styles.profilePic } />
         </View>
 
         <View style={ styles.formContainer }>

@@ -47,7 +47,7 @@ class Header extends React.Component {
   }
 
   onLayout = (e, type) => {
-    if (!this.state[type]) {
+    if (type === 'searchTextLayout' || !this.state[type]) {
       this.setState({ [type]: e.nativeEvent.layout }, _ => {
         if (type === 'layout') {
           this.buttonWidth.setValue(this.state.layout.width);
@@ -56,8 +56,7 @@ class Header extends React.Component {
         if (
           this.state.searchTextLayout &&
           this.state.searchIconLayout &&
-          this.state.layout &&
-          !this.searchTextWidth
+          this.state.layout
         ) {
           this.searchTextWidth = this.state.searchTextLayout.width + this.state.searchIconLayout.width;
           this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2));
