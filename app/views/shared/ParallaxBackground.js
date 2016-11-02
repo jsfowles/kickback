@@ -9,8 +9,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 class ParallaxBackground extends React.Component {
   static propTypes = {
-    height: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number,
     children: React.PropTypes.object,
+    minHeight: React.PropTypes.number,
+    maxHeight: React.PropTypes.number,
+    offset: React.PropTypes.object,
   };
 
   render() {
