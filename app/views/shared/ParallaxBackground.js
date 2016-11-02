@@ -12,6 +12,9 @@ class ParallaxBackground extends React.Component {
     maxHeight: React.PropTypes.number.isRequired,
     minHeight: React.PropTypes.number.isRequired,
     children: React.PropTypes.object,
+    minHeight: React.PropTypes.number,
+    maxHeight: React.PropTypes.number,
+    offset: React.PropTypes.object,
   };
 
   render() {
