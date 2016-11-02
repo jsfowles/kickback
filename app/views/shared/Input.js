@@ -15,8 +15,8 @@ class Input extends React.Component {
     autoCorrect: React.PropTypes.bool.isRequired,
     onChangeText: React.PropTypes.func.isRequired,
     wrapperStyles: React.PropTypes.object.isRequired,
-    refs: React.PropTypes.func.isRequired,
-    secureTextEntry: React.PropTypes.func.isRequired,
+    setRef: React.PropTypes.func,
+    secureTextEntry: React.PropTypes.func,
   };
 
   static defaultProps = {
@@ -28,14 +28,7 @@ class Input extends React.Component {
   render() {
     let {
       icon,
-      placeholder,
-      value,
-      autoCapitalize,
-      autoCorrect,
-      onChangeText,
       wrapperStyles,
-      refs,
-      secureTextEntry,
     } = this.props;
 
     return (
@@ -46,13 +39,8 @@ class Input extends React.Component {
 
         <TextInput
           style={ styles.textInput }
-          placeholder={ placeholder }
-          value={ value }
-          autoCapitalize={ autoCapitalize }
-          secureTextEntry={ secureTextEntry }
-          autoCorrect={ autoCorrect }
-          onChangeText={ onChangeText }
-          refs={ refs }
+          { ...this.props }
+          ref={ this.props.setRef }
         />
       </View>
     );
