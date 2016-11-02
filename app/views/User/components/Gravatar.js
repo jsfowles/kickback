@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    StyleSheet,
-    View,
-    Image,
+  StyleSheet,
+  View,
+  Image,
 } from 'react-native';
 
 import md5 from 'blueimp-md5';
