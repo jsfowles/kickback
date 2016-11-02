@@ -16,7 +16,7 @@ class Input extends React.Component {
     onChangeText: React.PropTypes.func.isRequired,
     wrapperStyles: React.PropTypes.object.isRequired,
     refs: React.PropTypes.func.isRequired,
-    secureTextEntry: React.PropTypes.func.isRequired,
+    secureTextEntry: React.PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
