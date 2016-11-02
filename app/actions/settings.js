@@ -22,8 +22,8 @@ export const submitProblem = subject => {
   };
 };
 
-export const changePassword = _ => (dispatch, getState) => {
-  let { currentPassword, newPassword, passwordConfirmation } = getState().changePassword;
+export const changePassword = passwordObj => (dispatch, getState) => {
+  let { currentPassword, newPassword, passwordConfirmation } = passwordObj;
   let { session } = getState().session;
 
   let requestObj = {

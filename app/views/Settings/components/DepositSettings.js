@@ -14,7 +14,6 @@ import Input from '../../shared/Input';
 import BottomLink from '../../shared/BottomLink';
 import {
   attachPayable,
-  updatePayableEmail,
 } from '../../../actions';
 
 const ROUTES = {
@@ -34,11 +33,27 @@ class DepositSettings extends React.Component {
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: this.props.email,
+    };
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.email !== this.props.email) {
+      this.setState({ email: nextProps.email});
+    }
+  }
+
+  onInputChange = (v, k) => {
+    this.setState({ [k]: v });
+  }
+
   render() {
     let {
       handleNavigate,
-      email,
-      updatePayableEmail,
       isFetchingUserPayable,
       isFetchingUserProfile,
      } = this.props;
@@ -54,8 +69,8 @@ class DepositSettings extends React.Component {
         }}
         rightItem={{
           title: 'SAVE',
-          onPress: () => this.props.attachPayable(),
-          disabled: !validateEmail(email) || isFetchingUserPayable || isFetchingUserProfile,
+          onPress: () => this.props.attachPayable(this.state),
+          disabled: !validateEmail(this.state.email) || isFetchingUserPayable || isFetchingUserProfile,
         }}
       >
         <View style={ styles.contentContainer }>
@@ -64,8 +79,9 @@ class DepositSettings extends React.Component {
             wrapperStyles={ styles.formContainer }
             icon={ require('image!email') }
             placeholder='youremail@yourhost.com'
-            value={ email }
-            onChangeText={ updatePayableEmail }
+            value={this.state.email}
+            onChangeText={ v => this.onInputChange(v, 'email') }
+            onSubmitEditing={ () => this.props.attachPayable(this.state) }
           />
           <Text style={ styles.payableCopy }>
             Deposits will be transferd to you through Payable on a monthly basis. See our Terms & Service agreement for more info.
@@ -126,8 +142,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = dispatch => ({
-  attachPayable: _ => dispatch(attachPayable()),
-  updatePayableEmail: v => dispatch(updatePayableEmail(v)),
+  attachPayable: user => dispatch(attachPayable(user)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(DepositSettings);

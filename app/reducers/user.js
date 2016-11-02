@@ -19,21 +19,6 @@ export const user = (state = null, action) => {
         ...state,
         ...action.user,
       };
-    case 'UPDATE_PAYABLE_EMAIL':
-      return {
-        ...state,
-        payableEmail: action.payableEmail,
-      };
-    case 'UPDATE_USER_EMAIL':
-      return {
-        ...state,
-        email: action.email,
-      };
-    case 'UPDATE_USER_NAME':
-      return {
-        ...state,
-        name: action.name,
-      };
     case 'DESTROY_SESSION':
       return null;
     default: return state;

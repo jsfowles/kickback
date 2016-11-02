@@ -16,9 +16,6 @@ export const removeCurrentUser = _ => ({ type: 'REMOVE_CURRENT_USER' });
 export const toggleFetching = bool => ({ type: 'TOGGLE_USER_FETCHING', bool });
 export const receiveMoreProducts = userData => ({ type: 'RECEIVE_MORE_CURRENT_USER', userData });
 export const editUser = edit => ({ type: 'EDIT_USER', edit });
-export const updatePayableEmail = payableEmail => ({ type: 'UPDATE_PAYABLE_EMAIL', payableEmail });
-export const updateEmail = email => ({ type: 'UPDATE_USER_EMAIL', email });
-export const updateName = name => ({ type: 'UPDATE_USER_NAME', name });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
@@ -69,8 +66,7 @@ export const createUser = credentials => (dispatch) => {
   );
 };
 
-export const attachPayable = _ => (dispatch, getState) => {
-  let { user } = getState().user;
+export const attachPayable = user => (dispatch, getState) => {
   let { session } = getState().session;
 
   let requestObj = {
@@ -86,13 +82,12 @@ export const attachPayable = _ => (dispatch, getState) => {
   .then(res => {
     dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
     dispatch(pop('profile'));
-    return dispatch(fetchUserSuccess(res.data));
+    return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
 };
 
-export const updateUserProfile = _ => (dispatch, getState) => {
-  let { user } = getState().user;
+export const updateUserProfile = user => (dispatch, getState) => {
   let { session } = getState().session;
 
   let requestObj = {
@@ -105,7 +100,6 @@ export const updateUserProfile = _ => (dispatch, getState) => {
     },
     requestCallback: (res) => {
       if (res.status !== 200) { return dispatch(fetchRequestFailure()); }
-
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },
   };
@@ -116,7 +110,7 @@ export const updateUserProfile = _ => (dispatch, getState) => {
   .then(res => {
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
-    return dispatch(fetchUserSuccess(res.data));
+    return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));
 };
