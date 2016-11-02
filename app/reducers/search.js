@@ -8,7 +8,6 @@ const errorMessage = base.errorMessage('SEARCH');
 
 export const searchOverlay = (state = false, action) => {
   switch (action.type) {
-    case 'FETCH_SEARCH_REQUEST':
     case 'TOGGLE_SEARCH_OVERLAY': {
       return !state;
     }

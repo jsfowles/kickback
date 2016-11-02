@@ -7,6 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Gravatar from './components/Gravatar.js';
+
 import { validateEmail } from '../../utils/validations';
 
 import Container from '../shared/Container';
@@ -70,7 +72,7 @@ class EditProfile extends React.Component {
       >
         <View style={ styles.profilePicContainer }>
           <TouchableOpacity>
-            <View style={ styles.profilePic } />
+            <Gravatar emailAddress={ email } style={ styles.profilePic } />
             <Text style={ styles.editLabel }>Edit</Text>
           </TouchableOpacity>
         </View>
@@ -105,11 +107,8 @@ const styles = StyleSheet.create({
   },
 
   profilePic: {
-    height: 75,
-    width: 75,
-    borderRadius: 75,
+    borderWidth: 0,
     marginBottom: 9,
-    backgroundColor: '#0e739f',
   },
 
   editLabel: {

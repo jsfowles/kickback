@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import Products from '../Products';
@@ -24,15 +24,24 @@ class Search extends React.Component {
     return (
       <Container style={ styles.container }>
         { search.isFetching ? (
-          <Text>HOLD YOUR HORSES BRO...</Text>
+          <View style={ styles.centering }>
+            <ActivityIndicator size='large' />
+          </View>
         ) : (
-          <Products
-            products={ search.products }
-            cardSize={ 'large' }
-          />
+          <View style={{ flex: 1 }}>
+            { search.products.length ? (
+              <Products
+                products={ search.products }
+                cardSize={ 'large' }
+              />
+            ) : (
+              <View style={ styles.centering }>
+                <Text style={ styles.emptyText }>No products found</Text>
+              </View>
+            )}
+          </View>
         )}
       </Container>
-
     );
   }
 }
@@ -42,15 +51,26 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 65,
   },
+
+  centering: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -130,
+  },
+
+  emptyText: {
+    marginTop: 100,
+    textAlign: 'center',
+    color: '#adadad',
+    fontSize: 17,
+  },
 });
 
 const mapStateToProps = (state) => ({
   search: state.search,
-
 });
 
-const mapActionsToProps = (_) => ({
-
-});
+const mapActionsToProps = _ => ({});
 
 export default connect(mapStateToProps, mapActionsToProps)(Search);

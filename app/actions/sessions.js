@@ -5,7 +5,7 @@ import { validateCredentials } from '../utils/validations';
 import { formatSession } from '../utils/session';
 import { pop } from './navigation';
 import { changeTab } from './tabs';
-import { closeModal } from './app';
+import { closeModal, addMessage } from './app';
 import { fetchFeed } from './feed';
 import { createUser, fetchUser, fetchUserSuccess } from './user';
 import { fetchUserProducts } from './user-products';
@@ -36,7 +36,7 @@ export const fetchSession = password => (dispatch, getState) => {
     path: 'auth/sign_in',
     body: creds,
     requestCallback: (res) => {
-      if (res.status === 401) { return dispatch(fetchRequestFailure()); }
+      if (res.status !== 200) { return dispatch(addMessage('Invalid email or password')); }
 
       session = formatSession(res);
 
@@ -52,8 +52,10 @@ export const fetchSession = password => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
-    dispatch(fetchUserSuccess(res));
-    return dispatch(fetchUserProducts(session));
+    if (res) {
+      dispatch(fetchUserSuccess(res));
+      return dispatch(fetchUserProducts(session));
+    }
   });
 };
 

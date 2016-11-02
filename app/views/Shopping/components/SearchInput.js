@@ -1,58 +1,57 @@
 'use strict'
 import React from 'react'
 import {
-  View,
   Image,
   TextInput,
   StyleSheet,
+  Animated
 } from 'react-native'
 
 const SearchInput = ({
-  style,
-  requestProducts,
-  navigator,
-  toggleSearchOverlay,
-  placeholder,
+  buttonPosX,
+  inputStyles,
+  buttonWidth,
+  updateSearchTerm,
+  value,
+  search,
 }) => {
-  let textInputProps = {
-    style: styles.input,
-    placeholder: 'Search',
-    placeholderTextColor: '#fff',
-    selectionColor: '#fff',
-    autoFocus: true,
-    autoCorrect: false,
-    returnKeyType: 'search',
-    enablesReturnKeyAutomatically: true,
-    clearButtonMode: 'always',
-    onSubmitEditing: requestProducts,
-  }
-
-  if (placeholder !== 'Search') {
-    textInputProps = {
-      ...textInputProps,
-      defaultValue: placeholder,
-    }
-  }
-
   return (
-    <View style={ style } >
-      <View style={ styles.inputContainer }>
-        <TextInput { ...textInputProps } />
-        <Image source={ require('image!search') } />
-      </View>
-    </View>
-  )
-}
+    <Animated.View style={{
+      position: 'relative',
+      width: buttonWidth,
+      transform: [{ translateX: buttonPosX },
+    ]}}>
+      <Image source={ require('image!search') } style={{ position: 'absolute', top: 8, left: 8 }} />
+      <TextInput
+        value={ value }
+        style={[ inputStyles, styles.input ]}
+        placeholder='Search'
+        placeholderTextColor='rgba(255, 255, 255, 0.75)'
+        selectionColor='#fff'
+        clearButtonMode='while-editing'
+        enablesReturnKeyAutomatically={ true }
+        returnKeyType='search'
+        autoFocus={ true }
+        onChangeText={ updateSearchTerm }
+        onSubmitEditing={ search }
+      />
+    </Animated.View>
+  );
+};
+
+SearchInput.propTypes = {
+  buttonPosX: React.PropTypes.object.isRequired,
+  inputStyles: React.PropTypes.number.isRequired,
+  buttonWidth: React.PropTypes.object.isRequired,
+  updateSearchTerm: React.PropTypes.func.isRequired,
+  search: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   input: {
-    height: 30,
-    position: 'absolute',
-    top: 0,
-    left: 32,
-    fontSize: 14,
-    right: 0,
-    color: '#fff'
+    color: '#fff',
+    paddingLeft: 28,
   },
 
   inputContainer: {

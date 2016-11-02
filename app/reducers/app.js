@@ -10,6 +10,17 @@ export const modal = (state = null, action) => {
   }
 };
 
+export const message = (state = null, action) => {
+  switch (action.type) {
+    case 'CLEAR_MESSAGE':
+      return null;
+    case 'ADD_MESSAGE':
+      return action.message;
+    default: return state;
+  }
+};
+
 export default combineReducers({
   modal,
+  message,
 });

@@ -3,14 +3,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
+  View,
   StyleSheet,
   Animated,
+  Easing,
 } from 'react-native';
 
 import {
   toggleSearchOverlay,
   fetchSearch,
-  cancelSearch,
+  pop,
 } from '../../../actions';
 
 import SearchInput from './SearchInput';
@@ -18,103 +20,197 @@ import SearchBtn from './SearchBtn';
 import CancelBtn from './CancelBtn';
 import BackBtn from './BackBtn';
 
+const BACK_BUTTON_SIZE = 22;
+
 class Header extends React.Component {
   static propTypes = {
-    toggleSearchOverlay: React.PropTypes.func.isRequired,
+    route: React.PropTypes.shape({
+      index: React.PropTypes.number.isRequired,
+    }).isRequired,
+    backBtn: React.PropTypes.func.isRequired,
+    fetchSearch: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.state = { showForm: this.props.searchOverlay };
+
+    this.buttonWidth = new Animated.Value(0);
+    this.buttonPosX = new Animated.Value(0);
+    this.backButtonPosX = new Animated.Value(-BACK_BUTTON_SIZE);
+    this.textPosX = new Animated.Value(0);
+    this.searchTextWidth = 0;
+
+    this.state = {
+      showInput: false,
+      searchTerm: null,
+    };
   }
 
-  componentWillMount() {
-    if (this.props.searchOverlay) {
-      this.setState({ animCancel: new Animated.Value(1) });
-    } else {
-      this.setState({ animCancel: new Animated.Value(0) });
-    }
+  onLayout = (e, type) => {
+    if (!this.state[type]) {
+      this.setState({ [type]: e.nativeEvent.layout }, _ => {
+        if (type === 'layout') {
+          this.buttonWidth.setValue(this.state.layout.width);
+        }
 
-    if (this.props.route === 'search') {
-      this.setState({ animBackButton: new Animated.Value(1) });
-    } else {
-      this.setState({ animBackButton: new Animated.Value(0) });
+        if (
+          this.state.searchTextLayout &&
+          this.state.searchIconLayout &&
+          this.state.layout &&
+          !this.searchTextWidth
+        ) {
+          this.searchTextWidth = this.state.searchTextLayout.width + this.state.searchIconLayout.width;
+          this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2));
+        }
+
+        if (
+          this.state.searchTextLayout &&
+          this.state.searchIconLayout &&
+          this.state.layout &&
+          this.props.route.index
+        ) {
+          this.buttonWidth.setValue(this.state.layout.width - BACK_BUTTON_SIZE);
+          this.buttonPosX.setValue(BACK_BUTTON_SIZE);
+          this.backButtonPosX.setValue(0);
+          this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2) - BACK_BUTTON_SIZE);
+        }
+      });
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.searchOverlay !== this.props.searchOverlay) {
-      this.animateSearching(nextProps.searchOverlay);
+  onPress = _ => {
+    const {
+      showForm,
+      layout,
+      cancelLayout,
+    } = this.state;
+
+    /**
+     * If we are currently showing the form and we are on the feed route
+     */
+    if (showForm && !this.props.route.index) {
+      return this.setState({ showForm: false, searchTerm: null }, () => {
+        Animated.parallel([
+          this.createAnimation(this.buttonWidth, layout.width),
+          this.createAnimation(this.buttonPosX, 0),
+          this.createAnimation(this.textPosX, (layout.width / 2) - (this.searchTextWidth / 2)),
+          this.createAnimation(this.backButtonPosX, -BACK_BUTTON_SIZE),
+        ]).start();
+      });
     }
 
-    if (nextProps.route !== this.props.route) {
-      this.animateBack(nextProps.route);
+    /**
+     * If we are currently showing the form and we are on the search route
+     */
+    if (showForm && this.props.route.index) {
+      return this.setState({ showForm: false, searchTerm: null }, () => {
+        Animated.parallel([
+          this.createAnimation(this.buttonWidth, layout.width - BACK_BUTTON_SIZE),
+          this.createAnimation(this.buttonPosX, BACK_BUTTON_SIZE),
+          this.createAnimation(this.textPosX, ((layout.width) / 2) - (this.searchTextWidth / 2) - BACK_BUTTON_SIZE),
+          this.createAnimation(this.backButtonPosX, 0),
+        ]).start();
+      });
     }
+
+    /**
+     * If we are currently not showing the form and we are on search
+     */
+    if (!showForm && this.props.route.index) {
+      return Animated.parallel([
+        this.createAnimation(this.buttonWidth, layout.width - cancelLayout.width - BACK_BUTTON_SIZE),
+        this.createAnimation(this.buttonPosX, BACK_BUTTON_SIZE),
+        this.createAnimation(this.textPosX, BACK_BUTTON_SIZE * 2),
+        this.createAnimation(this.backButtonPosX, 0),
+      ]).start(() => this.setState({ showForm: true }));
+    }
+
+    /**
+     * If we are currently not showing the form and are on the feed route
+     */
+    return Animated.parallel([
+      this.createAnimation(this.buttonWidth, layout.width - cancelLayout.width),
+      this.createAnimation(this.buttonPosX, 0),
+      this.createAnimation(this.textPosX, 20),
+    ]).start(() => this.setState({ showForm: true }));
   }
 
-  animateSearching = (searchOverlay) => {
-    let toValue = searchOverlay ? 1 : 0;
-    let animationConfig = { duration: 250 };
+  createAnimation = (value, toValue, duration = 125, easing = Easing.Linear, delay = 0) => {
+    return Animated.timing(value, { toValue, duration, easing, delay });
+  }
 
-    Animated.timing(this.state.animCancel, {
-      toValue: toValue,
-      ...animationConfig,
-    })
-    .start(() => {
-      this.setState({ showForm: this.props.searchOverlay });
+  updateSearchTerm = searchTerm => {
+    this.setState({ searchTerm });
+  }
+
+  onBackPress = () => {
+    const { layout } = this.state;
+
+    return this.setState({ showForm: false, searchTerm: null }, () => {
+      Animated.parallel([
+        this.createAnimation(this.buttonWidth, layout.width),
+        this.createAnimation(this.buttonPosX, 0),
+        this.createAnimation(this.textPosX, (layout.width / 2) - (this.searchTextWidth / 2)),
+        this.createAnimation(this.backButtonPosX, -BACK_BUTTON_SIZE),
+      ]).start(() => this.props.backBtn());
     });
   }
 
-  animateBack = (route) => {
-    let toValue = route === 'search' ? 1 : 0;
-    let animationConfig = { duration: 250 };
+  search = () => {
+    const { layout } = this.state;
+    this.props.fetchSearch(this.state.searchTerm);
 
-    Animated.timing(this.state.animBackButton, {
-      toValue: toValue,
-      ...animationConfig,
-    }).start();
+    return this.setState({ showForm: false }, () => {
+      Animated.parallel([
+        this.createAnimation(this.buttonWidth, layout.width - BACK_BUTTON_SIZE),
+        this.createAnimation(this.buttonPosX, BACK_BUTTON_SIZE),
+        this.createAnimation(this.textPosX, (layout.width / 2) - (this.searchTextWidth / 2) - (BACK_BUTTON_SIZE / 2)),
+        this.createAnimation(this.backButtonPosX, 0),
+      ]).start();
+    });
   }
 
   render() {
-    let { navigator, toggleSearchOverlay, searchText, searchOverlay, fetchSearch } = this.props;
-    let placeholder = searchText ? searchText : 'Search';
+    let { searchTerm, layout } = this.state;
 
     return (
-      <Animated.View style={ styles.headerContainer } >
+      <View
+        style={[ styles.headerContainer, { opacity: layout ? 1 : 0 }]}
+        onLayout={ (e) => this.onLayout(e, 'layout') }
+      >
         <BackBtn
-          cancelSearch={ this.props.cancelSearch }
-          width={ this.state.animBackButton.interpolate({
-            inputRange: [ 0, 1 ],
-            outputRange: [ 0, 21 ],
-          })}
+          btnSize={ BACK_BUTTON_SIZE }
+          onBackPress={ this.onBackPress }
+          backButtonPosX={ this.backButtonPosX }
         />
 
         { this.state.showForm ? (
           <SearchInput
-            requestProducts={ fetchSearch }
-            style={ styles.button }
-            navigator={ navigator }
-            toggleSearchOverlay={ toggleSearchOverlay }
-            placeholder={ placeholder }
+            value={ searchTerm }
+            buttonPosX={ this.buttonPosX }
+            inputStyles={ styles.button }
+            buttonWidth={ this.buttonWidth }
+            updateSearchTerm={ this.updateSearchTerm }
+            search={ this.search }
           />
         ) : (
           <SearchBtn
-            toggleSearchOverlay={ toggleSearchOverlay }
-            style={ styles.button }
-            placeholder={ placeholder }
-            route={ this.props.route }
-            searchOverlay={ searchOverlay }
-            anim={ this.state.animCancel }
+            buttonWidth={ this.buttonWidth }
+            buttonPosX={ this.buttonPosX }
+            buttonStyles={ styles.button }
+            textPosX={ this.textPosX }
+            placeholder={ searchTerm || 'Search' }
+            onPress={ this.onPress }
+            onLayout={ this.onLayout }
           />
         )}
 
         <CancelBtn
-          width={ this.state.animCancel.interpolate({
-            inputRange: [ 0, 1 ],
-            outputRange: [ 0, 54.5 ],
-          })}
+          onPress={ this.onPress }
+          onLayout={ this.onLayout }
+          posX={ this.props.route.index ? 20 : 0 }
         />
-      </Animated.View>
+      </View>
     );
   }
 }
@@ -122,31 +218,31 @@ class Header extends React.Component {
 const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
+    height: 30,
     flexDirection: 'row',
     alignItems: 'center',
+    overflow: 'hidden',
+    position: 'relative',
   },
 
   button: {
     backgroundColor: 'rgba(11, 87, 119, 0.15)',
-    height: 30,
     borderRadius: 6,
     borderBottomWidth: 1,
     borderBottomColor: '#2dadcd',
-    overflow: 'hidden',
-    flex: 1,
+    height: 30,
   },
 });
 
-const mapStateToProps = (state) => ({
-  searchOverlay: state.search.searchOverlay,
+const mapStateToProps = state => ({
   searchText: state.search.searchText,
-  route: state.navigation.route,
+  route: state.navigation.shopping,
 });
 
-const mapActionsToProps = (dispatch) => ({
-  toggleSearchOverlay: () => dispatch(toggleSearchOverlay()),
-  fetchSearch: (e) => dispatch(fetchSearch(e.nativeEvent.text)),
-  cancelSearch: () => dispatch(cancelSearch()),
+const mapActionsToProps = dispatch => ({
+  toggleSearchOverlay: _ => dispatch(toggleSearchOverlay()),
+  fetchSearch: v => dispatch(fetchSearch(v)),
+  backBtn: _ => dispatch(pop('shopping')),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Header);
