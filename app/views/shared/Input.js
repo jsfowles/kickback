@@ -16,6 +16,7 @@ class Input extends React.Component {
     onChangeText: React.PropTypes.func.isRequired,
     wrapperStyles: React.PropTypes.object.isRequired,
     refs: React.PropTypes.func.isRequired,
+    secureTextEntry: React.PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -34,6 +35,7 @@ class Input extends React.Component {
       onChangeText,
       wrapperStyles,
       refs,
+      secureTextEntry,
     } = this.props;
 
     return (
@@ -47,6 +49,7 @@ class Input extends React.Component {
           placeholder={ placeholder }
           value={ value }
           autoCapitalize={ autoCapitalize }
+          secureTextEntry={ secureTextEntry }
           autoCorrect={ autoCorrect }
           onChangeText={ onChangeText }
           refs={ refs }

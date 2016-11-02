@@ -52,7 +52,7 @@ class Settings extends React.Component {
               return handleNavigate(ROUTES.editProfile);
             },
           bordered: true },
-          { title: 'Change Password', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: false },
+          { title: 'Change Password', onPress: () => handleNavigate(ROUTES.changePassword), bordered: false },
         ],
       },
 

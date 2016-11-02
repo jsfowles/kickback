@@ -25,6 +25,7 @@ class ChangePassword extends React.Component {
     currentPassword: React.PropTypes.string,
     newPassword: React.PropTypes.string,
     passwordConfirmation: React.PropTypes.string,
+    clearChangePassword: React.PropTypes.func,
   };
 
   isDisabled = () => {
