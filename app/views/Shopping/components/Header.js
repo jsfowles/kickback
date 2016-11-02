@@ -47,8 +47,8 @@ class Header extends React.Component {
   }
 
   onLayout = (e, type) => {
-    if (type === 'searchTextLayout' || !this.state[type]) {
-      this.setState({ [type]: e.nativeEvent.layout }, _ => {
+    if (!this.state[type]) {
+      return this.setState({ [type]: e.nativeEvent.layout }, _ => {
         if (type === 'layout') {
           this.buttonWidth.setValue(this.state.layout.width);
         }
@@ -66,7 +66,8 @@ class Header extends React.Component {
           this.state.searchTextLayout &&
           this.state.searchIconLayout &&
           this.state.layout &&
-          this.props.route.index
+          this.props.route.index &&
+          !this.searchTextWidth
         ) {
           this.buttonWidth.setValue(this.state.layout.width - BACK_BUTTON_SIZE);
           this.buttonPosX.setValue(BACK_BUTTON_SIZE);
