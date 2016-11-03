@@ -12,16 +12,12 @@ import Video from 'react-native-video';
 
 const {
   height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+  width: deviceWidth,
+} = Dimensions.get('window');
 
 class BGVideo extends React.Component {
   shouldComponentUpdate() {
     return false;
-  }
-
-  onLoad = () => {
-    console.log('onLoad')
   }
 
   render() {
@@ -39,7 +35,7 @@ class BGVideo extends React.Component {
         ]}
       >
         <Video
-          source={{ uri: 'https://s3.amazonaws.com/kickback-app/static/login/login-clip.mp4' }}
+          source={ require('../media/login-clip.mp4') }
           rate={ 1.0 }
           muted={ true }
           paused={ false }

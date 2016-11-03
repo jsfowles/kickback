@@ -9,7 +9,6 @@ import {
   KeyboardAvoidingView,
   StatusBar,
   Animated,
-  Easing,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -86,7 +85,7 @@ class Sessions extends React.Component {
 
       Animated.timing(
         this.state.vidHeight,
-        { toValue: headerHeight }
+        { toValue: headerHeight, duration: 250 },
       ).start();
     });
   }
