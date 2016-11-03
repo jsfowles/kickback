@@ -4,7 +4,7 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   Image,
 } from 'react-native';
@@ -12,24 +12,25 @@ import Shimmer from 'react-native-shimmer';
 import { connect } from 'react-redux';
 
 const RecommendLink = ({
-  creatingRecommendation,
   recommendProduct,
   showText,
+  isFetchingRecommend,
 }) => {
-  let buttonTextStyles = creatingRecommendation ? [ styles.btnText, { color: '#d4d9da' }] : styles.btnText
-  let shareStyles = creatingRecommendation ? [ styles.share, { tintColor: '#d4d9da' }] : styles.share
+  let buttonTextStyles = isFetchingRecommend ? [ styles.btnText, { color: '#d4d9da' }] : styles.btnText
+  let shareStyles = isFetchingRecommend ? [ styles.share, { tintColor: '#d4d9da' }] : styles.share;
 
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       underlayColor='#fff'
-      activeOpacity={ creatingRecommendation ? 1 : 0.25 }
+      activeOpacity={ isFetchingRecommend ? 1 : 0.25 }
       onPress={ recommendProduct }
+      disabled={ isFetchingRecommend }
     >
       <View style={ styles.shareBtn }>
         <Shimmer
           opacity={ 1 }
           animationgOpacity={ 0.25 }
-          animating={ creatingRecommendation }
+          animating={ isFetchingRecommend }
           speed={ 115 }
         >
           { showText && <Text style={ buttonTextStyles }>Recommend</Text> }
@@ -37,12 +38,12 @@ const RecommendLink = ({
 
         <Image source={ require('image!share') } style={ shareStyles } />
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
 RecommendLink.propTypes = {
-  creatingRecommendation: React.PropTypes.bool.isRequired,
+  isFetchingRecommend: React.PropTypes.bool.isRequired,
   showText: React.PropTypes.bool.isRequired,
   recommendProduct: React.PropTypes.func.isRequired,
 };
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  creatingRecommendation: state.product.creatingRecommendation,
+  isFetchingRecommend: state.user.isFetchingRecommend,
 });
 
 export default connect(mapStateToProps)(RecommendLink);

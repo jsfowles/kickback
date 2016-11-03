@@ -45,7 +45,7 @@ export const fetchSession = password => (dispatch, getState) => {
     },
   };
 
-  if (!validateCredentials(creds)) { return dispatch(fetchRequestFailure()); }
+  if (!validateCredentials(creds)) { return dispatch(addMessage('Invalid email or password')); }
   if (tab === 'SIGN_UP') { return dispatch(createUser(creds)); }
 
   dispatch({ type: 'FETCH_SESSION_REQUEST' });
