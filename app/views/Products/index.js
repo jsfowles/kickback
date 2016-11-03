@@ -44,8 +44,6 @@ class ProductListView extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!(JSON.stringify(nextProps.products) === JSON.stringify(this.props.products))) {
-      console.log(`nextProps from products: ${nextProps.products[0].title}`);
-      console.log(`this.props from products ${this.props.products[0].title}`);
       let ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2,
       });
