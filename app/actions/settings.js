@@ -2,6 +2,7 @@
 
 import { submitProblem as submitProblemAPI } from '../utils/api';
 import { fetchUserSuccess } from './user';
+import { addMessage } from './app';
 import Request from '../utils/request';
 import { pop } from './navigation';
 
@@ -48,7 +49,7 @@ export const changePassword = passwordObj => (dispatch, getState) => {
       return dispatch(fetchUserSuccess(res.data));
     }
 
-    return dispatch({ type: 'TODO' });
+    return dispatch(addMessage(res.errors.full_messages[0]));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PASSWORD_FAILURE' }));
 };
