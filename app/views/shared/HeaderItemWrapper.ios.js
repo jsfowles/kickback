@@ -40,7 +40,7 @@ ItemWrapper.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  itemWrapper: { paddingVertical: 11 },
+  itemWrapper: { paddingVertical: 11, minWidth: 28 },
   text: { color: '#fff' },
   disabled: { opacity: 0.5 },
 });
