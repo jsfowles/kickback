@@ -11,6 +11,7 @@ const isFetchingUserProducts = isFetching('USER_PRODUCTS');
 const isFetchingUserProfile = isFetching('USER_PROFILE');
 const isFetchingEmail = isFetching('USER_EMAIL');
 const isFetchingName = isFetching('USER_NAME');
+const isFetchingRecommend = isFetching('RECOMMEND');
 
 export const user = (state = null, action) => {
   switch (action.type) {
@@ -46,4 +47,5 @@ export default combineReducers({
   isFetchingUserProfile,
   isFetchingEmail,
   isFetchingName,
+  isFetchingRecommend
 });
