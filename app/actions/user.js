@@ -8,7 +8,7 @@ import { formatSession } from '../utils/session';
 import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail, fetchSessionSuccess } from './sessions';
-import { closeModal } from './app';
+import { closeModal, addMessage } from './app';
 import { pop } from './navigation';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_PROFILE_SUCCESS', user });
@@ -19,7 +19,7 @@ export const editUser = edit => ({ type: 'EDIT_USER', edit });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
-  message: msg || 'Invalid email or password',
+  message: msg || 'Password already taken',
 });
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
@@ -39,6 +39,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
 };
 
 export const createUser = credentials => (dispatch) => {
+  let session = null;
   Alert.alert(
     'Is this correct?',
     `You entered your email as: ${credentials.email}`,
@@ -49,11 +50,10 @@ export const createUser = credentials => (dispatch) => {
         .then(res => {
           if (res.status === 200) {
             dispatch(closeModal());
-            // TODO: Should log you in.
-            // return dispatch(createSession(res));
+            return dispatch(fetchSessionSuccess(session));
           }
 
-          return { error: 'Email address already taken.' };
+          return dispatch(addMessage('Password already taken'));
         })
         .then(res => {
           if (res.status === 'success') {
