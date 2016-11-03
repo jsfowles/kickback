@@ -18,12 +18,13 @@ export const recommendProduct = product => (dispatch, getState) => {
    */
   const { session } = getState().session;
   const { user } = getState().user;
-  dispatch({ type: 'FETCH_RECOMMEND_REQUEST' });
 
   /**
    * If user and session is present we are goping to build the request and send it.
    */
   if (user && session) {
+    dispatch({ type: 'FETCH_RECOMMEND_REQUEST' });
+
     let requestObj = {
       method: 'POST',
       path: `/links`,

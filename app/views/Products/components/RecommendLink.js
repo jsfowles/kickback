@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  isFetchingRecommend: state.user.isFetchingRecommend,
+  isFetchingRecommend: state.product.isFetchingRecommend,
 });
 
 export default connect(mapStateToProps)(RecommendLink);
