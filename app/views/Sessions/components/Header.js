@@ -57,8 +57,12 @@ let styles = StyleSheet.create({
 
   closeBtn: {
     position: 'absolute',
-    top: 16,
-    right: 16,
+    top: 0,
+    right: 0,
+    height: 44,
+    width: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   bgImage: {
