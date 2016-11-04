@@ -22,6 +22,11 @@ const initialState = {
     key: 'profile',
     routes: [{ key: 'user' }],
   },
+  session: {
+    index: 0,
+    key: 'session',
+    routes: [{ key: 'login' }],
+  },
 };
 
 export const navigation = (state = initialState, action) => {
