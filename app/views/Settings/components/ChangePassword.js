@@ -42,7 +42,6 @@ class ChangePassword extends React.Component {
 
   isDisabled = () => {
     let {
-      currentPassword,
       newPassword,
       passwordConfirmation,
     } = this.state;

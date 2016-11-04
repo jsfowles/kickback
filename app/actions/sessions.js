@@ -48,7 +48,7 @@ export const fetchSession = password => (dispatch, getState) => {
 
   if (tab === 'SIGN_UP') {
     if (!validateEmail(creds.email)) { return dispatch(addMessage('Invalid email format')); }
-    if (!validatePassword(creds.password)) { return dispatch(addMessage('Invalid password format')); }
+    if (!validatePassword(creds.password)) { return dispatch(addMessage('Password must be at least 8 characters')); }
 
     return dispatch(createUser(creds));
   }
