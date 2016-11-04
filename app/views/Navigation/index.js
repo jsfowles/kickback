@@ -16,6 +16,21 @@ const {
 const selectScene = scenes => route => scenes[route] || null;
 
 class Navigation extends Component {
+  static propTypes = {
+    direction: React.PropTypes.string,
+    navigation: React.PropTypes.object.isRequired,
+    pushRoute: React.PropTypes.func.isRequired,
+    popRoute: React.PropTypes.func.isRequired,
+    scenes: React.PropTypes.object,
+    scene: React.PropTypes.shape({
+      route: React.PropTypes.object.isRequired,
+    }),
+  };
+
+  static defaultProps = {
+    direction: 'horizontal',
+  };
+
   handleNavigate = ({ route, type }) => {
     let { pushRoute, popRoute, navigation } = this.props;
 
@@ -50,19 +65,6 @@ class Navigation extends Component {
   }
 }
 
-Navigation.propTypes = {
-  direction: React.PropTypes.string,
-  navigation: React.PropTypes.object.isRequired,
-  pushRoute: React.PropTypes.func.isRequired,
-  popRoute: React.PropTypes.func.isRequired,
-  scene: React.PropTypes.shape({
-    route: React.PropTypes.object.isRequired,
-  }),
-};
-
-Navigation.defaultProps = {
-  direction: 'horizontal',
-};
 
 const styles = StyleSheet.create({
   container: {
