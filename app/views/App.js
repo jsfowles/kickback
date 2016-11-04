@@ -20,12 +20,14 @@ import Message from './shared/Message';
 import Tabs from './Navigation/components/Tabs';
 import EarningsInfo from './User/components/EarningsInfo';
 import PayoutInfo from './User/components/PayoutInfo';
+import ProductModal from './Products/components/Modal';
 
 const scenes = {
   tabs: <Tabs />,
   session: <Session />,
   earningsInfo: <EarningsInfo />,
   payoutInfo: <PayoutInfo />,
+  ProductModal: <ProductModal />,
 };
 
 /**

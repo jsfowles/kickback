@@ -1,30 +1,30 @@
-'use strict'
-import React from 'react'
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Image,
-} from 'react-native'
+} from 'react-native';
 
-import Pricing from './Pricing'
-import ProductImage from './ProductImage'
+import ProductImage from './ProductImage';
+import CardWrapper from './CardWrapper';
 
 const ProductCardSmall = ({
   children,
   product,
 }) => (
   <View style={ styles.rowContainer }>
-    <View style={ styles.productContainer }>
-      <View style={ styles.imageContainer }>
-        <ProductImage style={ styles.thumb } imageUrl={ product.largeImageUrl } />
+    <CardWrapper product={ product }>
+      <View style={ styles.productContainer }>
+        <View style={ styles.imageContainer }>
+          <ProductImage style={ styles.thumb } imageUrl={ product.largeImageUrl } />
+        </View>
+        <Text style={ styles.title }>{ product.title }</Text>
       </View>
-      <Text style={ styles.title }>{ product.title }</Text>
-    </View>
+    </CardWrapper>
 
     { children }
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   rowContainer: {

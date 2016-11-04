@@ -33,8 +33,17 @@ export const lastActionTaken = (state = null, action) => {
   }
 };
 
+export const productModal = (state = null, action) => {
+  switch (action.type) {
+    case 'ADD_PRODUCT_MODAL':
+      return action.product;
+    default: return state;
+  }
+};
+
 export default combineReducers({
   modal,
   message,
   lastActionTaken,
+  productModal,
 });

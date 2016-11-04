@@ -2,7 +2,11 @@
 
 import { ActionSheetIOS } from 'react-native';
 import Request from '../utils/request';
-import { triggerModal, lastActionTaken } from './app';
+import {
+  triggerModal,
+  triggerProductModal,
+  lastActionTaken,
+} from './app';
 
 /**
  * recommendProduct action
@@ -12,7 +16,7 @@ import { triggerModal, lastActionTaken } from './app';
  * @returns {promise} typically this will be a error or a new link or if the user
  *                    is not logged in it will trigger the session modal
  */
-export const recommendProduct = product => (dispatch, getState) => {
+export const recommendProduct = (product, showActionSheet = true) => (dispatch, getState) => {
   /**
    * Get the session and the user from state
    */
@@ -40,11 +44,15 @@ export const recommendProduct = product => (dispatch, getState) => {
     .then(res => {
       dispatch({ type: 'FETCH_RECOMMEND_SUCCESS' });
 
-      return ActionSheetIOS.showShareActionSheetWithOptions(
-        { url: `http://www.${res.url}` },
-        () => null,
-        () => null,
-      );
+      if (showActionSheet) {
+        return ActionSheetIOS.showShareActionSheetWithOptions(
+          { url: `http://www.${res.link.shortenedUrl}` },
+          () => null,
+          () => null,
+        );
+      }
+
+      return dispatch(triggerProductModal(res));
     });
   }
 
