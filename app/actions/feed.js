@@ -1,17 +1,18 @@
 'use strict';
 
 import Request from '../utils/request';
-import { closeModal } from './app';
 
-export const fetchFeed = () => dispatch => {
+export const fetchFeed = () => (dispatch, getState) => {
+  let { session } = getState().session;
+
   const requestObj = {
     path: `product_feeds`,
     method: 'GET',
+    headers: session ? session : {},
   };
 
   dispatch({ type: 'FETCH_PRODUCT_FEED_REQUEST' });
 
-  return new Request(requestObj).then(
-    res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', ...res })
-  );
+  return new Request(requestObj)
+  .then(res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', ...res }));
 };

@@ -15,7 +15,7 @@ const ItemWrapper = ({ item }) => {
   let content;
 
   if (item.icon) {
-    content = <Image source={ item.icon } style={ item.disabled ? styles.disabled : {}} />;
+    content = <Image source={ item.icon } style={ item.disabled ? styles.disabled : { tintColor: '#fff' }} />;
   } else if (item.title) {
     content = <Text style={[ styles.text, item.disabled ? styles.disabled : {} ]}>{ item.title }</Text>;
   }
@@ -40,9 +40,17 @@ ItemWrapper.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  itemWrapper: { paddingVertical: 11, minWidth: 28 },
+  itemWrapper: {
+    paddingVertical: 11,
+    minWidth: 28,
+  },
+
   text: { color: '#fff' },
-  disabled: { opacity: 0.5 },
+
+  disabled: {
+    opacity: 0.5,
+    tintColor: '#fff',
+  },
 });
 
 export default ItemWrapper;
