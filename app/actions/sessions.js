@@ -24,6 +24,7 @@ export const fetchRequestFailure = msg => ({
 
 export const fetchSession = password => (dispatch, getState) => {
   let { enteredEmail, tab } = getState().session;
+  let { lastActionTaken } = getState().app;
   let session = null;
 
   let creds = {
@@ -54,6 +55,8 @@ export const fetchSession = password => (dispatch, getState) => {
   .then(res => {
     if (res) {
       dispatch(fetchUserSuccess(res));
+      dispatch(lastActionTaken.action(lastActionTaken.args));
+      dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
       return dispatch(fetchUserProducts(session));
     }
   });

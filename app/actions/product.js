@@ -2,7 +2,7 @@
 
 import { ActionSheetIOS } from 'react-native';
 import Request from '../utils/request';
-import { triggerModal } from './app';
+import { triggerModal, lastActionTaken } from './app';
 
 /**
  * recommendProduct action
@@ -44,12 +44,13 @@ export const recommendProduct = product => (dispatch, getState) => {
         { url: `http://www.${res.url}` },
         () => null,
         () => null,
-      )
+      );
     });
   }
 
   /**
    * If user && session is not present trigger the modal.
    */
+  dispatch(lastActionTaken(recommendProduct, product));
   return dispatch(triggerModal('session'));
 };
