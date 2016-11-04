@@ -20,7 +20,21 @@ export const message = (state = null, action) => {
   }
 };
 
+export const lastActionTaken = (state = null, action) => {
+  switch (action.type) {
+    case 'LAST_ACTION_TAKEN':
+      return {
+        action: action.action,
+        args: action.args,
+      };
+    case 'CLEAR_LAST_ACTION_TAKEN':
+      return null;
+    default: return state;
+  }
+};
+
 export default combineReducers({
   modal,
   message,
+  lastActionTaken,
 });
