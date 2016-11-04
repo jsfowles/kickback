@@ -115,7 +115,6 @@ export const updateUserProfile = user => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
-    console.log(res);
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
     return dispatch(fetchUserSuccess(res));
