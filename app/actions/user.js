@@ -39,7 +39,6 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
 };
 
 export const createUser = credentials => (dispatch) => {
-  let session = null;
   Alert.alert(
     'Is this correct?',
     `You entered your email as: ${credentials.email}`,
@@ -50,15 +49,23 @@ export const createUser = credentials => (dispatch) => {
         .then(res => {
           if (res.status === 200) {
             dispatch(closeModal());
-            return dispatch(fetchSessionSuccess(session));
+            dispatch(fetchSessionSuccess(formatSession(res)));
+            return res.json();
           }
 
           return dispatch(addMessage('Password already taken'));
         })
         .then(res => {
           if (res.status === 'success') {
-            // TODO: this isn't going to work either
-            // dispatch(fetchUser(res));
+            dispatch(fetchUserSuccess({
+              ...res.data,
+              name: null,
+              totalApproved: 0,
+              totalPending: 0,
+              totalWaitingApproval: 0,
+              totalEarned: 0,
+              totalPendingOrWaitingApproval: 0,
+            }));
           }
         });
       }},
@@ -108,6 +115,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
+    console.log(res);
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
     return dispatch(fetchUserSuccess(res));
