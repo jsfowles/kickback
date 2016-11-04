@@ -38,7 +38,9 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
   .catch(_ => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
-export const createUser = credentials => (dispatch) => {
+export const createUser = credentials => (dispatch, getState) => {
+  let { lastActionTaken } = getState().app;
+
   Alert.alert(
     'Is this correct?',
     `You entered your email as: ${credentials.email}`,
@@ -66,6 +68,9 @@ export const createUser = credentials => (dispatch) => {
               totalEarned: 0,
               totalPendingOrWaitingApproval: 0,
             }));
+
+            dispatch(lastActionTaken.action(lastActionTaken.args));
+            return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
           }
         });
       }},
