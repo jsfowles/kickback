@@ -19,7 +19,7 @@ export const editUser = edit => ({ type: 'EDIT_USER', edit });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
-  message: msg || 'Password already taken',
+  message: msg || 'Email already taken',
 });
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
@@ -53,7 +53,7 @@ export const createUser = credentials => (dispatch) => {
             return res.json();
           }
 
-          return dispatch(addMessage('Password already taken'));
+          return dispatch(addMessage('Email already taken'));
         })
         .then(res => {
           if (res.status === 'success') {
