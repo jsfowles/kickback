@@ -5,7 +5,7 @@ export const validateEmail = (email) => {
 
 export const validateNum = (n) => !isNaN(parseFloat(n)) && isFinite(n);
 
-export const validatePassword = (s) => s ? s.length > 5 : false;
+export const validatePassword = (s) => s ? s.length > 8 : false;
 
 export const validateCredentials = ({ email, password })  => (
   validateEmail(email) && validatePassword(password)
