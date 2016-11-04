@@ -38,7 +38,7 @@ const UserModal = ({
       <Text style={ styles.link }>{ linkText }</Text>
     </TouchableOpacity>
 
-    <CloseBtn color='#6d7577' onPress={ closeModal } />
+    <CloseBtn onPress={ closeModal } style={ styles.closeBtn } />
   </View>
 );
 
@@ -95,6 +95,16 @@ const styles = StyleSheet.create({
     height: 138,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  closeBtn: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    height: 44,
+    width: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
