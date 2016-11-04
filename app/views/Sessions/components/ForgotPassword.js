@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   StatusBar,
+  Alert,
 } from 'react-native';
 
 import Container from '../../shared/Container';
@@ -49,7 +50,7 @@ class ChangePassword extends React.Component {
             icon={ require('image!user') }
             placeholder='youremail@yourhost.com'
             setRef={ input => this.passwordConfirmation = input }
-            onSubmitEditing={ () => this.props.resetPassword(this.state) }
+            onSubmitEditing={ () => Alert.alert('Coming Soon!') }
           />
         </View>
 
