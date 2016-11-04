@@ -1,7 +1,7 @@
 'use strict';
 
 import Request from '../utils/request';
-import { validateCredentials } from '../utils/validations';
+import { validateEmail, validatePassword } from '../utils/validations';
 import { formatSession } from '../utils/session';
 import { pop } from './navigation';
 import { changeTab } from './tabs';
@@ -46,14 +46,18 @@ export const fetchSession = password => (dispatch, getState) => {
     },
   };
 
-  if (!validateCredentials(creds)) { return dispatch(addMessage('Invalid email or password')); }
-  if (tab === 'SIGN_UP') { return dispatch(createUser(creds)); }
+  if (tab === 'SIGN_UP') {
+    if (!validateEmail(creds.email)) { return dispatch(addMessage('Invalid email format')); }
+    if (!validatePassword(creds.password)) { return dispatch(addMessage('Invalid password format')); }
+
+    return dispatch(createUser(creds));
+  }
 
   dispatch({ type: 'FETCH_SESSION_REQUEST' });
 
   return new Request(requestObj)
   .then(res => {
-    if (res) {
+    if (!res.errors) {
       dispatch(fetchUserSuccess(res));
       dispatch(lastActionTaken.action(lastActionTaken.args));
       dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });

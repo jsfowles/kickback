@@ -47,7 +47,7 @@ class ChangePassword extends React.Component {
       passwordConfirmation,
     } = this.state;
 
-    return !validatePassword(passwordConfirmation) || !validatePassword(currentPassword) || newPassword !== passwordConfirmation;
+    return !validatePassword(passwordConfirmation) || newPassword !== passwordConfirmation;
   }
 
   backButton = () => {
@@ -67,8 +67,8 @@ class ChangePassword extends React.Component {
         }}
         rightItem={{
           title: 'SAVE',
-          onPress: () => this.props.changePassword(this.state),
           disabled: this.isDisabled(),
+          onPress: () => this.props.changePassword(this.state),
         }}
       >
         <View style={ styles.currentPassword }>
