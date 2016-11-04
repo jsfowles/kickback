@@ -8,7 +8,7 @@ import { formatSession } from '../utils/session';
 import Request from '../utils/request';
 import { Alert } from 'react-native';
 import { updateSessionEmail, fetchSessionSuccess } from './sessions';
-import { closeModal } from './app';
+import { closeModal, addMessage } from './app';
 import { pop } from './navigation';
 
 export const fetchUserSuccess = user => ({ type: 'FETCH_USER_PROFILE_SUCCESS', user });
@@ -19,7 +19,7 @@ export const editUser = edit => ({ type: 'EDIT_USER', edit });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
-  message: msg || 'Invalid email or password',
+  message: msg || 'Email already taken',
 });
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
@@ -49,16 +49,23 @@ export const createUser = credentials => (dispatch) => {
         .then(res => {
           if (res.status === 200) {
             dispatch(closeModal());
-            // TODO: Should log you in.
-            // return dispatch(createSession(res));
+            dispatch(fetchSessionSuccess(formatSession(res)));
+            return res.json();
           }
 
-          return { error: 'Email address already taken.' };
+          return dispatch(addMessage('Email already taken'));
         })
         .then(res => {
           if (res.status === 'success') {
-            // TODO: this isn't going to work either
-            // dispatch(fetchUser(res));
+            dispatch(fetchUserSuccess({
+              ...res.data,
+              name: null,
+              totalApproved: 0,
+              totalPending: 0,
+              totalWaitingApproval: 0,
+              totalEarned: 0,
+              totalPendingOrWaitingApproval: 0,
+            }));
           }
         });
       }},

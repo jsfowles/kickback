@@ -1,15 +1,13 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ListView,
-  TouchableWithoutFeedback,
-} from 'react-native'
+} from 'react-native';
 
-import ProductCard from './components/CardContainer'
+import ProductCard from './components/CardContainer';
 
 const defaultProps = {
   headerHeight: 0,
@@ -26,43 +24,42 @@ const propTypes = {
   hasScrolled: React.PropTypes.bool,
   scrollEventThrottle: React.PropTypes.number,
   emptyListText: React.PropTypes.string,
+  header: React.PropTypes.object,
 };
 
 class ProductListView extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     let ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    })
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
 
-    this.state = { ds: ds.cloneWithRows(props.products) }
+    this.state = { ds: ds.cloneWithRows(props.products) };
 
-    this.renderHeader = this.renderHeader.bind(this)
-    this.renderSectionHeader = this.renderSectionHeader.bind(this)
-    this.renderRow = this.renderRow.bind(this)
+    this.renderHeader = this.renderHeader.bind(this);
+    this.renderSectionHeader = this.renderSectionHeader.bind(this);
+    this.renderRow = this.renderRow.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!!nextProps.products !== undefined) {
-      this.setState({
-        ds: this.state.ds.cloneWithRows(nextProps.products)
+    if (!(JSON.stringify(nextProps.products) === JSON.stringify(this.props.products))) {
+      let ds = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2,
       });
-    }
 
-    if (!nextProps.hasScrolled && this.props.hasScrolled) {
-      this.refs.products.scrollTo({ y: 0 })
+      this.setState({ ds: ds.cloneWithRows(nextProps.products) });
     }
   }
 
   renderHeader = () => {
-    if (!this.props.header) return <View style={{ height: this.props.headerHeight }} />
+    if (!this.props.header) return <View style={{ height: this.props.headerHeight }} />;
 
     return (
       <View>
         { this.props.header }
       </View>
-    )
+    );
   }
 
   renderSectionHeader = () => {
@@ -92,7 +89,7 @@ class ProductListView extends React.Component {
   )
 
   render() {
-    let { products, title, loadMoreProducts } = this.props;
+    let { loadMoreProducts } = this.props;
 
     return (
       <ListView
@@ -148,4 +145,4 @@ const styles = {
   },
 };
 
-export default ProductListView
+export default ProductListView;

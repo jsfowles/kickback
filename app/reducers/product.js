@@ -1,6 +1,4 @@
-const initialState = {
-  creatingRecommendation: false,
-};
+import { combineReducers } from 'redux';
 
 export const products = type => (state = [], action) => {
   switch (action.type) {
@@ -39,16 +37,6 @@ export const errorMessage = type => (state = null, action) => {
   }
 };
 
-/**
- * OLD STUFF
- */
-export const product = (state = initialState, action) => {
-  switch(action.type) {
-    case 'TOGGLE_CREATING_RECOMMENDATION':
-      return {
-        creatingRecommendation: action.bool,
-      }
-    default:
-      return state
-  }
-}
+const isFetchingRecommend = isFetching('RECOMMEND');
+
+export default combineReducers({ isFetchingRecommend });

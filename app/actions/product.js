@@ -4,8 +4,6 @@ import { ActionSheetIOS } from 'react-native';
 import Request from '../utils/request';
 import { triggerModal } from './app';
 
-export const toggleCreatingRecommendation = (bool) => ({ type: 'TOGGLE_CREATING_RECOMMENDATION', bool });
-
 /**
  * recommendProduct action
  * @param {object} product - product we are recommending
@@ -25,6 +23,8 @@ export const recommendProduct = product => (dispatch, getState) => {
    * If user and session is present we are goping to build the request and send it.
    */
   if (user && session) {
+    dispatch({ type: 'FETCH_RECOMMEND_REQUEST' });
+
     let requestObj = {
       method: 'POST',
       path: `/links`,
@@ -37,13 +37,15 @@ export const recommendProduct = product => (dispatch, getState) => {
     };
 
     return new Request(requestObj)
-    .then(res => (
-      ActionSheetIOS.showShareActionSheetWithOptions(
+    .then(res => {
+      dispatch({ type: 'FETCH_RECOMMEND_SUCCESS' });
+
+      return ActionSheetIOS.showShareActionSheetWithOptions(
         { url: `http://www.${res.url}` },
         () => null,
         () => null,
       )
-    ));
+    });
   }
 
   /**
