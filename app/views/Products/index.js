@@ -27,39 +27,27 @@ const propTypes = {
   header: React.PropTypes.object,
 };
 
+const DS = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class ProductListView extends React.Component {
   constructor(props) {
     super(props);
 
-    let ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-
-    this.state = { ds: ds.cloneWithRows(props.products) };
-
-    this.renderHeader = this.renderHeader.bind(this);
-    this.renderSectionHeader = this.renderSectionHeader.bind(this);
-    this.renderRow = this.renderRow.bind(this);
+    this.state = { ds: DS.cloneWithRows(props.products) };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!(JSON.stringify(nextProps.products) === JSON.stringify(this.props.products))) {
-      let ds = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2,
-      });
-
-      this.setState({ ds: ds.cloneWithRows(nextProps.products) });
+    if (nextProps.products !== this.props.products) {
+      this.setState({ ds: DS.cloneWithRows(nextProps.products) });
     }
   }
 
   renderHeader = () => {
-    if (!this.props.header) return <View style={{ height: this.props.headerHeight }} />;
+    if (!this.props.header) {
+      return <View style={{ height: this.props.headerHeight }} />;
+    }
 
-    return (
-      <View>
-        { this.props.header }
-      </View>
-    );
+    return <View>{ this.props.header }</View>;
   }
 
   renderSectionHeader = () => {
