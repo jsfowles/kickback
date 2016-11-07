@@ -1,35 +1,67 @@
-'used strict'
+'used strict';
 
-import React from 'react'
-import { View } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
+import {
+  View,
+  StyleSheet,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 
-import Container from '../shared/Container'
-import Products from '../Products'
-import FeaturedCarousel from './components/FeaturedSearchesCarousel'
+import { fetchFeed } from '../../actions';
+import Container from '../shared/Container';
+import Products from '../Products';
 
-class FeaturedProducts extends React.Component {
-  render() {
-    let { productFeed, currentTab } = this.props
+const FeaturedProducts = ({ feed, fetchFeed }) => (
+  <Container style={ styles.container }>
+    { feed.isFetching && feed.products.length === 0 ? (
+    <View style={ styles.centering }>
+      <ActivityIndicator size='large' />
+    </View>
+    ) : (
+    <Products
+      products={ feed.products }
+      cardSize={ 'large' }
+      title={ 'FEATURED PRODUCTS' }
+      refreshControl={ <RefreshControl
+        refreshing={ feed.isFetching }
+        tintColor='#d4d9da'
+        onRefresh={ fetchFeed }
+      /> }
+    />
+    )}
+  </Container>
+);
 
-    if (currentTab !== 'FEATURED_TAB') return null
+FeaturedProducts.propTypes = {
+  fetchFeed: React.PropTypes.func.isRequired,
+  feed: React.PropTypes.shape({
+    products: React.PropTypes.array.isRequired,
+  }).isRequired,
+};
 
-    return (
-      <Products
-        products={ productFeed.products }
-        title='FEATURED PRODUCTS'
-        cardSize='large'
-        header={ <FeaturedCarousel /> }
-      />
-    )
-  }
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 65,
+    alignItems: 'center',
+  },
 
-const mapStateToProps = (state) => ({
-  productFeed: state.productFeed,
-  currentTab: state.navigation.tab,
-})
+  centering: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -65,
+  },
+});
 
-const mapActionsToProps = (dispatch) => ({})
+const mapStateToProps = state => ({
+  feed: state.feed,
+});
 
-export default connect(mapStateToProps)(FeaturedProducts)
+const mapActionsToProps = dispatch => ({
+  fetchFeed: () => dispatch(fetchFeed()),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedProducts);

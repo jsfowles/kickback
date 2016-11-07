@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
-export const switchTab = (tab) => ({ type: 'SWITCH_TAB', tab })
-export const navigateSearch = () => ({ type: 'NAVIGATE_SEARCH' })
+export const push = (route, key) => ({ type: 'PUSH_ROUTE', route, key });
+export const pop = key => ({ type: 'POP_ROUTE', key });

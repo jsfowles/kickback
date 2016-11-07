@@ -1,34 +1,61 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+  Text,
+} from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient'
-import ItemWrapper from './HeaderItemWrapper'
+import ItemWrapper from './HeaderItemWrapper';
 
 class Header extends React.Component {
+  static defaultProps = {
+    headerColors: [ 'transparent' ],
+  };
+
   render() {
-    const { leftItem, title, rightItem } = this.props;
+    const {
+      rightItem,
+      title,
+      leftItem,
+      headerColors,
+      headerStyles,
+    } = this.props;
 
     return (
       <LinearGradient
-        colors={[ '#45baef', '#34Bcd5' ]}
-        style={[ styles.header, this.props.style ]}
+        colors={ headerColors }
+        style={[ styles.header, headerStyles ]}
       >
-        <View style={ styles.centerItem }>
-          { this.props.children }
+        <View style={ styles.leftItem }>
+          <ItemWrapper item={ leftItem } />
         </View>
-        { rightItem && <View style={ styles.rightItem }>
+
+        <View style={ styles.centerItem }>
+          <Text style={ styles.titleText }>{ title }</Text>
+        </View>
+
+        <View style={ styles.rightItem }>
           <ItemWrapper item={ rightItem } />
-        </View> }
+        </View>
       </LinearGradient>
-    )
+    );
   }
 }
+
+Header.propTypes = {
+  leftItem: React.PropTypes.shape({}),
+  rightItem: React.PropTypes.shape({}),
+  title: React.PropTypes.string,
+  headerColors: React.PropTypes.array,
+  headerStyles: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.object,
+  ]),
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -44,11 +71,23 @@ const styles = StyleSheet.create({
 
   centerItem: {
     flex: 2,
-    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   rightItem: {
+    flex: 1,
+    alignItems: 'flex-end',
   },
-})
 
-export default Header
+  leftItem: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+
+  titleText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+});
+
+export default Header;

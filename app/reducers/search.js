@@ -1,16 +1,23 @@
-'use strict'
+'use strict';
+import { combineReducers } from 'redux';
+import * as base from './product';
 
-const initialState = {
-  searchResults: [],
-}
+const products = base.products('SEARCH');
+const isFetching = base.isFetching('SEARCH', false);
+const errorMessage = base.errorMessage('SEARCH');
 
-export const search = (state = initialState, action) => {
-  switch(action.type) {
-    case 'RECEIVE_PRODUCTS':
-      return {
-        ...state
-      }
-    default:
-      return state
+export const searchOverlay = (state = false, action) => {
+  switch (action.type) {
+    case 'TOGGLE_SEARCH_OVERLAY': {
+      return !state;
+    }
+    default: return state;
   }
-}
+};
+
+export default combineReducers({
+  products,
+  isFetching,
+  errorMessage,
+  searchOverlay,
+});

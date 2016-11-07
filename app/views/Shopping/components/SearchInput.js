@@ -1,41 +1,57 @@
 'use strict'
 import React from 'react'
 import {
-  View,
   Image,
   TextInput,
   StyleSheet,
+  Animated
 } from 'react-native'
 
-const SearchInput = ({ style, requestProducts }) => (
-  <View style={ style } >
-    <View style={ styles.inputContainer }>
+const SearchInput = ({
+  buttonPosX,
+  inputStyles,
+  buttonWidth,
+  updateSearchTerm,
+  value,
+  search,
+}) => {
+  return (
+    <Animated.View style={{
+      position: 'relative',
+      width: buttonWidth,
+      transform: [{ translateX: buttonPosX },
+    ]}}>
+      <Image source={ require('image!search') } style={{ position: 'absolute', top: 8, left: 8 }} />
       <TextInput
-        style={ styles.input }
+        value={ value }
+        style={[ inputStyles, styles.input ]}
         placeholder='Search'
-        placeholderTextColor='#fff'
+        placeholderTextColor='rgba(255, 255, 255, 0.75)'
         selectionColor='#fff'
-        autoFocus={ true }
-        autoCorrect={ false }
-        returnKeyType='search'
+        clearButtonMode='while-editing'
         enablesReturnKeyAutomatically={ true }
-        clearButtonMode='always'
-        onEndEditing={ requestProducts }
+        returnKeyType='search'
+        autoFocus={ true }
+        onChangeText={ updateSearchTerm }
+        onSubmitEditing={ search }
       />
-      <Image source={ require('image!search') } />
-    </View>
-  </View>
-)
+    </Animated.View>
+  );
+};
+
+SearchInput.propTypes = {
+  buttonPosX: React.PropTypes.object.isRequired,
+  inputStyles: React.PropTypes.number.isRequired,
+  buttonWidth: React.PropTypes.object.isRequired,
+  updateSearchTerm: React.PropTypes.func.isRequired,
+  search: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   input: {
-    height: 30,
-    position: 'absolute',
-    top: 0,
-    left: 32,
-    fontSize: 14,
-    right: 0,
-    color: '#fff'
+    color: '#fff',
+    paddingLeft: 28,
   },
 
   inputContainer: {

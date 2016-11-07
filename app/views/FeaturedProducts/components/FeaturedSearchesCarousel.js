@@ -10,7 +10,10 @@ import {
 import { connect } from 'react-redux'
 
 import Card from './FeaturedSearchCard'
-import { changeCarouselPosition } from '../../../actions'
+import {
+  changeCarouselPosition,
+  requestProducts,
+} from '../../../actions'
 
 const {
   height: deviceHeight,
@@ -92,20 +95,17 @@ class FeaturedSearchesCarousel extends React.Component {
    * After scrolling we need to change the position in the store
    */
   handleMomentumScroll = (e) => {
-    this.props.changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+    let { carouselPaused, changeCarousepPosition } = this.props;
+
+    if (!carouselPaused) {
+      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+    }
   }
 
   /**
    * When we begin to drag with our finger clear the timer.
    */
   beginDrag = () => clearTimeout(this.timer)
-
-  /**
-   * TODO: I need to setup the search reducer
-   */
-  onSlidePress = () => {
-    console.log('TODO: Move this to a reducer')
-  }
 
   render() {
     return (
@@ -132,8 +132,9 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ this.onSlidePress }
+            onPress={ this.props.requestProducts }
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
+            searchTerm={ search.searchTerm }
           />
         ))}
       </ScrollView>
@@ -144,11 +145,13 @@ class FeaturedSearchesCarousel extends React.Component {
 const mapStateToProps = (state) => ({
   featuredSearches: state.productFeed.featuredSearches,
   selectedIndex: state.productFeed.selectedIndex,
-  searching: state.navigation.searching,
+  searching: state.search.searching,
+  carouselPaused: state.productFeed.carouselPaused,
 })
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
+  requestProducts: (s) => dispatch(requestProducts(s)),
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel)

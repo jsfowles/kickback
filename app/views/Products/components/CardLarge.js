@@ -1,40 +1,45 @@
-'use strict'
-import React from 'react'
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Image,
-} from 'react-native'
+} from 'react-native';
 
-import CardFooter from './CardFooter'
-import Pricing from './Pricing'
+import Pricing from './Pricing';
+import ProductImage from './ProductImage';
+import CardWrapper from './CardWrapper';
 
-const ProductCardLarge = ({ product }) => (
+const ProductCardLarge = ({
+  product,
+  children,
+}) => (
   <View style={ styles.rowContainer }>
-    <View style={ styles.itemContainer }>
-      <Image style={ styles.thumb } source={{ uri: product.largeImageUrl }} />
-    </View>
+    <CardWrapper product={ product }>
+      <View style={ styles.itemContainer }>
+        <ProductImage style={ styles.thumb } imageUrl={ product.largeImageUrl } />
+      </View>
 
-    <View style={ styles.itemContainer }>
-      <Text style={ styles.title }>{ product.title }</Text>
-      <Pricing
-        salePrice={ product.salePrice }
-        price={ product.price }
-        onSale={ product.salePrice < product.price }
-      />
-    </View>
+      <View style={ styles.itemContainer }>
+        <Text style={ styles.title }>{ product.title }</Text>
+        <Pricing
+          salePrice={ product.salePrice }
+          price={ product.price }
+          onSale={ product.salePrice !== product.price }
+        />
+      </View>
+    </CardWrapper>
 
-    <CardFooter price={ product.salePrice } merchant={ product.merchant } />
+    { children }
   </View>
-)
+);
 
 ProductCardLarge.propTypes = {
   product: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
     largeImageUrl: React.PropTypes.string.isRequired,
   }),
-}
+  children: React.PropTypes.object,
+};
 
 const styles = StyleSheet.create({
   rowContainer: {
@@ -48,7 +53,6 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     marginBottom: 15,
-    flex: 1,
     alignItems: 'center',
   },
 
@@ -62,7 +66,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     color: '#6D7577',
+    textAlign: 'center',
   },
-})
+});
 
-export default ProductCardLarge
+export default ProductCardLarge;

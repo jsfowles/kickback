@@ -1,57 +1,82 @@
-'use strict'
-import React from 'react'
-import { TabBarIOS, View, } from 'react-native'
-import { connect } from 'react-redux'
+'use strict';
 
-import { switchTab } from '../../../actions/navigation'
-import User from '../../User'
-import Shopping from '../../Shopping'
+import React from 'react';
+import { TabBarIOS } from 'react-native';
+import { connect } from 'react-redux';
 
-const Tabs = ({
-  Navigator,
-  switchTab,
-  tab,
-  searching,
-}) => (
-  <TabBarIOS
-    tintColor='#3987d5'
-    barTintColor='#fff'
-    translucent={ false }
-  >
-    <TabBarIOS.Item
-      icon={ require('image!cart') }
-      title=''
-      selected={ tab === 'FEATURED_TAB' }
-      onPress={ () => switchTab('FEATURED_TAB') }
-    >
-      <Shopping />
-    </TabBarIOS.Item>
+import Profile from '../../Profile';
+import Shopping from '../../Shopping';
 
-    <TabBarIOS.Item
-      icon={ require('image!user') }
-      title=''
-      selected={ tab === 'USER_TAB' }
-      onPress={ () => switchTab('USER_TAB') }
-    >
-      <User />
-    </TabBarIOS.Item>
-  </TabBarIOS>
-)
+import { onTabClick } from '../../../actions';
 
-Tabs.propTypes = {
-  Navigator: React.PropTypes.object,
-  switchTab: React.PropTypes.func.isRequired,
-  tab: React.PropTypes.string.isRequired,
-  searching: React.PropTypes.bool.isRequired,
+class Tabs extends React.Component {
+  static propTypes = {
+    tabs: React.PropTypes.shape({
+      index: React.PropTypes.number.isRequired,
+      tabs: React.PropTypes.array.isRequired,
+    }),
+    onTabClick: React.PropTypes.func.isRequired,
+    handleNavigate: React.PropTypes.func.isRequired,
+    modal: React.PropTypes.string,
+  };
+
+  renderTab(tab) {
+    switch (tab) {
+      case 'shopping': return <Shopping />;
+      case 'profile': return <Profile />;
+      default: return null;
+    }
+  }
+
+  renderChildren() {
+    const { tabs, onTabClick } = this.props;
+
+    return tabs.tabs.map((tab, i) => (
+      <TabBarIOS.Item
+        key={ tab.key }
+        icon={ tab.icon }
+        title=''
+        selected={ tabs.index === i }
+        onPress={ _ => onTabClick(i) }
+      >
+        { this.renderTab(tab.key) }
+      </TabBarIOS.Item>
+    ));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { modal, handleNavigate } = this.props;
+
+    if (nextProps.modal && modal === null) {
+      handleNavigate({ type: 'push', route: { key: nextProps.modal }});
+    }
+
+    if (modal && nextProps.modal === null) {
+      nextProps.handleNavigate({ type: 'pop' });
+    }
+  }
+
+  render() {
+    return (
+      <TabBarIOS
+        tintColor='#3987d5'
+        barTintColor='#fff'
+        translucent={ false }
+      >
+        { this.renderChildren() }
+      </TabBarIOS>
+    );
+  }
 }
 
-const mapStateToProps = (state) => ({
-  tab: state.navigation.tab,
-  searching: state.navigation.searching,
-})
 
-const mapActionsToProps = (dispatch) => ({
-  switchTab: (tab) => dispatch(switchTab(tab)),
-})
+const mapStateToProps = state => ({
+  tabs: state.tabs,
+  modal: state.app.modal,
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Tabs)
+const mapActionsToProps = dispatch => ({
+  onTabClick(index) { dispatch(onTabClick(index)); },
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Tabs);

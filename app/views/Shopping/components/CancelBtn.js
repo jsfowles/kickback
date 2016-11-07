@@ -1,33 +1,28 @@
-'use strict'
-import React from 'react'
-import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native'
+import React from 'react';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const CancelBtn = ({ navigateSearch }) => (
+const CancelBtn = ({ onPress, onLayout, posX }) => (
   <TouchableOpacity
-    style={ styles.cancelBtn }
-    activeOpacity={ 1 }
-    onPress={ navigateSearch }
+    style={{ transform: [{ translateX: posX }], height: 30 }}
+    onPress={ onPress }
+    onLayout={ (e) => onLayout(e, 'cancelLayout') }
   >
-    <Text style={{ color: '#fff' }}>Cancel</Text>
+    <Text style={ styles.cancelText }>Cancel</Text>
   </TouchableOpacity>
-)
+);
 
-const styles= StyleSheet.create({
-  cancelBtn: {
-    position: 'absolute',
-    right: 0,
-    transform: [{
-      translateX: 55,
-    }],
-    top: 0,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+CancelBtn.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  onLayout: React.PropTypes.func.isRequired,
+  posX: React.PropTypes.number.isRequired,
+};
+
+const styles = StyleSheet.create({
+  cancelText: {
+    color: '#fff',
+    marginLeft: 10,
+    lineHeight: 30,
   },
-})
+});
 
-export default CancelBtn
+export default CancelBtn;

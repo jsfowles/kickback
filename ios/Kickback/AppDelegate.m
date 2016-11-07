@@ -31,10 +31,12 @@
    * on the same Wi-Fi network.
    */
 
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+  // jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
 
-  //Work:
-  //jsCodeLocation = [NSURL URLWithString:@"http://10.0.1.2:8081/index.ios.bundle?platform=ios&dev=true"];
+  // Riley @ Work:
+  // jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.236:8081/index.ios.bundle?platform=ios&dev=true"];
+  // Jacob @ Work:
+  // jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.105:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -43,8 +45,7 @@
    * running the project on an actual device or running the project on the
    * simulator in the "Release" build configuration.
    */
-
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"Kickback"
@@ -56,6 +57,9 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"tabbarShadow.png"]];
+  [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+
   return YES;
 }
 

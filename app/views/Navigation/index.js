@@ -1,33 +1,84 @@
-'use strict'
+'use strict';
 
-import React, { Component } from 'react'
-import { Navigator, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavigationExperimental, StyleSheet } from 'react-native';
 
-import Tabs from './components/Tabs'
+import {
+  push,
+  pop,
+} from '../../actions';
+
+const {
+  CardStack: NavigationCardStack,
+} = NavigationExperimental;
+
+const selectScene = scenes => route => scenes[route] || null;
 
 class Navigation extends Component {
-  renderScene = (route, navigator) => {
-    return <Tabs navigator={ navigator } />
+  static propTypes = {
+    direction: React.PropTypes.string,
+    navigation: React.PropTypes.object.isRequired,
+    pushRoute: React.PropTypes.func.isRequired,
+    popRoute: React.PropTypes.func.isRequired,
+    scenes: React.PropTypes.object,
+    scene: React.PropTypes.shape({
+      route: React.PropTypes.object.isRequired,
+    }),
+  };
+
+  static defaultProps = {
+    direction: 'horizontal',
+  };
+
+  handleNavigate = ({ route, type }) => {
+    let { pushRoute, popRoute, navigation } = this.props;
+
+    switch (type) {
+      case 'push': return pushRoute(route, navigation.key);
+      case 'pop': return popRoute(navigation.key);
+      default: return false;
+    }
+  }
+
+  renderScene = ({ scene }) => {
+    const { scenes } = this.props;
+    let selectedScene = selectScene(scenes)(scene.route.key);
+
+    return React.cloneElement(selectedScene, {
+      handleNavigate: (route) => this.handleNavigate(route),
+    });
   }
 
   render() {
+    const { navigation, direction } = this.props;
+
     return (
-      <Navigator
-        ref='navigator'
+      <NavigationCardStack
         style={ styles.container }
-        initialRout={{}}
+        navigationState={ navigation }
+        direction={ direction }
+        onNavigate={ this.handleNavigate }
         renderScene={ this.renderScene }
-        configureScene={ (route) => {} }
+        enableGestures={ false }
       />
-    )
+    );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
-  }
-})
+    backgroundColor: '#fff',
+  },
+});
 
-export default Navigation
+const mapStateToProps = _ => ({});
+
+const mapActionsToProps = dispatch => ({
+  pushRoute: (route, key) => dispatch(push(route, key)),
+  popRoute: key => dispatch(pop(key)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Navigation);

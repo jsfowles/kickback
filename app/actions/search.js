@@ -1,17 +1,24 @@
-'use strict'
+'use strict';
 
-import { getProducts } from '../utils/api'
+import { push } from './navigation';
+import Request from '../utils/request';
 
-export const receiveProducts = (products) => ({
-  type: 'RECEIVE_PRODUCTS', products
-})
+export const toggleSearchOverlay = () => ({ type: 'TOGGLE_SEARCH_OVERLAY' });
+export const cancelSearch = () => ({ type: 'CANCEL_SEARCH' });
 
-export const requestProducts = (searchTerm) => {
-  return (dispatch) => {
-    getProducts(searchTerm).then(res => {
-      // Replace view with searched one
-      // toggle search
-      console.log(res)
-    })
-  }
-}
+export const fetchSearch = searchTerm => (dispatch, getState) => {
+  let { session } = getState().session;
+
+  dispatch({ type: 'FETCH_SEARCH_REQUEST' });
+  dispatch(push({ key: 'search' }, 'shopping'));
+
+  const requestObj = {
+    path: 'searches',
+    method: 'POST',
+    headers: session ? session : {},
+    body: { search: { search_term: searchTerm.toLowerCase().trim() }},
+  };
+
+  return new Request(requestObj)
+  .then(res => dispatch({ type: 'FETCH_SEARCH_SUCCESS', products: res }));
+};

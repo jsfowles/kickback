@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -9,59 +9,66 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  DeviceEventEmitter,
+  Keyboard,
   Image,
   TouchableHighlight,
-} from 'react-native'
+} from 'react-native';
+
+import { fetchSearch } from '../../../actions';
 
 const {
   height: deviceHeight,
   width: deviceWidth,
-} = Dimensions.get('window')
+} = Dimensions.get('window');
 
 class Search extends React.Component {
+  static propTypes = {
+    fetchSearch: React.PropTypes.func.isRequired,
+  };
+
   constructor(props) {
-    super(props)
+    super(props);
+
     let ds = new ListView.DataSource({
-      rowHasChanged: (r1,r2) => r1 !== r2
-    })
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
 
     this.state = {
       fadeAnim: new Animated.Value(0),
       ds: ds.cloneWithRows(props.categories),
       keyboardHeight: 0,
-    }
+    };
 
-    this.renderRow = this.renderRow.bind(this)
+    this.renderRow = this.renderRow.bind(this);
   }
 
   componentWillMount() {
-    this.keyboardWillShow = DeviceEventEmitter.addListener('keyboardWillShow', e => {
-      this.setState({ keyboardHeight: e.endCoordinates.height })
-    })
+    this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', e => {
+      this.setState({ keyboardHeight: e.endCoordinates.height + 64 });
+    });
 
-    this.keyboardWillHide = DeviceEventEmitter.addListener('keyboardWillHide', e => {
-      this.setState({ keyboardHeight: 0 })
-    })
+    this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', e => {
+      this.setState({ keyboardHeight: 0 });
+    });
   }
 
   componentDidMount() {
     Animated.timing(
       this.state.fadeAnim,
       { toValue: 1, duration: 200 }
-    ).start()
+    ).start();
   }
 
   componentWillUnmount() {
-    this.keyboardWillShow.remove()
-    this.keyboardWillHide.remove()
+    this.keyboardWillShow.remove();
+    this.keyboardWillHide.remove();
   }
 
   renderRow = (data) => (
     <TouchableHighlight
       underlayColor='#f7f8f9'
       style={{ paddingLeft: 16 }}
-      onPress={ () => console.log('TODO: SET THIS UP') }
+      onPress={ () => this.props.fetchSearch(data.searchTerm) }
     >
       <View style={ styles.categoryContainer }>
         <Text style={ styles.categoryText }>{ data.title }</Text>
@@ -80,20 +87,19 @@ class Search extends React.Component {
           showsVerticalScrollIndicator={ false }
           renderRow={ this.renderRow }
           renderSeparator={ this.renderSeparator }
+          keyboardShouldPersistTaps={ true }
         />
       </Animated.View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
+    paddingTop: 65,
     width: deviceWidth,
     height: deviceHeight,
     backgroundColor: '#fff',
-    paddingTop: 65,
     justifyContent: 'center',
   },
 
@@ -110,12 +116,14 @@ const styles = StyleSheet.create({
     fontSize:  16,
     color: '#6d7577',
   },
-})
+});
 
-const mapStateToProps = (state) => ({
-  categories: state.productFeed.featuredCategories
-})
+const mapStateToProps = state => ({
+  categories: state.feed.featuredCategories,
+});
 
-const mapActionsToProps = (dispatch) => ({})
+const mapActionsToProps = dispatch => ({
+  fetchSearch: (searchTerm) => dispatch(fetchSearch(searchTerm)),
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Search)
+export default connect(mapStateToProps, mapActionsToProps)(Search);

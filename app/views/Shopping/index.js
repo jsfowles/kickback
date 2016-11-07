@@ -1,29 +1,81 @@
-'use strict'
-import React from 'react'
-import { connect } from 'react-redux'
+'use strict';
+import React from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
-import Container from '../shared/Container'
-import Header from './components/Header'
-import SearchOverlay from '../Search/components/SearchOverlay'
-import FeaturedProducts from '../FeaturedProducts'
+import Navigation from '../Navigation';
+import Header from './components/Header';
+import Feed from '../FeaturedProducts';
+import Search from '../Search';
+import SearchOverlay from '../Search/components/SearchOverlay';
+
+const {
+  width: deviceWidth,
+} = Dimensions.get('window');
+
+const scenes = {
+  feed: <Feed />,
+  search: <Search />,
+};
 
 class Shopping extends React.Component {
+  static propTypes = {
+    searchOverlay: React.PropTypes.bool.isRequired,
+    navigation: React.PropTypes.object.isRequired,
+  };
+
   render() {
-    let { searching } = this.props
+    let { navigation, searchOverlay } = this.props;
 
     return (
-      <Container header={ () => <Header /> }>
-        <FeaturedProducts />
-        { searching && <SearchOverlay /> }
-      </Container>
-    )
+      <View style={ styles.container }>
+        <LinearGradient
+          style={ styles.headerWrapper }
+          colors={[ '#45baef', '#34Bcd5' ]}
+        >
+          <Header />
+        </LinearGradient>
+
+        <Navigation
+          navigation={ navigation }
+          scenes={ scenes }
+        />
+
+        { searchOverlay && <SearchOverlay /> }
+      </View>
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  searching: state.navigation.searching,
-})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
 
-const mapActionsToProps = (dispatch) => ({})
+  headerWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: 65,
+    zIndex: 10,
+    width: deviceWidth,
+    paddingHorizontal: 10,
+    paddingTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+  },
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(Shopping)
+const mapStateToProps = state => ({
+  navigation: state.navigation.shopping,
+  searchOverlay: state.search.searchOverlay,
+});
+
+const mapActionsToProps = _ => ({});
+
+export default connect(mapStateToProps, mapActionsToProps)(Shopping);
