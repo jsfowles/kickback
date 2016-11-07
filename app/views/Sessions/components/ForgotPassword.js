@@ -62,11 +62,11 @@ class ChangePassword extends React.Component {
 
 const styles = StyleSheet.create({
   forgotPasswordCopy: {
-    fontSize: 15,
+    fontSize: 14.5,
     color: '#8C9AA0',
     marginTop: 30,
-    marginLeft: 18,
-    marginRight: 18,
+    marginLeft: 17,
+    marginRight: 11,
   },
 
   formContainer: {
