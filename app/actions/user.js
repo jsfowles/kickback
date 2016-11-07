@@ -49,12 +49,12 @@ export const createUser = credentials => (dispatch, getState) => {
       { text: 'Ok', onPress: () => {
         let requestObj = {
           method: 'POST',
+          path: `auth`,
           body: credentials,
           requestCallback: res => {
             if (res.status === 200) {
               dispatch(closeModal());
-              dispatch(fetchSessionSuccess(formatSession(res)));
-              return res.json();
+              return dispatch(fetchSessionSuccess(formatSession(res)));
             }
 
             return dispatch(addMessage('Email already taken'));
