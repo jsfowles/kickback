@@ -47,16 +47,21 @@ export const createUser = credentials => (dispatch, getState) => {
     [
       { text: 'Cancel', onPress: () => dispatch(updateSessionEmail('')) },
       { text: 'Ok', onPress: () => {
-        createUserAPI(credentials)
-        .then(res => {
-          if (res.status === 200) {
-            dispatch(closeModal());
-            dispatch(fetchSessionSuccess(formatSession(res)));
-            return res.json();
-          }
+        let requestObj = {
+          method: 'POST',
+          body: credentials,
+          requestCallback: res => {
+            if (res.status === 200) {
+              dispatch(closeModal());
+              dispatch(fetchSessionSuccess(formatSession(res)));
+              return res.json();
+            }
 
-          return dispatch(addMessage('Email already taken'));
-        })
+            return dispatch(addMessage('Email already taken'));
+          },
+        };
+
+        return new Request(requestObj)
         .then(res => {
           if (res.status === 'success') {
             dispatch(fetchUserSuccess({
@@ -68,10 +73,10 @@ export const createUser = credentials => (dispatch, getState) => {
               totalEarned: 0,
               totalPendingOrWaitingApproval: 0,
             }));
-
-            dispatch(lastActionTaken.action(lastActionTaken.args));
-            return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
           }
+
+          dispatch(lastActionTaken.action(lastActionTaken.args));
+          return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
         });
       }},
     ]
