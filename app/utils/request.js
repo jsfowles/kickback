@@ -4,7 +4,8 @@ import { serverUrl, apiVersion } from '../env';
 export default class Request {
   constructor(props) {
     this.props = props;
-    this.url = `${serverUrl}/api/${apiVersion}/${props.path}`;
+    let api = props.root ? '' : `api/${apiVersion}`;
+    this.url = `${serverUrl}/${api}/${props.path}`;
 
     return this.sendRequest();
   }

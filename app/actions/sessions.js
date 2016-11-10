@@ -77,6 +77,21 @@ export const destroySession = (session = null) => (dispatch, getState) => {
   });
 };
 
+export const resetPassword = () => (dispatch, getState) => {
+  let { enteredEmail } = getState().session;
+
+  let requestObj = {
+    method: 'POST',
+    path: 'password_reset/user/password',
+    body: { password_reset_user: { email: enteredEmail }},
+    root: true,
+  };
+
+  return new Request(requestObj)
+  .then(_ => {
+    return dispatch(pop('session'));
+  });
+};
 /**
  * Validates the current session.
  * @returns { function } either will destroy the session or get the user profile and products
