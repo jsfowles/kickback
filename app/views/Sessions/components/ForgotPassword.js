@@ -22,11 +22,8 @@ class ChangePassword extends React.Component {
     resetPassword: React.PropTypes.func,
     updateSessionEmail: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
+    animated: React.PropTypes.bool,
   };
-
-  onInputChange = (v, k) => {
-    this.setState({ [k]: v });
-  }
 
   render() {
     let {
@@ -45,9 +42,9 @@ class ChangePassword extends React.Component {
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
       >
+
         <StatusBar
           hidden={ false }
-          animated={ 'fade' }
       />
 
         <Text style={ styles.forgotPasswordCopy }>
@@ -75,11 +72,11 @@ class ChangePassword extends React.Component {
 
 const styles = StyleSheet.create({
   forgotPasswordCopy: {
-    fontSize: 15,
+    fontSize: 14.5,
     color: '#8C9AA0',
     marginTop: 30,
-    marginLeft: 18,
-    marginRight: 18,
+    marginLeft: 17,
+    marginRight: 11,
   },
 
   formContainer: {

@@ -5,9 +5,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const CloseBtn = ({ onPress, color }) => (
+const CloseBtn = ({ onPress, color, style }) => (
   <TouchableHighlight
-    style={ styles.btn }
+    style={ style }
     onPress={ onPress }
     underlayColor='transparent'
   >
@@ -21,18 +21,11 @@ const CloseBtn = ({ onPress, color }) => (
 CloseBtn.propTypes = {
   onPress: React.PropTypes.func.isRequired,
   color: React.PropTypes.string.isRequired,
+  style: React.PropTypes.number.isRequired,
 };
 
 CloseBtn.defaultProps = {
-  color: '#ffffff',
+  color: '#6d7577',
 };
-
-const styles = StyleSheet.create({
-  btn: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-  },
-});
 
 export default CloseBtn;

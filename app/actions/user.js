@@ -19,7 +19,7 @@ export const editUser = edit => ({ type: 'EDIT_USER', edit });
 
 export const fetchRequestFailure = msg => ({
   type: 'FETCH_REQUEST_FAILURE',
-  message: msg || 'Password already taken',
+  message: msg || 'Email already taken',
 });
 
 export const fetchUser = (session = null) => (dispatch, getState) => {
@@ -38,28 +38,45 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
   .catch(_ => dispatch({ type: 'FETCH_USER_PROFILE_FAILURE' }));
 };
 
-export const createUser = credentials => (dispatch) => {
-  let session = null;
+export const createUser = credentials => (dispatch, getState) => {
+  let { lastActionTaken } = getState().app;
+
   Alert.alert(
     'Is this correct?',
     `You entered your email as: ${credentials.email}`,
     [
       { text: 'Cancel', onPress: () => dispatch(updateSessionEmail('')) },
       { text: 'Ok', onPress: () => {
-        createUserAPI(credentials)
-        .then(res => {
-          if (res.status === 200) {
-            dispatch(closeModal());
-            return dispatch(fetchSessionSuccess(session));
-          }
+        let requestObj = {
+          method: 'POST',
+          path: `auth`,
+          body: credentials,
+          requestCallback: res => {
+            if (res.status === 200) {
+              dispatch(closeModal());
+              return dispatch(fetchSessionSuccess(formatSession(res)));
+            }
 
-          return dispatch(addMessage('Password already taken'));
-        })
+            return dispatch(addMessage('Email already taken'));
+          },
+        };
+
+        return new Request(requestObj)
         .then(res => {
           if (res.status === 'success') {
-            // TODO: this isn't going to work either
-            // dispatch(fetchUser(res));
+            dispatch(fetchUserSuccess({
+              ...res.data,
+              name: null,
+              totalApproved: 0,
+              totalPending: 0,
+              totalWaitingApproval: 0,
+              totalEarned: 0,
+              totalPendingOrWaitingApproval: 0,
+            }));
           }
+
+          dispatch(lastActionTaken.action(lastActionTaken.args));
+          return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
         });
       }},
     ]

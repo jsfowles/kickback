@@ -60,6 +60,7 @@ class Navigation extends Component {
         direction={ direction }
         onNavigate={ this.handleNavigate }
         renderScene={ this.renderScene }
+        enableGestures={ false }
       />
     );
   }
