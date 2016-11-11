@@ -6,23 +6,29 @@ import {
   StyleSheet,
   Text,
   StatusBar,
-  Alert,
 } from 'react-native';
 
 import Container from '../../shared/Container';
 import Input from '../../shared/Input';
 
 import {
-
+  resetPassword,
+  updateSessionEmail,
 } from '../../../actions';
 
 class ChangePassword extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
+    resetPassword: React.PropTypes.func,
+    updateSessionEmail: React.PropTypes.func,
+    email: React.PropTypes.string.isRequired,
+    animated: React.PropTypes.bool,
   };
 
   render() {
     let {
+      updateSessionEmail,
+      email,
       handleNavigate,
     } = this.props;
 
@@ -36,9 +42,9 @@ class ChangePassword extends React.Component {
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
       >
+
         <StatusBar
           hidden={ false }
-          animated={ 'fade' }
       />
 
         <Text style={ styles.forgotPasswordCopy }>
@@ -49,12 +55,16 @@ class ChangePassword extends React.Component {
           <Input
             icon={ require('image!user') }
             placeholder='youremail@yourhost.com'
-            setRef={ input => this.passwordConfirmation = input }
-            onSubmitEditing={ () => Alert.alert('Coming Soon!') }
+            autoCapitalize={ 'none' }
+            autoCorrect={ false }
+            keyboardType={ 'email-address' }
+            autoFocus={ true }
+            value={ email }
+            setRef={ input => this.email = input }
+            onChangeText={ updateSessionEmail }
+            onSubmitEditing={ () => this.props.resetPassword(this.state) }
           />
         </View>
-
-
       </Container>
     );
   }
@@ -86,11 +96,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-
+  email: state.session.enteredEmail,
 });
 
 const mapActionsToProps = dispatch => ({
-
+  resetPassword: user => dispatch(resetPassword(user)),
+  updateSessionEmail: v => dispatch(updateSessionEmail(v)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(ChangePassword);
