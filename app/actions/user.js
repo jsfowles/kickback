@@ -83,14 +83,15 @@ export const createUser = credentials => (dispatch, getState) => {
   );
 };
 
-export const attachPayable = user => (dispatch, getState) => {
+export const attachPayable = u => (dispatch, getState) => {
   let { session } = getState().session;
+  let { user } = getState().user;
 
   let requestObj = {
     method: 'POST',
     path: `/users/${user.id}/payable_accounts`,
     headers: session,
-    body: { email: user.payableEmail },
+    body: { email: u.email },
   };
 
   dispatch({ type: 'FETCH_USER_PAYABLE_REQUEST' });
