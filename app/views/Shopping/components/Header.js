@@ -49,10 +49,17 @@ class Header extends React.Component {
   onLayout = (e, type) => {
     if (!this.state[type]) {
       return this.setState({ [type]: e.nativeEvent.layout }, _ => {
+        /*
+         * When we initially mount the component get the width of the container
+         */
         if (type === 'layout') {
           this.buttonWidth.setValue(this.state.layout.width);
         }
 
+        /*
+         * After we get the width of the container lets set the width of the searchText and
+         * position it where it is supposed to be (centered)
+         */
         if (
           this.state.searchTextLayout &&
           this.state.searchIconLayout &&
@@ -62,17 +69,38 @@ class Header extends React.Component {
           this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2));
         }
 
+        /*
+         * If we have reset the searchTextWidth by typing in new text and we are on the search
+         * route lets recenter the textin the button
+         */
         if (
           this.state.searchTextLayout &&
           this.state.searchIconLayout &&
           this.state.layout &&
-          this.props.route.index &&
-          !this.searchTextWidth
+          this.searchTextWidth &&
+          this.props.route.index
         ) {
           this.buttonWidth.setValue(this.state.layout.width - BACK_BUTTON_SIZE);
           this.buttonPosX.setValue(BACK_BUTTON_SIZE);
           this.backButtonPosX.setValue(0);
           this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2) - BACK_BUTTON_SIZE);
+        }
+
+        /*
+         * If we are on the feed route and we have reset the text to "Search" lets make sure
+         * everything is recentered and resized appropriately.
+         */
+        if (
+          this.state.searchTextLayout &&
+          this.state.searchIconLayout &&
+          this.state.layout &&
+          this.searchTextWidth &&
+          !this.props.route.index
+        ) {
+          this.buttonWidth.setValue(this.state.layout.width);
+          this.buttonPosX.setValue(0);
+          this.backButtonPosX.setValue(-BACK_BUTTON_SIZE);
+          this.textPosX.setValue((this.state.layout.width / 2) - (this.searchTextWidth / 2));
         }
       });
     }
@@ -89,7 +117,7 @@ class Header extends React.Component {
      * If we are currently showing the form and we are on the feed route
      */
     if (showForm && !this.props.route.index) {
-      return this.setState({ showForm: false, searchTerm: null }, () => {
+      return this.setState({ showForm: false, searchTerm: null, searchTextLayout: null }, () => {
         Animated.parallel([
           this.createAnimation(this.buttonWidth, layout.width),
           this.createAnimation(this.buttonPosX, 0),
@@ -101,9 +129,10 @@ class Header extends React.Component {
 
     /**
      * If we are currently showing the form and we are on the search route
+     * - Don't reset the searchTerm and searchTextWidth because it should still be the same as what you started with.
      */
     if (showForm && this.props.route.index) {
-      return this.setState({ showForm: false, searchTerm: null }, () => {
+      return this.setState({ showForm: false }, () => {
         Animated.parallel([
           this.createAnimation(this.buttonWidth, layout.width - BACK_BUTTON_SIZE),
           this.createAnimation(this.buttonPosX, BACK_BUTTON_SIZE),
@@ -140,19 +169,20 @@ class Header extends React.Component {
   }
 
   updateSearchTerm = searchTerm => {
-    this.setState({ searchTerm });
+    this.setState({ searchTerm, searchTextLayout: null });
   }
 
   onBackPress = () => {
     const { layout } = this.state;
+    this.props.backBtn();
 
-    return this.setState({ showForm: false, searchTerm: null }, () => {
+    return this.setState({ showForm: false, searchTerm: null, searchTextLayout: null }, () => {
       Animated.parallel([
         this.createAnimation(this.buttonWidth, layout.width),
         this.createAnimation(this.buttonPosX, 0),
         this.createAnimation(this.textPosX, (layout.width / 2) - (this.searchTextWidth / 2)),
         this.createAnimation(this.backButtonPosX, -BACK_BUTTON_SIZE),
-      ]).start(() => this.props.backBtn());
+      ]).start();
     });
   }
 
