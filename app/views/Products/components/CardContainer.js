@@ -10,7 +10,7 @@ import { recommendProduct } from '../../../actions';
 class CardContainer extends React.Component {
   static propTypes = {
     product: React.PropTypes.shape({
-      id: React.PropTypes.number.isRequired,
+      id: React.PropTypes.number,
       link: React.PropTypes.object,
     }).isRequired,
     cardSize: React.PropTypes.string,
