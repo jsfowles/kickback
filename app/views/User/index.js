@@ -1,7 +1,14 @@
 'use strict';
 
 import React from 'react';
-import { View, StyleSheet, Dimensions, Animated, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Text,
+  RefreshControl,
+} from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
@@ -16,6 +23,7 @@ import {
   setCurrentRoute,
   fetchUser,
   triggerModal,
+  fetchUserProducts,
 } from '../../actions';
 
 const HEADER_HEIGHT = 350;
@@ -42,6 +50,8 @@ class User extends React.Component {
     products: React.PropTypes.array,
     triggerModal: React.PropTypes.func,
     handleNavigate: React.PropTypes.func,
+    fetchUserProducts: React.PropTypes.func.isRequired,
+    isFetchingUserProducts: React.PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -54,6 +64,7 @@ class User extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchUserProducts();
   }
 
   renderParallaxContent = () => {
@@ -82,6 +93,7 @@ class User extends React.Component {
       transform: [{ translateY }],
     };
   }
+  
 
   render() {
     const {
@@ -89,6 +101,8 @@ class User extends React.Component {
       user,
       products,
       triggerModal,
+      isFetchingUserProducts,
+      fetchUserProducts,
     } = this.props;
 
     const rightItem = {
@@ -121,6 +135,11 @@ class User extends React.Component {
               loadMoreProducts={ this.loadMoreProducts }
               emptyListText="You haven't shared any products yet."
               onScroll={ this.handleScroll }
+              refreshControl={ <RefreshControl
+                refreshing={ isFetchingUserProducts }
+                tintColor='#d4d9da'
+                onRefresh={ fetchUserProducts }
+              /> }
             />
           )}
 
@@ -173,6 +192,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   user: state.user.user,
   products: state.user.products,
+  isFetchingUserProducts: state.user.isFetchingUserProducts,
 });
 
 const mapActionsToProps = (dispatch) => ({
@@ -182,6 +202,8 @@ const mapActionsToProps = (dispatch) => ({
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
   fetchUser: () => dispatch(fetchUser()),
+  fetchUserProducts: () => dispatch(fetchUserProducts()),
+  fetchUserProfile: () => dispatch(fetchUserProfile()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);
