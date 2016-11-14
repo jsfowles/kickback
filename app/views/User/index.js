@@ -52,6 +52,8 @@ class User extends React.Component {
     handleNavigate: React.PropTypes.func,
     fetchUserProducts: React.PropTypes.func.isRequired,
     isFetchingUserProducts: React.PropTypes.bool.isRequired,
+    isFetchingUserProfile: React.PropTypes.bool.isRequired,
+    onRefresh: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -93,7 +95,11 @@ class User extends React.Component {
       transform: [{ translateY }],
     };
   }
-  
+
+  onRefresh = () => {
+    this.props.fetchUser();
+    return this.props.fetchUserProducts();
+  }
 
   render() {
     const {
@@ -101,8 +107,6 @@ class User extends React.Component {
       user,
       products,
       triggerModal,
-      isFetchingUserProducts,
-      fetchUserProducts,
     } = this.props;
 
     const rightItem = {
@@ -136,9 +140,9 @@ class User extends React.Component {
               emptyListText="You haven't shared any products yet."
               onScroll={ this.handleScroll }
               refreshControl={ <RefreshControl
-                refreshing={ isFetchingUserProducts }
+                refreshing={ this.props.isFetchingUserProfile || this.props.isFetchingUserProducts }
                 tintColor='#d4d9da'
-                onRefresh={ fetchUserProducts }
+                onRefresh={ this.onRefresh }
               /> }
             />
           )}
@@ -193,6 +197,7 @@ const mapStateToProps = state => ({
   user: state.user.user,
   products: state.user.products,
   isFetchingUserProducts: state.user.isFetchingUserProducts,
+  isFetchingUserProfile: state.user.isFetchingUserProfile,
 });
 
 const mapActionsToProps = (dispatch) => ({
@@ -203,7 +208,6 @@ const mapActionsToProps = (dispatch) => ({
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
   fetchUser: () => dispatch(fetchUser()),
   fetchUserProducts: () => dispatch(fetchUserProducts()),
-  fetchUserProfile: () => dispatch(fetchUserProfile()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);
