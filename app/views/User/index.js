@@ -1,7 +1,14 @@
 'use strict';
 
 import React from 'react';
-import { View, StyleSheet, Dimensions, Animated, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Text,
+  RefreshControl,
+} from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
 
@@ -16,6 +23,7 @@ import {
   setCurrentRoute,
   fetchUser,
   triggerModal,
+  fetchUserProducts,
 } from '../../actions';
 
 const HEADER_HEIGHT = 350;
@@ -42,6 +50,9 @@ class User extends React.Component {
     products: React.PropTypes.array,
     triggerModal: React.PropTypes.func,
     handleNavigate: React.PropTypes.func,
+    fetchUserProducts: React.PropTypes.func.isRequired,
+    isFetchingUserProducts: React.PropTypes.bool.isRequired,
+    isFetchingUserProfile: React.PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -54,6 +65,7 @@ class User extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchUserProducts();
   }
 
   renderParallaxContent = () => {
@@ -81,6 +93,11 @@ class User extends React.Component {
       opacity,
       transform: [{ translateY }],
     };
+  }
+
+  onRefresh = () => {
+    this.props.fetchUser();
+    return this.props.fetchUserProducts();
   }
 
   render() {
@@ -121,6 +138,11 @@ class User extends React.Component {
               loadMoreProducts={ this.loadMoreProducts }
               emptyListText="You haven't shared any products yet."
               onScroll={ this.handleScroll }
+              refreshControl={ <RefreshControl
+                refreshing={ this.props.isFetchingUserProfile || this.props.isFetchingUserProducts }
+                tintColor='#d4d9da'
+                onRefresh={ this.onRefresh }
+              /> }
             />
           )}
 
@@ -173,6 +195,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   user: state.user.user,
   products: state.user.products,
+  isFetchingUserProducts: state.user.isFetchingUserProducts,
+  isFetchingUserProfile: state.user.isFetchingUserProfile,
 });
 
 const mapActionsToProps = (dispatch) => ({
@@ -182,6 +206,7 @@ const mapActionsToProps = (dispatch) => ({
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
   fetchUser: () => dispatch(fetchUser()),
+  fetchUserProducts: () => dispatch(fetchUserProducts()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(User);
