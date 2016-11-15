@@ -20,5 +20,5 @@ export const fetchSearch = searchTerm => (dispatch, getState) => {
   };
 
   return new Request(requestObj)
-  .then(res =>dispatch({ type: 'FETCH_SEARCH_SUCCESS', products: res }));
+  .then(products => dispatch({ type: 'FETCH_SEARCH_SUCCESS', products }));
 };

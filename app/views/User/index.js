@@ -53,7 +53,6 @@ class User extends React.Component {
     fetchUserProducts: React.PropTypes.func.isRequired,
     isFetchingUserProducts: React.PropTypes.bool.isRequired,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
-    onRefresh: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
