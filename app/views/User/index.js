@@ -159,7 +159,7 @@ class User extends React.Component {
 
           <EarningsLink
             position='right'
-            earnings={ user.totalPendingOrWaitingApproval }
+            earnings={ user.totalPendingOrWaitingApprovalOrApproved }
             headerHeight={ HEADER_HEIGHT }
             icon={ require('image!pending') }
             title='Total Pending'

@@ -15,12 +15,12 @@ export const PayoutInfo = ({ user }) => (
   >
     <View style={{ marginRight: 50 }}>
       <Text style={ styles.earningsLabel }>In Processing</Text>
-      <Text style={ styles.inProcessing }>{ numberToCurrency(numberToDollars(user.totalWaitingApproval)) }</Text>
+      <Text style={ styles.inProcessing }>{ numberToCurrency(numberToDollars(user.totalPendingOrWaitingApproval)) }</Text>
     </View>
 
     <View>
       <Text style={ styles.earningsLabel }>Scheduled Deposit</Text>
-      <Text style={ styles.scheduledDeposit }>{ numberToCurrency(numberToDollars(user.totalPending)) }</Text>
+      <Text style={ styles.scheduledDeposit }>{ numberToCurrency(numberToDollars(user.totalApproved)) }</Text>
     </View>
   </UserModal>
 );
