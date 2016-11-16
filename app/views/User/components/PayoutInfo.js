@@ -6,12 +6,20 @@ import { numberToDollars, numberToCurrency } from '../../../utils/number';
 
 import UserModal from './UserModal';
 
-export const PayoutInfo = ({ user }) => (
+import {
+  push,
+  closeModal,
+} from '../../../actions';
+
+export const PayoutInfo = ({ user, closeModal, pushRoute }) => (
   <UserModal
     description='All earnings will be deposited into your bank account the following day.'
     icon={ require('image!pending') }
     linkText='Deposit Settings'
-    linkAction={ () => console.log('navigate to settings#depositSettings') }
+    linkAction={ () => {
+      closeModal();
+      return pushRoute();
+    } }
   >
     <View style={{ marginRight: 50 }}>
       <Text style={ styles.earningsLabel }>In Processing</Text>
@@ -27,6 +35,8 @@ export const PayoutInfo = ({ user }) => (
 
 PayoutInfo.propTypes = {
   user: React.PropTypes.shape({}).isRequired,
+  closeModal: React.PropTypes.func.isRequired,
+  pushRoute: React.PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -54,6 +64,9 @@ const mapStateToProps = state => ({
   user: state.user.user,
 });
 
-const mapActionsToProps = _ => ({});
+const mapActionsToProps = dispatch => ({
+  pushRoute: () => dispatch(push({ key: 'depositSettings' }, 'profile')),
+  closeModal: () => dispatch(closeModal()),
+});
 
 export default connect(mapStateToProps, mapActionsToProps)(PayoutInfo);

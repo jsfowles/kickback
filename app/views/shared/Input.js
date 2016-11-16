@@ -14,7 +14,11 @@ class Input extends React.Component {
     autoCapitalize: React.PropTypes.string.isRequired,
     autoCorrect: React.PropTypes.bool.isRequired,
     onChangeText: React.PropTypes.func,
-    wrapperStyles: React.PropTypes.object.isRequired,
+    wrapperStyles: React.PropTypes.oneOfType([
+      React.PropTypes.number,
+      React.PropTypes.string,
+      React.PropTypes.object,
+    ]),
     setRef: React.PropTypes.func,
     secureTextEntry: React.PropTypes.bool,
   };
