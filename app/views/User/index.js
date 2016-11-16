@@ -140,7 +140,7 @@ class User extends React.Component {
               onScroll={ this.handleScroll }
               refreshControl={ <RefreshControl
                 refreshing={ this.props.isFetchingUserProfile || this.props.isFetchingUserProducts }
-                tintColor='#d4d9da'
+                tintColor='#FFFFFF'
                 onRefresh={ this.onRefresh }
               /> }
             />
