@@ -12,6 +12,7 @@ import product from './product';
 import user from './user';
 import session from './session';
 import changePassword from './changePassword';
+import flashMessage from './flashMessage';
 import app from './app';
 import { settings } from './settings';
 import { tabs } from './tabs';
@@ -27,4 +28,5 @@ export default combineReducers({
   tabs,
   app,
   changePassword,
+  flashMessage,
 });

@@ -1,10 +1,11 @@
 'use strict';
 import { combineReducers } from 'redux';
 import * as base from './product';
+import * as fm from './flashMessage';
 
 const products = base.products('SEARCH');
 const isFetching = base.isFetching('SEARCH', false);
-const errorMessage = base.errorMessage('SEARCH');
+const flashMessage = fm.flashMessage('SEARCH');
 
 export const searchOverlay = (state = false, action) => {
   switch (action.type) {
@@ -18,6 +19,6 @@ export const searchOverlay = (state = false, action) => {
 export default combineReducers({
   products,
   isFetching,
-  errorMessage,
+  flashMessage,
   searchOverlay,
 });

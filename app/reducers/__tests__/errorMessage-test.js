@@ -1,12 +1,12 @@
 /* eslint-env node, jest */
 'use strict';
 
-import errorMessage from '../errorMessage';
+import flashMessage from '../flashMessage';
 
 jest.autoMockOff();
 
-describe('errorMessage', () => {
+describe('flashMessage', () => {
   it('has the correct initial state', () => {
-    expect(errorMessage(undefined, {})).toBeNull();
+    expect(flashMessage(undefined, {})).toBeNull();
   });
 });

@@ -11,7 +11,7 @@ import Container from '../shared/Container';
 class Search extends React.Component {
   static propTypes = {
     search: React.PropTypes.shape({
-      errorMessage: React.PropTypes.string,
+      flashMessage: React.PropTypes.string,
       isFetching: React.PropTypes.bool,
       searchOverlay: React.PropTypes.bool,
       products: React.PropTypes.array,
