@@ -16,6 +16,7 @@ export const submitProblem = subject => {
     let { currentUser } = getState().user;
     let { problemBody } = getState().settings;
 
+    dispatch(addMessage('Problem has been reported', 'success'));
     return submitProblemAPI(currentUser, subject, problemBody)
     .then(_ => {
       dispatch(updateProblemBody('', false));

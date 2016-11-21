@@ -54,10 +54,11 @@ export const createUser = credentials => (dispatch, getState) => {
           requestCallback: res => {
             if (res.status === 200) {
               dispatch(closeModal());
+              dispatch(addMessage('Your account has been created', 'success'));
               return dispatch(fetchSessionSuccess(formatSession(res)));
             }
 
-            return dispatch(addMessage('Email already taken'));
+            return dispatch(addMessage('Email already taken', 'error'));
           },
         };
 
@@ -128,6 +129,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
   .then(res => {
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
+    dispatch(addMessage('Your profile has been updated', 'success'));
     return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));
