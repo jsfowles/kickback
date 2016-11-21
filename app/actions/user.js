@@ -101,6 +101,7 @@ export const attachPayable = u => (dispatch, getState) => {
   .then(res => {
     dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
     dispatch(pop('profile'));
+    dispatch(addMessage('Check email for enrollment instructions', 'success'));
     return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
