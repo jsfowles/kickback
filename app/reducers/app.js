@@ -15,7 +15,10 @@ export const message = (state = null, action) => {
     case 'CLEAR_MESSAGE':
       return null;
     case 'ADD_MESSAGE':
-      return action.message;
+      return {
+        kind: action.kind,
+        message: action.message,
+      };
     default: return state;
   }
 };

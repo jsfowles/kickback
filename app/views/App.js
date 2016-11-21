@@ -44,7 +44,7 @@ class App extends Component {
     fetchUserProducts: React.PropTypes.func.isRequired,
     fetchValidateSession: React.PropTypes.func.isRequired,
     closeModal: React.PropTypes.func.isRequired,
-    message: React.PropTypes.string,
+    message: React.PropTypes.object,
   };
 
   componentDidMount() {
@@ -85,7 +85,7 @@ class App extends Component {
 
     return (
       <View style={ styles.container }>
-        { message && <Message text={ message } /> }
+        { message && <Message message={ message } /> }
 
         <Navigation
           scenes={ scenes }

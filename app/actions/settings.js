@@ -46,6 +46,7 @@ export const changePassword = passwordObj => (dispatch, getState) => {
       dispatch({ type: 'FETCH_USER_PASSWORD_SUCCESS' });
       dispatch(clearChangePassword());
       dispatch(pop('profile'));
+      dispatch(addMessage('Password successfully changed', 'success'));
       return dispatch(fetchUserSuccess(res.data));
     }
 
