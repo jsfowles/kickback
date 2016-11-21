@@ -49,7 +49,7 @@ export const changePassword = passwordObj => (dispatch, getState) => {
       return dispatch(fetchUserSuccess(res.data));
     }
 
-    return dispatch(addMessage(res.errors.full_messages[0]));
+    return dispatch(addMessage(res.errors.full_messages[0], 'error'));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PASSWORD_FAILURE' }));
 };
