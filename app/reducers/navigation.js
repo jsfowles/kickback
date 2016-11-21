@@ -44,6 +44,8 @@ export const navigation = (state = initialState, action) => {
 
       return state;
     }
+    case 'RESET_ROUTE':
+      return initialState;
     case 'POP_ROUTE': {
       const tabKey = action.key;
       const scenes = state[tabKey];
