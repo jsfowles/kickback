@@ -92,13 +92,21 @@ export const resetPassword = () => (dispatch, getState) => {
     path: 'password_reset/user/password',
     body: { password_reset_user: { email: enteredEmail }},
     root: true,
+    requestCallback: (res) => {
+      if (res.status === 200) {
+        dispatch(pop('session'));
+        return dispatch(addMessage('Forgot Password email has been sent', 'success'));
+      }
+      return dispatch(addMessage('Invalid email', 'error'));
+    },
   };
 
   return new Request(requestObj)
   .then(_ => {
-    return dispatch(pop('session'));
   });
 };
+
+
 /**
  * Validates the current session.
  * @returns { function } either will destroy the session or get the user profile and products
