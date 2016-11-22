@@ -17,7 +17,7 @@ export const closeModal = _ => (dispatch, getState) => {
 };
 
 export const connectionChanged = bool => (dispatch, getState) => {
-  const { isConnected } = getState().app;
+  const { message } = getState().app;
 
   dispatch({ type: 'IS_CONNECTED', bool });
 
@@ -25,5 +25,7 @@ export const connectionChanged = bool => (dispatch, getState) => {
     return dispatch(addMessage('Not connected to network', 'neutral'));
   }
 
-  return dispatch(clearMessage(isConnected));
+  if (bool && message) {
+    return dispatch(clearMessage());
+  }
 };

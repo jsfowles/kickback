@@ -93,7 +93,8 @@ class App extends Component {
           navigation={ navigation }
           direction='vertical'
         />
-        <NetInfoController />
+
+      <NetInfoController />
       </View>
     );
   }

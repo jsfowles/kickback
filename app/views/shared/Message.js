@@ -7,7 +7,7 @@ import { clearMessage } from '../../actions';
 const COLORS = {
   error: '#EA2B3F',
   success: '#2FD2AF',
-  neutral: '#F1F2F4',
+  neutral: '#CAD0D2',
 };
 
 class Message extends React.Component {
@@ -28,20 +28,22 @@ class Message extends React.Component {
   componentDidMount() {
     StatusBar.setHidden(true);
 
-    Animated.sequence([
-      Animated.timing(
-        this.messagePosY,
-        { toValue: 0, duration: 500 },
-      ),
+    if (this.props.message.kind !== 'neutral') {
+      Animated.sequence([
+        Animated.timing(
+          this.messagePosY,
+          { toValue: 0, duration: 500 },
+        ),
 
-      Animated.timing(
-        this.messagePosY,
-        { toValue: -36, duration: 500, delay: 2000 },
-      ),
-    ]).start(() => {
-      StatusBar.setHidden(false);
-      return this.props.clearMessage();
-    });
+        Animated.timing(
+          this.messagePosY,
+          { toValue: -36, duration: 500, delay: 2000 },
+        ),
+      ]).start(() => {
+        StatusBar.setHidden(false);
+        return this.props.clearMessage();
+      });
+    }
   }
 
   render() {

@@ -1,49 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  View,
-  NetInfo,
-} from 'react-native';
-
-import {
-  connectionChanged,
-} from '../../actions';
+import { NetInfo } from 'react-native';
+import { connectionChanged } from '../../actions';
 
 class NetInfoController extends React.Component {
-  state = {
-    connectionInfoHistory: [],
-  };
+  static propTypes = {
+    connectionChanged: React.PropTypes.func.isRequired,
+  }
 
   componentDidMount() {
-    NetInfo.addEventListener(
-        'change',
-        // this._handleConnectionInfoChange
-    );
+    NetInfo.isConnected.fetch().done(this.props.connectionChanged);
+    NetInfo.isConnected.addEventListener('change', this.props.connectionChanged);
   }
 
   componentWillUnmount() {
-    NetInfo.removeEventListener(
-        'change',
-        // this._handleConnectionInfoChange
-    );
+    NetInfo.isConnected.addEventListener('change', this.props.connectionChanged);
   }
 
   render() {
-    return (
-        <View>
-          <Text>{JSON.stringify(this.state.connectionInfoHistory)}</Text>
-        </View>
-    );
+    return null;
   }
 }
 
-const mapStateToProps = state => ({
-  app: state.app,
-});
+const mapStateToProps = _ => ({ });
 
 const mapActionsToProps = dispatch => ({
-  connectionChanged: _ => dispatch(connectionChanged()),
+  connectionChanged: bool => dispatch(connectionChanged(bool)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(NetInfoController);
