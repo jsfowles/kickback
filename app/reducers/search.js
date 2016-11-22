@@ -4,7 +4,6 @@ import * as base from './product';
 
 const products = base.products('SEARCH');
 const isFetching = base.isFetching('SEARCH', false);
-const errorMessage = base.errorMessage('SEARCH');
 
 export const searchOverlay = (state = false, action) => {
   switch (action.type) {
@@ -18,6 +17,5 @@ export const searchOverlay = (state = false, action) => {
 export default combineReducers({
   products,
   isFetching,
-  errorMessage,
   searchOverlay,
 });

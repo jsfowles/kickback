@@ -37,6 +37,21 @@ const ROUTES = {
     type: 'push',
     route: { key: 'privacyPolicy' },
   },
+
+  spamOrAbuse: {
+    type: 'push',
+    route: { key: 'spamOrAbuse' },
+  },
+
+  somethingIsntWorking: {
+    type: 'push',
+    route: { key: 'somethingIsntWorking' },
+  },
+
+  generalFeedback: {
+    type: 'push',
+    route: { key: 'generalFeedback' },
+  },
 };
 
 class Settings extends React.Component {
@@ -84,9 +99,9 @@ class Settings extends React.Component {
         options: [{
           title: 'Report a Problem',
           onPress: () => Alert.alert('Report a Problem', null, [
-            { text: 'Spam or Abuse', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Spam or Abuse' }) },
-            { text: 'Something isn\'t Working', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'Something isn\'t Working' }) },
-            { text: 'General Feedback', onPress: () => handleNavigate({ id: 7, title: 'Feedback', reason: 'General Feedback' }) },
+            { text: 'Spam or Abuse', onPress: () => handleNavigate(ROUTES.spamOrAbuse) },
+            { text: 'Something isn\'t Working', onPress: () => handleNavigate(ROUTES.somethingIsntWorking) },
+            { text: 'General Feedback', onPress: () => handleNavigate(ROUTES.generalFeedback) },
             { text: 'Cancel', onPress: () => null },
           ]),
           bordered: false,
@@ -139,6 +154,7 @@ Settings.propTypes = {
   logout: React.PropTypes.func.isRequired,
   updateUser: React.PropTypes.func.isRequired,
   fetchUser: React.PropTypes.func.isRequired,
+  handleNavigate: React.PropTypes.func,
 };
 
 const mapStateToProps = _ => ({});

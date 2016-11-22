@@ -26,17 +26,6 @@ export const isFetching = type => (state = false, action) => {
   }
 };
 
-export const errorMessage = type => (state = null, action) => {
-  switch (action.type) {
-    case `FETCH_${type}_REQUEST`:
-    case `FETCH_${type}_SUCCESS`:
-      return null;
-    case `FETCH_${type}_FAILURE`:
-      return action.message;
-    default: return state;
-  }
-};
-
 const isFetchingRecommend = isFetching('RECOMMEND');
 
 export default combineReducers({ isFetchingRecommend });

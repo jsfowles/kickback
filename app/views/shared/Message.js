@@ -3,10 +3,20 @@ import { connect } from 'react-redux';
 import { Animated, StyleSheet, Text, StatusBar } from 'react-native';
 import { clearMessage } from '../../actions';
 
+
+const COLORS = {
+  error: '#EA2B3F',
+  success: '#2FD2AF',
+  neutral: '#F1F2F4',
+};
+
 class Message extends React.Component {
   static propTypes = {
     clearMessage: React.PropTypes.func.isRequired,
-    text: React.PropTypes.string.isRequired,
+    message: React.PropTypes.shape({
+      kind: React.PropTypes.string,
+      message: React.PropTypes.string,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -36,8 +46,12 @@ class Message extends React.Component {
 
   render() {
     return (
-      <Animated.View style={[ styles.container, { transform: [{ translateY: this.messagePosY }]}]}>
-        <Text style={ styles.text }>{ this.props.text }</Text>
+      <Animated.View style={[
+        styles.container,
+        { transform: [{ translateY: this.messagePosY }]},
+        { backgroundColor: COLORS[this.props.message.kind] },
+      ]}>
+        <Text style={ styles.text }>{ this.props.message.message }</Text>
       </Animated.View>
     );
   }
@@ -45,7 +59,6 @@ class Message extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ea2b3f',
     position: 'absolute',
     top: 0,
     left: 0,

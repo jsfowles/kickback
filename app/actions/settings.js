@@ -1,6 +1,5 @@
 'use strict';
 
-import { submitProblem as submitProblemAPI } from '../utils/api';
 import { fetchUserSuccess } from './user';
 import { addMessage } from './app';
 import Request from '../utils/request';
@@ -11,16 +10,25 @@ export const updatePassword = (password, type) => ({ type: `UPDATE_${type}`, pas
 export const updateProblemBody = (body, bool) => ({ type: 'UPDATE_PROBLEM_BODY', body, bool });
 export const clearChangePassword = _ => ({ type: 'CLEAR_CHANGE_PASSWORD' });
 
-export const submitProblem = subject => {
-  return (dispatch, getState) => {
-    let { currentUser } = getState().user;
-    let { problemBody } = getState().settings;
+export const submitProblem = user => (dispatch, getState) => {
+  let { session } = getState().session;
 
-    return submitProblemAPI(currentUser, subject, problemBody)
-    .then(_ => {
-      dispatch(updateProblemBody('', false));
-    });
+  let requestObj = {
+    method: 'POST',
+    path: '/help',
+    headers: session,
+    body: {
+      email: user.email,
+      subject: user.subject,
+      body: user.body,
+    },
   };
+
+  return new Request(requestObj)
+  .then(_ => {
+    dispatch(updateProblemBody('', false));
+    return dispatch(addMessage('Feedback has been sent', 'success'));
+  });
 };
 
 export const changePassword = passwordObj => (dispatch, getState) => {
@@ -46,10 +54,11 @@ export const changePassword = passwordObj => (dispatch, getState) => {
       dispatch({ type: 'FETCH_USER_PASSWORD_SUCCESS' });
       dispatch(clearChangePassword());
       dispatch(pop('profile'));
+      dispatch(addMessage('Password successfully changed', 'success'));
       return dispatch(fetchUserSuccess(res.data));
     }
 
-    return dispatch(addMessage(res.errors.full_messages[0]));
+    return dispatch(addMessage(res.errors.full_messages[0], 'error'));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PASSWORD_FAILURE' }));
 };

@@ -6,6 +6,7 @@ import {
   triggerModal,
   triggerProductModal,
   lastActionTaken,
+  addMessage,
 } from './app';
 
 /**
@@ -45,7 +46,7 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
       dispatch({ type: 'FETCH_RECOMMEND_SUCCESS' });
 
       if (showActionSheet) {
-        return ActionSheetIOS.showShareActionSheetWithOptions(
+        ActionSheetIOS.showShareActionSheetWithOptions(
           { url: `http://www.${res.link.shortenedUrl}` },
           () => null,
           () => null,
@@ -60,5 +61,6 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
    * If user && session is not present trigger the modal.
    */
   dispatch(lastActionTaken(recommendProduct, product));
+  dispatch(addMessage('You must be logged in to recommend', 'error'));
   return dispatch(triggerModal('session'));
 };

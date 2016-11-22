@@ -8,8 +8,8 @@ import Container from '../../shared/Container';
 import { submitProblem, updateProblemBody } from '../../../actions';
 
 const ReportAProblem = ({
-  navigator,
-  route,
+  handleNavigate,
+  subject,
   submitProblem,
   updateProblemBody,
   disabled,
@@ -17,23 +17,23 @@ const ReportAProblem = ({
 }) => (
   <Container
     headerColors={[ '#45baef', '#34bcd5' ]}
-    title={ route.title }
+    title={ subject }
     leftItem={{
       title: 'Cancel',
-      onPress: navigator.pop,
+      onPress: _ => handleNavigate({ type: 'pop' }),
     }}
     rightItem={{
       title: 'Send',
       disabled: disabled,
       onPress: _ => {
-        submitProblem(route.title)
-        .then(navigator.popToTop);
+        submitProblem(subject)
+        .then(handleNavigate({ type: 'pop' }));
       },
     }}
   >
     <View style={ styles.container }>
       <View style={ styles.reasonContainer }>
-        <Text style={ styles.reasonText }>{ route.reason.toUpperCase() }</Text>
+        <Text style={ styles.reasonText }>{ subject }</Text>
       </View>
 
       <TextInput
@@ -48,9 +48,7 @@ const ReportAProblem = ({
 );
 
 ReportAProblem.propTypes = {
-  navigator: React.PropTypes.shape({
-    pop: React.PropTypes.func.isRequired,
-  }),
+  handleNavigate: React.PropTypes.func,
   route: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
   }),
@@ -58,6 +56,7 @@ ReportAProblem.propTypes = {
   submitProblem: React.PropTypes.func.isRequired,
   disabled: React.PropTypes.bool.isRequired,
   body: React.PropTypes.string,
+  subject: React.PropTypes.string,
 };
 
 const styles = StyleSheet.create({
