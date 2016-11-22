@@ -27,7 +27,6 @@ class Message extends React.Component {
 
   componentDidMount() {
     StatusBar.setHidden(true);
-
     if (this.props.message.kind !== 'neutral') {
       Animated.sequence([
         Animated.timing(
@@ -44,6 +43,7 @@ class Message extends React.Component {
         return this.props.clearMessage();
       });
     }
+    console.log(this.props.message.kind);
   }
 
   render() {
