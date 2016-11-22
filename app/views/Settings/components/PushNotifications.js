@@ -1,7 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
-  PushNotificationIOS,
-  AlertIOS,
   StyleSheet,
   View,
   Text,
@@ -9,22 +8,29 @@ import {
 } from 'react-native';
 
 import Container from '../../shared/Container';
+import { updateNotificationSettings } from '../../../actions/';
 
 class PushNotifications extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
+    notifications: React.PropTypes.shape({
+      enabled: React.PropTypes.bool.isRequired,
+      payableStatus: React.PropTypes.bool.isRequired,
+      payableWorkCreated: React.PropTypes.bool.isRequired,
+      payableWorkPaid: React.PropTypes.bool.isRequired,
+      transactionCreated: React.PropTypes.bool.isRequired,
+    }).isRequired,
   };
 
-  componentWillMount() {
-    PushNotificationIOS.addEventListener('notification', this.onRemoteNotification);
-  }
-
-  componentWillUnmount() {
-    PushNotificationIOS.removeEventListener('notification', this.onRemoteNotification);
-  }
-
   render() {
-    let { handleNavigate } = this.props;
+    let { handleNavigate, updateNotificationSettings } = this.props;
+    let {
+      enabled,
+      payableStatus,
+      payableWorkCreated,
+      payableWorkPaid,
+      transactionCreated,
+    } = this.props.notifications;
 
     return (
       <Container
@@ -39,43 +45,32 @@ class PushNotifications extends React.Component {
         <View style={[ styles.inputContainer, { marginTop: 30 }]}>
           <View style={ styles.switchContainer }>
             <Text style={ styles.label }>Allow Notifications</Text>
-            <Switch />
+            <Switch value={ enabled } onValueChange={ v => updateNotificationSettings(v, 'enabled') } />
           </View>
         </View>
 
         <View style={[ styles.inputContainer, { marginTop: 30 }]}>
           <View style={[ styles.switchContainer, styles.borderBottom ]}>
             <Text style={ styles.label }>Purchase Made</Text>
-            <Switch />
+            <Switch value={ transactionCreated } onValueChange={ v => updateNotificationSettings(v, 'transactionCreated') } />
           </View>
 
           <View style={[ styles.switchContainer, styles.borderBottom ]}>
             <Text style={ styles.label }>Payment in Processing</Text>
-            <Switch />
+            <Switch value={ payableWorkCreated } onValueChange={ v => updateNotificationSettings(v, 'payableWorkCreated') } />
           </View>
 
           <View style={[ styles.switchContainer, styles.borderBottom ]}>
             <Text style={ styles.label }>Payment Deposited</Text>
-            <Switch />
+            <Switch value={ payableWorkPaid } onValueChange={ v => updateNotificationSettings(v, 'payableWorkPaid') } />
           </View>
 
           <View style={ styles.switchContainer }>
             <Text style={ styles.label }>Payable Status</Text>
-            <Switch />
+            <Switch value={ payableStatus } onValueChange={ v => updateNotificationSettings(v, 'payableStatus') } />
           </View>
         </View>
       </Container>
-    );
-  }
-
-  onRemoteNotification(notification) {
-    AlertIOS.alert(
-      'Push Notification Received',
-      'Alert message: ' + notification.getMessage(),
-      [{
-        text: 'Dismiss',
-        onPress: null,
-      }]
     );
   }
 }
@@ -110,4 +105,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PushNotifications;
+
+const mapStateToProps = state => ({
+  notifications: state.user.user.notification,
+});
+
+const mapActionsToProps = dispatch => ({
+  updateNotificationSettings: (v, f) => dispatch(updateNotificationSettings(v, f)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(PushNotifications);

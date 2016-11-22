@@ -53,3 +53,7 @@ export const changePassword = passwordObj => (dispatch, getState) => {
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_PASSWORD_FAILURE' }));
 };
+
+export const updateNotificationSettings = (value, field) => (dispatch, getState) => {
+  console.log(field, value);
+};
