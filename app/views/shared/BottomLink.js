@@ -15,7 +15,7 @@ const BottomLink = ({ containerStyles, title, onPress }) => (
 BottomLink.propTypes = {
   title: React.PropTypes.string.isRequired,
   onPress: React.PropTypes.func.isRequired,
-  containerStyles: React.PropTypes.number.isRequired,
+  containerStyles: React.PropTypes.object.isRequired,
 };
 
 BottomLink.defaultProps = {

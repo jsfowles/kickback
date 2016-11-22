@@ -17,7 +17,7 @@ const ItemWrapper = ({ item }) => {
   if (item.icon) {
     content = <Image source={ item.icon } style={ item.disabled ? styles.disabled : { tintColor: '#fff' }} />;
   } else if (item.title) {
-    content = <Text style={[ styles.text, item.disabled ? styles.disabled : {} ]}>{ item.title }</Text>;
+    content = <Text style={[ styles.text, item.disabled ? styles.disabledBtn : {} ]}>{ item.title }</Text>;
   }
 
   return (
@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
   disabled: {
     opacity: 0.5,
     tintColor: '#fff',
+  },
+
+  disabledBtn: {
+    opacity: 0.5,
   },
 });
 

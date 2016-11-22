@@ -1,9 +1,5 @@
 'use strict';
 
-import {
-  createUser as createUserAPI,
-} from '../utils/api';
-
 import { formatSession } from '../utils/session';
 import Request from '../utils/request';
 import { Alert } from 'react-native';

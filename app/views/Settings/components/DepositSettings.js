@@ -27,7 +27,7 @@ class DepositSettings extends React.Component {
   static propTypes = {
     handleNavigate: React.PropTypes.func,
     attachPayable: React.PropTypes.func,
-    updatePayableEmail: React.PropTypes.func.isRequired,
+    updatePayableEmail: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
     isFetchingUserPayable: React.PropTypes.bool.isRequired,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
