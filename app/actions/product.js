@@ -51,7 +51,6 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
           () => null,
           () => null,
         );
-        return dispatch(addMessage('Product recommended', 'success'));
       }
 
       return dispatch(triggerProductModal(res));
