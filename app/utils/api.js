@@ -20,12 +20,12 @@ export const createLink = (product, user) => {
   .catch(_ => null);
 };
 
-export const submitProblem = (currentUser, subject, body) => {
+export const submitProblem = (user, subject, body) => {
   let url = `${URL}/help`;
 
   return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: currentUser.data.email, subject, body }),
+    body: JSON.stringify({ email: user.email, subject, body }),
   });
 };
