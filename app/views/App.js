@@ -17,6 +17,7 @@ import {
 import Navigation from './Navigation';
 import Session from './Sessions';
 import Message from './shared/Message';
+import NetInfoController from './shared/NetInfoController';
 import Tabs from './Navigation/components/Tabs';
 import EarningsInfo from './User/components/EarningsInfo';
 import PayoutInfo from './User/components/PayoutInfo';
@@ -92,6 +93,7 @@ class App extends Component {
           navigation={ navigation }
           direction='vertical'
         />
+        <NetInfoController />
       </View>
     );
   }

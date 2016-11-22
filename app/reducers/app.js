@@ -10,6 +10,13 @@ export const modal = (state = null, action) => {
   }
 };
 
+export const isConnected = (state = null, action) => {
+  if (action.type === 'IS_CONNECTED') {
+    return action.bool;
+  }
+  return state;
+};
+
 export const message = (state = null, action) => {
   switch (action.type) {
     case 'CLEAR_MESSAGE':
@@ -46,4 +53,5 @@ export default combineReducers({
   message,
   lastActionTaken,
   productModal,
+  isConnected,
 });
