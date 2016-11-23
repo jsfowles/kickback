@@ -103,9 +103,7 @@ export const resetPassword = () => (dispatch, getState) => {
     },
   };
 
-  return new Request(requestObj)
-  .then(_ => {
-  });
+  return new Request(requestObj);
 };
 
 
