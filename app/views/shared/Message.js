@@ -27,8 +27,9 @@ class Message extends React.Component {
 
   componentDidMount() {
     StatusBar.setHidden(true);
+
     if (this.props.message.kind !== 'neutral') {
-      Animated.sequence([
+      return Animated.sequence([
         Animated.timing(
           this.messagePosY,
           { toValue: 0, duration: 500 },
@@ -38,12 +39,18 @@ class Message extends React.Component {
           this.messagePosY,
           { toValue: -36, duration: 500, delay: 2000 },
         ),
-      ]).start(() => {
-        StatusBar.setHidden(false);
-        return this.props.clearMessage();
-      });
+      ]).start(() => this.props.clearMessage());
     }
-    console.log(this.props.message.kind);
+
+    return Animated.timing(
+      this.messagePosY,
+      { toValue: 0, duration: 500 },
+    ).start();
+  }
+
+  componentWillUnmount() {
+    StatusBar.setHidden(false);
+    this.messagePosY.setValue(-36);
   }
 
   render() {
@@ -71,12 +78,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  text: {
-    color: '#fff',
-  },
+  text: { color: '#fff' },
 });
 
 const mapStateToProps = _ => ({});
+
 const mapActionsToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
 });
