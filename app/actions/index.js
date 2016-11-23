@@ -8,6 +8,7 @@ import * as settingsActions from './settings';
 import * as tabsActions from './tabs';
 import * as userProductsActions from './user-products';
 import * as appActions from './app';
+import * as notificationActions from './notifications';
 
 module.exports = {
   ...appActions,
@@ -20,4 +21,5 @@ module.exports = {
   ...settingsActions,
   ...tabsActions,
   ...userProductsActions,
+  ...notificationActions,
 };
