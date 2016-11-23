@@ -12,6 +12,8 @@ const COLORS = {
 
 class Message extends React.Component {
   static propTypes = {
+    navigation: React.PropTypes.object.isRequired,
+    index: React.PropTypes.object.isRequired,
     clearMessage: React.PropTypes.func.isRequired,
     message: React.PropTypes.shape({
       kind: React.PropTypes.string,
@@ -49,8 +51,10 @@ class Message extends React.Component {
   }
 
   componentWillUnmount() {
-    StatusBar.setHidden(false);
-    this.messagePosY.setValue(-36);
+    if (this.props.navigation.index) {
+      StatusBar.setHidden(false);
+      this.messagePosY.setValue(-36);
+    }
   }
 
   render() {
@@ -81,7 +85,10 @@ const styles = StyleSheet.create({
   text: { color: '#fff' },
 });
 
-const mapStateToProps = _ => ({});
+const mapStateToProps = state => ({
+  index: state.navigation,
+  navigation: state.navigation.session,
+});
 
 const mapActionsToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
