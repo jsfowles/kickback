@@ -46,7 +46,7 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
       dispatch({ type: 'FETCH_RECOMMEND_SUCCESS' });
 
       if (showActionSheet) {
-        ActionSheetIOS.showShareActionSheetWithOptions(
+        return ActionSheetIOS.showShareActionSheetWithOptions(
           { url: `http://www.${res.link.shortenedUrl}` },
           () => null,
           () => null,
