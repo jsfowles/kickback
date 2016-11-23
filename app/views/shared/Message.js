@@ -7,11 +7,13 @@ import { clearMessage } from '../../actions';
 const COLORS = {
   error: '#EA2B3F',
   success: '#2FD2AF',
-  neutral: '#F1F2F4',
+  neutral: '#CAD0D2',
 };
 
 class Message extends React.Component {
   static propTypes = {
+    navigation: React.PropTypes.object.isRequired,
+    index: React.PropTypes.object.isRequired,
     clearMessage: React.PropTypes.func.isRequired,
     message: React.PropTypes.shape({
       kind: React.PropTypes.string,
@@ -28,20 +30,31 @@ class Message extends React.Component {
   componentDidMount() {
     StatusBar.setHidden(true);
 
-    Animated.sequence([
-      Animated.timing(
-        this.messagePosY,
-        { toValue: 0, duration: 500 },
-      ),
+    if (this.props.message.kind !== 'neutral') {
+      return Animated.sequence([
+        Animated.timing(
+          this.messagePosY,
+          { toValue: 0, duration: 500 },
+        ),
 
-      Animated.timing(
-        this.messagePosY,
-        { toValue: -36, duration: 500, delay: 2000 },
-      ),
-    ]).start(() => {
+        Animated.timing(
+          this.messagePosY,
+          { toValue: -36, duration: 500, delay: 2000 },
+        ),
+      ]).start(() => this.props.clearMessage());
+    }
+
+    return Animated.timing(
+      this.messagePosY,
+      { toValue: 0, duration: 500 },
+    ).start();
+  }
+
+  componentWillUnmount() {
+    if (this.props.navigation.index) {
       StatusBar.setHidden(false);
-      return this.props.clearMessage();
-    });
+      this.messagePosY.setValue(-36);
+    }
   }
 
   render() {
@@ -69,12 +82,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  text: {
-    color: '#fff',
-  },
+  text: { color: '#fff' },
 });
 
-const mapStateToProps = _ => ({});
+const mapStateToProps = state => ({
+  index: state.navigation,
+  navigation: state.navigation.session,
+});
+
 const mapActionsToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
 });
