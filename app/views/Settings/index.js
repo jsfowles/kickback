@@ -52,11 +52,17 @@ const ROUTES = {
     type: 'push',
     route: { key: 'generalFeedback' },
   },
+
+  pushNotifications: {
+    type: 'push',
+    route: { key: 'pushNotifications' },
+  },
 };
 
 class Settings extends React.Component {
   settingsNavigation = () => {
     let { handleNavigate } = this.props;
+
     return [
       {
         title: 'Account',
@@ -74,7 +80,7 @@ class Settings extends React.Component {
       {
         title: 'Settings',
         options: [
-          { title: 'Push Notification Settings', onPress: () => Alert.alert('Coming Soon!', null, null), bordered: true },
+          { title: 'Push Notification Settings', onPress: () => handleNavigate(ROUTES.pushNotifications), bordered: true },
           {
             title: 'Deposit Settings',
             onPress: () => {
