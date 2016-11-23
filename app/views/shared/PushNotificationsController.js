@@ -14,7 +14,7 @@ class PushNotificationsController extends React.Component {
       notification: React.PropTypes.shape({
         enabled: React.PropTypes.bool,
       }).isRequired,
-    }).isRequired,
+    }),
     receivePushNotification: React.PropTypes.func.isRequired,
   };
 
