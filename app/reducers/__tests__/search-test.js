@@ -1,6 +1,7 @@
 /* eslint-env node, jest */
 import { searchOverlay } from '../search';
-import { products, isFetching, errorMessage } from '../product';
+import { products, isFetching } from '../product';
+import { flashMessage } from '../flashMessage';
 
 jest.autoMockOff();
 
@@ -64,8 +65,8 @@ describe('isFetching', () => {
   });
 });
 
-describe('errorMessage', () => {
+describe('flashMessage', () => {
   it('has the correct initial state', () => {
-    expect(errorMessage('SEARCH')(undefined, {})).toEqual(null);
+    expect(flashMessage('SEARCH')(undefined, {})).toEqual(null);
   });
 });

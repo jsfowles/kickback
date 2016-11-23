@@ -1,5 +1,5 @@
 /* eslint-env node, jest */
-import { products, isFetching, errorMessage } from '../product';
+import { products, isFetching } from '../product';
 
 jest.autoMockOff();
 
@@ -12,11 +12,5 @@ describe('products', () => {
 describe('isFetching', () => {
   it('has the correct initial state', () => {
     expect(isFetching('PRODUCT_FEED')(undefined, {})).toEqual(false);
-  });
-});
-
-describe('errorMessage', () => {
-  it('has the correct initial state', () => {
-    expect(errorMessage('PRODUCT_FEED')(undefined, {})).toEqual(null);
   });
 });

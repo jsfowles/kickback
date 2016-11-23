@@ -37,18 +37,19 @@ export const fetchSession = password => (dispatch, getState) => {
     path: 'auth/sign_in',
     body: creds,
     requestCallback: (res) => {
-      if (res.status !== 200) { return dispatch(addMessage('Invalid email or password')); }
+      if (res.status !== 200) { return dispatch(addMessage('Invalid email or password', 'error')); }
 
       session = formatSession(res);
 
       dispatch(closeModal());
+      dispatch(addMessage('You are now logged in', 'success'));
       return dispatch(fetchSessionSuccess(session));
     },
   };
 
   if (tab === 'SIGN_UP') {
-    if (!validateEmail(creds.email)) { return dispatch(addMessage('Invalid email format')); }
-    if (!validatePassword(creds.password)) { return dispatch(addMessage('Password must be at least 8 characters')); }
+    if (!validateEmail(creds.email)) { return dispatch(addMessage('Invalid email format', 'error')); }
+    if (!validatePassword(creds.password)) { return dispatch(addMessage('Password must be at least 8 characters', 'error')); }
 
     return dispatch(createUser(creds));
   }
@@ -80,6 +81,7 @@ export const destroySession = (session = null) => (dispatch, getState) => {
     dispatch(pop('profile'));
     dispatch(changeTab(0));
     dispatch({ type: 'DESTROY_SESSION' });
+    dispatch(addMessage('You are now logged out', 'success'));
     return dispatch(fetchFeed());
   });
 };
@@ -92,13 +94,19 @@ export const resetPassword = () => (dispatch, getState) => {
     path: 'password_reset/user/password',
     body: { password_reset_user: { email: enteredEmail }},
     root: true,
+    requestCallback: (res) => {
+      if (res.status === 200) {
+        dispatch(pop('session'));
+        return dispatch(addMessage('Forgot Password email has been sent', 'success'));
+      }
+      return dispatch(addMessage('Invalid email', 'error'));
+    },
   };
 
-  return new Request(requestObj)
-  .then(_ => {
-    return dispatch(pop('session'));
-  });
+  return new Request(requestObj);
 };
+
+
 /**
  * Validates the current session.
  * @returns { function } either will destroy the session or get the user profile and products
