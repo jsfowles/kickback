@@ -18,6 +18,7 @@ import Navigation from './Navigation';
 import Session from './Sessions';
 import Message from './shared/Message';
 import NetInfoController from './shared/NetInfoController';
+import PushNotificationsController from './shared/PushNotificationsController';
 import Tabs from './Navigation/components/Tabs';
 import EarningsInfo from './User/components/EarningsInfo';
 import PayoutInfo from './User/components/PayoutInfo';
@@ -94,7 +95,8 @@ class App extends Component {
           direction='vertical'
         />
 
-      <NetInfoController />
+        <NetInfoController />
+        <PushNotificationsController />
       </View>
     );
   }

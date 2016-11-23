@@ -13,6 +13,7 @@ import WebView from '../Settings/components/WebView';
 import ReportAProblem from '../Settings/components/ReportAProblem';
 import DepositSettings from '../Settings/components/DepositSettings';
 import ChangePassword from '../Settings/components/ChangePassword';
+import PushNotifications from '../Settings/components/PushNotifications';
 
 const scenes = {
   settings: <Settings />,
@@ -26,6 +27,7 @@ const scenes = {
   changePassword: <ChangePassword />,
   depositSettings: <DepositSettings />,
   payablesFaq: <WebView url='http://www.kbck.me/payable-faq' title='Payable FAQ' />,
+  pushNotifications: <PushNotifications />,
 };
 
 class Profile extends React.Component {

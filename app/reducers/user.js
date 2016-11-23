@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 import * as base from './product';
 import { isFetching } from './fetching';
-
+import { underscoreToCamelCased } from '../utils/string';
 
 const products = base.products('USER_PRODUCTS');
 const nextPage = base.nextPage('USER_PRODUCTS');
@@ -18,6 +18,14 @@ export const user = (state = null, action) => {
       return {
         ...state,
         ...action.user,
+      };
+    case 'UPDATE_USER_NOTIFICATION_SETTINGS':
+      return {
+        ...state,
+        notification: {
+          ...state.notification,
+          [underscoreToCamelCased(action.field)]: action.value,
+        },
       };
     case 'DESTROY_SESSION':
       return null;
