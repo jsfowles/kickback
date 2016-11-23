@@ -2,6 +2,7 @@ import Request from '../utils/request';
 
 import { changeTab } from './tabs';
 import { reset, push } from './navigation';
+import { fetchUserSuccess } from './user';
 
 export const storeDeviceToken = token => (dispatch, getState) => {
   let { session } = getState().session;
@@ -14,7 +15,7 @@ export const storeDeviceToken = token => (dispatch, getState) => {
     body: { device: { token }},
   };
 
-  return new Request(requestObj).then(res => console.log(res));
+  return new Request(requestObj);
 };
 
 export const receivePushNotification = notification => dispatch => {
@@ -28,4 +29,20 @@ export const receivePushNotification = notification => dispatch => {
       dispatch(push({ key: 'depositSettings' }, 'profile'));
     }
   }
+};
+
+export const updateNotificationSettings = (value, field) => (dispatch, getState) => {
+  let { user } = getState().user;
+  let { session } = getState().session;
+
+  let requestObj = {
+    method: 'PUT',
+    path: `/users/${user.id}/notifications/${user.notification.id}`,
+    headers: session,
+    body: { notification: { [field]: value }},
+  };
+
+  dispatch({ type: 'UPDATE_USER_NOTIFICATION_SETTINGS', field, value });
+
+  return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)));
 };

@@ -8,17 +8,27 @@ import {
 } from '../../actions';
 
 class PushNotificationsController extends React.Component {
-  static props: {
+  static propTypes = {
     storeDeviceToken: React.PropTypes.func.isRequired,
+    user: React.PropTypes.shape({
+      notification: React.PropTypes.shape({
+        enabled: React.PropTypes.bool,
+      }).isRequired,
+    }).isRequired,
     receivePushNotification: React.PropTypes.func.isRequired,
-    session: React.PropTypes.object,
   };
 
   componentDidMount() {
+    let {
+      storeDeviceToken,
+      receivePushNotification,
+      user,
+    } = this.props;
+
     PushNotification.configure({
-      onRegister: ({ token }) => console.log(token),
-      onNotification: this.props.receivePushNotification,
-      requestPermissions: true,
+      onRegister: storeDeviceToken,
+      onNotification: receivePushNotification,
+      requestPermissions: !!user && user.notification.enabled,
     });
   }
 
@@ -28,11 +38,11 @@ class PushNotificationsController extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  session: state.session.session,
+  user: state.user.user,
 });
 
 const mapActionsToProps = dispatch => ({
-  storeDeviceToken: token => dispatch(storeDeviceToken(token)),
+  storeDeviceToken: ({ token }) => dispatch(storeDeviceToken(token)),
   receivePushNotification: notif => dispatch(receivePushNotification(notif)),
 });
 
