@@ -5,6 +5,7 @@ import {
   View,
   AppState,
   StyleSheet,
+  NativeModules
 } from 'react-native';
 
 import {
@@ -50,8 +51,8 @@ class App extends Component {
   };
 
   componentDidMount() {
+    NativeModules.RNAmplitude.logEvent("Login", { "JSON Key" : "JSON Value" });
     AppState.addEventListener('change', this.handleAppStateChange);
-
     this.props.closeModal();
     this.props.fetchValidateSession();
     this.props.fetchFeed();

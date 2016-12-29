@@ -22,7 +22,10 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		BEA127331E14759700491096 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1272E1E14758700491096 /* libAmplitude.a */; };
 		BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */; };
+		BEF389711E14774A00D025DD /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BEF389701E14774A00D025DD /* Amplitude */; };
+		BEF617F41E146A0A00CBD1A2 /* RNAmplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */; };
 		BFB1DDF71D64CD1A001852E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB1DDF61D64CD1A001852E8 /* Images.xcassets */; };
 		BFB1DE661D66559B001852E8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB1DE1D1D65196D001852E8 /* libRCTVideo.a */; };
 		BFB1DE671D66559F001852E8 /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF63BDD1D64C878006AF536 /* libRNShimmer.a */; };
@@ -107,6 +110,27 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		BEA1272D1E14758700491096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C05231A48E7FE00800C63;
+			remoteInfo = Amplitude;
+		};
+		BEA1272F1E14758700491096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
+			remoteInfo = AmplitudeTests;
+		};
+		BEA127311E14758700491096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 343AB4171CC99F4F00962943;
+			remoteInfo = AmplitudeFramework;
+		};
 		BEAD88E51DE647200014E8B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */;
@@ -160,7 +184,12 @@
 		5463042C92C5408887A813DB /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		BEA127271E14758700491096 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master 2/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		BEF389701E14774A00D025DD /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
+		BEF389831E14775900D025DD /* Amplitude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = Amplitude/Amplitude.h; sourceTree = "<group>"; };
+		BEF617F21E146A0A00CBD1A2 /* RNAmplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAmplitude.h; path = Kickback/RNAmplitude.h; sourceTree = "<group>"; };
+		BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNAmplitude.m; path = Kickback/RNAmplitude.m; sourceTree = "<group>"; };
 		BFB1DDF61D64CD1A001852E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Kickback/Images.xcassets; sourceTree = "<group>"; };
 		BFF2A5381DDE64F900DD4E11 /* Kickback.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Kickback.entitlements; path = Kickback/Kickback.entitlements; sourceTree = "<group>"; };
 		C84F67823C4848149ACC371F /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
@@ -179,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA127331E14759700491096 /* libAmplitude.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -275,9 +305,13 @@
 		13B07FAE1A68108700A75B9A /* Kickback */ = {
 			isa = PBXGroup;
 			children = (
+				BEF389701E14774A00D025DD /* Amplitude */,
 				BFF2A5381DDE64F900DD4E11 /* Kickback.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				BEF389831E14775900D025DD /* Amplitude.h */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				BEF617F21E146A0A00CBD1A2 /* RNAmplitude.h */,
+				BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				BFB1DDF61D64CD1A001852E8 /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -306,6 +340,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BEA127271E14758700491096 /* Amplitude.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -349,6 +384,16 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Kickback.app */,
 				00E356EE1AD99517003FC87E /* KickbackTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEA127281E14758700491096 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1272E1E14758700491096 /* libAmplitude.a */,
+				BEA127301E14758700491096 /* AmplitudeTests.xctest */,
+				BEA127321E14758700491096 /* Amplitude.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -459,6 +504,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = BEA127281E14758700491096 /* Products */;
+					ProjectRef = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+				},
 				{
 					ProductGroup = BFF63BCA1D64C878006AF536 /* Products */;
 					ProjectRef = C84F67823C4848149ACC371F /* BVLinearGradient.xcodeproj */;
@@ -595,6 +644,27 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BEA1272E1E14758700491096 /* libAmplitude.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAmplitude.a;
+			remoteRef = BEA1272D1E14758700491096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEA127301E14758700491096 /* AmplitudeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AmplitudeTests.xctest;
+			remoteRef = BEA1272F1E14758700491096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEA127321E14758700491096 /* Amplitude.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Amplitude.framework;
+			remoteRef = BEA127311E14758700491096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -637,6 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF389711E14774A00D025DD /* Amplitude in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BFB1DDF71D64CD1A001852E8 /* Images.xcassets in Resources */,
 			);
@@ -675,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				BEF617F41E146A0A00CBD1A2 /* RNAmplitude.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,6 +841,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
@@ -798,6 +871,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
@@ -963,6 +1037,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
@@ -1055,6 +1130,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.underbelly.kickback;
 				PRODUCT_NAME = Kickback;
