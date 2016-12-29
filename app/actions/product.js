@@ -28,7 +28,7 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
   const { session } = getState().session;
   const { user } = getState().user;
 
-  NativeModules.RNAmplitude.logEvent("product recommended", product);
+  NativeModules.RNAmplitude.logEvent('Product Recommended', product);
 
   /**
    * If user and session is present we are goping to build the request and send it.
