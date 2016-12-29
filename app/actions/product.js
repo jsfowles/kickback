@@ -1,6 +1,10 @@
 'use strict';
 
-import { ActionSheetIOS } from 'react-native';
+import {
+  ActionSheetIOS,
+  NativeModules,
+} from 'react-native';
+
 import Request from '../utils/request';
 import {
   triggerModal,
@@ -23,6 +27,8 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
    */
   const { session } = getState().session;
   const { user } = getState().user;
+
+  NativeModules.RNAmplitude.logEvent("product recommended", product);
 
   /**
    * If user and session is present we are goping to build the request and send it.
@@ -52,7 +58,6 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
           () => null,
         );
       }
-
       return dispatch(triggerProductModal(res));
     });
   }

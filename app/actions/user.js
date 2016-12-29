@@ -2,7 +2,11 @@
 
 import { formatSession } from '../utils/session';
 import Request from '../utils/request';
-import { Alert } from 'react-native';
+import {
+  Alert,
+  NativeModules,
+} from 'react-native';
+
 import { updateSessionEmail, fetchSessionSuccess } from './sessions';
 import { closeModal, addMessage } from './app';
 import { pop } from './navigation';
@@ -70,10 +74,11 @@ export const createUser = credentials => (dispatch, getState) => {
               totalEarned: 0,
               totalPendingOrWaitingApproval: 0,
             }));
+            NativeModules.RNAmplitude.setUserId(`${res.data.id} - ${res.data.email}`);
+            NativeModules.RNAmplitude.logEvent('User Signup', { action: lastActionTaken.action.name });
+            dispatch(lastActionTaken.action(lastActionTaken.args));
+            return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
           }
-
-          dispatch(lastActionTaken.action(lastActionTaken.args));
-          return dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
         });
       }},
     ]

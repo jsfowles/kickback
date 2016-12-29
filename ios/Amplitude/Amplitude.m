@@ -143,8 +143,9 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
     [[Amplitude instance] logEvent:eventType];
 }
 
-+ (void)logEvent:(NSString*) eventType withEventProperties:(NSDictionary*) eventProperties {
-    [[Amplitude instance] logEvent:eventType withEventProperties:eventProperties];
++ (void)logEvent:(NSString*) eventType withEventProperties:(NSDictionary*) eventProperties
+{
+  [[Amplitude instance] logEvent:eventType withEventProperties:eventProperties];
 }
 
 + (void)logRevenue:(NSNumber*) amount {
@@ -243,13 +244,13 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
         [_backgroundQueue setSuspended:YES];
         // Name the queue so runOnBackgroundQueue can tell which queue an operation is running
         _backgroundQueue.name = BACKGROUND_QUEUE_NAME;
-        
+
         [_initializerQueue addOperationWithBlock:^{
-            
+
             _deviceInfo = [[AMPDeviceInfo alloc] init];
 
             _uploadTaskID = UIBackgroundTaskInvalid;
-            
+
             NSString *eventsDataDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
             NSString *propertyListPath = [eventsDataDirectory stringByAppendingPathComponent:@"com.amplitude.plist"];
             if (![_instanceName isEqualToString:kAMPDefaultInstance]) {
@@ -577,7 +578,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
     apiProperties = [apiProperties mutableCopy];
     userProperties = [userProperties copy];
     groups = [groups copy];
-    
+
     [self runOnBackgroundQueue:^{
         // Respect the opt-out setting by not sending or storing any events.
         if ([self optOut])  {
@@ -690,7 +691,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
     if (vendorID) {
         [apiProperties setValue:vendorID forKey:@"ios_idfv"];
     }
-    
+
     if (_lastKnownLocation != nil) {
         @synchronized (_locationManager) {
             NSMutableDictionary *location = [NSMutableDictionary dictionary];
@@ -807,7 +808,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
         }
         _updatingCurrently = YES;
     }
-    
+
     [self runOnBackgroundQueue:^{
 
         // Don't communicate with the server if the user has opted out.
@@ -1314,7 +1315,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
     if (!(userId == nil || [self isArgument:userId validType:[NSString class] methodName:@"setUserId:"])) {
         return;
     }
-    
+
     [self runOnBackgroundQueue:^{
         (void) SAFE_ARC_RETAIN(userId);
         SAFE_ARC_RELEASE(_userId);
