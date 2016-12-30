@@ -92,6 +92,7 @@ export const destroySession = (session = null) => (dispatch, getState) => {
     dispatch(pop('profile'));
     dispatch(changeTab(0));
     dispatch({ type: 'DESTROY_SESSION' });
+    NativeModules.RNAmplitude.logEvent('User Logout', {});
     NativeModules.RNAmplitude.setUserId('unregistered');
     dispatch(addMessage('You are now logged out', 'success'));
     return dispatch(fetchFeed());
@@ -109,8 +110,10 @@ export const resetPassword = () => (dispatch, getState) => {
     requestCallback: (res) => {
       if (res.status === 200) {
         dispatch(pop('session'));
+        NativeModules.RNAmplitude.logEvent('Password Reset', { message: 'Password reset email successful' });
         return dispatch(addMessage('Forgot Password email has been sent', 'success'));
       }
+      NativeModules.RNAmplitude.logEvent('Password Reset', { message: 'Invalid email' });
       return dispatch(addMessage('Invalid email', 'error'));
     },
   };

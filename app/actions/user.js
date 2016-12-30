@@ -102,10 +102,13 @@ export const attachPayable = u => (dispatch, getState) => {
   .then(res => {
     dispatch({ type: 'FETCH_USER_PAYABLE_SUCCESS' });
     dispatch(pop('profile'));
+    NativeModules.RNAmplitude.logEvent('Attach Payable', {});
     dispatch(addMessage('Check email for enrollment instructions', 'success'));
     return dispatch(fetchUserSuccess(res));
   })
-  .catch(_ => dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' }));
+  .catch(_ =>{
+    return dispatch({ type: 'FETCH_USER_PAYABLE_FAILURE' });
+  });
 };
 
 export const updateUserProfile = user => (dispatch, getState) => {

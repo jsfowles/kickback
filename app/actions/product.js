@@ -27,8 +27,11 @@ export const recommendProduct = (product, showActionSheet = true) => (dispatch, 
    */
   const { session } = getState().session;
   const { user } = getState().user;
+  const { navigation, tabs } = getState();
+  const tab = tabs.tabs[tabs.index].key;
+  const currentRoute = navigation[tab].routes[navigation[tab].index].key;
 
-  NativeModules.RNAmplitude.logEvent('Product Recommended', product);
+  NativeModules.RNAmplitude.logEvent(`Product Recommended from ${currentRoute}`, product);
 
   /**
    * If user and session is present we are goping to build the request and send it.
