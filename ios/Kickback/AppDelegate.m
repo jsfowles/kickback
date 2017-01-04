@@ -17,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [Amplitude instance].trackingSessionEvents = true;
-  [[Amplitude instance] initializeApiKey:@"54011f126055289340efe7eec9b70873"];
+  [[Amplitude instance] initializeApiKey:@"f942955a23f6356006e2bcea965a47fa"];
   NSURL *jsCodeLocation;
 
   /**
