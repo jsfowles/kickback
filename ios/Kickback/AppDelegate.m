@@ -39,7 +39,7 @@
   // Riley @ Work:
   // jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.236:8081/index.ios.bundle?platform=ios&dev=true"];
   // Jacob @ Work:
-  // jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.105:8081/index.ios.bundle?platform=ios&dev=true"];
+//   jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.70:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
