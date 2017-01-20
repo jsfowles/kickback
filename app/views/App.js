@@ -5,6 +5,7 @@ import {
   View,
   AppState,
   StyleSheet,
+  NativeModules,
 } from 'react-native';
 
 import {
@@ -40,7 +41,10 @@ const scenes = {
 class App extends Component {
   static propTypes = {
     navigation: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object,
+    user: React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      email: React.PropTypes.string.isRequired,
+    }),
     session: React.PropTypes.object,
     fetchFeed: React.PropTypes.func.isRequired,
     fetchUserProducts: React.PropTypes.func.isRequired,
@@ -50,8 +54,8 @@ class App extends Component {
   };
 
   componentDidMount() {
+    NativeModules.RNAmplitude.setUserId(this.props.user ? `${this.props.user.id} - ${this.props.user.email}` : 'unregistered');
     AppState.addEventListener('change', this.handleAppStateChange);
-
     this.props.closeModal();
     this.props.fetchValidateSession();
     this.props.fetchFeed();
