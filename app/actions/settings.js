@@ -4,6 +4,7 @@ import { fetchUserSuccess } from './user';
 import { addMessage } from './app';
 import Request from '../utils/request';
 import { pop } from './navigation';
+import { NativeModules } from 'react-native';
 
 export const fetchSessionSuccess = session => ({ type: 'FETCH_SESSION_SUCCESS', session });
 export const updatePassword = (password, type) => ({ type: `UPDATE_${type}`, password });
@@ -27,6 +28,7 @@ export const submitProblem = user => (dispatch, getState) => {
   return new Request(requestObj)
   .then(_ => {
     dispatch(updateProblemBody('', false));
+    NativeModules.RNAmplitude.logEvent('Feedback Submitted', {});
     return dispatch(addMessage('Feedback has been sent', 'success'));
   });
 };
