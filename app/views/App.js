@@ -5,7 +5,7 @@ import {
   View,
   AppState,
   StyleSheet,
-  NativeModules
+  NativeModules,
 } from 'react-native';
 
 import {

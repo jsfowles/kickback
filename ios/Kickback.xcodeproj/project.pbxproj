@@ -22,9 +22,9 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		BEA127331E14759700491096 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1272E1E14758700491096 /* libAmplitude.a */; };
+		BE9C821A1E2EA95800185967 /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BE9C82191E2EA95800185967 /* Amplitude */; };
+		BE9C822A1E2EAA7500185967 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9C82221E2EA96700185967 /* libAmplitude.a */; };
 		BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */; };
-		BEF389711E14774A00D025DD /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BEF389701E14774A00D025DD /* Amplitude */; };
 		BEF617F41E146A0A00CBD1A2 /* RNAmplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */; };
 		BFB1DDF71D64CD1A001852E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB1DDF61D64CD1A001852E8 /* Images.xcassets */; };
 		BFB1DE661D66559B001852E8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB1DE1D1D65196D001852E8 /* libRCTVideo.a */; };
@@ -110,23 +110,23 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		BEA1272D1E14758700491096 /* PBXContainerItemProxy */ = {
+		BE9C82211E2EA96700185967 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C05231A48E7FE00800C63;
 			remoteInfo = Amplitude;
 		};
-		BEA1272F1E14758700491096 /* PBXContainerItemProxy */ = {
+		BE9C82231E2EA96700185967 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
 			remoteInfo = AmplitudeTests;
 		};
-		BEA127311E14758700491096 /* PBXContainerItemProxy */ = {
+		BE9C82251E2EA96700185967 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 343AB4171CC99F4F00962943;
 			remoteInfo = AmplitudeFramework;
@@ -184,9 +184,9 @@
 		5463042C92C5408887A813DB /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		BEA127271E14758700491096 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master 2/Amplitude.xcodeproj"; sourceTree = "<group>"; };
+		BE9C82191E2EA95800185967 /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
+		BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
-		BEF389701E14774A00D025DD /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
 		BEF389831E14775900D025DD /* Amplitude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = Amplitude/Amplitude.h; sourceTree = "<group>"; };
 		BEF617F21E146A0A00CBD1A2 /* RNAmplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAmplitude.h; path = Kickback/RNAmplitude.h; sourceTree = "<group>"; };
 		BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNAmplitude.m; path = Kickback/RNAmplitude.m; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA127331E14759700491096 /* libAmplitude.a in Frameworks */,
+				BE9C822A1E2EAA7500185967 /* libAmplitude.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -305,7 +305,7 @@
 		13B07FAE1A68108700A75B9A /* Kickback */ = {
 			isa = PBXGroup;
 			children = (
-				BEF389701E14774A00D025DD /* Amplitude */,
+				BE9C82191E2EA95800185967 /* Amplitude */,
 				BFF2A5381DDE64F900DD4E11 /* Kickback.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				BEF389831E14775900D025DD /* Amplitude.h */,
@@ -340,7 +340,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BEA127271E14758700491096 /* Amplitude.xcodeproj */,
+				BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -388,12 +388,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BEA127281E14758700491096 /* Products */ = {
+		BE9C821C1E2EA96700185967 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEA1272E1E14758700491096 /* libAmplitude.a */,
-				BEA127301E14758700491096 /* AmplitudeTests.xctest */,
-				BEA127321E14758700491096 /* Amplitude.framework */,
+				BE9C82221E2EA96700185967 /* libAmplitude.a */,
+				BE9C82241E2EA96700185967 /* AmplitudeTests.xctest */,
+				BE9C82261E2EA96700185967 /* Amplitude.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -505,8 +505,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BEA127281E14758700491096 /* Products */;
-					ProjectRef = BEA127271E14758700491096 /* Amplitude.xcodeproj */;
+					ProductGroup = BE9C821C1E2EA96700185967 /* Products */;
+					ProjectRef = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
 				},
 				{
 					ProductGroup = BFF63BCA1D64C878006AF536 /* Products */;
@@ -644,25 +644,25 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BEA1272E1E14758700491096 /* libAmplitude.a */ = {
+		BE9C82221E2EA96700185967 /* libAmplitude.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAmplitude.a;
-			remoteRef = BEA1272D1E14758700491096 /* PBXContainerItemProxy */;
+			remoteRef = BE9C82211E2EA96700185967 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BEA127301E14758700491096 /* AmplitudeTests.xctest */ = {
+		BE9C82241E2EA96700185967 /* AmplitudeTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AmplitudeTests.xctest;
-			remoteRef = BEA1272F1E14758700491096 /* PBXContainerItemProxy */;
+			remoteRef = BE9C82231E2EA96700185967 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BEA127321E14758700491096 /* Amplitude.framework */ = {
+		BE9C82261E2EA96700185967 /* Amplitude.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Amplitude.framework;
-			remoteRef = BEA127311E14758700491096 /* PBXContainerItemProxy */;
+			remoteRef = BE9C82251E2EA96700185967 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */ = {
@@ -707,7 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF389711E14774A00D025DD /* Amplitude in Resources */,
+				BE9C821A1E2EA95800185967 /* Amplitude in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BFB1DDF71D64CD1A001852E8 /* Images.xcassets in Resources */,
 			);
@@ -1126,6 +1126,7 @@
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
