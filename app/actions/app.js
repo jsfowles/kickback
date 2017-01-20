@@ -1,9 +1,15 @@
 'use strict';
 
-export const triggerModal = modal => ({ type: 'TRIGGER_MODAL', modal });
+import { NativeModules } from 'react-native';
+
 export const clearMessage = _ => ({ type: 'CLEAR_MESSAGE' });
 export const addMessage = (message, kind) => ({ type: 'ADD_MESSAGE', message, kind });
 export const lastActionTaken = (action, args = null) => ({ type: 'LAST_ACTION_TAKEN', action, args });
+
+export const triggerModal = modal => dispatch => {
+  NativeModules.RNAmplitude.logEvent(`${modal} modal tap`, {});
+  return dispatch({ type: 'TRIGGER_MODAL', modal });
+};
 
 export const triggerProductModal = product => dispatch => {
   dispatch({ type: 'ADD_PRODUCT_MODAL', product });

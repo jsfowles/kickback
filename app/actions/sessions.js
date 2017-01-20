@@ -9,6 +9,7 @@ import { closeModal, addMessage } from './app';
 import { fetchFeed } from './feed';
 import { createUser, fetchUser, fetchUserSuccess } from './user';
 import { fetchUserProducts } from './user-products';
+import { NativeModules } from 'react-native';
 
 export const changeSessionTab = tab => ({ type: 'CHANGE_SESSION_TAB', tab });
 export const updateSessionEmail = email => ({ type: 'UPDATE_EMAIL', email });
@@ -37,7 +38,10 @@ export const fetchSession = password => (dispatch, getState) => {
     path: 'auth/sign_in',
     body: creds,
     requestCallback: (res) => {
-      if (res.status !== 200) { return dispatch(addMessage('Invalid email or password', 'error')); }
+      if (res.status !== 200) {
+        NativeModules.RNAmplitude.logEvent('Login Error', {});
+        return dispatch(addMessage('Invalid email or password', 'error'));
+      }
 
       session = formatSession(res);
 
@@ -48,9 +52,14 @@ export const fetchSession = password => (dispatch, getState) => {
   };
 
   if (tab === 'SIGN_UP') {
-    if (!validateEmail(creds.email)) { return dispatch(addMessage('Invalid email format', 'error')); }
-    if (!validatePassword(creds.password)) { return dispatch(addMessage('Password must be at least 8 characters', 'error')); }
-
+    if (!validateEmail(creds.email)) {
+      NativeModules.RNAmplitude.logEvent('SignUp Error', { message: 'Invalid email format' });
+      return dispatch(addMessage('Invalid email format', 'error'));
+    }
+    if (!validatePassword(creds.password)) {
+      NativeModules.RNAmplitude.logEvent('SignUp Error', { message: 'Password must be at least 8 characters' });
+      return dispatch(addMessage('Password must be at least 8 characters', 'error'));
+    }
     return dispatch(createUser(creds));
   }
 
@@ -59,6 +68,8 @@ export const fetchSession = password => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => {
     if (!res.errors) {
+      NativeModules.RNAmplitude.setUserId(`${res.id} - ${res.email}`);
+      NativeModules.RNAmplitude.logEvent('User Login', {});
       dispatch(fetchUserSuccess(res));
       dispatch(lastActionTaken.action(lastActionTaken.args));
       dispatch({ type: 'CLEAR_LAST_ACTION_TAKEN' });
@@ -81,6 +92,8 @@ export const destroySession = (session = null) => (dispatch, getState) => {
     dispatch(pop('profile'));
     dispatch(changeTab(0));
     dispatch({ type: 'DESTROY_SESSION' });
+    NativeModules.RNAmplitude.logEvent('User Logout', {});
+    NativeModules.RNAmplitude.setUserId('unregistered');
     dispatch(addMessage('You are now logged out', 'success'));
     return dispatch(fetchFeed());
   });
@@ -97,8 +110,10 @@ export const resetPassword = () => (dispatch, getState) => {
     requestCallback: (res) => {
       if (res.status === 200) {
         dispatch(pop('session'));
+        NativeModules.RNAmplitude.logEvent('Password Reset', { message: 'Password reset email successful' });
         return dispatch(addMessage('Forgot Password email has been sent', 'success'));
       }
+      NativeModules.RNAmplitude.logEvent('Password Reset', { message: 'Invalid email' });
       return dispatch(addMessage('Invalid email', 'error'));
     },
   };

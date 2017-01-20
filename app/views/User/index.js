@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Container from '../shared/Container';
 import { connect } from 'react-redux';
+import { NativeModules } from 'react-native';
 
 import Products from '../Products';
 import ProfilePicture from './components/ProfilePicture';

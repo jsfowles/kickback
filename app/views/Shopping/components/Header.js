@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Animated,
   Easing,
+  NativeModules,
 } from 'react-native';
 
 import {
@@ -146,6 +147,7 @@ class Header extends React.Component {
      * If we are currently not showing the form and we are on search
      */
     if (!showForm && this.props.route.index) {
+      NativeModules.RNAmplitude.logEvent('Search Tap', { route: 'Featured Products Feed' });
       return Animated.parallel([
         this.createAnimation(this.buttonWidth, layout.width - cancelLayout.width - BACK_BUTTON_SIZE),
         this.createAnimation(this.buttonPosX, BACK_BUTTON_SIZE),
@@ -157,6 +159,7 @@ class Header extends React.Component {
     /**
      * If we are currently not showing the form and are on the feed route
      */
+    NativeModules.RNAmplitude.logEvent('Search Tap', { route: 'Searching Feed' });
     return Animated.parallel([
       this.createAnimation(this.buttonWidth, layout.width - cancelLayout.width),
       this.createAnimation(this.buttonPosX, 0),

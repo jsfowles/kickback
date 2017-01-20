@@ -18,7 +18,7 @@ class PushNotificationsController extends React.Component {
     receivePushNotification: React.PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
+  pushNotification() {
     let {
       storeDeviceToken,
       receivePushNotification,
@@ -30,6 +30,14 @@ class PushNotificationsController extends React.Component {
       onNotification: receivePushNotification,
       requestPermissions: !!user && user.notification.enabled,
     });
+  }
+
+  componentDidMount() {
+    this.pushNotification();
+  }
+
+  componentDidUpdate() {
+    this.pushNotification();
   }
 
   render() {
