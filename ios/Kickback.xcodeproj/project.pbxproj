@@ -23,9 +23,9 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BE9C821A1E2EA95800185967 /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BE9C82191E2EA95800185967 /* Amplitude */; };
-		BE9C822A1E2EAA7500185967 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9C82221E2EA96700185967 /* libAmplitude.a */; };
 		BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */; };
 		BEF617F41E146A0A00CBD1A2 /* RNAmplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */; };
+		BFAFDF181E32C83E00DF097B /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAFDF041E32C82500DF097B /* libAmplitude.a */; };
 		BFB1DDF71D64CD1A001852E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB1DDF61D64CD1A001852E8 /* Images.xcassets */; };
 		BFB1DE661D66559B001852E8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB1DE1D1D65196D001852E8 /* libRCTVideo.a */; };
 		BFB1DE671D66559F001852E8 /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF63BDD1D64C878006AF536 /* libRNShimmer.a */; };
@@ -110,33 +110,33 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		BE9C82211E2EA96700185967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E98C05231A48E7FE00800C63;
-			remoteInfo = Amplitude;
-		};
-		BE9C82231E2EA96700185967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
-			remoteInfo = AmplitudeTests;
-		};
-		BE9C82251E2EA96700185967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 343AB4171CC99F4F00962943;
-			remoteInfo = AmplitudeFramework;
-		};
 		BEAD88E51DE647200014E8B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTPushNotification;
+		};
+		BFAFDF031E32C82500DF097B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C05231A48E7FE00800C63;
+			remoteInfo = Amplitude;
+		};
+		BFAFDF051E32C82500DF097B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
+			remoteInfo = AmplitudeTests;
+		};
+		BFAFDF071E32C82500DF097B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 343AB4171CC99F4F00962943;
+			remoteInfo = AmplitudeFramework;
 		};
 		BFB1DE1C1D65196D001852E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -185,11 +185,11 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		BE9C82191E2EA95800185967 /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
-		BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		BEF389831E14775900D025DD /* Amplitude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = Amplitude/Amplitude.h; sourceTree = "<group>"; };
 		BEF617F21E146A0A00CBD1A2 /* RNAmplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAmplitude.h; path = Kickback/RNAmplitude.h; sourceTree = "<group>"; };
 		BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNAmplitude.m; path = Kickback/RNAmplitude.m; sourceTree = "<group>"; };
+		BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BFB1DDF61D64CD1A001852E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Kickback/Images.xcassets; sourceTree = "<group>"; };
 		BFF2A5381DDE64F900DD4E11 /* Kickback.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Kickback.entitlements; path = Kickback/Kickback.entitlements; sourceTree = "<group>"; };
 		C84F67823C4848149ACC371F /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE9C822A1E2EAA7500185967 /* libAmplitude.a in Frameworks */,
+				BFAFDF181E32C83E00DF097B /* libAmplitude.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -340,7 +340,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */,
+				BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -388,20 +388,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BE9C821C1E2EA96700185967 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BE9C82221E2EA96700185967 /* libAmplitude.a */,
-				BE9C82241E2EA96700185967 /* AmplitudeTests.xctest */,
-				BE9C82261E2EA96700185967 /* Amplitude.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		BEAD88DC1DE647200014E8B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFAFDEFE1E32C82500DF097B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFAFDF041E32C82500DF097B /* libAmplitude.a */,
+				BFAFDF061E32C82500DF097B /* AmplitudeTests.xctest */,
+				BFAFDF081E32C82500DF097B /* Amplitude.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -505,8 +505,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BE9C821C1E2EA96700185967 /* Products */;
-					ProjectRef = BE9C821B1E2EA96700185967 /* Amplitude.xcodeproj */;
+					ProductGroup = BFAFDEFE1E32C82500DF097B /* Products */;
+					ProjectRef = BFAFDEFD1E32C82500DF097B /* Amplitude.xcodeproj */;
 				},
 				{
 					ProductGroup = BFF63BCA1D64C878006AF536 /* Products */;
@@ -644,32 +644,32 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE9C82221E2EA96700185967 /* libAmplitude.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAmplitude.a;
-			remoteRef = BE9C82211E2EA96700185967 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BE9C82241E2EA96700185967 /* AmplitudeTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AmplitudeTests.xctest;
-			remoteRef = BE9C82231E2EA96700185967 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BE9C82261E2EA96700185967 /* Amplitude.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Amplitude.framework;
-			remoteRef = BE9C82251E2EA96700185967 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTPushNotification.a;
 			remoteRef = BEAD88E51DE647200014E8B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BFAFDF041E32C82500DF097B /* libAmplitude.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAmplitude.a;
+			remoteRef = BFAFDF031E32C82500DF097B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BFAFDF061E32C82500DF097B /* AmplitudeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AmplitudeTests.xctest;
+			remoteRef = BFAFDF051E32C82500DF097B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BFAFDF081E32C82500DF097B /* Amplitude.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Amplitude.framework;
+			remoteRef = BFAFDF071E32C82500DF097B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BFB1DE1D1D65196D001852E8 /* libRCTVideo.a */ = {
