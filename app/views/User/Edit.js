@@ -5,9 +5,10 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
+  Platform,
 } from 'react-native';
 
-import Gravatar from './components/Gravatar.js';
+import ImagePicker from 'react-native-image-picker';
 
 import { validateEmail } from '../../utils/validations';
 
@@ -33,6 +34,7 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
+      avatarSource: null,
       name: this.props.name,
       email: this.props.email,
     };
@@ -46,6 +48,48 @@ class EditProfile extends React.Component {
 
   onInputChange = (v, k) => {
     this.setState({ [k]: v });
+  }
+
+  selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true,
+      },
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source;
+
+        // You can display the image using either:
+        // source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        // Or:
+        if (Platform.OS === 'android') {
+          source = { uri: response.uri };
+        } else {
+          source = { uri: response.uri.replace('file://', '') };
+        }
+
+        this.setState({
+          avatarSource: source,
+        });
+      }
+    });
   }
 
   render() {
@@ -71,7 +115,13 @@ class EditProfile extends React.Component {
         }}
       >
         <View style={ styles.profilePicContainer }>
-          <Gravatar emailAddress={ this.state.email } style={ styles.profilePic } />
+          <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+           <View style={[ styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+           { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+             <Image style={styles.avatar} source={this.state.avatarSource} />
+           }
+           </View>
+         </TouchableOpacity>
         </View>
 
         <View style={ styles.formContainer }>

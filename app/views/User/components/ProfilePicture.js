@@ -1,8 +1,6 @@
 'use strict';
 import React from 'react';
 
-import Gravatar from './Gravatar.js';
-
 import {
   Text,
   StyleSheet,
@@ -11,8 +9,6 @@ import {
 
 const ProfilePicture = ({ user, animatedStyles }) => (
   <Animated.View style={[ styles.container, animatedStyles ]}>
-    <Gravatar emailAddress={ user.email } style={ styles.profilePicture }/>
-
     <Text style={ styles.profileText }>{ user.email }</Text>
   </Animated.View>
 );
