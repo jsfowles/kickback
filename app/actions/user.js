@@ -121,7 +121,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
     body: {
       email: user.email,
       name: user.name,
-      avatarSource: user.avatarSource,
+      avatar: user.avatar,
     },
     requestCallback: (res) => {
       if (res.status !== 200) { return dispatch(fetchRequestFailure()); }

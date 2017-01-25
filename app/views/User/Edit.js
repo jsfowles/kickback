@@ -27,8 +27,8 @@ class EditProfile extends React.Component {
     updateUserProfile: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
-    avatarSource: React.PropTypes.string,
-    isFetchingAvatarSource: React.PropTypes.bool,
+    avatar: React.PropTypes.string,
+    isFetchingAvatar: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
     isFetchingName: React.PropTypes.bool,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
@@ -38,15 +38,15 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      avatarSource: this.props.avatarSource,
+      avatar: null,
       name: this.props.name,
       email: this.props.email,
     };
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email || this.props.avatarSource !== this.props.avatarSource ) {
-      this.setState({ email: nextProps.email, name: nextProps.name, avatarSource: nextProps.avatarSource });
+    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email ) {
+      this.setState({ email: nextProps.email, name: nextProps.name, avatar: nextProps.avatar });
     }
   }
 
@@ -80,13 +80,13 @@ class EditProfile extends React.Component {
         let source;
 
         if (Platform.OS === 'ios') {
-          source = { uri: response.uri };
+          source = { uri: 'data:image/jpeg;base64,' + response.data };
         } else {
           source = { uri: response.uri.replace('file://', '') };
         }
 
         this.setState({
-          avatarSource: source,
+          avatar: source,
         });
       }
     });
@@ -116,10 +116,13 @@ class EditProfile extends React.Component {
       >
         <View style={ styles.profilePicContainer }>
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-           <View style={[ styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-           { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-             <Image style={styles.avatar} source={this.state.avatarSource} />
-           }
+            <View style={[ styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+             { this.state.avatar === null ? <Text>Select a Photo</Text> :
+               <Image
+                 style={styles.avatar}
+                 source={this.state.avatar}
+                 />
+             }
            </View>
          </TouchableOpacity>
         </View>
@@ -200,10 +203,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  avatarSource: state.user.user.avatarSource,
+  avatar: state.user.user.avatar.avatar.url,
   email: state.user.user.email,
   name: state.user.user.name,
-  isFetchingAvatarSource: state.user.isFetchingAvatarSource,
+  isFetchingAvatar: state.user.isFetchingAvatar,
   isFetchingName: state.user.isFetchingName,
   isFetchingEmail: state.user.isFetchingEmail,
   isFetchingUserProfile: state.user.isFetchingUserProfile,
