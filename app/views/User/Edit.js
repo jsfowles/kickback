@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import {
   View,
   TouchableOpacity,
+  PixelRatio,
   Text,
   StyleSheet,
   Platform,
+  Image,
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-picker';
@@ -25,6 +27,8 @@ class EditProfile extends React.Component {
     updateUserProfile: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
+    avatarSource: React.PropTypes.string,
+    isFetchingAvatarSource: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
     isFetchingName: React.PropTypes.bool,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
@@ -34,15 +38,15 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      avatarSource: null,
+      avatarSource: this.props.avatarSource,
       name: this.props.name,
       email: this.props.email,
     };
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email) {
-      this.setState({ email: nextProps.email, name: nextProps.name });
+    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email || this.props.avatarSource !== this.props.avatarSource ) {
+      this.setState({ email: nextProps.email, name: nextProps.name, avatarSource: nextProps.avatarSource });
     }
   }
 
@@ -75,11 +79,7 @@ class EditProfile extends React.Component {
       else {
         let source;
 
-        // You can display the image using either:
-        // source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        // Or:
-        if (Platform.OS === 'android') {
+        if (Platform.OS === 'ios') {
           source = { uri: response.uri };
         } else {
           source = { uri: response.uri.replace('file://', '') };
@@ -177,11 +177,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#e8edef',
     height: 1,
   },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+
+  avatarContainer: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1 / PixelRatio.get(),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  avatar: {
+    borderRadius: 75,
+    width: 150,
+    height: 150,
+  },
 });
 
 const mapStateToProps = state => ({
+  avatarSource: state.user.user.avatarSource,
   email: state.user.user.email,
   name: state.user.user.name,
+  isFetchingAvatarSource: state.user.isFetchingAvatarSource,
   isFetchingName: state.user.isFetchingName,
   isFetchingEmail: state.user.isFetchingEmail,
   isFetchingUserProfile: state.user.isFetchingUserProfile,
