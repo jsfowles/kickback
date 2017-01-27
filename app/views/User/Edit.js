@@ -57,8 +57,8 @@ class EditProfile extends React.Component {
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
+      maxWidth: 78,
+      maxHeight: 78,
       storageOptions: {
         skipBackup: true,
       },
@@ -107,14 +107,13 @@ class EditProfile extends React.Component {
       >
         <View style={ styles.profilePicContainer }>
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-            <View style={[ styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-             { this.state.avatarUrl === null ? <Text>Select a Photo</Text> :
+            <View style={[ styles.avatar, styles.avatarContainer ]}>
                <Image
                  style={styles.avatar}
                  source={{ uri: this.state.avatarUrl }}
                  />
-             }
            </View>
+           <Text style={ styles.editLabel}>Edit</Text>
          </TouchableOpacity>
         </View>
 
@@ -147,14 +146,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  profilePic: {
-    borderWidth: 0,
-    marginBottom: 9,
-  },
-
   editLabel: {
     color: '#6d7577',
     fontSize: 16,
+    marginTop: 9,
     textAlign: 'center',
   },
 
@@ -187,9 +182,9 @@ const styles = StyleSheet.create({
   },
 
   avatar: {
-    borderRadius: 75,
-    width: 150,
-    height: 150,
+    borderRadius: 40,
+    width: 80,
+    height: 80,
   },
 });
 
