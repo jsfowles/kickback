@@ -128,7 +128,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },
   };
-  
+
   dispatch({ type: 'FETCH_USER_UPDATE_REQUEST' });
 
   return new Request(requestObj)

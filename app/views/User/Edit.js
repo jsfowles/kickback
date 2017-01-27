@@ -46,7 +46,7 @@ class EditProfile extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.name !== this.props.name || nextProps.email !== this.props.email ) {
-      this.setState({ email: nextProps.email, name: nextProps.name });
+      this.setState({ email: nextProps.email, name: nextProps.name, avatarUrl: nextProps.avatarUrl });
     }
   }
 
