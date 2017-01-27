@@ -27,8 +27,8 @@ class EditProfile extends React.Component {
     updateUserProfile: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
-    avatar: React.PropTypes.string,
-    isFetchingAvatar: React.PropTypes.bool,
+    avatarUrl: React.PropTypes.string,
+    isFetchingAvatarUrl: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
     isFetchingName: React.PropTypes.bool,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
@@ -65,12 +65,7 @@ class EditProfile extends React.Component {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-
       if (response.didCancel) {
-      }
-      else if (response.error) {
-      }
-      else if (response.customButton) {
       }
       else {
         let source;
@@ -80,7 +75,6 @@ class EditProfile extends React.Component {
         } else {
           source = { uri: response.uri.replace('file://', '') };
         }
-
 
         this.setState({
           avatarUrl: source,

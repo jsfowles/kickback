@@ -31,7 +31,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
     method: 'GET',
     headers: localSession,
   };
-  console.log(user);
+
   dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
 
   return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)))
@@ -128,7 +128,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },
   };
-  console.log(requestObj);
+  
   dispatch({ type: 'FETCH_USER_UPDATE_REQUEST' });
 
   return new Request(requestObj)
@@ -136,7 +136,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
     dispatch(addMessage('Your profile has been updated', 'success'));
-    console.log(res);
+
     return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));
