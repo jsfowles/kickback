@@ -31,7 +31,7 @@ export const fetchUser = (session = null) => (dispatch, getState) => {
     method: 'GET',
     headers: localSession,
   };
-
+  console.log(user);
   dispatch({ type: 'FETCH_USER_PROFILE_REQUEST' });
 
   return new Request(requestObj).then(res => dispatch(fetchUserSuccess(res)))
@@ -121,7 +121,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
     body: {
       email: user.email,
       name: user.name,
-      avatar: user.avatar,
+      avatar: user.avatarUrl,
     },
     requestCallback: (res) => {
       if (res.status !== 200) { return dispatch(fetchRequestFailure()); }

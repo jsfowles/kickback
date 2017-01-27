@@ -38,7 +38,7 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      avatar: null,
+      avatarUrl: this.props.avatarUrl,
       name: this.props.name,
       email: this.props.email,
     };
@@ -46,7 +46,7 @@ class EditProfile extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.name !== this.props.name || nextProps.email !== this.props.email ) {
-      this.setState({ email: nextProps.email, name: nextProps.name, avatar: nextProps.avatar });
+      this.setState({ email: nextProps.email, name: nextProps.name });
     }
   }
 
@@ -65,28 +65,25 @@ class EditProfile extends React.Component {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
 
       if (response.didCancel) {
-        console.log('User cancelled photo picker');
       }
       else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
       }
       else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       }
       else {
         let source;
 
         if (Platform.OS === 'ios') {
-          source = { uri: 'data:image/jpeg;base64,' + response.data };
+          source = `data:image/jpeg;base64,${response.data}`;
         } else {
           source = { uri: response.uri.replace('file://', '') };
         }
 
+
         this.setState({
-          avatar: source,
+          avatarUrl: source,
         });
       }
     });
@@ -117,10 +114,10 @@ class EditProfile extends React.Component {
         <View style={ styles.profilePicContainer }>
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
             <View style={[ styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-             { this.state.avatar === null ? <Text>Select a Photo</Text> :
+             { this.state.avatarUrl === null ? <Text>Select a Photo</Text> :
                <Image
                  style={styles.avatar}
-                 source={this.state.avatar}
+                 source={{ uri: this.state.avatarUrl }}
                  />
              }
            </View>
@@ -203,7 +200,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  avatar: state.user.user.avatar.avatar.url,
+  avatarUrl: state.user.user.avatarUrl,
   email: state.user.user.email,
   name: state.user.user.name,
   isFetchingAvatar: state.user.isFetchingAvatar,
