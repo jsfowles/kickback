@@ -121,6 +121,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
     body: {
       email: user.email,
       name: user.name,
+      avatar: user.avatarUrl,
     },
     requestCallback: (res) => {
       if (res.status !== 200) { return dispatch(fetchRequestFailure()); }
@@ -135,6 +136,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
     dispatch(addMessage('Your profile has been updated', 'success'));
+
     return dispatch(fetchUserSuccess(res));
   })
   .catch(_ => dispatch({ type: 'FETCH_USER_UPDATE_FAILURE' }));

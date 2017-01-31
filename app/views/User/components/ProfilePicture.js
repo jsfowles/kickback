@@ -1,18 +1,19 @@
 'use strict';
 import React from 'react';
 
-import Gravatar from './Gravatar.js';
-
 import {
   Text,
   StyleSheet,
   Animated,
+  Image,
 } from 'react-native';
 
 const ProfilePicture = ({ user, animatedStyles }) => (
   <Animated.View style={[ styles.container, animatedStyles ]}>
-    <Gravatar emailAddress={ user.email } style={ styles.profilePicture }/>
-
+    <Image
+      style={styles.profilePicture}
+      source={{ uri: user.avatarUrl }}
+      />
     <Text style={ styles.profileText }>{ user.email }</Text>
   </Animated.View>
 );
@@ -32,6 +33,11 @@ const styles = StyleSheet.create({
 
   profilePicture: {
     marginBottom: 9,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: 'white',
+    width: 80,
+    height: 80,
   },
 
   profileText: {
