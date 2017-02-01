@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 
 import { validateEmail } from '../../utils/validations';
 
@@ -55,31 +55,21 @@ class EditProfile extends React.Component {
   }
 
   selectPhotoTapped() {
-    const options = {
-      quality: 1.0,
-      maxWidth: 78,
-      maxHeight: 78,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      includeBase64: true,
+    }).then(image => {
+      console.log(image);
 
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.didCancel) {
-      }
-      else {
-        let source;
+      const source = `data:image/jpeg;base64,${image.data}`;
 
-        if (Platform.OS === 'ios') {
-          source = `data:image/jpeg;base64,${response.data}`;
-        } else {
-          source = { uri: response.uri.replace('file://', '') };
-        }
-
-        this.setState({
-          avatarUrl: source,
-        });
-      }
+      this.setState({
+        avatarUrl: source,
+      });
+    }).catch(res => {
+      console.log('User Cancelled');
     });
   }
 

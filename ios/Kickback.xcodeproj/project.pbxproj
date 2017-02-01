@@ -23,7 +23,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A1FF88898B56401557E9390F /* libPods-KickbackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC99C1F485F955EE8E487951 /* libPods-KickbackTests.a */; };
-		BE78A3701E40F26700C1E895 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78A36B1E40F26000C1E895 /* libAmplitude.a */; };
+		BE67EB341E41122200D1D28C /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE67EB2F1E41121600D1D28C /* libAmplitude.a */; };
 		BE988CAA1E40F5DB000DEB45 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE988C721E40F3CF000DEB45 /* libimageCropPicker.a */; };
 		BE9C821A1E2EA95800185967 /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BE9C82191E2EA95800185967 /* Amplitude */; };
 		BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */; };
@@ -113,23 +113,30 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		BE78A36A1E40F26000C1E895 /* PBXContainerItemProxy */ = {
+		BE67EB191E41119200D1D28C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */;
+			containerPortal = 4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
+			remoteInfo = imageCropPicker;
+		};
+		BE67EB2E1E41121600D1D28C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C05231A48E7FE00800C63;
 			remoteInfo = Amplitude;
 		};
-		BE78A36C1E40F26000C1E895 /* PBXContainerItemProxy */ = {
+		BE67EB301E41121600D1D28C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */;
+			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
 			remoteInfo = AmplitudeTests;
 		};
-		BE78A36E1E40F26000C1E895 /* PBXContainerItemProxy */ = {
+		BE67EB321E41121600D1D28C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */;
+			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 343AB4171CC99F4F00962943;
 			remoteInfo = AmplitudeFramework;
@@ -202,7 +209,7 @@
 		A1667B46D4995B0AF0DADF11 /* Pods-KickbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickbackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickbackTests/Pods-KickbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7FB078224D046249F025550 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		BC99C1F485F955EE8E487951 /* libPods-KickbackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KickbackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master 2/Amplitude.xcodeproj"; sourceTree = "<group>"; };
+		BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BE988CA81E40F5D3000DEB45 /* libRSKImageCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRSKImageCropper.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Kickback-cupqzzuewrvnvcefpcaylivkuwaa/Build/Products/Release-iphonesimulator/RSKImageCropper/libRSKImageCropper.a"; sourceTree = "<group>"; };
 		BE9C82191E2EA95800185967 /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
 		BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
@@ -232,8 +239,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE67EB341E41122200D1D28C /* libAmplitude.a in Frameworks */,
 				BE988CAA1E40F5DB000DEB45 /* libimageCropPicker.a in Frameworks */,
-				BE78A3701E40F26700C1E895 /* libAmplitude.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -391,7 +398,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */,
+				BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -443,12 +450,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BE78A3651E40F26000C1E895 /* Products */ = {
+		BE67EB141E41119200D1D28C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE78A36B1E40F26000C1E895 /* libAmplitude.a */,
-				BE78A36D1E40F26000C1E895 /* AmplitudeTests.xctest */,
-				BE78A36F1E40F26000C1E895 /* Amplitude.framework */,
+				BE67EB1A1E41119200D1D28C /* libimageCropPicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE67EB291E41121600D1D28C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE67EB2F1E41121600D1D28C /* libAmplitude.a */,
+				BE67EB311E41121600D1D28C /* AmplitudeTests.xctest */,
+				BE67EB331E41121600D1D28C /* Amplitude.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,8 +589,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BE78A3651E40F26000C1E895 /* Products */;
-					ProjectRef = BE78A3641E40F26000C1E895 /* Amplitude.xcodeproj */;
+					ProductGroup = BE67EB291E41121600D1D28C /* Products */;
+					ProjectRef = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
 				},
 				{
 					ProductGroup = BFF63BCA1D64C878006AF536 /* Products */;
@@ -584,6 +599,10 @@
 				{
 					ProductGroup = BE988C6A1E40F3CF000DEB45 /* Products */;
 					ProjectRef = B7FB078224D046249F025550 /* imageCropPicker.xcodeproj */;
+				},
+				{
+					ProductGroup = BE67EB141E41119200D1D28C /* Products */;
+					ProjectRef = 4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -717,25 +736,32 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE78A36B1E40F26000C1E895 /* libAmplitude.a */ = {
+		BE67EB1A1E41119200D1D28C /* libimageCropPicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimageCropPicker.a;
+			remoteRef = BE67EB191E41119200D1D28C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE67EB2F1E41121600D1D28C /* libAmplitude.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAmplitude.a;
-			remoteRef = BE78A36A1E40F26000C1E895 /* PBXContainerItemProxy */;
+			remoteRef = BE67EB2E1E41121600D1D28C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE78A36D1E40F26000C1E895 /* AmplitudeTests.xctest */ = {
+		BE67EB311E41121600D1D28C /* AmplitudeTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AmplitudeTests.xctest;
-			remoteRef = BE78A36C1E40F26000C1E895 /* PBXContainerItemProxy */;
+			remoteRef = BE67EB301E41121600D1D28C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE78A36F1E40F26000C1E895 /* Amplitude.framework */ = {
+		BE67EB331E41121600D1D28C /* Amplitude.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Amplitude.framework;
-			remoteRef = BE78A36E1E40F26000C1E895 /* PBXContainerItemProxy */;
+			remoteRef = BE67EB321E41121600D1D28C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BE988C721E40F3CF000DEB45 /* libimageCropPicker.a */ = {
@@ -1013,6 +1039,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1046,6 +1073,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1221,6 +1249,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1321,6 +1350,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "";
 				OTHER_LDFLAGS = (

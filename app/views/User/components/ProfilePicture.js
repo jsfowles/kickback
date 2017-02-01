@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
   Text,
@@ -8,18 +9,19 @@ import {
   Image,
 } from 'react-native';
 
-const ProfilePicture = ({ user, animatedStyles }) => (
+const ProfilePicture = ({ email, avatarUrl, animatedStyles }) => (
   <Animated.View style={[ styles.container, animatedStyles ]}>
     <Image
       style={styles.profilePicture}
-      source={{ uri: user.avatarUrl }}
-      />
-    <Text style={ styles.profileText }>{ user.email }</Text>
+      source={{ uri: avatarUrl }}
+    />
+    <Text style={ styles.profileText }>{ email }</Text>
   </Animated.View>
 );
 
 ProfilePicture.propTypes = {
-  user: React.PropTypes.object,
+  email: React.PropTypes.string,
+  avatarUrl: React.PropTypes.string,
   animatedStyles: React.PropTypes.object,
 };
 
@@ -47,4 +49,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfilePicture;
+const mapStateToProps = state => ({
+  email: state.user.user.email, // TODO: (js) if user.user is undefined we will crash, is this possible?
+  avatarUrl: state.user.user.avatarUrl,
+});
+
+export default connect(mapStateToProps)(ProfilePicture);

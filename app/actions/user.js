@@ -124,6 +124,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
       avatar: user.avatarUrl,
     },
     requestCallback: (res) => {
+      console.log(requestObj);
       if (res.status !== 200) { return dispatch(fetchRequestFailure()); }
       return dispatch(fetchSessionSuccess(formatSession(res)));
     },
@@ -133,6 +134,7 @@ export const updateUserProfile = user => (dispatch, getState) => {
 
   return new Request(requestObj)
   .then(res => {
+    console.log(res)
     dispatch({ type: 'FETCH_USER_UPDATE_SUCCESS' });
     dispatch(pop('profile'));
     dispatch(addMessage('Your profile has been updated', 'success'));
