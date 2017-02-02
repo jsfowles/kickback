@@ -1,24 +1,23 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
 import {
   ScrollView,
   Dimensions,
   PixelRatio,
-  View,
-} from 'react-native'
-import { connect } from 'react-redux'
+} from 'react-native';
+import { connect } from 'react-redux';
 
-import Card from './FeaturedSearchCard'
+import Card from './FeaturedSearchCard';
 import {
   changeCarouselPosition,
   requestProducts,
-} from '../../../actions'
+} from '../../../actions';
 
 const {
   height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+  width: deviceWidth,
+} = Dimensions.get('window');
 
 /**
  * @component: FeaturedSearchesCarosel
@@ -36,6 +35,9 @@ class FeaturedSearchesCarousel extends React.Component {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
     selectedIndex: React.PropTypes.number.isRequired,
+    searching: React.PropTypes.string.isRequired,
+    carouselPaused: React.PropTypes.func.isRequired,
+    requestProducts: React.PropTypes.func.isRequired,
   };
 
   /**
@@ -51,7 +53,7 @@ class FeaturedSearchesCarousel extends React.Component {
    */
   componentDidMount() {
     if (!this.props.searching) {
-      this.setupTimer()
+      this.setupTimer();
     }
   }
 
@@ -60,9 +62,9 @@ class FeaturedSearchesCarousel extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.searching !== this.props.searching && nextProps.searching) {
-      clearTimeout(this.timer)
+      clearTimeout(this.timer);
     } else if (nextProps.searching !== this.props.searching && !nextProps.searching) {
-      this.setupTimer()
+      this.setupTimer();
     }
   }
 
@@ -70,35 +72,35 @@ class FeaturedSearchesCarousel extends React.Component {
    * Make sure we clear the carousel when leaving the component
    */
   componentWillUnmount() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
   }
 
   /**
    * Timer function, we clear it at first to make sure there are no other instances, then we animateToNext after 5s
    */
   setupTimer = () => {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(this.animateToNext, 5000)
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.animateToNext, 5000);
   }
 
   /**
    * Animate to next figures out what the new pos is from the old postion, scrolls to it and restarts the timer.
    */
   animateToNext = () => {
-    let { featuredSearches, selectedIndex } = this.props
-    let newPosition = (featuredSearches.length === selectedIndex + 1) ? 0 : selectedIndex + 1
-    this.refs.scrollView.scrollTo({ x: newPosition * deviceWidth })
-    this.setupTimer()
+    let { featuredSearches, selectedIndex } = this.props;
+    let newPosition = (featuredSearches.length === selectedIndex + 1) ? 0 : selectedIndex + 1;
+    this.refs.scrollView.scrollTo({ x: newPosition * deviceWidth });
+    this.setupTimer();
   }
 
   /**
    * After scrolling we need to change the position in the store
    */
   handleMomentumScroll = (e) => {
-    let { carouselPaused, changeCarousepPosition } = this.props;
+    let { carouselPaused, changeCarouselPosition } = this.props;
 
     if (!carouselPaused) {
-      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth);
     }
   }
 
@@ -138,20 +140,20 @@ class FeaturedSearchesCarousel extends React.Component {
           />
         ))}
       </ScrollView>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  featuredSearches: state.productFeed.featuredSearches,
-  selectedIndex: state.productFeed.selectedIndex,
+  featuredSearches: state.feed.featuredSearches,
+  selectedIndex: state.feed.productFeed.selectedIndex,
   searching: state.search.searching,
-  carouselPaused: state.productFeed.carouselPaused,
-})
+  carouselPaused: state.feed.carouselPaused,
+});
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
   requestProducts: (s) => dispatch(requestProducts(s)),
-})
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel)
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel);

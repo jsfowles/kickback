@@ -12,6 +12,7 @@ import {
 import { fetchFeed } from '../../actions';
 import Container from '../shared/Container';
 import Products from '../Products';
+import FeaturedCarousel from './components/FeaturedSearchesCarousel';
 
 const FeaturedProducts = ({ feed, fetchFeed }) => (
   <Container style={ styles.container }>
@@ -24,6 +25,7 @@ const FeaturedProducts = ({ feed, fetchFeed }) => (
       products={ feed.products }
       cardSize={ 'large' }
       title={ 'FEATURED PRODUCTS' }
+      header={ <FeaturedCarousel /> }
       refreshControl={ <RefreshControl
         refreshing={ feed.isFetching }
         tintColor='#d4d9da'
@@ -36,6 +38,7 @@ const FeaturedProducts = ({ feed, fetchFeed }) => (
 
 FeaturedProducts.propTypes = {
   fetchFeed: React.PropTypes.func.isRequired,
+  featuredSearches: React.PropTypes.array.isRequired,
   feed: React.PropTypes.shape({
     products: React.PropTypes.array.isRequired,
   }).isRequired,
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   feed: state.feed,
+  featuredSearches: state.feed.featuredSearches,
 });
 
 const mapActionsToProps = dispatch => ({

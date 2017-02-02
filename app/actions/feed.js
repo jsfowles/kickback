@@ -16,3 +16,7 @@ export const fetchFeed = () => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', ...res }));
 };
+
+export const changeCarouselPosition = (pos) => ({
+  type: 'CHANGE_CAROUSEL_POSITION', pos,
+});
