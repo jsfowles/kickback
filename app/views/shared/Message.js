@@ -51,10 +51,8 @@ class Message extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.props.navigation.index) {
-      StatusBar.setHidden(false);
-      this.messagePosY.setValue(-36);
-    }
+    StatusBar.setHidden(false);
+    this.messagePosY.setValue(-36);
   }
 
   render() {
