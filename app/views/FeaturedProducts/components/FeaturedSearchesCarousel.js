@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import Card from './FeaturedSearchCard';
 import {
   changeCarouselPosition,
+  carouselPaused,
   fetchSearch,
 } from '../../../actions';
 
@@ -34,8 +35,9 @@ class FeaturedSearchesCarousel extends React.Component {
   static propTypes = {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
+    carouselPaused: React.PropTypes.func.isRequired,
     selectedIndex: React.PropTypes.number.isRequired,
-    searching: React.PropTypes.string,
+    route: React.PropTypes.object,
     fetchSearch: React.PropTypes.func.isRequired,
   };
 
@@ -51,18 +53,18 @@ class FeaturedSearchesCarousel extends React.Component {
    * When component mounts start the carousel
    */
   componentDidMount() {
-    if (!this.props.searching) {
+    if (!this.props.route.index) {
       this.setupTimer();
     }
   }
 
   /**
-   * Pausl carousel when search is up
+   * Paus carousel when search is up
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searching !== this.props.searching && nextProps.searching) {
+    if (nextProps.route.index !== this.props.route.index && nextProps.route.index) {
       clearTimeout(this.timer);
-    } else if (nextProps.searching !== this.props.searching && !nextProps.searching) {
+    } else if (nextProps.route.index !== this.props.route.index && !nextProps.route.index) {
       this.setupTimer();
     }
   }
@@ -133,7 +135,7 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ this.props.fetchSearch }
+            onPress={ () => this.props.fetchSearch(search.searchTerm) }
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
             searchTerm={ search.searchTerm }
           />
@@ -146,13 +148,13 @@ class FeaturedSearchesCarousel extends React.Component {
 const mapStateToProps = (state) => ({
   featuredSearches: state.feed.featuredSearches,
   selectedIndex: state.feed.productFeed.selectedIndex,
-  searching: state.search.searching,
-  carouselPaused: state.search.carouselPaused,
+  route: state.navigation.shopping,
+  carouselPaused: state.feed.productFeed.carouselPaused,
 });
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
-  fetchSearch: (s) => dispatch(fetchSearch(s)),
+  fetchSearch: (searchTerm) => dispatch(fetchSearch(searchTerm)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel);
