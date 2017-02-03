@@ -2,6 +2,9 @@
 
 import Request from '../utils/request';
 
+export const receiveProductFeed = (feed) => ({ type: 'RECEIVE_PRODUCT_FEED', feed });
+export const changeCarouselPosition = (pos) => ({ type: 'CHANGE_CAROUSEL_POSITION', pos });
+
 export const fetchFeed = () => (dispatch, getState) => {
   let { session } = getState().session;
 
@@ -16,7 +19,3 @@ export const fetchFeed = () => (dispatch, getState) => {
   return new Request(requestObj)
   .then(res => dispatch({ type: 'FETCH_PRODUCT_FEED_SUCCESS', ...res }));
 };
-
-export const changeCarouselPosition = (pos) => ({
-  type: 'CHANGE_CAROUSEL_POSITION', pos,
-});

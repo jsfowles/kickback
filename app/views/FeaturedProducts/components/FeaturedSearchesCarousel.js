@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import Card from './FeaturedSearchCard';
 import {
   changeCarouselPosition,
-  requestProducts,
+  fetchSearch,
 } from '../../../actions';
 
 const {
@@ -35,9 +35,8 @@ class FeaturedSearchesCarousel extends React.Component {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
     selectedIndex: React.PropTypes.number.isRequired,
-    searching: React.PropTypes.string.isRequired,
-    carouselPaused: React.PropTypes.func.isRequired,
-    requestProducts: React.PropTypes.func.isRequired,
+    searching: React.PropTypes.string,
+    fetchSearch: React.PropTypes.func.isRequired,
   };
 
   /**
@@ -134,7 +133,7 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ this.props.requestProducts }
+            onPress={ this.props.fetchSearch }
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
             searchTerm={ search.searchTerm }
           />
@@ -148,12 +147,12 @@ const mapStateToProps = (state) => ({
   featuredSearches: state.feed.featuredSearches,
   selectedIndex: state.feed.productFeed.selectedIndex,
   searching: state.search.searching,
-  carouselPaused: state.feed.carouselPaused,
+  carouselPaused: state.search.carouselPaused,
 });
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
-  requestProducts: (s) => dispatch(requestProducts(s)),
+  fetchSearch: (s) => dispatch(fetchSearch(s)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel);
