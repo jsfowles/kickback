@@ -25,6 +25,7 @@ import {
   fetchUser,
   triggerModal,
   fetchUserProducts,
+  updateUserProfile,
 } from '../../actions';
 
 const HEADER_HEIGHT = 350;
@@ -51,6 +52,7 @@ class User extends React.Component {
     products: React.PropTypes.array,
     triggerModal: React.PropTypes.func,
     handleNavigate: React.PropTypes.func,
+    updateUserProfile: React.PropTypes.func,
     fetchUserProducts: React.PropTypes.func.isRequired,
     isFetchingUserProducts: React.PropTypes.bool.isRequired,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
@@ -70,7 +72,7 @@ class User extends React.Component {
   }
 
   renderParallaxContent = () => {
-    return <ProfilePicture animatedStyles={ this.animatedStyles() } user={ this.props.user } />;
+    return <ProfilePicture animatedStyles={ this.animatedStyles() } />;
   }
 
   handleScroll = e => {
@@ -206,6 +208,7 @@ const mapActionsToProps = (dispatch) => ({
   setHasScrolled: () => dispatch(setHasScrolled('user')),
   scrollToTop: () => dispatch(scrollToTop()),
   setCurrentRoute: () => dispatch(setCurrentRoute('user')),
+  updateUserProfile: () => dispatch(updateUserProfile()),
   fetchUser: () => dispatch(fetchUser()),
   fetchUserProducts: () => dispatch(fetchUserProducts()),
 });

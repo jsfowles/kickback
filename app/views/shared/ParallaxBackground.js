@@ -29,8 +29,8 @@ class ParallaxBackground extends React.Component {
         <LinearGradient
           style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           colors={[ '#28b5f5', '#34D5d0' ]}
-          start={[ 0.75, 0 ]}
-          end={[ 0, 1 ]}
+          start={{ x: 0.75, y:0 }}
+          end={{ x:0, y:1 }}
         >
           { this.props.children }
         </LinearGradient>

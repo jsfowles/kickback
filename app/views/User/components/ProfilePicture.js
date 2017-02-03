@@ -1,24 +1,27 @@
 'use strict';
 import React from 'react';
-
-import Gravatar from './Gravatar.js';
+import { connect } from 'react-redux';
 
 import {
   Text,
   StyleSheet,
   Animated,
+  Image,
 } from 'react-native';
 
-const ProfilePicture = ({ user, animatedStyles }) => (
+const ProfilePicture = ({ email, avatarUrl, animatedStyles }) => (
   <Animated.View style={[ styles.container, animatedStyles ]}>
-    <Gravatar emailAddress={ user.email } style={ styles.profilePicture }/>
-
-    <Text style={ styles.profileText }>{ user.email }</Text>
+    <Image
+      style={styles.profilePicture}
+      source={{ uri: avatarUrl }}
+    />
+    <Text style={ styles.profileText }>{ email }</Text>
   </Animated.View>
 );
 
 ProfilePicture.propTypes = {
-  user: React.PropTypes.object,
+  email: React.PropTypes.string,
+  avatarUrl: React.PropTypes.string,
   animatedStyles: React.PropTypes.object,
 };
 
@@ -32,6 +35,11 @@ const styles = StyleSheet.create({
 
   profilePicture: {
     marginBottom: 9,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: 'white',
+    width: 80,
+    height: 80,
   },
 
   profileText: {
@@ -41,4 +49,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfilePicture;
+const mapStateToProps = state => ({
+  email: state.user.user.email, // TODO: (js) if user.user is undefined we will crash, is this possible?
+  avatarUrl: state.user.user.avatarUrl,
+});
+
+export default connect(mapStateToProps)(ProfilePicture);
