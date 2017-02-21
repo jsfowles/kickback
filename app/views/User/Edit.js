@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import {
   View,
   TouchableOpacity,
+  PixelRatio,
   Text,
   StyleSheet,
+  Platform,
+  Image,
 } from 'react-native';
 
-import Gravatar from './components/Gravatar.js';
+import ImagePicker from 'react-native-image-crop-picker';
 
 import { validateEmail } from '../../utils/validations';
 
@@ -24,6 +27,8 @@ class EditProfile extends React.Component {
     updateUserProfile: React.PropTypes.func,
     email: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
+    avatarUrl: React.PropTypes.string,
+    isFetchingAvatarUrl: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
     isFetchingName: React.PropTypes.bool,
     isFetchingUserProfile: React.PropTypes.bool.isRequired,
@@ -33,19 +38,39 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
+      avatarUrl: this.props.avatarUrl,
       name: this.props.name,
       email: this.props.email,
     };
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email) {
-      this.setState({ email: nextProps.email, name: nextProps.name });
+    if (nextProps.name !== this.props.name || nextProps.email !== this.props.email ) {
+      this.setState({ email: nextProps.email, name: nextProps.name, avatarUrl: nextProps.avatarUrl });
     }
   }
 
   onInputChange = (v, k) => {
     this.setState({ [k]: v });
+  }
+
+  selectPhotoTapped() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      includeBase64: true,
+    }).then(image => {
+      console.log(image);
+
+      const source = `data:image/jpeg;base64,${image.data}`;
+
+      this.setState({
+        avatarUrl: source,
+      });
+    }).catch(res => {
+      console.log('User Cancelled');
+    });
   }
 
   render() {
@@ -71,7 +96,15 @@ class EditProfile extends React.Component {
         }}
       >
         <View style={ styles.profilePicContainer }>
-          <Gravatar emailAddress={ this.state.email } style={ styles.profilePic } />
+          <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+            <View style={[ styles.avatar, styles.avatarContainer ]}>
+               <Image
+                 style={styles.avatar}
+                 source={{ uri: this.state.avatarUrl }}
+                 />
+           </View>
+           <Text style={ styles.editLabel}>Edit</Text>
+         </TouchableOpacity>
         </View>
 
         <View style={ styles.formContainer }>
@@ -103,14 +136,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  profilePic: {
-    borderWidth: 0,
-    marginBottom: 9,
-  },
-
   editLabel: {
     color: '#6d7577',
     fontSize: 16,
+    marginTop: 9,
     textAlign: 'center',
   },
 
@@ -127,11 +156,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#e8edef',
     height: 1,
   },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+
+  avatarContainer: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1 / PixelRatio.get(),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  avatar: {
+    borderRadius: 40,
+    width: 80,
+    height: 80,
+  },
 });
 
 const mapStateToProps = state => ({
+  avatarUrl: state.user.user.avatarUrl,
   email: state.user.user.email,
   name: state.user.user.name,
+  isFetchingAvatar: state.user.isFetchingAvatar,
   isFetchingName: state.user.isFetchingName,
   isFetchingEmail: state.user.isFetchingEmail,
   isFetchingUserProfile: state.user.isFetchingUserProfile,
