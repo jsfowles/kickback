@@ -58,12 +58,12 @@ class FeaturedSearchesCarousel extends React.Component {
   }
 
   /**
-   * Paus carousel when search is up
+   * Pause carousel when search is up
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.route.index !== this.props.route.index && nextProps.route.index) {
+    if (nextProps.tabs || nextProps.route.index !== this.props.route.index && nextProps.route.index) {
       clearTimeout(this.timer);
-    } else if (nextProps.route.index !== this.props.route.index && !nextProps.route.index) {
+    } else if (!nextProps.tabs || nextProps.route.index !== this.props.route.index && !nextProps.route.index) {
       this.setupTimer();
     }
   }
@@ -72,6 +72,7 @@ class FeaturedSearchesCarousel extends React.Component {
    * Make sure we clear the carousel when leaving the component
    */
   componentWillUnmount() {
+    console.log("UNMOUNT");
     clearTimeout(this.timer);
   }
 
@@ -110,7 +111,6 @@ class FeaturedSearchesCarousel extends React.Component {
   beginDrag = () => clearTimeout(this.timer)
 
   render() {
-
     return (
       <ScrollView
         ref='scrollView'
@@ -146,6 +146,7 @@ class FeaturedSearchesCarousel extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  tabs: state.tabs.index,
   featuredSearches: state.feed.featuredSearches,
   selectedIndex: state.feed.productFeed.selectedIndex,
   route: state.navigation.shopping,
