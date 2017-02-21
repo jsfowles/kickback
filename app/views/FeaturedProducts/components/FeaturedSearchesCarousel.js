@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import Card from './FeaturedSearchCard';
 import {
   changeCarouselPosition,
-  carouselPaused,
   fetchSearch,
 } from '../../../actions';
 
@@ -35,9 +34,9 @@ class FeaturedSearchesCarousel extends React.Component {
   static propTypes = {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
-    carouselPaused: React.PropTypes.func.isRequired,
+    carouselPaused: React.PropTypes.func,
     selectedIndex: React.PropTypes.number.isRequired,
-    route: React.PropTypes.object,
+    route: React.PropTypes.object.isRequired,
     fetchSearch: React.PropTypes.func.isRequired,
   };
 
@@ -111,6 +110,7 @@ class FeaturedSearchesCarousel extends React.Component {
   beginDrag = () => clearTimeout(this.timer)
 
   render() {
+
     return (
       <ScrollView
         ref='scrollView'
@@ -135,7 +135,7 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ () => this.props.fetchSearch(search.searchTerm) }
+            onPress={ () => this.props.fetchSearch( search.searchTerm )}
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
             searchTerm={ search.searchTerm }
           />
