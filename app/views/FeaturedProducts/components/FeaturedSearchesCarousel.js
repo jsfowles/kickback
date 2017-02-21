@@ -26,7 +26,7 @@ const {
  *               Updates on app active state change.
  * @props: featuredSearches - Array of Objects
  * @props: changeCarouselPosition - function - sends the new carousel position to the reducer
- * @props: selectedIndex - tells the component what slide the carousel is on
+ * @props: carouselPosition - tells the component what slide the carousel is on
  *
  * @TODO: Figure out if the bg we have is what we want to do. We might want to content offset top to show a different color if scolled up.
  */
@@ -35,7 +35,7 @@ class FeaturedSearchesCarousel extends React.Component {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
     carouselPaused: React.PropTypes.func,
-    selectedIndex: React.PropTypes.number.isRequired,
+    carouselPosition: React.PropTypes.number.isRequired,
     route: React.PropTypes.object.isRequired,
     fetchSearch: React.PropTypes.func.isRequired,
   };
@@ -72,7 +72,6 @@ class FeaturedSearchesCarousel extends React.Component {
    * Make sure we clear the carousel when leaving the component
    */
   componentWillUnmount() {
-    console.log("UNMOUNT");
     clearTimeout(this.timer);
   }
 
@@ -88,8 +87,8 @@ class FeaturedSearchesCarousel extends React.Component {
    * Animate to next figures out what the new pos is from the old postion, scrolls to it and restarts the timer.
    */
   animateToNext = () => {
-    let { featuredSearches, selectedIndex } = this.props;
-    let newPosition = (featuredSearches.length === selectedIndex + 1) ? 0 : selectedIndex + 1;
+    let { featuredSearches, carouselPosition } = this.props;
+    let newPosition = (featuredSearches.length === carouselPosition + 1) ? 0 : carouselPosition + 1;
     this.refs.scrollView.scrollTo({ x: newPosition * deviceWidth });
     this.setupTimer();
   }
@@ -114,7 +113,7 @@ class FeaturedSearchesCarousel extends React.Component {
     return (
       <ScrollView
         ref='scrollView'
-        contentOffset={{ x: deviceWidth * this.props.selectedIndex, y: 0 }}
+        contentOffset={{ x: deviceWidth * this.props.carouselPosition, y: 0 }}
         horizontal={ true }
         style={{ backgroundColor: '#f7f8f9' }}
         automaticallyAdjustContentInsets={ false }
@@ -148,9 +147,8 @@ class FeaturedSearchesCarousel extends React.Component {
 const mapStateToProps = (state) => ({
   tabs: state.tabs.index,
   featuredSearches: state.feed.featuredSearches,
-  selectedIndex: state.feed.productFeed.selectedIndex,
+  carouselPosition: state.feed.carouselPosition,
   route: state.navigation.shopping,
-  carouselPaused: state.feed.productFeed.carouselPaused,
 });
 
 const mapActionsToProps = (dispatch) => ({

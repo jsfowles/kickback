@@ -5,11 +5,6 @@ import { isFetching as baseFetching } from './fetching';
 
 const products = baseProduct.products('PRODUCT_FEED');
 const isFetching = baseFetching('PRODUCT_FEED');
-const initialState = {
-  featuredSearches: [],
-  products: [],
-  selectedIndex: 0,
-};
 
 const featuredCategories = (state = [], action) => {
   switch (action.type) {
@@ -27,19 +22,10 @@ const featuredSearches = (state = [], action) => {
   }
 };
 
-const productFeed = (state = initialState, action) => {
+const carouselPosition = (state = 0, action) => {
   switch (action.type) {
-    case 'RECEIVE_PRODUCT_FEED':
-      return {
-        ...state,
-        products: action.feed.products,
-        featuredSearches: action.feed.featuredSearches,
-      };
     case 'CHANGE_CAROUSEL_POSITION':
-      return {
-        ...state,
-        selectedIndex: action.pos,
-      };
+      return action.pos;
     default:
       return state;
   }
@@ -50,5 +36,5 @@ export default combineReducers({
   isFetching,
   featuredCategories,
   featuredSearches,
-  productFeed,
+  carouselPosition,
 });
