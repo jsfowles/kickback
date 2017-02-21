@@ -14,8 +14,27 @@ const featuredCategories = (state = [], action) => {
   }
 };
 
+const featuredSearches = (state = [], action) => {
+  switch (action.type) {
+    case 'FETCH_PRODUCT_FEED_SUCCESS':
+      return action.featuredSearches;
+    default: return state;
+  }
+};
+
+const carouselPosition = (state = 0, action) => {
+  switch (action.type) {
+    case 'CHANGE_CAROUSEL_POSITION':
+      return action.pos;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   products,
   isFetching,
   featuredCategories,
+  featuredSearches,
+  carouselPosition,
 });

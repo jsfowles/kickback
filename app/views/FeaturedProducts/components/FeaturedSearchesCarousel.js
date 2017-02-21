@@ -1,24 +1,23 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
 import {
   ScrollView,
   Dimensions,
   PixelRatio,
-  View,
-} from 'react-native'
-import { connect } from 'react-redux'
+} from 'react-native';
+import { connect } from 'react-redux';
 
-import Card from './FeaturedSearchCard'
+import Card from './FeaturedSearchCard';
 import {
   changeCarouselPosition,
-  requestProducts,
-} from '../../../actions'
+  fetchSearch,
+} from '../../../actions';
 
 const {
   height: deviceHeight,
-  width: deviceWidth
-} = Dimensions.get('window')
+  width: deviceWidth,
+} = Dimensions.get('window');
 
 /**
  * @component: FeaturedSearchesCarosel
@@ -27,7 +26,7 @@ const {
  *               Updates on app active state change.
  * @props: featuredSearches - Array of Objects
  * @props: changeCarouselPosition - function - sends the new carousel position to the reducer
- * @props: selectedIndex - tells the component what slide the carousel is on
+ * @props: carouselPosition - tells the component what slide the carousel is on
  *
  * @TODO: Figure out if the bg we have is what we want to do. We might want to content offset top to show a different color if scolled up.
  */
@@ -35,7 +34,10 @@ class FeaturedSearchesCarousel extends React.Component {
   static propTypes = {
     featuredSearches: React.PropTypes.array.isRequired,
     changeCarouselPosition: React.PropTypes.func.isRequired,
-    selectedIndex: React.PropTypes.number.isRequired,
+    carouselPaused: React.PropTypes.func,
+    carouselPosition: React.PropTypes.number.isRequired,
+    route: React.PropTypes.object.isRequired,
+    fetchSearch: React.PropTypes.func.isRequired,
   };
 
   /**
@@ -50,19 +52,19 @@ class FeaturedSearchesCarousel extends React.Component {
    * When component mounts start the carousel
    */
   componentDidMount() {
-    if (!this.props.searching) {
-      this.setupTimer()
+    if (!this.props.route.index) {
+      this.setupTimer();
     }
   }
 
   /**
-   * Pausl carousel when search is up
+   * Pause carousel when search is up
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searching !== this.props.searching && nextProps.searching) {
-      clearTimeout(this.timer)
-    } else if (nextProps.searching !== this.props.searching && !nextProps.searching) {
-      this.setupTimer()
+    if (nextProps.tabs || nextProps.route.index !== this.props.route.index && nextProps.route.index) {
+      clearTimeout(this.timer);
+    } else if (!nextProps.tabs || nextProps.route.index !== this.props.route.index && !nextProps.route.index) {
+      this.setupTimer();
     }
   }
 
@@ -70,35 +72,35 @@ class FeaturedSearchesCarousel extends React.Component {
    * Make sure we clear the carousel when leaving the component
    */
   componentWillUnmount() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
   }
 
   /**
    * Timer function, we clear it at first to make sure there are no other instances, then we animateToNext after 5s
    */
   setupTimer = () => {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(this.animateToNext, 5000)
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.animateToNext, 5000);
   }
 
   /**
    * Animate to next figures out what the new pos is from the old postion, scrolls to it and restarts the timer.
    */
   animateToNext = () => {
-    let { featuredSearches, selectedIndex } = this.props
-    let newPosition = (featuredSearches.length === selectedIndex + 1) ? 0 : selectedIndex + 1
-    this.refs.scrollView.scrollTo({ x: newPosition * deviceWidth })
-    this.setupTimer()
+    let { featuredSearches, carouselPosition } = this.props;
+    let newPosition = (featuredSearches.length === carouselPosition + 1) ? 0 : carouselPosition + 1;
+    this.refs.scrollView.scrollTo({ x: newPosition * deviceWidth });
+    this.setupTimer();
   }
 
   /**
    * After scrolling we need to change the position in the store
    */
   handleMomentumScroll = (e) => {
-    let { carouselPaused, changeCarousepPosition } = this.props;
+    let { carouselPaused, changeCarouselPosition } = this.props;
 
     if (!carouselPaused) {
-      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth)
+      changeCarouselPosition(e.nativeEvent.contentOffset.x / deviceWidth);
     }
   }
 
@@ -111,7 +113,7 @@ class FeaturedSearchesCarousel extends React.Component {
     return (
       <ScrollView
         ref='scrollView'
-        contentOffset={{ x: deviceWidth * this.props.selectedIndex, y: 0 }}
+        contentOffset={{ x: deviceWidth * this.props.carouselPosition, y: 0 }}
         horizontal={ true }
         style={{ backgroundColor: '#f7f8f9' }}
         automaticallyAdjustContentInsets={ false }
@@ -132,26 +134,26 @@ class FeaturedSearchesCarousel extends React.Component {
           <Card
             key={ i }
             dimensions={ FeaturedSearchesCarousel.slide }
-            onPress={ this.props.requestProducts }
+            onPress={ () => this.props.fetchSearch( search.searchTerm )}
             imageUrl={ `${search.imageUrl}%40${PixelRatio.get()}x.jpg` }
             searchTerm={ search.searchTerm }
           />
         ))}
       </ScrollView>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  featuredSearches: state.productFeed.featuredSearches,
-  selectedIndex: state.productFeed.selectedIndex,
-  searching: state.search.searching,
-  carouselPaused: state.productFeed.carouselPaused,
-})
+  tabs: state.tabs.index,
+  featuredSearches: state.feed.featuredSearches,
+  carouselPosition: state.feed.carouselPosition,
+  route: state.navigation.shopping,
+});
 
 const mapActionsToProps = (dispatch) => ({
   changeCarouselPosition: (i) => dispatch(changeCarouselPosition(i)),
-  requestProducts: (s) => dispatch(requestProducts(s)),
-})
+  fetchSearch: (searchTerm) => dispatch(fetchSearch(searchTerm)),
+});
 
-export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel)
+export default connect(mapStateToProps, mapActionsToProps)(FeaturedSearchesCarousel);

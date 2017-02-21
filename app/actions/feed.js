@@ -2,6 +2,8 @@
 
 import Request from '../utils/request';
 
+export const changeCarouselPosition = (pos) => ({ type: 'CHANGE_CAROUSEL_POSITION', pos });
+
 export const fetchFeed = () => (dispatch, getState) => {
   let { session } = getState().session;
 
