@@ -12,7 +12,7 @@
     "nock": "^8.0.0",
     "react": "~15.3.1",
     "react-native": "^0.33.0",
-    "react-native-image-crop-picker": "^0.11.2",
+    "react-native-image-crop-picker": "git+https://github.com/magrinj/react-native-image-crop-picker.git#fix-rkimagecropper",
     "react-native-linear-gradient": "^1.5.7",
     "react-native-shimmer": "^0.1.0",
     "react-native-video": "^0.9.0",

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -23,8 +22,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A1FF88898B56401557E9390F /* libPods-KickbackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC99C1F485F955EE8E487951 /* libPods-KickbackTests.a */; };
-		BE67EB341E41122200D1D28C /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE67EB2F1E41121600D1D28C /* libAmplitude.a */; };
-		BE988CAA1E40F5DB000DEB45 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE988C721E40F3CF000DEB45 /* libimageCropPicker.a */; };
+		BE41BC8F1E941E2800FB3387 /* libAmplitude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE41BC711E941E1A00FB3387 /* libAmplitude.a */; };
 		BE9C821A1E2EA95800185967 /* Amplitude in Resources */ = {isa = PBXBuildFile; fileRef = BE9C82191E2EA95800185967 /* Amplitude */; };
 		BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */; };
 		BEF617F41E146A0A00CBD1A2 /* RNAmplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF617F31E146A0A00CBD1A2 /* RNAmplitude.m */; };
@@ -33,6 +31,7 @@
 		BFB1DE671D66559F001852E8 /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF63BDD1D64C878006AF536 /* libRNShimmer.a */; };
 		BFB1DE681D6655A1001852E8 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF63BCE1D64C878006AF536 /* libBVLinearGradient.a */; };
 		DF6325D3CEF8CB6B65AC1371 /* libPods-Kickback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8AD514A4B236913CC863A8 /* libPods-Kickback.a */; };
+		7DE0F9A0A7EE4B1E861BC967 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D35649AD13341CDAB8594A1 /* libimageCropPicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,33 +112,33 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		BE67EB191E41119200D1D28C /* PBXContainerItemProxy */ = {
+		BE41BC701E941E1A00FB3387 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
-			remoteInfo = imageCropPicker;
-		};
-		BE67EB2E1E41121600D1D28C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
+			containerPortal = BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C05231A48E7FE00800C63;
 			remoteInfo = Amplitude;
 		};
-		BE67EB301E41121600D1D28C /* PBXContainerItemProxy */ = {
+		BE41BC721E941E1A00FB3387 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
+			containerPortal = BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
 			remoteInfo = AmplitudeTests;
 		};
-		BE67EB321E41121600D1D28C /* PBXContainerItemProxy */ = {
+		BE41BC741E941E1A00FB3387 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
+			containerPortal = BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 343AB4171CC99F4F00962943;
 			remoteInfo = AmplitudeFramework;
+		};
+		BE41BC761E941E1A00FB3387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 600CBC5C1E2EF5B0001F58A9;
+			remoteInfo = AmplitudeTVOSTests;
 		};
 		BE988C711E40F3CF000DEB45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -199,7 +198,6 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2DC7657A6E235B6C62A30144 /* Pods-KickbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickbackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickbackTests/Pods-KickbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		407CD46C814F490D8CD9443A /* RNShimmer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShimmer.xcodeproj; path = "../node_modules/react-native-shimmer/ios/RNShimmer.xcodeproj"; sourceTree = "<group>"; };
-		4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ImageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/ImageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		5463042C92C5408887A813DB /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		7736CABDB84D541FFFA52FDC /* Pods-Kickback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kickback.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kickback/Pods-Kickback.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -209,7 +207,7 @@
 		A1667B46D4995B0AF0DADF11 /* Pods-KickbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickbackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickbackTests/Pods-KickbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7FB078224D046249F025550 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		BC99C1F485F955EE8E487951 /* libPods-KickbackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KickbackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
+		BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../../Downloads/Amplitude-iOS-master/Amplitude.xcodeproj"; sourceTree = "<group>"; };
 		BE988CA81E40F5D3000DEB45 /* libRSKImageCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRSKImageCropper.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Kickback-cupqzzuewrvnvcefpcaylivkuwaa/Build/Products/Release-iphonesimulator/RSKImageCropper/libRSKImageCropper.a"; sourceTree = "<group>"; };
 		BE9C82191E2EA95800185967 /* Amplitude */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Amplitude; sourceTree = "<group>"; };
 		BEAD88DB1DE647200014E8B8 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
@@ -223,6 +221,8 @@
 		CD8AD514A4B236913CC863A8 /* libPods-Kickback.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kickback.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6AEA77241EB1FCCFDAD003 /* Pods-Kickback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kickback.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kickback/Pods-Kickback.release.xcconfig"; sourceTree = "<group>"; };
 		D259573FB8C63542AFAFDDB4 /* Pods-KickbackTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickbackTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-KickbackTests/Pods-KickbackTests.beta.xcconfig"; sourceTree = "<group>"; };
+		7E87B1235B7D43568124AB79 /* ImageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "ImageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/ImageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2D35649AD13341CDAB8594A1 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,8 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE67EB341E41122200D1D28C /* libAmplitude.a in Frameworks */,
-				BE988CAA1E40F5DB000DEB45 /* libimageCropPicker.a in Frameworks */,
+				BE41BC8F1E941E2800FB3387 /* libAmplitude.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -256,6 +255,7 @@
 				BFB1DE661D66559B001852E8 /* libRCTVideo.a in Frameworks */,
 				BEAD88EE1DE6477A0014E8B8 /* libRCTPushNotification.a in Frameworks */,
 				DF6325D3CEF8CB6B65AC1371 /* libPods-Kickback.a in Frameworks */,
+				7DE0F9A0A7EE4B1E861BC967 /* libimageCropPicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +398,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */,
+				BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -414,7 +414,7 @@
 				407CD46C814F490D8CD9443A /* RNShimmer.xcodeproj */,
 				5463042C92C5408887A813DB /* RCTVideo.xcodeproj */,
 				B7FB078224D046249F025550 /* imageCropPicker.xcodeproj */,
-				4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */,
+				7E87B1235B7D43568124AB79 /* ImageCropPicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -450,20 +450,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BE67EB141E41119200D1D28C /* Products */ = {
+		BE41BC6A1E941E1A00FB3387 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE67EB1A1E41119200D1D28C /* libimageCropPicker.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BE67EB291E41121600D1D28C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BE67EB2F1E41121600D1D28C /* libAmplitude.a */,
-				BE67EB311E41121600D1D28C /* AmplitudeTests.xctest */,
-				BE67EB331E41121600D1D28C /* Amplitude.framework */,
+				BE41BC711E941E1A00FB3387 /* libAmplitude.a */,
+				BE41BC731E941E1A00FB3387 /* AmplitudeTests.xctest */,
+				BE41BC751E941E1A00FB3387 /* Amplitude.framework */,
+				BE41BC771E941E1A00FB3387 /* AmplitudeTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -559,7 +552,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 730;
+				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -589,8 +582,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BE67EB291E41121600D1D28C /* Products */;
-					ProjectRef = BE67EB281E41121600D1D28C /* Amplitude.xcodeproj */;
+					ProductGroup = BE41BC6A1E941E1A00FB3387 /* Products */;
+					ProjectRef = BE41BC691E941E1A00FB3387 /* Amplitude.xcodeproj */;
 				},
 				{
 					ProductGroup = BFF63BCA1D64C878006AF536 /* Products */;
@@ -599,10 +592,6 @@
 				{
 					ProductGroup = BE988C6A1E40F3CF000DEB45 /* Products */;
 					ProjectRef = B7FB078224D046249F025550 /* imageCropPicker.xcodeproj */;
-				},
-				{
-					ProductGroup = BE67EB141E41119200D1D28C /* Products */;
-					ProjectRef = 4ED3C2F0FED34828A37CBD97 /* ImageCropPicker.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -736,39 +725,32 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE67EB1A1E41119200D1D28C /* libimageCropPicker.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libimageCropPicker.a;
-			remoteRef = BE67EB191E41119200D1D28C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BE67EB2F1E41121600D1D28C /* libAmplitude.a */ = {
+		BE41BC711E941E1A00FB3387 /* libAmplitude.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAmplitude.a;
-			remoteRef = BE67EB2E1E41121600D1D28C /* PBXContainerItemProxy */;
+			remoteRef = BE41BC701E941E1A00FB3387 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE67EB311E41121600D1D28C /* AmplitudeTests.xctest */ = {
+		BE41BC731E941E1A00FB3387 /* AmplitudeTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AmplitudeTests.xctest;
-			remoteRef = BE67EB301E41121600D1D28C /* PBXContainerItemProxy */;
+			remoteRef = BE41BC721E941E1A00FB3387 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE67EB331E41121600D1D28C /* Amplitude.framework */ = {
+		BE41BC751E941E1A00FB3387 /* Amplitude.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Amplitude.framework;
-			remoteRef = BE67EB321E41121600D1D28C /* PBXContainerItemProxy */;
+			remoteRef = BE41BC741E941E1A00FB3387 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BE988C721E40F3CF000DEB45 /* libimageCropPicker.a */ = {
+		BE41BC771E941E1A00FB3387 /* AmplitudeTVOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libimageCropPicker.a;
-			remoteRef = BE988C711E40F3CF000DEB45 /* PBXContainerItemProxy */;
+			fileType = wrapper.cfbundle;
+			path = AmplitudeTVOSTests.xctest;
+			remoteRef = BE41BC761E941E1A00FB3387 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BEAD88E61DE647200014E8B8 /* libRCTPushNotification.a */ = {
@@ -985,9 +967,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1006,9 +985,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1035,7 +1011,6 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
@@ -1070,7 +1045,6 @@
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1099,8 +1073,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1109,6 +1085,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1129,9 +1106,8 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1151,8 +1127,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1160,6 +1138,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1174,9 +1153,8 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1196,8 +1174,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1205,6 +1185,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1219,9 +1200,8 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1245,7 +1225,6 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
@@ -1274,9 +1253,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1297,8 +1273,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1306,6 +1284,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1320,9 +1299,8 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1346,7 +1324,6 @@
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = Kickback/Info.plist;
@@ -1375,9 +1352,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";

@@ -10,8 +10,6 @@ export const EarningsInfo = ({ user }) => (
   <UserModal
     description='Get paid for referring products'
     icon={ require('image!earnings') }
-    linkText='See How Kickback Works'
-    linkAction={ () => console.log('Navigate to something') }
   >
     <View>
       <Text style={ styles.earningsLabel }>Total Earned</Text>
