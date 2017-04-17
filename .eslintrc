@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "flowtype"],
+  "extends": ["airbnb"],
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "import/prefer-default-export": 0,
+    "react/no-unused-prop-types": 0,
+    "camelcase": 0,
+    "react/jsx-curly-spacing": [ 2, "always", {"spacing": { "objectLiterals": "never" }}],
+    "array-bracket-spacing": ["error", "always"],
+  },
+  "globals": {
+    "fetch": true,
+    "window": true,
+    "document": true,
+    "localStorage": true
+  }
+}
