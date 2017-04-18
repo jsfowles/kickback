@@ -46,7 +46,7 @@ const SearchBtn = ({
         ]}
       >
         <Image
-          source={ require('image!search') }
+          source={ require('./assets/images/search.png') }
           style={{ marginRight: 5 }}
           onLayout={ (e) => onLayout(e, 'searchIconLayout') }
         />

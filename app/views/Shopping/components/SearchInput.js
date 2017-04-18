@@ -21,7 +21,7 @@ const SearchInput = ({
       width: buttonWidth,
       transform: [{ translateX: buttonPosX },
     ]}}>
-      <Image source={ require('image!search') } style={{ position: 'absolute', top: 8, left: 8 }} />
+      <Image source={ require('./assets/images/search.png')  } style={{ position: 'absolute', top: 8, left: 8 }} />
       <TextInput
         value={ value }
         style={[ inputStyles, styles.input ]}

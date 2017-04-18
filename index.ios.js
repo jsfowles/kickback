@@ -8,4 +8,4 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import setup from './app/utils/setup';
 
-AppRegistry.registerComponent('kickback', setup);
+AppRegistry.registerComponent('Kickback', setup);

@@ -12,7 +12,7 @@ const CloseBtn = ({ onPress, color, style }) => (
     underlayColor='transparent'
   >
     <Image
-      source={ require('image!close') }
+      source={ require('./assets/images/close.png') }
       style={{ tintColor: color }}
     />
   </TouchableHighlight>

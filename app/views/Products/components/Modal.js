@@ -49,11 +49,11 @@ class ProductModal extends React.Component {
         headerColors={[ '#45baef', '#34bcd5' ]}
         title={ `http://${product.link.shortenedUrl}` }
         leftItem={{
-          icon: require('image!close'),
+          icon: require('./assets/images/close.png'),
           onPress: closeModal,
         }}
         rightItem={{
-          icon: require('image!share'),
+          icon: require('./assets/images/share.png'),
           onPress: () => recommendProduct(product),
         }}
       >

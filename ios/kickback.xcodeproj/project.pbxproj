@@ -13,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* kickbackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kickbackTests.m */; };
+		0BE4BB4E409D4AC5B60EC51F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F11FBAB8C2294C0A83F07A64 /* libRCTVideo.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -22,7 +23,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4C21E0B4AEC006451C7 /* libRCTAnimation-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */; };
@@ -34,12 +34,16 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* kickbackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kickbackTests.m */; };
-		3655DA8679946EC0AF1260CD /* libPods-kickback-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99464CDB6AD1A00E531FE07C /* libPods-kickback-tvOS.a */; };
+		3A43A0DC4E597CE4B8DAF427 /* libPods-kickback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B063ED236DFE0A2854B8BF1 /* libPods-kickback.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		6AE77CF2F7641DC4C521E347 /* libPods-kickback-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD21B03D0058777D7F2D401E /* libPods-kickback-tvOSTests.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8531E26E298E413F40AA73BA /* libPods-kickback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A2216EDACE24C96677EA88 /* libPods-kickback.a */; };
-		8B670EC69F4E0B5600454E42 /* libPods-kickbackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8428E4B132BE9547FE34F0DA /* libPods-kickbackTests.a */; };
+		BE1E25141EA567F100EACDE4 /* libAmplitude-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E25131EA567F100EACDE4 /* libAmplitude-iOS.a */; };
+		BECEA2E71EA6764100F7D589 /* RNAmplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = BECEA2E61EA6764100F7D589 /* RNAmplitude.m */; };
+		BED8689A1EA6697400AE9F90 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BED868861EA6693C00AE9F90 /* libRCTPushNotification.a */; };
+		BEFCBC4B1EA54B9A002FFD37 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAF1C6A1EA5193400A44C64 /* libimageCropPicker.a */; };
+		BEFCBC4C1EA54BA4002FFD37 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0843CC1EA5344F0046882E /* libBVLinearGradient.a */; };
+		BEFCBC4E1EA54BB5002FFD37 /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE08441A1EA5348A0046882E /* libRNShimmer.a */; };
+		C4A464AE26D42A65F815AA48 /* libPods-kickbackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE2E365D6CD0FE1D5B3FDDD /* libPods-kickbackTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +236,76 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		BE0843CB1EA5344F0046882E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 404B865DDB3A44CEB1822DE8 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		BE0844191EA5348A0046882E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D93B7C4B0333402D85DFD101 /* RNShimmer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D7E4C681C88C61600B72F0C;
+			remoteInfo = RNShimmer;
+		};
+		BE1E256E1EA56E7500EACDE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78ED539CAFE5481290052776 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		BEAF1C691EA5193400A44C64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BF1B8CD19A04A4D97FBEC5C /* imageCropPicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
+			remoteInfo = imageCropPicker;
+		};
+		BED868851EA6693C00AE9F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BED868701EA6693B00AE9F90 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
+		BED868871EA6693C00AE9F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BED868701EA6693B00AE9F90 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
+			remoteInfo = "RCTPushNotification-tvOS";
+		};
+		BEFCBC401EA54991002FFD37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C05231A48E7FE00800C63;
+			remoteInfo = Amplitude;
+		};
+		BEFCBC421EA54991002FFD37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E98C052E1A48E7FE00800C63;
+			remoteInfo = AmplitudeTests;
+		};
+		BEFCBC441EA54991002FFD37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 343AB4171CC99F4F00962943;
+			remoteInfo = AmplitudeFramework;
+		};
+		BEFCBC461EA54991002FFD37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 600CBC5C1E2EF5B0001F58A9;
+			remoteInfo = AmplitudeTVOSTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -254,23 +328,29 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kickback/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = kickback/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		268100B81F09DF087AA6B65E /* Pods-kickbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickbackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B0FCF0E69809957FFEA09C4 /* Pods-kickback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickback/Pods-kickback.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kickback-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kickback-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kickback-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kickback-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		53B0B9C71DE14CFDDE21DA38 /* Pods-kickback-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickback-tvOS/Pods-kickback-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		3B063ED236DFE0A2854B8BF1 /* libPods-kickback.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		404B865DDB3A44CEB1822DE8 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		4BF1B8CD19A04A4D97FBEC5C /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6C1107F56914906E7DC8A3C3 /* Pods-kickbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickbackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		808FC988ABAC42A7A61224FF /* Pods-kickback-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickback-tvOS/Pods-kickback-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		78ED539CAFE5481290052776 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		7FE2E365D6CD0FE1D5B3FDDD /* libPods-kickbackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickbackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		8428E4B132BE9547FE34F0DA /* libPods-kickbackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickbackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		99464CDB6AD1A00E531FE07C /* libPods-kickback-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD21B03D0058777D7F2D401E /* libPods-kickback-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5FB915A981E210417E03183 /* Pods-kickback-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickback-tvOSTests/Pods-kickback-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CB7B51DC154CC6A3210D8A9F /* Pods-kickback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kickback/Pods-kickback.debug.xcconfig"; sourceTree = "<group>"; };
-		D056CDE872ED683C39E97BE6 /* Pods-kickbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickbackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests.release.xcconfig"; sourceTree = "<group>"; };
-		D5A2216EDACE24C96677EA88 /* libPods-kickback.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6E214FD938EF7E76E8136A2 /* Pods-kickback-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickback-tvOSTests/Pods-kickback-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		F81A7476AFEFFFC3A672C482 /* Pods-kickback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickback/Pods-kickback.release.xcconfig"; sourceTree = "<group>"; };
+		B4DA9FA1DBBC79AF495A4090 /* Pods-kickbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickbackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE1E25131EA567F100EACDE4 /* libAmplitude-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAmplitude-iOS.a"; path = "Pods/../build/Debug-iphoneos/Amplitude-iOS/libAmplitude-iOS.a"; sourceTree = "<group>"; };
+		BECEA2E51EA6764100F7D589 /* RNAmplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAmplitude.h; sourceTree = "<group>"; };
+		BECEA2E61EA6764100F7D589 /* RNAmplitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAmplitude.m; sourceTree = "<group>"; };
+		BED868701EA6693B00AE9F90 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amplitude.xcodeproj; path = "../../../../../../Downloads/Amplitude-iOS-master 2/Amplitude.xcodeproj"; sourceTree = "<group>"; };
+		D93B7C4B0333402D85DFD101 /* RNShimmer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShimmer.xcodeproj; path = "../node_modules/react-native-shimmer/ios/RNShimmer.xcodeproj"; sourceTree = "<group>"; };
+		EE065382E0453D8E2A0E3786 /* Pods-kickback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kickback.release.xcconfig"; path = "Pods/Target Support Files/Pods-kickback/Pods-kickback.release.xcconfig"; sourceTree = "<group>"; };
+		F11FBAB8C2294C0A83F07A64 /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
+		F3243BE74DFB4B855B0E39BB /* libPods-kickback-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F72C17B308B1CE5B8E09F30B /* libPods-kickback-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kickback-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,7 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				8B670EC69F4E0B5600454E42 /* libPods-kickbackTests.a in Frameworks */,
+				C4A464AE26D42A65F815AA48 /* libPods-kickbackTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +367,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED8689A1EA6697400AE9F90 /* libRCTPushNotification.a in Frameworks */,
+				BE1E25141EA567F100EACDE4 /* libAmplitude-iOS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -298,7 +380,11 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				8531E26E298E413F40AA73BA /* libPods-kickback.a in Frameworks */,
+				BEFCBC4B1EA54B9A002FFD37 /* libimageCropPicker.a in Frameworks */,
+				BEFCBC4C1EA54BA4002FFD37 /* libBVLinearGradient.a in Frameworks */,
+				BEFCBC4E1EA54BB5002FFD37 /* libRNShimmer.a in Frameworks */,
+				3A43A0DC4E597CE4B8DAF427 /* libPods-kickback.a in Frameworks */,
+				0BE4BB4E409D4AC5B60EC51F /* libRCTVideo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +400,6 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-				3655DA8679946EC0AF1260CD /* libPods-kickback-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +407,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE77CF2F7641DC4C521E347 /* libPods-kickback-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +493,8 @@
 		13B07FAE1A68108700A75B9A /* kickback */ = {
 			isa = PBXGroup;
 			children = (
+				BECEA2E51EA6764100F7D589 /* RNAmplitude.h */,
+				BECEA2E61EA6764100F7D589 /* RNAmplitude.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -435,6 +521,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		52C4FEB88AD9E99425C30680 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE1E25131EA567F100EACDE4 /* libAmplitude-iOS.a */,
+				3B063ED236DFE0A2854B8BF1 /* libPods-kickback.a */,
+				F3243BE74DFB4B855B0E39BB /* libPods-kickback-tvOS.a */,
+				F72C17B308B1CE5B8E09F30B /* libPods-kickback-tvOSTests.a */,
+				7FE2E365D6CD0FE1D5B3FDDD /* libPods-kickbackTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +554,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BED868701EA6693B00AE9F90 /* RCTPushNotification.xcodeproj */,
+				BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -467,6 +567,10 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				4BF1B8CD19A04A4D97FBEC5C /* imageCropPicker.xcodeproj */,
+				404B865DDB3A44CEB1822DE8 /* BVLinearGradient.xcodeproj */,
+				D93B7C4B0333402D85DFD101 /* RNShimmer.xcodeproj */,
+				78ED539CAFE5481290052776 /* RCTVideo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -487,8 +591,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* kickbackTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				EC5CA0A16FA72737A3DB6AD7 /* Pods */,
-				8CC027A59876A6353037B1F7 /* Frameworks */,
+				89DCE809ED055F55A8D5215C /* Pods */,
+				52C4FEB88AD9E99425C30680 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -505,30 +609,67 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8CC027A59876A6353037B1F7 /* Frameworks */ = {
+		89DCE809ED055F55A8D5215C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D5A2216EDACE24C96677EA88 /* libPods-kickback.a */,
-				99464CDB6AD1A00E531FE07C /* libPods-kickback-tvOS.a */,
-				AD21B03D0058777D7F2D401E /* libPods-kickback-tvOSTests.a */,
-				8428E4B132BE9547FE34F0DA /* libPods-kickbackTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EC5CA0A16FA72737A3DB6AD7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CB7B51DC154CC6A3210D8A9F /* Pods-kickback.debug.xcconfig */,
-				F81A7476AFEFFFC3A672C482 /* Pods-kickback.release.xcconfig */,
-				808FC988ABAC42A7A61224FF /* Pods-kickback-tvOS.debug.xcconfig */,
-				53B0B9C71DE14CFDDE21DA38 /* Pods-kickback-tvOS.release.xcconfig */,
-				C5FB915A981E210417E03183 /* Pods-kickback-tvOSTests.debug.xcconfig */,
-				F6E214FD938EF7E76E8136A2 /* Pods-kickback-tvOSTests.release.xcconfig */,
-				268100B81F09DF087AA6B65E /* Pods-kickbackTests.debug.xcconfig */,
-				D056CDE872ED683C39E97BE6 /* Pods-kickbackTests.release.xcconfig */,
+				2B0FCF0E69809957FFEA09C4 /* Pods-kickback.debug.xcconfig */,
+				EE065382E0453D8E2A0E3786 /* Pods-kickback.release.xcconfig */,
+				6C1107F56914906E7DC8A3C3 /* Pods-kickbackTests.debug.xcconfig */,
+				B4DA9FA1DBBC79AF495A4090 /* Pods-kickbackTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BE0843C61EA5344F0046882E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE0843CC1EA5344F0046882E /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE0843FA1EA5348A0046882E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE08441A1EA5348A0046882E /* libRNShimmer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE1E25541EA56E7500EACDE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE1E256F1EA56E7500EACDE4 /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEAF1C661EA5193400A44C64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF1C6A1EA5193400A44C64 /* libimageCropPicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BED868711EA6693B00AE9F90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BED868861EA6693C00AE9F90 /* libRCTPushNotification.a */,
+				BED868881EA6693C00AE9F90 /* libRCTPushNotification-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEFCBC3A1EA54991002FFD37 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEFCBC411EA54991002FFD37 /* libAmplitude.a */,
+				BEFCBC431EA54991002FFD37 /* AmplitudeTests.xctest */,
+				BEFCBC451EA54991002FFD37 /* Amplitude.framework */,
+				BEFCBC471EA54991002FFD37 /* AmplitudeTVOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,12 +679,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "kickbackTests" */;
 			buildPhases = (
-				CF5CA3506E96F968C7B20C59 /* [CP] Check Pods Manifest.lock */,
+				A7BD15E84D3FB27A9CE76FEE /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				35632F90AF1CAF63909CEDB3 /* [CP] Embed Pods Frameworks */,
-				C963524CEBDB8A93F4F79806 /* [CP] Copy Pods Resources */,
+				0C6F4D86136DDD38A125EBC9 /* [CP] Embed Pods Frameworks */,
+				C67F1DD60FF672EAE3454ADE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -559,13 +700,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "kickback" */;
 			buildPhases = (
-				862BE17072E0A60A471BD6A8 /* [CP] Check Pods Manifest.lock */,
+				445E306DFEBCE3ED0C65445B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				8F7F48997FD52A021AC7EAD1 /* [CP] Embed Pods Frameworks */,
-				3B8453B7401138E00785AF77 /* [CP] Copy Pods Resources */,
+				590C49552E67E08065046667 /* [CP] Embed Pods Frameworks */,
+				BA5F3F405D496832FC845269 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -580,13 +721,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "kickback-tvOS" */;
 			buildPhases = (
-				2EBF5149261DD27D8B5B2577 /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
-				61082C13514BB76348E8E7AC /* [CP] Embed Pods Frameworks */,
-				C9DBE074DE89EC76788E2DAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -601,12 +739,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "kickback-tvOSTests" */;
 			buildPhases = (
-				5549032CF8E0EE8CABBE069D /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
-				70177FD130BAD6A895ED5AB7 /* [CP] Embed Pods Frameworks */,
-				C29F06AC2166F483C9D5A1C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -624,12 +759,15 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 2ZG3H3XZPQ;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -642,7 +780,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kickback" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Kickback" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -654,6 +792,18 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = BEFCBC3A1EA54991002FFD37 /* Products */;
+					ProjectRef = BEFCBC391EA54991002FFD37 /* Amplitude.xcodeproj */;
+				},
+				{
+					ProductGroup = BE0843C61EA5344F0046882E /* Products */;
+					ProjectRef = 404B865DDB3A44CEB1822DE8 /* BVLinearGradient.xcodeproj */;
+				},
+				{
+					ProductGroup = BEAF1C661EA5193400A44C64 /* Products */;
+					ProjectRef = 4BF1B8CD19A04A4D97FBEC5C /* imageCropPicker.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -679,6 +829,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = BED868711EA6693B00AE9F90 /* Products */;
+					ProjectRef = BED868701EA6693B00AE9F90 /* RCTPushNotification.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -691,12 +845,20 @@
 					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
 				},
 				{
+					ProductGroup = BE1E25541EA56E7500EACDE4 /* Products */;
+					ProjectRef = 78ED539CAFE5481290052776 /* RCTVideo.xcodeproj */;
+				},
+				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 				},
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = BE0843FA1EA5348A0046882E /* Products */;
+					ProjectRef = D93B7C4B0333402D85DFD101 /* RNShimmer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -885,6 +1047,76 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BE0843CC1EA5344F0046882E /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = BE0843CB1EA5344F0046882E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE08441A1EA5348A0046882E /* libRNShimmer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNShimmer.a;
+			remoteRef = BE0844191EA5348A0046882E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE1E256F1EA56E7500EACDE4 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = BE1E256E1EA56E7500EACDE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEAF1C6A1EA5193400A44C64 /* libimageCropPicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimageCropPicker.a;
+			remoteRef = BEAF1C691EA5193400A44C64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BED868861EA6693C00AE9F90 /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = BED868851EA6693C00AE9F90 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BED868881EA6693C00AE9F90 /* libRCTPushNotification-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTPushNotification-tvOS.a";
+			remoteRef = BED868871EA6693C00AE9F90 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEFCBC411EA54991002FFD37 /* libAmplitude.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAmplitude.a;
+			remoteRef = BEFCBC401EA54991002FFD37 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEFCBC431EA54991002FFD37 /* AmplitudeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AmplitudeTests.xctest;
+			remoteRef = BEFCBC421EA54991002FFD37 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEFCBC451EA54991002FFD37 /* Amplitude.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Amplitude.framework;
+			remoteRef = BEFCBC441EA54991002FFD37 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEFCBC471EA54991002FFD37 /* AmplitudeTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AmplitudeTVOSTests.xctest;
+			remoteRef = BEFCBC461EA54991002FFD37 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -936,36 +1168,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
-		};
-		2EBF5149261DD27D8B5B2577 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		35632F90AF1CAF63909CEDB3 /* [CP] Embed Pods Frameworks */ = {
+		0C6F4D86136DDD38A125EBC9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -980,67 +1183,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B8453B7401138E00785AF77 /* [CP] Copy Pods Resources */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "Bundle React Native Code And Images";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback/Pods-kickback-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
-		5549032CF8E0EE8CABBE069D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		61082C13514BB76348E8E7AC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback-tvOS/Pods-kickback-tvOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		70177FD130BAD6A895ED5AB7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback-tvOSTests/Pods-kickback-tvOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		862BE17072E0A60A471BD6A8 /* [CP] Check Pods Manifest.lock */ = {
+		445E306DFEBCE3ED0C65445B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1052,10 +1209,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8F7F48997FD52A021AC7EAD1 /* [CP] Embed Pods Frameworks */ = {
+		590C49552E67E08065046667 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1070,7 +1227,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback/Pods-kickback-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C29F06AC2166F483C9D5A1C5 /* [CP] Copy Pods Resources */ = {
+		A7BD15E84D3FB27A9CE76FEE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA5F3F405D496832FC845269 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1082,10 +1254,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback-tvOSTests/Pods-kickback-tvOSTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback/Pods-kickback-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C963524CEBDB8A93F4F79806 /* [CP] Copy Pods Resources */ = {
+		C67F1DD60FF672EAE3454ADE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1098,36 +1270,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickbackTests/Pods-kickbackTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C9DBE074DE89EC76788E2DAA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kickback-tvOS/Pods-kickback-tvOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF5CA3506E96F968C7B20C59 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1146,6 +1288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				BECEA2E71EA6764100F7D589 /* RNAmplitude.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1155,7 +1298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,20 +1339,37 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 268100B81F09DF087AA6B65E /* Pods-kickbackTests.debug.xcconfig */;
+			baseConfigurationReference = 6C1107F56914906E7DC8A3C3 /* Pods-kickbackTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+				);
 				INFOPLIST_FILE = kickbackTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kickback.app/kickback";
 			};
@@ -1218,17 +1377,34 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D056CDE872ED683C39E97BE6 /* Pods-kickbackTests.release.xcconfig */;
+			baseConfigurationReference = B4DA9FA1DBBC79AF495A4090 /* Pods-kickbackTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+				);
 				INFOPLIST_FILE = kickbackTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kickback.app/kickback";
 			};
@@ -1236,18 +1412,33 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB7B51DC154CC6A3210D8A9F /* Pods-kickback.debug.xcconfig */;
+			baseConfigurationReference = 2B0FCF0E69809957FFEA09C4 /* Pods-kickback.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 2ZG3H3XZPQ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+				);
 				INFOPLIST_FILE = kickback/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Amplitude-iOS",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = kickback;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1255,17 +1446,32 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F81A7476AFEFFFC3A672C482 /* Pods-kickback.release.xcconfig */;
+			baseConfigurationReference = EE065382E0453D8E2A0E3786 /* Pods-kickback.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZG3H3XZPQ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+				);
 				INFOPLIST_FILE = kickback/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Amplitude-iOS",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lsqlite3.0",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = kickback;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1273,7 +1479,6 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 808FC988ABAC42A7A61224FF /* Pods-kickback-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1284,8 +1489,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+				);
 				INFOPLIST_FILE = "kickback-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1300,7 +1521,6 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53B0B9C71DE14CFDDE21DA38 /* Pods-kickback-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1311,8 +1531,24 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
+				);
 				INFOPLIST_FILE = "kickback-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1327,7 +1563,6 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5FB915A981E210417E03183 /* Pods-kickback-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1339,6 +1574,14 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "kickback-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.kickback-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1349,7 +1592,6 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6E214FD938EF7E76E8136A2 /* Pods-kickback-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1361,6 +1603,14 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "kickback-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.kickback-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1382,15 +1632,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1423,8 +1677,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1432,6 +1688,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1484,7 +1741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kickback" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Kickback" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

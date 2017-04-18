@@ -16,7 +16,7 @@ const SettingOption = ({ title, onPress, bordered }) => (
   >
     <View style={[ styles.optionWrapper, bordered ? styles.linkBordered : {} ]}>
       <Text style={ styles.linkText }>{ title }</Text>
-      <Image source={ require('image!forward') } />
+      <Image source={ require('./assets/images/forward.png') } />
     </View>
   </TouchableHighlight>
 );

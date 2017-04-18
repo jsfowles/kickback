@@ -21,6 +21,9 @@ case "${TARGETED_DEVICE_FAMILY}" in
   3)
     TARGET_DEVICE_ARGS="--target-device tv"
     ;;
+  4)
+    TARGET_DEVICE_ARGS="--target-device watch"
+    ;;
   *)
     TARGET_DEVICE_ARGS="--target-device mac"
     ;;
@@ -77,10 +80,18 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "Amplitude-iOS/Amplitude/api.amplitude.com.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoRsaCA.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/QBImagePickerController/QBImagePicker.bundle"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "Amplitude-iOS/Amplitude/api.amplitude.com.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoRsaCA.der"
+  install_resource "Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/QBImagePickerController/QBImagePicker.bundle"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"
 fi

@@ -64,7 +64,7 @@ class DepositSettings extends React.Component {
         title='Deposit Settings'
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
-          icon: require('image!back'),
+          icon: require('./assets/images/back.png'),
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
         rightItem={{
@@ -74,10 +74,10 @@ class DepositSettings extends React.Component {
         }}
       >
         <View style={ styles.contentContainer }>
-          <Image style={ styles.payablePic } source={require('image!payable')} />
+          <Image style={ styles.payablePic } source={ require('./assets/images/payable.png') } />
           <Input
             wrapperStyles={ styles.formContainer }
-            icon={ require('image!email') }
+            icon={ require('./assets/images/email.png') }
             placeholder='youremail@yourhost.com'
             value={this.state.email}
             onChangeText={ v => this.onInputChange(v, 'email') }

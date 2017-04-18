@@ -53,7 +53,7 @@ class ChangePassword extends React.Component {
 
         <View style={ styles.formContainer }>
           <Input
-            icon={ require('image!user') }
+            icon={ require('./assets/images/user.png') }
             placeholder='youremail@yourhost.com'
             autoCapitalize={ 'none' }
             autoCorrect={ false }

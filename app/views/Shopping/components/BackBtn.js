@@ -18,7 +18,7 @@ const BackBtn = ({
     ]}
   >
     <TouchableOpacity style={ styles.backBtn } onPress={ onBackPress }>
-      <Image source={ require('image!back') } />
+      <Image source={ require('./assets/images/back.png') } />
     </TouchableOpacity>
   </Animated.View>
 );

@@ -9,8 +9,8 @@ jest.autoMockOff();
 const initialState = {
   index: 0,
   tabs: [
-    { key: 'shopping', icon: require('image!cart') },
-    { key: 'profile', icon: require('image!user') },
+    { key: 'shopping', icon: require('./assets/images/cart.png') },
+    { key: 'profile', icon: require('./assets/images/user.png') },
   ],
 };
 

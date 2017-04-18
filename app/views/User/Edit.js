@@ -86,7 +86,7 @@ class EditProfile extends React.Component {
         title='Edit Profile'
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
-          icon: require('image!back'),
+          icon: require('./components/assets/images/back.png'),
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
         rightItem={{
@@ -109,7 +109,7 @@ class EditProfile extends React.Component {
 
         <View style={ styles.formContainer }>
           <Input
-            icon={ require('image!user') }
+            icon={ require('./components/assets/images/user.png') }
             value={ this.state.name }
             placeholder={ 'Your Name' }
             onChangeText={ v => this.onInputChange(v, 'name') }
@@ -117,7 +117,7 @@ class EditProfile extends React.Component {
           />
           <View style={ styles.seperator } />
           <Input
-            icon={ require('image!email') }
+            icon={ require('./components/assets/images/email.png') }
             value={ this.state.email }
             placeholder={ 'Your Email' }
             setRef={ input => this.email = input }

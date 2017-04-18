@@ -65,7 +65,7 @@ class PushNotifications extends React.Component {
         title='Notification Settings'
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
-          icon: require('image!back'),
+          icon: require('./assets/images/back.png'),
           onPress: () => handleNavigate({ type: 'pop' }),
         }}
       >

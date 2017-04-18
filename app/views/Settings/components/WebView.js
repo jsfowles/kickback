@@ -9,7 +9,7 @@ const SettingsWebView = ({ handleNavigate, url, title }) => (
     title={ title }
     headerColors={[ '#45baef', '#34bcd5' ]}
     leftItem={{
-      icon: require('image!back'),
+      icon: require('./assets/images/back.png'),
       onPress: () => handleNavigate({ type: 'pop' }),
     }}
   >

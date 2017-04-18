@@ -129,7 +129,7 @@ class Settings extends React.Component {
 
   render() {
     let leftItem = {
-      icon: require('image!back'),
+      icon: require('./components/assets/images/back.png'),
       onPress: () => this.props.handleNavigate({ type: 'pop' }),
     };
 

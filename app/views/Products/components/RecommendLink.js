@@ -36,7 +36,7 @@ const RecommendLink = ({
           { showText && <Text style={ buttonTextStyles }>Recommend</Text> }
         </Shimmer>
 
-        <Image source={ require('image!share') } style={ shareStyles } />
+        <Image source={ require('./assets/images/share.png') } style={ shareStyles } />
       </View>
     </TouchableOpacity>
   );

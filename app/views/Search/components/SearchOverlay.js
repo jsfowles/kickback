@@ -72,7 +72,7 @@ class Search extends React.Component {
     >
       <View style={ styles.categoryContainer }>
         <Text style={ styles.categoryText }>{ data.title }</Text>
-        <Image source={ require('image!forward') } style={{ marginTop: 2.5 }} />
+        <Image source={ require('./assets/images/forward.png') } style={{ marginTop: 2.5 }} />
       </View>
     </TouchableHighlight>
   )

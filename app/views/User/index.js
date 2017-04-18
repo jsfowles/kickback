@@ -112,7 +112,7 @@ class User extends React.Component {
     } = this.props;
 
     const rightItem = {
-      icon: require('image!settings'),
+      icon: require('./components/assets/images/settings.png'),
       onPress: () => handleNavigate({ type: 'push', route: NEXT_ROUTE }, 'profile'),
     };
 

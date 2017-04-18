@@ -15,7 +15,7 @@ const Header = ({ closeModal, style }) => (
   <TouchableWithoutFeedback onPress={ () => DismissKeyboard() }>
     <View style={[ styles.container, style ]}>
       <View style={ styles.logoContainer }>
-        <Image source={ require('image!logo') } style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
+        <Image source={ require('./assets/images/logo.png')} style={ styles.logo } resizeMode={ Image.resizeMode.contain } />
         <Text style={ styles.logoText }>Get paid for referring products</Text>
       </View>
 
@@ -24,7 +24,7 @@ const Header = ({ closeModal, style }) => (
         style={ styles.closeBtn }
         onPress={ closeModal }
       >
-        <Image source={ require('image!close') } />
+        <Image source={ require('./assets/images/close.png') } />
       </TouchableHighlight>
     </View>
   </TouchableWithoutFeedback>

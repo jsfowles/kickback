@@ -5,10 +5,10 @@
 
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 
+import { createLogger } from 'redux-logger';
 import reducers from '../reducers';
 
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
                BuildableName = "kickback-tvOS.app"
                BlueprintName = "kickback-tvOS"
-               ReferencedContainer = "container:kickback.xcodeproj">
+               ReferencedContainer = "container:Kickback.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
                BuildableName = "kickback-tvOSTests.xctest"
                BlueprintName = "kickback-tvOSTests"
-               ReferencedContainer = "container:kickback.xcodeproj">
+               ReferencedContainer = "container:Kickback.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,7 +63,7 @@
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
                BuildableName = "kickback-tvOSTests.xctest"
                BlueprintName = "kickback-tvOSTests"
-               ReferencedContainer = "container:kickback.xcodeproj">
+               ReferencedContainer = "container:Kickback.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -73,7 +73,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "kickback-tvOS.app"
             BlueprintName = "kickback-tvOS"
-            ReferencedContainer = "container:kickback.xcodeproj">
+            ReferencedContainer = "container:Kickback.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,7 +96,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "kickback-tvOS.app"
             BlueprintName = "kickback-tvOS"
-            ReferencedContainer = "container:kickback.xcodeproj">
+            ReferencedContainer = "container:Kickback.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -115,7 +115,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "kickback-tvOS.app"
             BlueprintName = "kickback-tvOS"
-            ReferencedContainer = "container:kickback.xcodeproj">
+            ReferencedContainer = "container:Kickback.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -61,7 +61,7 @@ class ChangePassword extends React.Component {
         title='Change Password'
         headerColors={[ '#45baef', '#34bcd5' ]}
         leftItem={{
-          icon: require('image!back'),
+          icon: require('./assets/images/back.png'),
           onPress: this.backButton,
         }}
         rightItem={{
@@ -72,7 +72,7 @@ class ChangePassword extends React.Component {
       >
         <View style={ styles.currentPassword }>
           <Input
-            icon={ require('image!lock') }
+            icon={ require('./assets/images/lock.png') }
             placeholder='Current Password'
             value={ this.state.currentPassword }
             secureTextEntry={ true }
@@ -82,7 +82,7 @@ class ChangePassword extends React.Component {
         </View>
         <View style={ styles.newPassword }>
           <Input
-            icon={ require('image!lock') }
+            icon={ require('./assets/images/lock.png') }
             placeholder='New Password'
             value={ this.state.newPassword }
             secureTextEntry={ true }
@@ -92,7 +92,7 @@ class ChangePassword extends React.Component {
           />
           <View style={ styles.seperator } />
           <Input
-            icon={ require('image!lock') }
+            icon={ require('./assets/images/lock.png') }
             placeholder='Confirm New Password'
             value={ this.state.passwordConfirmation }
             secureTextEntry={ true }

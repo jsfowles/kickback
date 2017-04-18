@@ -1,36 +1,40 @@
 {
-	"name": "kickback",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.43.2",
-		"react-native-push-notification": "^2.2.1",
-		"react-redux": "^5.0.3",
-		"redux": "^3.6.0",
-		"redux-logger": "^3.0.1",
-		"redux-persist": "^4.6.0",
-		"redux-thunk": "^2.2.0"
-	},
-	"devDependencies": {
-		"babel-eslint": "^7.2.1",
-		"babel-jest": "^19.0.0",
-		"babel-preset-react-native": "^1.9.1",
-		"eslint": "^3.19.0",
-		"eslint-config-airbnb": "^14.1.0",
-		"eslint-plugin-flowtype": "^2.30.4",
-		"eslint-plugin-import": "^2.2.0",
-		"eslint-plugin-jsx-a11y": "^4.0.0",
-		"eslint-plugin-react": "^6.10.3",
-		"jest": "^19.0.2",
-		"jest-react-native": "^18.0.0",
-		"react-test-renderer": "^15.5.0"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "kickback",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.3",
+    "react-native-image-crop-picker": "^0.12.10",
+    "react-native-linear-gradient": "^2.0.0",
+    "react-native-push-notification": "^2.2.1",
+    "react-native-shimmer": "^0.2.0",
+    "react-native-video": "^1.0.0",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-persist": "^4.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "babel-jest": "^19.0.0",
+    "babel-preset-react-native": "^1.9.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "jest": "^19.0.2",
+    "jest-react-native": "^18.0.0",
+    "react-test-renderer": "^15.5.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }
